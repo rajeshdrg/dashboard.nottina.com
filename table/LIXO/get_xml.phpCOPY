@@ -1,0 +1,159 @@
+<?php 
+date_default_timezone_set ("America/Sao_Paulo");
+$server=array();
+$server[ 0]='/dados/cap/status/disco_rj1.xml';
+$server[ 1]='/dados/cap/status/disco_rj2.xml';
+$server[ 2]='/dados/cap/status/disco_sp1.xml';
+$server[ 3]='/dados/cap/status/disco_sp2.xml';
+$server[ 4]='/dados/cap/status/disco_sv_site.xml';
+$server[ 5]='/dados/cap/status/disco_sv_banco.xml';
+$server[ 6]='/dados/cap/status/disco_sv_mail.xml';
+$server[ 7]='/dados/cap/status/disco_sv-sql.xml';
+$server[ 8]='/dados/cap/status/disco_sp26.xml';
+$server[ 9]='/dados/cap/status/disco_sp25.xml';
+$server[10]='/dados/cap/status/disco_kannel51.xml';
+$server[11]='/dados/cap/status/disco_sp27.abstract.com.br.xml';
+$server[12]='/dados/cap/status/disco_vsp250.abstract.com.br.xml';
+$server[13]='/dados/cap/status/disco_vps246.xml';
+
+$dash= "";
+$dash.= "<table width=100%>";
+$dash.= "<tr>";
+$dash.= "<td><b>Servidor</b></td>";
+$dash.= "<td><b>Status</b></td>";
+$dash.= "</tr>";
+
+$html = "{\"data\": [";
+$table = "";
+
+
+foreach($server as $s) {
+	$len = filesize($s);
+	$arq = fopen($s,"r");
+	if($arq==null) {
+		print "Erro: arquivo xml não encontrado<br>;";
+		exit(0);
+	}
+
+	$xmlstr = fread($arq,$len);
+	fclose($arq);
+
+	$xmlc= new SimpleXMLElement($xmlstr);
+#print_r($xmlc);
+        $html.= "{
+		\"id\": \"1\",
+      		\"contrato\": \"CTR.ABR.2019/00089\",
+      		\"servico\": \"$xmlc->hostname\",
+      		\"servidor\": \"$xmlc->hostname\",
+      		\"status\": \"OK\",
+      		\"data\": \"$xmlc->atualizacao\",
+      		\"detail\": \"http://hugtak.com/doc1.txt\"
+
+	";
+
+$html .= "]}";
+print $html;
+exit();
+	$memoriapercent = intval($xmlc->memoriausada);
+                if($memoriapercent <99) {
+                    $html.=  "<br> Memória Usada:<font color=green>$xmlc->memoriausada% OK</font>";
+	 	    $m_ok = true;
+                }
+                else {
+                    $html.=  "<br> Memória Usada:<font color=red>$xmlc->memoriausada% NOK</font>";
+                    $m_ok = false;
+                }
+	$html.= "</header>";
+	$html.= "<div class='card-content'>";
+
+	$html.= "<table width=100%>";
+	$html.= "<tr>";
+	$html.= "<td><b>Disco</b></td>";
+	$html.= "<td><b>Percentual</b></td>";
+	$html.= "</tr>";
+        
+        
+	$dash.= "<tr>";
+        $dash.=  "<td>";
+       	$dash.= "$xmlc->hostname";
+        $dash.=  "</td>";
+
+        $d_ok = true;
+	foreach($xmlc->capacidade->item as $i) {
+		$html.= "<tr>";
+	        $html.=  "<td>";
+       		 $html.= "<b>".$i->pasta."</b>";
+       		 $html.= "</td>";
+		$html.= "<td>";
+       		 $html.= "<b>".$i->percentual."</b>";
+		$html.= "</td>";
+		$percentual = intval($i->percentual);
+       		if($percentual <85) {
+                    $html.=  "<td><font color=green>OK";
+                }
+                else {
+                    $html.=  "<td><font color=red>NOK";
+                    $d_ok = false;
+                }
+       	 $html.= "</font>";
+       	 $html.= "</td>";
+	$html.= "</tr>";
+
+
+    }
+
+	$html.= "<tr><td><br></td></tr>";
+	$html.= "<tr>";
+	$html.= "<td><b>Inodes</b></td>";
+	$html.= "<td><b>Percentual</b></td>";
+	$html.= "</tr>";
+   	$i_ok = true;
+        foreach($xmlc->inodes->item as $i) {
+                $html.= "<tr>";
+                $html.=  "<td>";
+                 $html.= "<b>".$i->pasta."</b>";
+                 $html.= "</td>";
+                $html.= "<td>";
+                 $html.= "<b>".$i->percentual."</b>";
+                $html.= "</td>";
+                $percentual = intval($i->percentual);
+                if($percentual <85) {
+                    $html.=  "<td><font color=green>OK";
+                }
+                else {
+                    $html.=  "<td><font color=red>NOK";
+                    $i_ok = false;
+                }
+         $html.= "</font>";
+         $html.= "</td>";
+        $html.= "</tr>";
+
+
+    }
+ 
+#    if (($d_ok)&&($m_ok))
+    if (($d_ok)&&($i_ok))
+        $dash.=  "<td><font color=green>OK";
+    
+    else {
+        $dash.=  "<td><font color=red>NOK";
+        $dash.=  "<audio autoplay>";
+        $dash.=  "<source src='/alerta.wav' type='audio/wav'>";
+        $dash.=  "</audio>";
+    }
+    
+    
+	$html.= "</table>";
+  $html.= "</div>";
+$html.= "</div>";
+}
+
+$dash.= "</table>";
+  $dash.= "</div>";
+$dash.= "</div>";
+
+print $table;
+
+#print $dash;
+print $html;
+?>

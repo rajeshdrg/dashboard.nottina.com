@@ -1,0 +1,413 @@
+
+.BaseRBtn{display:inline-block}
+
+.BaseRBtn span,
+
+.RoundedBtn input{display:block;float:left;position:relative}
+
+.BaseRBtn 
+
+.BtnLeft{background:transparent no-repeat scroll 0 0}
+
+.BaseRBtn 
+
+.BtnRight{background:transparent no-repeat scroll right 0}
+
+.BaseRBtn 
+
+.BtnBackground{overflow:hidden;background:transparent repeat-x scroll}
+
+.BaseRBtn 
+
+.BtnText{border:0px;background:transparent;margin:0;white-space:nowrap;width:auto;overflow:visible}
+
+.Attribute,
+
+.ErrorAttribute,
+
+.WarningAttribute,
+
+.ImageAttribute,
+
+.ReadonlyImageAttribute,
+
+.VideoAttribute,
+
+.ReadonlyVideoAttribute,
+
+.AudioAttribute,
+
+.ReadonlyAudioAttribute,
+
+.ReadonlyAttribute,
+
+.BlobContentAttribute,
+
+.ReadonlyBlobContentAttribute,
+
+.BlobInputAttribute,
+
+.AttributeDragging,
+
+.AttributeAcceptDrag,
+
+.AttributeNoAcceptDrag{border-style:none;border-width:2px}
+
+
+.ErrorAttribute{border-bottom-color:#c60b44;border-left-color:#c60b44;border-right-color:#c60b44;border-top-color:#c60b44;border-style:dotted;border-width:1px}
+
+.WarningAttribute{border-bottom-color:#ff8000;border-left-color:#ff8000;border-right-color:#ff8000;border-top-color:#ff8000;border-style:dotted;border-width:1px}
+
+.ImageAttribute,
+
+.ReadonlyImageAttribute{width:300px}
+
+.ReadonlyImageAttribute{border-width:0px;max-width:124px;max-height:68px}
+
+.VideoAttribute,
+
+.ReadonlyVideoAttribute{width:300px}
+
+.ReadonlyVideoAttribute{border-width:0px}
+
+
+.AudioAttribute,
+
+.ReadonlyAudioAttribute{width:300px}
+
+.ReadonlyAudioAttribute{border-width:0px}
+
+.Button,
+
+.SpecialButtons,
+
+.BtnCancel,
+
+.BtnCheck,
+
+.BtnDelete,
+
+.BtnEnter,
+
+.BtnFirst,
+
+.BtnGet,
+
+.BtnHelp,
+
+.BtnLast,
+
+.BtnNext,
+
+.BtnPrevious,
+
+.BtnRefresh,
+
+.BtnSelect,
+
+.ButtonDragging,
+
+.ButtonAcceptDrag,
+
+.ButtonNoAcceptDrag{border-style:outset;border-width:2px}
+
+.RButton 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RSpecialButtons 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RBtnCancel 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+
+.RBtnCheck 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RBtnDelete 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RBtnEnter 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RBtnFirst 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RBtnGet 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RBtnHelp 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RBtnLast 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RBtnNext 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+
+.RBtnPrevious 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RBtnRefresh 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RBtnSelect 
+
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+
+.RButtonDragging 
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+.RButtonAcceptDrag 
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}
+.RButtonNoAcceptDrag 
+.BtnText{cursor:pointer;padding-left:0;padding-right:0}BODY{height:100%}HTML{height:100%}
+.ErrorViewer{border-style:none;border-width:0px}
+
+.Form{border-style:none;border-width:0px}
+.FreeStyleGrid{border-style:none;border-width:0px}
+.Grid,
+.GridDragging,
+.GridAcceptDrag,
+.GridNoAcceptDrag{border-style:none;border-width:1px}
+.Hyperlink{border-style:none;border-width:0px}
+.Image,
+.ImageDragging,
+.ImageAcceptDrag,
+.ImageNoAcceptDrag,
+.PagingButtons,
+.PagingButtonsFirst,
+.PagingButtonsLast,
+.PagingButtonsNext,
+.PagingButtonsPrevious{border-style:none;border-width:0px}
+.PagingButtons,
+.PagingButtonsFirst,
+.PagingButtonsLast,
+.PagingButtonsNext,
+.PagingButtonsPrevious{background-repeat:no-repeat;height:20px;width:20px;cursor:pointer}
+
+.PagingButtonsFirst{background-image:url(../Global/PageFirst.gif)}
+.PagingButtonsLast{background-image:url(../Global/PageLast.gif)}
+.PagingButtonsNext{background-image:url(../Global/PageNext .gif)}
+.PagingButtonsPrevious{background-image:url(../Global/PagePrevious.gif)}
+.Messages,
+.ErrorMessages,
+.WarningMessages{background-color:#ffffe1;border-bottom-color:#716f64;border-left-color:#716f64;border-right-color:#716f64;border-top-color:#716f64;border-style:solid;border-width:1px;padding-bottom:1px;padding-left:1px;padding-right:1px;padding-top:1px;font-family:Baskerville,serif;font-size:
+.9em;color:#000}
+
+.Table,
+.TableDragging,
+.TableAcceptDrag,
+.TableNoAcceptDrag{border-style:none;border-width:0px}
+.TextBlock,
+.Title,
+.SubTitle,
+.TextBlockDragging,
+.TextBlockAcceptDrag,
+.TextBlockNoAcceptDrag{border-style:none;border-width:0px}
+.SubTitle{display:block}
+.Section,
+.WL,
+.WLInt{border-style:none;border-width:0px}
+.WL{overflow:hidden;height:100%;display:table}
+.WLInt{display:table-cell;vertical-align:middle}
+.Group{border-style:none;border-width:0px}
+.Calendar{background-color:Window;border-bottom-color:#000;border-left-color:#fff;border-right-color:#000;border-top-color:#fff;border-style:solid;border-width:1px;position:relative;display:none;cursor:default;font-family:tahoma,verdana,sans-serif;font-size:11px;color:WindowText}
+
+.Calendar 
+.CalendarButton{background-color:ButtonFace;border-bottom-color:ButtonHighlight;border-left-color:ButtonHighlight;border-right-color:ButtonHighlight;border-top-color:ButtonHighlight;border-style:solid;border-width:1px;padding-bottom:1px;padding-left:1px;padding-right:1px;padding-top:1px;text-align:center}
+.Calendar 
+.nav{background-color:ButtonFace;background-image:url(../menuarrow.gif);background-position:100% 100%;background-repeat:no-repeat}
+.Calendar TABLE{background-color:Window;border-style:solid;border-width:1px;cursor:default;font-family:tahoma,verdana,sans-serif;font-size:11px;color:WindowText}
+
+.Calendar TABLE 
+.wn{background-color:ButtonFace;padding-bottom:2px;padding-left:2px;padding-right:3px;padding-top:2px;color:ButtonText}
+.Calendar THEAD 
+.name{background-color:ButtonFace;padding-bottom:2px;padding-left:2px;padding-right:2px;padding-top:2px;color:ButtonText;text-align:center}
+.Calendar THEAD 
+.weekend{color:#f00}
+.Calendar THEAD 
+.hilite{border-bottom-color:ButtonHighlight;border-left-color:ButtonHighlight;border-right-color:ButtonHighlight;border-top-color:ButtonHighlight;border-style:solid;border-width:2px;padding-bottom:0px;padding-left:0px;padding-right:0px;padding-top:0px}
+
+.Calendar THEAD 
+.active{border-bottom-color:ButtonHighlight;border-left-color:ButtonHighlight;border-right-color:ButtonHighlight;border-top-color:ButtonHighlight;border-width:1px;padding-bottom:0px;padding-left:2px;padding-right:0px;padding-top:2px}
+.Calendar THEAD 
+.CalendarTitle{background-color:ActiveCaption;border-bottom-color:#000;border-left-color:#000;border-right-color:#000;border-top-color:#000;border-style:solid;border-width:1px;padding-bottom:1px;padding-left:1px;padding-right:1px;padding-top:1px;font-weight:bold;color:CaptionText;text-align:center}
+
+.Calendar TBODY 
+.day{padding-bottom:2px;padding-left:2px;padding-right:4px;padding-top:2px;width:2em;text-align:right}
+.Calendar TBODY 
+.rowhilite TD{background-color:Highlight;color:HighlightText}
+.Calendar TBODY 
+.emptyrow{display:none}
+.Calendar TBODY 
+.emptycell{visibility:hidden}
+.Calendar TBODY TD 
+.hilite{border-bottom-color:#fff;border-left-color:#000;border-right-color:#000;border-top-color:#fff;border-style:solid;border-width:1px;padding-bottom:1px;padding-left:1px;padding-right:3px;padding-top:1px}
+
+.Calendar TBODY TD 
+.active{border-bottom-color:ButtonHighlight;border-left-color:ButtonHighlight;border-right-color:ButtonHighlight;border-top-color:ButtonHighlight;border-style:solid;border-width:1px;padding-bottom:0px;padding-left:2px;padding-right:2px;padding-top:2px}
+.Calendar TBODY TD 
+.selected{background-color:ButtonFace;border-bottom-color:ButtonHighlight;border-left-color:ButtonHighlight;border-right-color:ButtonHighlight;border-top-color:ButtonHighlight;border-style:solid;border-width:1px;padding-bottom:0px;padding-left:2px;padding-right:2px;padding-top:2px;font-weight:bold;color:ButtonText}
+
+.Calendar TBODY TD 
+.weekend{color:#f00}
+.Calendar TBODY TD 
+.today{font-weight:bold;color:#00f}
+.Calendar TBODY TD 
+.disabled{color:GrayText}
+.Calendar TBODY TD 
+.time{background-color:ButtonFace;padding-bottom:1px;padding-left:0px;padding-right:0px;padding-top:1px;text-align:center}
+.Calendar TBODY TD 
+.time 
+.hour{background-color:Menu;border-bottom-color:#889;border-left-color:#889;border-right-color:#889;border-top-color:#889;border-style:solid;border-width:1px;padding-bottom:4px;padding-left:3px;padding-right:3px;padding-top:0px;font-weight:bold}
+
+.Calendar TBODY TD 
+.time 
+.minute{background-color:Menu;border-bottom-color:#889;border-left-color:#889;border-right-color:#889;border-top-color:#889;border-style:solid;border-width:1px;padding-bottom:4px;padding-left:3px;padding-right:3px;padding-top:0px;font-weight:bold}
+.Calendar TBODY TD 
+.time 
+.ampm{background-color:Menu;border-bottom-color:#889;border-left-color:#889;border-right-color:#889;border-top-color:#889;border-style:solid;border-width:1px;padding-bottom:4px;padding-left:3px;padding-right:3px;padding-top:0px;font-weight:bold;text-align:center}
+
+.Calendar TBODY TD 
+.time 
+.colon{padding-bottom:0px;padding-left:3px;padding-right:2px;padding-top:0px;font-weight:bold}
+.Calendar TBODY TD 
+.time SPAN 
+.hilite{background-color:Highlight;border-bottom-color:#000;border-left-color:#000;border-right-color:#000;border-top-color:#000;color:HighlightText}
+.Calendar TBODY TD 
+.time SPAN 
+.active{background-color:#000;border-bottom-color:#f00;border-left-color:#f00;border-right-color:#f00;border-top-color:#f00;color:#0f0}
+.Calendar TFOOT 
+.ttip{background-color:ButtonFace;border-bottom-color:ButtonHighlight;border-left-color:ButtonHighlight;border-right-color:ButtonHighlight;border-top-color:ButtonHighlight;border-style:solid;border-width:1px;padding-bottom:1px;padding-left:1px;padding-right:1px;padding-top:1px;color:ButtonText;text-align:center}
+
+.Calendar TFOOT 
+.hilite{background-color:#e4e0d8;border-bottom-color:#000;border-left-color:#fff;border-right-color:#000;border-top-color:#fff;border-style:solid;border-width:1px;padding-bottom:1px;padding-left:1px;padding-right:1px;padding-top:1px}
+.Calendar TFOOT 
+.active{border-bottom-color:#fff;border-left-color:#000;border-right-color:#fff;border-top-color:#000;border-style:solid;border-width:1px;padding-bottom:0px;padding-left:2px;padding-right:0px;padding-top:2px}
+.CalendarCombo{background-color:Menu;border-bottom-color:ButtonHighlight;border-left-color:ButtonHighlight;border-right-color:ButtonHighlight;border-top-color:ButtonHighlight;border-style:solid;border-width:1px;left:0px;padding-bottom:1px;padding-left:1px;padding-right:1px;padding-top:1px;position:absolute;top:0px;width:4em;display:none;cursor:default;font-size:10px;color:MenuText}
+
+.CalendarCombo 
+.label{padding-bottom:1px;padding-left:1px;padding-right:1px;padding-top:1px;text-align:center}
+.CalendarCombo 
+.label-IEfix{padding-bottom:1px;padding-left:1px;padding-right:1px;padding-top:1px;width:4em;text-align:center}
+.CalendarCombo 
+.active{border-bottom-color:#000;border-left-color:#000;border-right-color:#000;border-top-color:#000;border-style:solid;border-width:1px;padding-bottom:0px;padding-left:0px;padding-right:0px;padding-top:0px}
+.CalendarCombo 
+.hilite{background-color:Highlight;color:HighlightText}
+DIV
+.suggestions{background-color:White;border-bottom-color:Black;border-left-color:Black;border-right-color:Black;border-top-color:Black;border-style:solid;border-width:1px;box-sizing:border-box;position:absolute;-moz-box-sizing:border-box;font-family:Arial,Verdana;font-size:9px}DIV
+.suggestions DIV{padding-bottom:0px;padding-left:3px;padding-right:3px;padding-top:0px;cursor:default;font-family:Arial,Verdana;font-size:9px}DIV
+.suggestions DIV
+.current{background-color:#b0c4de;font-family:Arial,Verdana;font-size:9px;color:White}
+
+.ErrorViewerBullet div{margin-left:5px;display:list-item;list-style-position:inside}
+.GeoLocOption{margin-left:4px;margin-right:4px;position:relative;top:2px;cursor:pointer}
+.ComponentTrigger{margin-left:4px;cursor:pointer}
+.dojoDialog{background-color:#eee;border-bottom-color:#999;border-left-color:#999;border-right-color:#999;border-top-color:#999;border-style:solid;border-width:1px;padding-bottom:4px;padding-left:4px;padding-right:4px;padding-top:4px}#gx_ajax_notification{margin-bottom:0px;margin-left:0px;margin-right:0px;margin-top:0px;padding-bottom:0px;padding-left:0px;padding-right:0px;padding-top:5px;position:absolute;top:21px;z-index:999;height:20px;width:100%;display:block;font-family:Verdana,Arial,Helvetica,sans-serif;font-size:1
+.3em;font-weight:bold;text-align:center}
+
+.PopupHeader{background-color:Blue}
+.PopupHeaderButton{background-image:url(../Global/ClosePrompt.gif)}
+.RowDeleted{text-decoration:line-through}UL
+.Tabs{margin-bottom:0px;margin-left:0px;margin-right:0px;margin-top:0px;padding-bottom:0px;padding-left:0px;padding-right:0px;padding-top:0px;list-style-type:none}UL
+.Tabs LI
+.Tab{float:left;margin-bottom:0px;margin-left:0px;margin-right:0px;margin-top:0px;padding-bottom:0px;padding-left:0px;padding-right:0px;padding-top:0px}UL
+.Tabs LI
+.Tab A{display:block;text-decoration:none}
+UL
+.Tabs LI
+.Tab SPAN{display:block}UL
+.Tabs LI
+.Tab SPAN
+.TabBackground{overflow:hidden}UL
+.Tabs LI
+.Tab SPAN
+.TabText{white-space:nowrap}DIV
+.gx-multimedia-upload{border-bottom-color:#ccc;border-left-color:#ccc;border-right-color:#ccc;border-top-color:#ccc;border-style:solid;border-width:1px;position:relative;height:72px;width:128px;display:block;text-align:center;line-height:68px}DIV
+.gx-multimedia-upload A
+.action{background-color:#666;padding-bottom:2px;padding-left:2px;padding-right:2px;padding-top:2px;position:absolute;top:0px;cursor:pointer;font-size:11px;color:white;opacity:0;-ms-filter:"alpha(opacity=0)";line-height:15px;-ms-transition:opacity 
+.3s ease-in-out;-moz-transition:opacity 
+.3s ease-in-out;-webkit-transition:opacity 
+.3s ease-in-out}
+DIV
+.gx-multimedia-upload A
+.change-action{background-position:4px center;background-repeat:no-repeat;padding-left:16px;padding-right:4px;right:20px}DIV
+.gx-multimedia-upload A
+.clear-action{background-position:center center;background-repeat:no-repeat;padding-bottom:10px;padding-left:10px;padding-right:9px;padding-top:9px;right:20px}DIV
+.gx-multimedia-upload A
+.action:focus{text-decoration:underline;opacity:
+.9;-ms-filter:"alpha(opacity=90)"}DIV
+.gx-multimedia-upload *{text-align:left;line-height:normal}
+DIV
+.gx-multimedia-upload DIV
+.fields-ct{background-color:white;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-right-radius:8px;border-bottom-left-radius:8px;padding-left:5px;padding-top:10px;height:100%;display:none;white-space:nowrap}DIV
+.gx-multimedia-upload A:first-child{background-color:#666;background-position:4px center;background-repeat:no-repeat;padding-bottom:2px;padding-left:16px;padding-right:2px;padding-top:2px;position:absolute;right:0px;top:0px;cursor:pointer;font-size:11px;color:white;opacity:0;-ms-filter:"alpha(opacity=0)";line-height:15px;-ms-transition:opacity 
+.3s ease-in-out;-moz-transition:opacity 
+.3s ease-in-out;-webkit-transition:opacity 
+.3s ease-in-out}
+DIV
+.gx-multimedia-upload A:first-child:focus{text-decoration:underline;opacity:
+.9;-ms-filter:"alpha(opacity=90)"}DIV
+.gx-multimedia-upload INPUT
+.field{float:none;margin-top:10px;display:none}DIV
+.gx-multimedia-upload INPUT
+.field-selected{display:inline}DIV
+.gx-multimedia-upload LABEL
+.option{clear:left;float:left;margin-bottom:10px;margin-right:15px;width:150px;display:inline;cursor:pointer;font-size:11px}DIV
+.gx-multimedia-upload LABEL
+.option INPUT{float:left;margin-bottom:0px;margin-left:0px;margin-right:3px;margin-top:0px;display:inline;cursor:pointer}
+DIV
+.gx-multimedia-upload INPUT
+.Button{clear:both;margin-left:auto;margin-right:auto;margin-top:25px;display:block}DIV
+.gx-multimedia-upload IMG{padding-bottom:2px;padding-top:2px;vertical-align:middle;max-width:124px;max-height:68px}DIV
+.gx-multimedia-upload A SPAN{background-position:center center;background-repeat:no-repeat;height:68px;width:124px;color:transparent}DIV
+.gx-multimedia-upload A
+.gx-multimedia-empty{display:block}DIV
+.gx-multimedia-upload A
+.gx-multimedia-empty SPAN{display:block}DIV
+.gx-multimedia-upload A
+.gx-multimedia-empty IMG{display:none}
+DIV
+.gx-multimedia-upload A
+.gx-multimedia-empty SPAN
+.gx-video-placeholder{opacity:1}DIV
+.gx-multimedia-upload A
+.gx-multimedia-empty SPAN
+.gx-audio-placeholder{opacity:1}DIV
+.gx-multimedia-upload:hover A
+.action{display:block;opacity:
+.7;-ms-filter:"alpha(opacity=70)"}DIV
+.gx-multimedia-upload:hover A
+.action:hover{text-decoration:underline;opacity:
+.9;-ms-filter:"alpha(opacity=90)"}DIV
+.gx-multimedia-upload:hover A
+.action:focus{text-decoration:underline;opacity:
+.9;-ms-filter:"alpha(opacity=90)"}
+DIV
+.gx-multimedia-upload:hover A:first-child{display:block;opacity:
+.7;-ms-filter:"alpha(opacity=70)"}DIV
+.gx-multimedia-upload:hover A:first-child:hover{text-decoration:underline;opacity:
+.9;-ms-filter:"alpha(opacity=90)"}A:not([href]) SPAN
+.gx-video-placeholder{opacity:
+.5}A:not([href]) SPAN
+.gx-audio-placeholder{opacity:
+.5}DIV 
+.suggestions{background-color:White;border-bottom-color:Black;border-left-color:Black;border-right-color:Black;border-top-color:Black;border-style:solid;border-width:1px;box-sizing:border-box;position:absolute;-moz-box-sizing:border-box;font-family:Arial,Verdana;font-size:9px}
+DIV 
+.suggestions DIV{padding-bottom:0px;padding-left:3px;padding-right:3px;padding-top:0px;cursor:default;font-family:Arial,Verdana;font-size:9px}DIV 
+.suggestions DIV 
+.current{background-color:#b0c4de;font-family:Arial,Verdana;font-size:9px;color:White}

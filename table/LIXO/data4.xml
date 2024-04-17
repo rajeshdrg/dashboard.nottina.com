@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "contrato": "CTR.ABR.2019/00089",
+      "servico": "Banco NMP Local",
+      "servidor": "172.29.1.20",
+      "status": "OK",
+      "data": "2021/02/23",
+      "detail": "http://hugtak.com/doc1.txt"
+    },
+    {
+      "id": "2",
+      "contrato": "CTR.ABR.2019/00089",
+      "servico": "Kannel SP20",
+      "servidor": "172.29.1.20",
+      "status": "OK",
+      "data": "2021/02/23",
+      "detail": "http://hugtak.com/doc1.txt"
+    }
+  ]
+}

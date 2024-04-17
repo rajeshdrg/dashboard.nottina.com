@@ -1,0 +1,1 @@
+<div id=alerta_grafico  style="display: block;"> <div id="graficos" style="display: flex;flex-direction: row;flex-wrap: wrap  "></div> </div>

@@ -1,0 +1,314 @@
+BODY{height:100%}
+HTML{height:100%}
+
+.CabIni{
+background-image:url(/images/cabecalhoBegin.png);
+background-repeat:no-repeat;
+height:114px;
+width:247px
+}
+
+.CabLoop{
+background-image:url(/images/cabecalhoLoop.png);
+background-repeat:repeat-x
+}
+
+.CabEnd{
+background-image:url(/images/cabecalhoEnd.png);
+background-repeat:no-repeat;
+height:114px;
+width:657px
+
+}
+
+
+
+.TableTitleCell,
+.TableTitleCell2000,
+.MasterPageFooter,
+.breadCrumbTitleCell,
+.TextBlockCab{padding-right:3pt;
+white-space:nowrap;
+border-style:none;
+border-width:0px;
+font-family:Calibri,Arial;
+font-size:9pt;
+font-style:normal;
+font-variant:normal;
+text-decoration:none;
+color:#747474;
+vertical-align:middle
+}
+
+
+.DescriptionWhite{color:White}
+.TableTitleCell,
+.TableTitleCell2000{
+    background-repeat:repeat-x;
+background-image:url(/images/TitleBackgroundCell.png);
+height:38px;
+width:100%}
+
+.Table,
+.TableDragging,
+.TableAcceptDrag,
+.TableNoAcceptDrag,
+.TableTop,
+.TableContent,
+.TableContentNoMargin,
+.TableView,
+.HorizontalLine,
+.HorizontalSpace,
+.TableBottom,
+.RecentLinksTable,
+.RecentLinksTableOdd,
+.RecentLinksTableEven,
+.GridLineEven,
+.GridLineOdd,
+.GridTitle,
+.GridFooter,
+.TableData,
+.TableData800,
+.SpaceTable,
+.TableMain,
+.TableLogin,
+.TableWhiteBorder,
+.TableMerged,
+.TableSearch,
+.TableCellBreadCrumbOdd,
+.TableCellBreadCrumbEven,
+.TableActions,
+.TableAttributesCell,
+.TableSearchCell,
+.TableAssociation,
+.AssociationTitleCell,
+.TableDynamicFilters,
+.TabTopMP,
+.tabInfoCab,
+.Online,
+.Hist{
+    margin-bottom:0pt;
+margin-left:0pt;
+margin-right:0pt;
+margin-top:0pt;
+padding-bottom:0pt;
+padding-left:0pt;
+padding-right:0pt;
+padding-top:0pt;
+border-style:none;
+border-width:0px;
+font-family:Verdana,Arial;
+font-size:9pt;
+font-style:normal}
+
+.TableTop{
+    background-repeat:repeat-x;
+    list-style-image:none;
+    background-image:url(/images/HeaderBackground.gif);
+    height:80px;
+    width:100%
+}
+
+.TextBlock,
+.Title,
+.SubTitle,
+.AssociationTitle,
+.TextBlockDragging,
+.TextBlockAcceptDrag,
+.TextBlockNoAcceptDrag,
+.SmallText,
+.SelectedTab,
+.UnSelectedTab,
+.RecentLink,
+.DataDescriptionCell,
+.DataContentCell,
+.RequiredDataContentCell,
+.DataContentCellView,
+.DataContentCell1,
+.DataDescription,
+.TextBlockTitle,
+.TextBlockTitleCell,
+.DataFilterDescription,
+.OrderedByDescription,
+.DescriptionWhite,
+.TableTitleCell,
+.TableTitleCell2000,
+.MasterPageFooter,
+.breadCrumbTitleCell,
+.TextBlockCab{padding-right:3pt;
+white-space:nowrap;
+border-style:none;
+border-width:0px;
+font-family:Calibri,Arial;
+font-size:9pt;
+font-style:normal;
+font-variant:normal;
+text-decoration:none;
+color:#747474;
+vertical-align:middle
+}
+
+.TextBlockTitleCell{
+    background-position:100% 0;
+background-repeat:no-repeat;
+padding-left:15px;
+padding-right:40px;
+padding-top:8px;
+background-image:url(/images/BackgroundImageTitle.png);
+font-size:12pt;
+font-weight:bold;
+color:#ddd;
+height:38px}
+
+.TableView{margin-top:10px;
+background-color:WhiteSmoke;
+border-bottom-color:#d6d6d6;
+border-left-color:#d6d6d6;
+border-right-color:#d6d6d6;
+border-top-color:#d6d6d6;
+border-style:solid;
+border-width:1px;
+color:#404040;
+width:100%;
+-webkit-border-radius:5px;
+-moz-border-radius:5px;
+border-radius:5px}
+
+.TableMain{padding-bottom:10px;
+padding-left:10px;
+padding-right:10px;
+padding-top:10px;
+background-color:WhiteSmoke;
+width:100%
+}
+
+.TableLogin{background-color:#295572;
+height:100%;
+width:100%
+}
+
+.tabInfoCab{
+    margin-right:13pt
+}
+
+.Image,
+.ImageDragging,
+.ImageAcceptDrag,
+.ImageNoAcceptDrag,
+.PagingButtons,
+.PagingButtonsFirst,
+.PagingButtonsLast,
+.PagingButtonsNext,
+.PagingButtonsPrevious,
+.ImageTopHeader{border-style:none;
+
+
+border-width:0px}
+
+.Form{
+    margin-bottom:0pt;
+margin-left:0px;
+margin-right:0px;
+margin-top:0pt;
+padding-bottom:0pt;
+padding-left:0pt;
+padding-right:0pt;
+padding-top:0pt;
+background-image:none;
+border-style:none;
+border-width:0px;
+font-family:Verdana,Arial;
+font-size:8pt;
+font-style:normal;
+font-variant:normal;
+font-weight:normal;
+text-decoration:none;
+color:#747474}
+
+
+.TableCellBreadCrumbOdd{background-color:#e9eef2!important}
+.TableCellBreadCrumbEven{
+    font-family:Verdana;
+font-size:10pt;
+background-color:#dfe0e2!important}
+
+.breadCrumbTitleCell{background-position:100%;
+background-repeat:no-repeat;
+padding-right:5px;
+background-color:White;
+background-image:url(/images/BreadcrumbTitleArrow.png)
+}
+
+.RecentLink{margin-bottom:2px;
+margin-left:2px;
+margin-right:2px;
+margin-top:2px;
+padding-left:5px;
+color:#069;
+width:5%;
+text-align:left}
+
+.RecentLink A:link{color:#069}
+.RecentLink A:visited{color:#069}
+
+
+.TextBlockTitle{font-family:Calibri;
+font-size:14pt;
+font-weight:bold;
+color:#069}
+
+.x-panel-header{background-image:url(/images/DataTitleCell.jpg);
+
+
+border-style:none;
+
+
+padding-bottom:3px;
+
+
+line-height:11px}
+
+.GXUI-DVelop-Panel 
+.x-panel-body{border-style:solid}
+
+.auto-width-tab-strip UL
+.x-tab-strip{width:auto}
+.GXUI-DVelop-Tabs 
+.x-tab-panel-header{background-color:#eaeaea;
+
+
+border-bottom-color:#d0d0d0;
+
+
+border-left-color:#d0d0d0;
+
+
+border-right-color:#d0d0d0;
+
+
+border-top-color:#d0d0d0}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+        visibility:  hidden;
+         
+}
+
+
+.inputfile + label {
+    color: white;
+    background-color:white ;
+    display: inline-block;
+    cursor: pointer; /* "hand" cursor */
+    height: 25px;
+    width: 70px;
+display: table-cell;
+    vertical-align: middle;
+}
+
+

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<style>
+td.details-control {
+    background: url('details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('details_close.png') no-repeat center center;
+}
+</style>
+<link href="jquery.dataTables.min.css" rel="stylesheet">
+<script src="jquery-3.2.1.min.js"></script>
+  <script src="jquery.dataTables.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Painel - tabelão</title>
+<script>
+/* https://datatables.net/ */
+/* Formatting function for row details - modify as you need */
+function format ( d ) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td>Serviço:</td>'+
+            '<td>'+d.servico+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Ultimo status:</td>'+
+            '<td>'+d.data+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Detalhe:</td>'+
+            '<td><a href="#">'+d.detail+'</a></td>'+
+        '</tr>'+
+    '</table>';
+}
+ 
+$(document).ready(function() {
+    var table = $('#example').DataTable( {
+        "ajax": "get_xml.php",
+	"order": [[ 3, 'desc' ],[4, 'asc']],
+        "columns": [
+            {
+                "className":      'details-control',
+                "orderable":      true,
+                "data":           null,
+                "defaultContent": ''
+            },
+            { "data": "contrato" },
+            { "data": "servico" },
+            { "data": "servidor" },
+            { "data": "status" }
+        ],
+    } );
+     
+    // Add event listener for opening and closing details
+    $('#example tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+ 
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( format(row.data()) ).show();
+            tr.addClass('shown');
+        }
+    } );
+} );
+
+
+</script> 
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Contrato</th>
+                <th>Serviço</th>
+                <th>Servidor</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>Contrato</th>
+                <th>Serviço</th>
+                <th>Servidor</th>
+                <th>Status</th>
+            </tr>
+        </tfoot>
+    </table>
+<?php
+print "teste";
+?>
+</body>
+</html>

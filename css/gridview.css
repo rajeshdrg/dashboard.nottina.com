@@ -1,0 +1,98 @@
+
+.tabela_cinza {
+
+ width:100%;
+}
+
+.tabela_cinza tr:nth-child(odd){ background-color:#e0e0e0; }
+.tabela_cinza tr:nth-child(even)    { background-color:#ffffff; }
+
+.th1 {
+
+border-bottom-color:  rgb(208, 208, 208)  ;
+border-bottom-style: solid ;
+border-bottom-width: 1px ;
+border-collapse: separate ;
+border-left-color: rgb(128, 128, 128) ;
+border-right-color: rgb(128, 128, 128) ;
+border-top-color: rgb(128, 128, 128) ;
+color: rgb(64, 64, 64) ;
+cursor: default ;
+display: table-row ;
+font-family: Verdana, Arial ;
+font-size: 12px ;
+font-style: normal ;
+font-variant: normal ;
+font-weight: normal ;
+height: 23px ;
+vertical-align: middle ;
+zoom: 1 ;
+
+}
+
+.cinza {
+order-collapse: separate ;
+border-left-color: rgb(238, 238, 238) ;
+border-left-style: solid ;
+border-left-width: 1px ;
+border-right-color: rgb(208, 208, 208) ;
+border-right-style: solid ;
+border-right-width: 1px ;
+border-bottom-color:  rgb(208, 208, 208)  ;
+border-bottom-style: solid ;
+border-bottom-width: 1px ;
+color: rgb(64, 64, 64) ;
+cursor: default ;
+display: table-cell ;
+font-family: arial, tahoma, helvetica, sans-serif ;
+font-size: 11px ;
+font-stretch: normal ;
+font-style: normal ;
+font-variant: normal ;
+font-weight: normal ;
+height: 23px ;
+line-height: 15px ;
+margin-bottom: 0px ;
+margin-left: 0px ;
+margin-right: 0px ;
+margin-top: 0px ;
+padding-bottom: 0px ;
+padding-left: 0px ;
+padding-right: 0px ;
+padding-top: 0px ;
+vertical-align: middle ;
+zoom: 1 ;
+-webkit-user-select: text ;
+}
+
+.b1 {
+
+
+border-collapse: separate ;
+color: rgb(128, 128, 128) ;
+cursor: default ;
+display: block ;
+font-family: arial, tahoma, helvetica, sans-serif ;
+font-size: 11px ;
+font-style: normal ;
+font-variant: normal ;
+font-weight: normal ;
+height: 13px ;
+line-height: 13px ;
+margin-bottom: 0px ;
+margin-left: 0px ;
+margin-right: 0px ;
+margin-top: 0px ;
+overflow-x: hidden ;
+overflow-y: hidden ;
+padding-bottom: 3px ;
+padding-left: 5px ;
+padding-right: 3px ;
+padding-top: 3px ;
+text-align: left ;
+text-overflow: ellipsis ;
+white-space: nowrap ;
+
+zoom: 1 ;
+-webkit-user-select: text ;
+}

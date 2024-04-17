@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "contrato": "CTR.ABR.2019/00089",
+      "servico": "Banco NMP Local",
+      "servidor": "172.29.1.20",
+      "status": "OK",
+      "data": "2021/02/23",
+      "detail": "http://hugtak.com/doc1.txt"
+    },
+
+{ 
+  "data": [ 
+	{ 
+	  "id": "1"", 
+	  "contrato": "CTR.ABR.2019/00089", 
+          "servico": "RJ.ABSTRACT.COM.BR", 
+          "servidor": "RJ.ABSTRACT.COM.BR", 
+          "status": "OK", 
+          "data": "Tue Feb 23 23:15:01 BRT 2021", 
+          "detail": "http://hugtak.com/doc1.txt" 
+         }, 
+{ "id": "2"", "contrato": "CTR.ABR.2019/00089", "servico": "rj2.abstract.com.br", "servidor": "rj2.abstract.com.br", "status": "OK", "data": "Tue Feb 23 22:55:01 -03 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "3"", "contrato": "CTR.ABR.2019/00089", "servico": "sp.abstract.com.br", "servidor": "sp.abstract.com.br", "status": "OK", "data": "Ter Fev 23 23:10:02 BRT 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "4"", "contrato": "CTR.ABR.2019/00089", "servico": "sp2.abstract.com.br", "servidor": "sp2.abstract.com.br", "status": "OK", "data": "Ter Fev 23 23:00:02 BRT 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "5"", "contrato": "CTR.ABR.2019/00089", "servico": "eqabr251.abstract.com.br", "servidor": "eqabr251.abstract.com.br", "status": "OK", "data": "Ter Fev 23 23:00:01 -03 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "6"", "contrato": "CTR.ABR.2019/00089", "servico": "eqabr250.abrtelecom.com.br", "servidor": "eqabr250.abrtelecom.com.br", "status": "OK", "data": "Ter Fev 23 23:10:01 -03 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "7"", "contrato": "CTR.ABR.2019/00089", "servico": "EQABR252.abrtelecom.com.br", "servidor": "EQABR252.abrtelecom.com.br", "status": "OK", "data": "Ter Fev 23 23:05:01 -03 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "8"", "contrato": "CTR.ABR.2019/00089", "servico": "[NMP] sv-sql", "servidor": "[NMP] sv-sql", "status": "OK", "data": "Tue Feb 23 23:00:01 -03 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "9"", "contrato": "CTR.ABR.2019/00089", "servico": "sp26.abstract.com.br", "servidor": "sp26.abstract.com.br", "status": "OK", "data": "Ter Fev 23 23:05:01 -03 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "10"", "contrato": "CTR.ABR.2019/00089", "servico": "brokersql.abstract.com.br", "servidor": "brokersql.abstract.com.br", "status": "OK", "data": "Ter Fev 23 21:45:01 -03 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "11"", "contrato": "CTR.ABR.2019/00089", "servico": "kannel51.abstract.com.br", "servidor": "kannel51.abstract.com.br", "status": "OK", "data": "Ter Fev 23 23:10:01 -03 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "12"", "contrato": "CTR.ABR.2019/00089", "servico": "sp27.abstract.com.br", "servidor": "sp27.abstract.com.br", "status": "OK", "data": "ter fev 23 23:10:01 -03 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "13"", "contrato": "CTR.ABR.2019/00089", "servico": "vsp250.abstract.com.br", "servidor": "vsp250.abstract.com.br", "status": "OK", "data": "Tue Feb 23 23:10:01 -03 2021", "detail": "http://hugtak.com/doc1.txt" }, 
+{ "id": "14"", "contrato": "CTR.ABR.2019/00089", "servico": "vps246", "servidor": "vps246", "status": "OK", "data": "Tue Feb 23 22:55:01 -03 2021", "detail": "http://hugtak.com/doc1.txt" } 
+] 
+}

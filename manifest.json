@@ -1,0 +1,17 @@
+{
+    "name": "Painel ABRTelecom",
+    "short_name": "Painel",
+    "start_url": "index.php",
+    "display": "standalone",
+    "background-color": "#E5E5E5",
+    "theme_color": "#254C75",
+    "icons": [
+        {
+            "src": "/icone/icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "orientation": "portrait",
+    "lang": "pt"
+}

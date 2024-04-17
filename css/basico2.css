@@ -1,0 +1,302 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body {
+	margin: 0px 0px 0px 0px;
+	background-color: #254C75;
+	height: 100%;
+}
+.header{
+    display: none;
+}
+
+#formulario {
+    background-color:#254C75; 
+    height:343px; 
+    left:50%; 
+    margin:-171px 0 0 -261px; 
+    position:absolute; 
+    top:50%; 
+    width:522px
+}
+
+ input:hover,input:focus{background: #AFE5FF;}
+.fundobranco {
+	margin: 0px 0px 0px 0px;
+	background-color: #FFFFFF;
+	height: 100%;
+}
+
+
+#wrapperLogin {
+	display: table;
+
+	vertical-align: middle;
+	height: 100%;
+	
+}
+
+.wrapperLogin {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+	height: 100%;
+}
+
+#cellLogin {
+	display: table-cell;
+	vertical-align: middle;
+	position: relative;
+}
+
+.cellLogin {
+	display: table-cell;
+	vertical-align: middle;
+	position: relative;
+}
+ input:hover,input:focus{background: #AFE5FF;}
+input.login {
+	border: solid 1px #003366;
+	font-family: Calibri;
+	font-size: 9pt;	
+	width: 278px;
+}
+input.hover {
+	border: solid 1px #003366;
+	font-family: Calibri;
+	font-size: 9pt;	
+	background-image: url('/images/fundoForm.png');
+	background-repeat: no-repeat;
+	width: 125px;
+}
+
+
+
+
+
+.abr_logo {
+	background-image: url('/images/cabecalho.png');	
+	background-repeat: no-repeat;
+	height: 240px;
+	width: 522px;
+ 
+}
+
+.titulo {
+	font-family: Calibri;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 9pt;
+	padding-left: 40px;
+	background-image: url('/images/tituloSistema.png');	
+	background-repeat: repeat-y;
+	height: 27px;
+	width: 522px;	
+ 
+}
+
+
+
+.formLogin {
+	background-image: url('/images/form.png');	
+	background-repeat: no-repeat;
+	height: 45px;
+	width: 522px;	
+	font-family: Calibri;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 9pt;
+	padding-left: 40px;
+	vertical-align: top;
+        height:104px;
+        
+}
+
+
+
+.form_login{
+    border-bottom-color:#036;
+    border-left-color:#036;
+    border-right-color:#036;
+    border-top-color:#036;
+    border-style:solid;
+    font-family:Calibri,Verdana,"Angsana New";
+    font-weight:bold;
+    width:125px;
+    font-size:9.0pt;
+}
+
+.form_label{
+  display:inline;
+  font-family:Calibri;
+  font-size:9.0pt; 
+  font-weight:bold;
+  font-style:normal; 
+  color:#FFFFFF;
+}
+
+
+body {
+	margin: 10px 10px 10px 10px;
+	font-family: Calibri;
+	font-size: 8pt;
+}
+
+td {
+	font-size: 8pt;
+}
+
+
+#tituloPrincipal {
+	background-image: url(images/figtabelas/fundoTitulo.png);
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 9pt;
+	height: 25px;
+	border: solid 1px #0f1b3f;
+	text-align: center;
+}
+
+#tituloPrincipal2{
+	background-image: url(images/figtabelas/fundoTitulo.png);
+	background-repeat: repeat;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 9pt;
+	height: 25px; 
+	border: solid 1px #0f1b3f;
+	text-align: center;
+}
+
+#tituloSecundario {
+	background-image: url(images/figtabelas/fundoSubTitulo.png);
+	background-repeat: repeat-x;
+	color: #17375d;
+	font-weight: bold;
+	font-size: 8pt;
+	height: 25px;
+	border-left: solid 1px #5a5a5a;
+	border-right: solid 1px #5a5a5a;
+	text-align: center;
+}
+
+#tituloSecundario2 {
+	background-image: url(images/figtabelas/fundoSubTitulo.png);
+	background-repeat: repeat-x;
+	font-weight: bold;
+	font-size: 8pt;
+	height: 25px;
+	border-right: solid 1px #bfbfbf;	
+	text-align: center;
+}
+
+#tituloTerciario {
+	background-color: #d8d8d8;
+	color: #404040;
+	font-size: 6pt;
+	text-transform: uppercase;
+	height: 25px;
+	border-right: solid 1px #bfbfbf;
+	border-bottom: solid 1px #bfbfbf;
+	text-align: center;
+}
+
+#tituloTerciario2 {
+	background-color: #d8d8d8;
+	color: #404040;
+	font-size: 6pt;
+	height: 25px;
+	border-right: solid 1px #5a5a5a;
+	border-bottom: solid 1px #5a5a5a;
+	text-align: center;
+}
+
+#tituloTotal {
+	background-image: url(images/figtabelas/fundoSubTitulo.png);
+	background-repeat: repeat-x;
+	color: #17375d;
+	font-weight: bold;
+	font-size: 8pt;
+	height: 25px;
+	border-right: solid 1px #bfbfbf;
+	text-align: center;
+}
+
+#tituloTotal2 {
+	background-image: url(images/figtabelas/fundoSubTitulo.png);
+	background-repeat: repeat-x;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 8pt;
+	height: 25px;
+	border-right: solid 1px #bfbfbf;
+	text-align: center;
+}
+
+#tituloPrestadora {
+	color: #404040;
+	font-size: 8pt;
+	font-weigth: bold;
+	height: 25px;
+	border-right: solid 1px #5a5a5a;
+	border-bottom: solid 1px #bfbfbf;
+	text-align: center;
+}
+
+#tituloPrestadora2 {
+	width: 90px;
+	color: #404040;
+	font-size: 8pt;
+	font-weigth: bold;
+	height: 25px;
+	border-right: solid 1px #5a5a5a;
+	border-bottom: solid 1px #bfbfbf;
+	text-align: center;
+}
+
+#dados {
+	height: 26px;
+	border-right: solid 1px #bfbfbf;
+	border-bottom: solid 1px #bfbfbf;
+	text-align: center;
+	padding-top: 1px;
+	color: #404040;
+	font-weight: bold;
+	font-size: 8pt;
+}
+
+#tabelaDados {
+	border: solid 1px #bfbfbf;
+}
+
+#logoABR {
+	width: 90px;
+	height: 25px;
+	text-align: center;
+	border-right: solid 1px #5a5a5a;
+	border-bottom: solid 1px #bfbfbf;
+}
+
+#logoABR2 {
+	width: 90px;
+	height: 25px;
+	text-align: center;
+	border-bottom: solid 1px #bfbfbf;
+}
+
+#logoABR3{
+	height: 25px;
+	text-align: center;
+	border-bottom: solid 1px #bfbfbf;
+}
+
+@media(max-width:768px){
+   
+    body{
+        transform: scale(0.7);
+    
+    }
+    
+}
