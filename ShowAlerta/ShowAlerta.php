@@ -99,11 +99,12 @@ EOT;
             print "<td>$o->valor</td>";
             print "<td>$o->descricao</td>";
             print "<td>$o->nome</td>";
-            print '<td onclick="alert(' . $o->cod_alerta . ')"><img src="/images/icon_edit.png" alt="edit"></td>';
+            print "<td onclick=\"alert('$o->cod_alerta')\"><img class=\"edit\" src='/images/icon_edit.png' alt='edit' data-id='$o->cod_alerta'></td>";
             print "</tr>";
         }
     }
 }
+
 
 $show = new ShowAlerta();
 
