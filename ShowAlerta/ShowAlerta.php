@@ -99,7 +99,7 @@ EOT;
             print "<td>$o->valor</td>";
             print "<td>$o->descricao</td>";
             print "<td>$o->nome</td>";
-            print '<td><img src="/images/icon_edit.png" alt="edit"></td>';
+            print '<td><img src="/images/icon_edit.png" alt="edit" onclick="cod_alerta("$o->cod_alerta")"></td>';
             print "</tr>";
         }
     }
