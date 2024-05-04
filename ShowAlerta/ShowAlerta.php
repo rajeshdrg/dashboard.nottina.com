@@ -41,27 +41,27 @@ class ShowAlerta extends modulo {
 
     
     public function front_call() {
-        
-	    parent::front_call();
-
-	    echo <<<EOT1
-
-		    function form_alerta(id_alerta) {
-			    alert(id_alerta); 
-		    }
-            function openEditForm(codAlert) {
-                // Abre el formulario de edición usando el código de alerta
-                // Por ejemplo, podrías redirigir a una página que contenga el formulario de edición
-                // window.location.href = "editar_alerta.php?cod_alerta=" + codAlert;
-                // O podrías mostrar un modal con el formulario
-                // Por ejemplo, utilizando Bootstrap modal:
-                // $('#myModal').modal('show');
-                // Recuerda que debes incluir jQuery y Bootstrap si decides usar esta opción
-                alert('Abre el formulario de edición para el código de alerta: ' + codAlert);
-            }
-EOT1;
-
+        parent::front_call();
+    
+        echo <<<EOT1
+        function form_alerta(id_alerta) {
+            alert(id_alerta); 
+        }
+        function openEditForm(codAlert) {
+            // Aquí puedes generar el contenido del formulario
+            var formulario = "<form>";
+            formulario += "Código de alerta: <input type='text' value='" + codAlert + "'><br>";
+            // Agrega más campos al formulario según tus necesidades
+            
+            // Cierra el formulario
+            formulario += "</form>";
+    
+            // Muestra el formulario en un cuadro de diálogo
+            alert(formulario);
+        }
+        EOT1;
     }
+    
     public function back_call() {
         date_default_timezone_set ("America/Sao_Paulo");
         $hora = date('G');
