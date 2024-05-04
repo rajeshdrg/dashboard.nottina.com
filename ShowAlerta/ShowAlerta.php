@@ -52,6 +52,19 @@ class ShowAlerta extends modulo {
             var formulario = "<form>";
             formulario += "Código de alerta: <input type='text' value='" + codAlert + "'><br>";
             // Agrega más campos al formulario según tus necesidades
+            <div class='card-content'>
+                    <table width=100%>
+                        <tr>
+                            <td><b></b></td>
+                            <td><b>Prioridade</b></td>
+                            <td><b>Cod.Alerta</b></td>
+                            <td><b>Quando</b></td>
+                            <td><b>Módulo</b></td>
+                            <td><b>Item</b></td>
+                            <td><b>Valor</b></td>
+                            <td><b>Descrição</b></td>
+                            <td><b>Analista</b></td>
+                        </tr>
             
             // Cierra el formulario
             formulario += "</form>";
