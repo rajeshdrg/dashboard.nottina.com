@@ -46,7 +46,7 @@ class ShowAlerta extends modulo
         parent::front_call();
 
         echo <<<EOT1
-        
+
 		    function form_alerta(id_alerta) {
 			    alert(id_alerta); 
 		    }
@@ -55,7 +55,7 @@ EOT1;
         echo <<<EOT2
         <script>
             function openEditForm(codAlerta){
-               alert('Abrir formulario de edicion:' + codAlerta)
+                console.log('Abrir formulario de edicion:')
 
             }
         </sccript>
