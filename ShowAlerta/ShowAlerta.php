@@ -1,71 +1,70 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"]."/modulo/modulo.php";
-require_once $_SERVER["DOCUMENT_ROOT"]."/alerta/alerta.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/modulo/modulo.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/alerta/alerta.php";
 
-require_once $_SERVER["DOCUMENT_ROOT"]."/erpme/banco/sqlcommand.php";
-require_once $_SERVER["DOCUMENT_ROOT"]."/erpme/banco/sqldatareader.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/erpme/banco/sqlcommand.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/erpme/banco/sqldatareader.php";
 
-class ShowAlerta extends modulo {
-    
-    
+class ShowAlerta extends modulo
+{
     public $data;
-    
-    public function __construct() {
-        
+
+    public function __construct()
+    {
         parent::__construct();
-        
-        
         $this->name  = "ShowAlerta";
         $this->sigla = "Alerta";
         $this->icone = "fas fa-exclamation-circle";
-        
     }
-    
-    public function get_data() {
-        require_once $_SERVER["DOCUMENT_ROOT"]."/erpme/banco/conecta.php";
-        
+
+    public function get_data()
+    {
+        require_once $_SERVER["DOCUMENT_ROOT"] . "/erpme/banco/conecta.php";
+
         $hora = date('G');
-        
+
         $Sql = new SqlCommand("Sql");
         $Sql->connection = $conexao;
         $Sql->query = "select md5('hgtk'||cod_alerta::varchar) id_alerta,* from alerta left outer join modulo on alerta.cod_modulo = modulo.cod_modulo "
-                . "left outer join usuario on alerta.cod_usuario = usuario.cod_usuario "
-                . "where fechamento is null ";
+            . "left outer join usuario on alerta.cod_usuario = usuario.cod_usuario "
+            . "where fechamento is null ";
         $dr = $Sql->ExecuteReader();
-        
+
         $this->data = $dr;
-        
-        
     }
-    
 
-    
-    public function front_call() {
-        
-	    parent::front_call();
+    public function front_call()
+    {
+        parent::front_call();
 
-	    echo <<<EOT1
-
-		    function form_alerta(id_alerta) {
-			    alert(id_alerta); 
-		    }
+        echo <<<EOT1
+        <script>
+            function openEditForm(codAlert) {
+                // Abre el formulario de edición usando el código de alerta
+                // Por ejemplo, podrías redirigir a una página que contenga el formulario de edición
+                // window.location.href = "editar_alerta.php?cod_alerta=" + codAlert;
+                // O podrías mostrar un modal con el formulario
+                // Por ejemplo, utilizando Bootstrap modal:
+                // $('#myModal').modal('show');
+                // Recuerda que debes incluir jQuery y Bootstrap si decides usar esta opción
+                alert('Abre el formulario de edición para el código de alerta: ' + codAlert);
+            }
+        </script>
 EOT1;
-
     }
-    public function back_call() {
-        date_default_timezone_set ("America/Sao_Paulo");
+
+    public function back_call()
+    {
+        date_default_timezone_set("America/Sao_Paulo");
         $hora = date('G');
-        if($hora > 19 || $hora < 6 ) 
+        if ($hora > 19 || $hora < 6)
             $dark = "dark";
-        else 
-        	$dark = "";
-        
+        else
+            $dark = "";
 
         $this->get_data();
-        
-        
-        echo <<<EOT
 
+        echo <<<EOT
         <div class='xcard $dark' style='width:90%'>
             <div >
                 <header class=r'card-header'>
@@ -83,30 +82,28 @@ EOT1;
                             <td><b>Valor</b></td>
                             <td><b>Descrição</b></td>
                             <td><b>Analista</b></td>
+                            <td><b>Ação</b></td>
                         </tr>
 EOT;
 
-       while($o=$this->data->GetObject()) {
-           print "<tr>";
-           print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
-           print "<td>$o->prioridade</td>";
-           print "<td>$o->cod_alerta</td>";
-           print "<td>$o->quando</td>";
-           print "<td>$o->modulo</td>";
-           print "<td>$o->item</td>";
-           print "<td>$o->valor</td>";
-           print "<td>$o->descricao</td>";
-           print "<td>$o->nome</td>";
-           echo "<td onclick=\"alert('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></td>";
-           print "</tr>";
-            
-       }
-
-
+        while ($o = $this->data->GetObject()) {
+            print "<tr>";
+            print "<td><span onclick=\"alerta('$o->id_alerta')\">...</span></td>";
+            print "<td>$o->prioridade</td>";
+            print "<td>$o->cod_alerta</td>";
+            print "<td>$o->quando</td>";
+            print "<td>$o->modulo</td>";
+            print "<td>$o->item</td>";
+            print "<td>$o->valor</td>";
+            print "<td>$o->descricao</td>";
+            print "<td>$o->nome</td>";
+            print "<td onclick=\"openEditForm('$o->id_alerta')\"><img class=\"edit\" src='/images/icon_edit.png' alt='edit' data-id='$o->cod_alerta'></td>";
+            print "</tr>";
+        }
     }
 }
 
 $show = new ShowAlerta();
 
-if(isset($_GET['back']))
+if (isset($_GET['back']))
     $show->back_call();
