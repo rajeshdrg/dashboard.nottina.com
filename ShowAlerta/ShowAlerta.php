@@ -51,45 +51,38 @@ class ShowAlerta extends modulo {
             // Aquí puedes generar el contenido del formulario
             var formulario = "<form>";
             formulario += "Código de alerta: <input type='text' value='" + codAlert + "'><br>";
-            formulario += '<div class="row">';
-            formulario += '   <div class="col"><label for="exampleInputEmail1">Data da Alerta</label>';
-            formulario += '       <input type="date" name="data_da_alerta" id="data_da_alerta" required>';
-            formulario += '   </div>';
-            formulario += '   <div class="col">';
-            formulario += '       <label for="exampleInputPassword1">Hora da Alerta (24h)</label>';
-            formulario += '       <input type="time" name="hora_da_alerta" id="hora_da_alerta" required>';
-            formulario += "   </div>";
-            formulario += "</div>";
-    
             // Agrega más campos al formulario según tus necesidades
+            
+            // Cierra el formulario
             formulario += "</form>";
     
-            // Muestra el formulario en un modal
-            $('#modalEdita .modal-body').html(formulario);
-            $('#modalEdita').modal('show');
+            // Muestra el formulario en un cuadro de diálogo
+            alert(formulario);
         }
         EOT1;
     }
     
     public function back_call() {
-        date_default_timezone_set("America/Sao_Paulo");
+        date_default_timezone_set ("America/Sao_Paulo");
         $hora = date('G');
-        if ($hora > 19 || $hora < 6) 
+        if($hora > 19 || $hora < 6 ) 
             $dark = "dark";
         else 
-            $dark = "";
-    
+        	$dark = "";
+        
+
         $this->get_data();
-    
+        
+        
         echo <<<EOT
-    
+
         <div class='xcard $dark' style='width:90%'>
             <div >
                 <header class=r'card-header'>
                     <font color=black>Alertas</font><br>
                 </header>
                 <div class='card-content'>
-                    <table class="table-alertas" width=100%>
+                    <table width=100%>
                         <tr>
                             <td><b></b></td>
                             <td><b>Prioridade</b></td>
@@ -101,79 +94,26 @@ class ShowAlerta extends modulo {
                             <td><b>Descrição</b></td>
                             <td><b>Analista</b></td>
                         </tr>
-        EOT;
-    
-        while ($o = $this->data->GetObject()) {
-            echo "<tr>";
-            echo "<td><span onclick='form_alerta(\"$o->id_alerta\")'>...</span></td>";
-            echo "<td>$o->prioridade</td>";
-            echo "<td>$o->cod_alerta</td>";
-            echo "<td>$o->quando</td>";
-            echo "<td>$o->modulo</td>";
-            echo "<td>$o->item</td>";
-            echo "<td>$o->valor</td>";
-            echo "<td>$o->descricao</td>";
-            echo "<td>$o->nome</td>";
-            echo "<td><img src='/images/icon_edit.png' alt='edit' data-id='$o->cod_alerta'></td>";
-            echo "</tr>";
-        }
-    
-        echo "</table></div></div></div>";
-    }
-    
-    
-//     public function back_call() {
-//         date_default_timezone_set ("America/Sao_Paulo");
-//         $hora = date('G');
-//         if($hora > 19 || $hora < 6 ) 
-//             $dark = "dark";
-//         else 
-//         	$dark = "";
-        
+EOT;
 
-//         $this->get_data();
-        
-        
-//         echo <<<EOT
-
-//         <div class='xcard $dark' style='width:90%'>
-//             <div >
-//                 <header class=r'card-header'>
-//                     <font color=black>Alertas</font><br>
-//                 </header>
-//                 <div class='card-content'>
-//                     <table width=100%>
-//                         <tr>
-//                             <td><b></b></td>
-//                             <td><b>Prioridade</b></td>
-//                             <td><b>Cod.Alerta</b></td>
-//                             <td><b>Quando</b></td>
-//                             <td><b>Módulo</b></td>
-//                             <td><b>Item</b></td>
-//                             <td><b>Valor</b></td>
-//                             <td><b>Descrição</b></td>
-//                             <td><b>Analista</b></td>
-//                         </tr>
-// EOT;
-
-//        while($o=$this->data->GetObject()) {
-//            print "<tr>";
-//            print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
-//            print "<td>$o->prioridade</td>";
-//            print "<td>$o->cod_alerta</td>";
-//            print "<td>$o->quando</td>";
-//            print "<td>$o->modulo</td>";
-//            print "<td>$o->item</td>";
-//            print "<td>$o->valor</td>";
-//            print "<td>$o->descricao</td>";
-//            print "<td>$o->nome</td>";
-//            echo "<td onclick=\"openEditForm('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></td>";
-//            print "</tr>";
+       while($o=$this->data->GetObject()) {
+           print "<tr>";
+           print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
+           print "<td>$o->prioridade</td>";
+           print "<td>$o->cod_alerta</td>";
+           print "<td>$o->quando</td>";
+           print "<td>$o->modulo</td>";
+           print "<td>$o->item</td>";
+           print "<td>$o->valor</td>";
+           print "<td>$o->descricao</td>";
+           print "<td>$o->nome</td>";
+           echo "<td onclick=\"openEditForm('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></td>";
+           print "</tr>";
             
-//        }
+       }
 
 
-//     }
+    }
 }
 
 $show = new ShowAlerta();
