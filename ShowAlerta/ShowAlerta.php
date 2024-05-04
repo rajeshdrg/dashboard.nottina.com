@@ -121,7 +121,7 @@
 //     $show->back_call();
 
 
-<?php
+
 require_once $_SERVER["DOCUMENT_ROOT"] . "/modulo/modulo.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/alerta/alerta.php";
 
