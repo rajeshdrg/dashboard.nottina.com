@@ -51,6 +51,15 @@ class ShowAlerta extends modulo
 			    alert(id_alerta); 
 		    }
 EOT1;
+
+        echo <<<EOT2
+        <script>
+            function openEditForm(codAlerta){
+                console.log('Abrir formulario de edicion:' + codAlerta)
+
+            }
+        </sccript>
+        EOT2;
     }
     public function back_call()
     {
@@ -99,7 +108,7 @@ EOT;
             print "<td>$o->valor</td>";
             print "<td>$o->descricao</td>";
             print "<td>$o->nome</td>";
-            print "<td onclick=\"alert('$o->cod_alerta', 'Aqui se abrira un formulario')\"><img class=\"edit\" src='/images/icon_edit.png' alt='edit' data-id='$o->cod_alerta'></td>";
+            print "<td onclick=\"openEditForm('$o->cod_alerta')\"><img class=\"edit\" src='/images/icon_edit.png' alt='edit' data-id='$o->cod_alerta'></td>";
             print "</tr>";
         }
     }
