@@ -40,32 +40,18 @@ class ShowAlerta extends modulo {
     
 
     
-//     public function front_call() {
+    public function front_call() {
         
-// 	    parent::front_call();
+	    parent::front_call();
 
-// 	    echo <<<EOT1
+	    echo <<<EOT1
 
-// 		    function form_alerta(id_alerta) {
-// 			    alert(id_alerta); 
-// 		    }
-// EOT1;
-
-//     }
-
-public function front_call()
-    {
-        parent::front_call();
-        echo <<<EOT1
-        <script>
-            function openEditForm(codAlerta){
-                alert('Abrir formulario de edicion:', codAlerta);
-                // Aquí puedes abrir el formulario para editar utilizando el código de alerta
-            }
-        </script>
+		    function form_alerta(id_alerta) {
+			    alert(id_alerta); 
+		    }
 EOT1;
-    }
 
+    }
     public function back_call() {
         date_default_timezone_set ("America/Sao_Paulo");
         $hora = date('G');
@@ -111,7 +97,7 @@ EOT;
            print "<td>$o->valor</td>";
            print "<td>$o->descricao</td>";
            print "<td>$o->nome</td>";
-           echo "<td onclick=\"openEditForm('$o->cod_alerta')\"><img class=\"edit\" src='/images/icon_edit.png' alt='edit' data-id='$o->cod_alerta'></td>";
+           echo "<td onclick=\"alert('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></td>";
            print "</tr>";
             
        }
