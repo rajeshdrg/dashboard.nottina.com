@@ -122,58 +122,58 @@ class ShowAlerta extends modulo {
     }
     
     
-    public function back_call() {
-        date_default_timezone_set ("America/Sao_Paulo");
-        $hora = date('G');
-        if($hora > 19 || $hora < 6 ) 
-            $dark = "dark";
-        else 
-        	$dark = "";
+//     public function back_call() {
+//         date_default_timezone_set ("America/Sao_Paulo");
+//         $hora = date('G');
+//         if($hora > 19 || $hora < 6 ) 
+//             $dark = "dark";
+//         else 
+//         	$dark = "";
         
 
-        $this->get_data();
+//         $this->get_data();
         
         
-        echo <<<EOT
+//         echo <<<EOT
 
-        <div class='xcard $dark' style='width:90%'>
-            <div >
-                <header class=r'card-header'>
-                    <font color=black>Alertas</font><br>
-                </header>
-                <div class='card-content'>
-                    <table width=100%>
-                        <tr>
-                            <td><b></b></td>
-                            <td><b>Prioridade</b></td>
-                            <td><b>Cod.Alerta</b></td>
-                            <td><b>Quando</b></td>
-                            <td><b>Módulo</b></td>
-                            <td><b>Item</b></td>
-                            <td><b>Valor</b></td>
-                            <td><b>Descrição</b></td>
-                            <td><b>Analista</b></td>
-                        </tr>
-EOT;
+//         <div class='xcard $dark' style='width:90%'>
+//             <div >
+//                 <header class=r'card-header'>
+//                     <font color=black>Alertas</font><br>
+//                 </header>
+//                 <div class='card-content'>
+//                     <table width=100%>
+//                         <tr>
+//                             <td><b></b></td>
+//                             <td><b>Prioridade</b></td>
+//                             <td><b>Cod.Alerta</b></td>
+//                             <td><b>Quando</b></td>
+//                             <td><b>Módulo</b></td>
+//                             <td><b>Item</b></td>
+//                             <td><b>Valor</b></td>
+//                             <td><b>Descrição</b></td>
+//                             <td><b>Analista</b></td>
+//                         </tr>
+// EOT;
 
-       while($o=$this->data->GetObject()) {
-           print "<tr>";
-           print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
-           print "<td>$o->prioridade</td>";
-           print "<td>$o->cod_alerta</td>";
-           print "<td>$o->quando</td>";
-           print "<td>$o->modulo</td>";
-           print "<td>$o->item</td>";
-           print "<td>$o->valor</td>";
-           print "<td>$o->descricao</td>";
-           print "<td>$o->nome</td>";
-           echo "<td onclick=\"openEditForm('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></td>";
-           print "</tr>";
+//        while($o=$this->data->GetObject()) {
+//            print "<tr>";
+//            print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
+//            print "<td>$o->prioridade</td>";
+//            print "<td>$o->cod_alerta</td>";
+//            print "<td>$o->quando</td>";
+//            print "<td>$o->modulo</td>";
+//            print "<td>$o->item</td>";
+//            print "<td>$o->valor</td>";
+//            print "<td>$o->descricao</td>";
+//            print "<td>$o->nome</td>";
+//            echo "<td onclick=\"openEditForm('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></td>";
+//            print "</tr>";
             
-       }
+//        }
 
 
-    }
+//     }
 }
 
 $show = new ShowAlerta();
