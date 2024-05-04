@@ -47,7 +47,7 @@ class ShowAlerta extends modulo {
         function form_alerta(id_alerta) {
             alert(id_alerta); 
         }
-        const openEditForm = (codAlert) => {
+        function openEditForm(codAlert) {
             // Aquí puedes generar el contenido del formulario
             var formulario = "<form>";
             formulario += "Código de alerta: <input type='text' value='" + codAlert + "'><br>";
