@@ -47,24 +47,11 @@ class ShowAlerta extends modulo {
         function form_alerta(id_alerta) {
             alert(id_alerta); 
         }
-        function openEditForm(codAlert) {
+        const openEditForm = (codAlert) => {
             // Aquí puedes generar el contenido del formulario
             var formulario = "<form>";
             formulario += "Código de alerta: <input type='text' value='" + codAlert + "'><br>";
             // Agrega más campos al formulario según tus necesidades
-            <div class='card-content'>
-                    <table width=100%>
-                        <tr>
-                            <td><b></b></td>
-                            <td><b>Prioridade</b></td>
-                            <td><b>Cod.Alerta</b></td>
-                            <td><b>Quando</b></td>
-                            <td><b>Módulo</b></td>
-                            <td><b>Item</b></td>
-                            <td><b>Valor</b></td>
-                            <td><b>Descrição</b></td>
-                            <td><b>Analista</b></td>
-                        </tr>
             
             // Cierra el formulario
             formulario += "</form>";
