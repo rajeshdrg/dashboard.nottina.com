@@ -52,7 +52,7 @@ class ShowAlerta extends modulo {
             var editFormUrl = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
             
             // Abrir la ventana emergente con el formulario de edición
-            var popup = window.open(editFormUrl, "Editar Alerta", "width=600,height=400");
+            var popup = window.open(editFormUrl, "Editar Alerta", "width=1200,height=1000");
             
             // Verificar si la ventana emergente fue bloqueada por el navegador
             if (!popup || popup.closed || typeof popup.closed == 'undefined') {
