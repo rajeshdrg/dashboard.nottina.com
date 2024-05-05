@@ -48,16 +48,8 @@ class ShowAlerta extends modulo {
             alert(id_alerta); 
         }
         function openEditForm(codAlert) {
-            // Aquí puedes generar el contenido del formulario
-            var formulario =
-            formulario += "Código de alerta: <input type='text' value='" + codAlert + "'><br>";
-            // Agrega más campos al formulario según tus necesidades
-            
-            
-            
+            window.location.href = "/ShowAlerta/editForm.php";
     
-            // Muestra el formulario en un cuadro de diálogo
-            alert(formulario);
         }
         EOT1;
     }
