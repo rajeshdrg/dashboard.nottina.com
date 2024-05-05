@@ -90,7 +90,7 @@ EOT;
 
        while($o=$this->data->GetObject()) {
            print "<tr>";
-           print "<td>< onclick=form_alerta('$o->id_alerta')span>...</></td>";
+           print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
            print "<td>$o->prioridade</td>";
            print "<td>$o->cod_alerta</td>";
            print "<td>$o->quando</td>";
