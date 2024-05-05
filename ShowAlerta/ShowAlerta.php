@@ -49,12 +49,12 @@ class ShowAlerta extends modulo {
         }
         function openEditForm(codAlert) {
             // Aquí puedes generar el contenido del formulario
-            var formulario = "<form>";
+            var formulario =
             formulario += "Código de alerta: <input type='text' value='" + codAlert + "'><br>";
             // Agrega más campos al formulario según tus necesidades
             
-            // Cierra el formulario
-            formulario += "</form>";
+            
+            
     
             // Muestra el formulario en un cuadro de diálogo
             alert(formulario);
@@ -98,7 +98,7 @@ EOT;
 
        while($o=$this->data->GetObject()) {
            print "<tr>";
-           print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
+           print "<td onclick=form_alerta('$o->id_alerta')><span>...</span></td>";
            print "<td>$o->prioridade</td>";
            print "<td>$o->cod_alerta</td>";
            print "<td>$o->quando</td>";
