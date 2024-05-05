@@ -4,11 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/ShowAlerta/editForm.css">
     <title>Editar Alerta</title>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 </head>
 
 <body>
+    <!--=================================
+           HEADER DESKTOP
+   ===================================-->
+    <div class="topo">
+        <div style="width: 2%;height: 100%; float: left;">
+            <button class="header_back" onclick="voltar();" style="margin:36px auto auto 8px; font-size: 15pt;">
+                <i class="fa fa-arrow-left" style="color:#003366"></i>
+            </button>
+        </div>
+        <div style="width: 30%;height: 100%; float: left;">
+            <img src="images/nottina.png" style="margin:auto auto auto 12px; width: 250px; height: 85px;" />
+        </div>
+        <div style="width: 68%;height: 100%; float: left;">
+            <a id="btnSair" href="sair.php" class="headerUser" style="width: 35px; height: 35px;margin-top: 50px;"><img
+                    src="images/logout_small.png"></a>
+            <h4 class="headerUser"><?php print $nome; ?></h4>
+        </div>
+    </div>
+
+
     <h2>Editar Alerta</h2>
     <form action="guardar_edicion.php" method="POST">
         <div>
