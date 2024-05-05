@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
     // Obtener la ventana modal
     var modal = document.getElementById("myModal");
 
@@ -62,7 +62,7 @@
             modal.style.display = "none";
         }
     }
-    </script>
+    </script> -->
 
 </body>
 
