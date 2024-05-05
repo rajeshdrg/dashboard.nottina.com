@@ -48,7 +48,9 @@ class ShowAlerta extends modulo {
             alert(id_alerta); 
         }
         function openEditForm(codAlert) {
-            window.location.href = "/ShowAlerta/editForm.php";
+            // window.location.href = "/ShowAlerta/editForm.php";
+            window.location.href = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
+            // $('#myModal').modal('show');
     
         }
         EOT1;
