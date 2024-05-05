@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Alerta</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="editForm.css">
 </head>
 
 <body>
     <h2>Editar Alerta</h2>
     <form action="guardar_edicion.php" method="POST">
         <div>
-            <label for="prioridad">Prioridad:</label>
-            <input type="text" id="prioridad" name="prioridad" required>
+            <label for="prioridade">Prioridad:</label>
+            <input type="text" id="prioridade" name="prioridade" required>
         </div>
         <div>
             <label for="cod_alerta">Cod. Alerta:</label>
