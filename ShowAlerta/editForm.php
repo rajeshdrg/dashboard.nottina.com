@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Edición</title>
-    <!-- <style>
+    <style>
     .modal {
         display: none;
         position: fixed;
@@ -40,7 +40,7 @@
         text-decoration: none;
         cursor: pointer;
     }
-    </style> -->
+    </style>
 </head>
 
 <body>
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <!-- <script>
+    <script>
     // Obtener la ventana modal
     var modal = document.getElementById("myModal");
 
@@ -86,7 +86,7 @@
             modal.style.display = "none";
         }
     }
-    </script> -->
+    </script>
 
 </body>
 
