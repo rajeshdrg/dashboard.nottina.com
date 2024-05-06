@@ -1,6 +1,4 @@
-
-
-  /* Estilos para el formulario de edición */
+/* Estilos para el formulario de edición */
 
 body {
     font-family: Arial, sans-serif;
@@ -15,7 +13,8 @@ h2 {
 }
 
 form {
-    width: 50%;
+    width: 80%;
+    max-width: 600px;
     margin: 0 auto;
     background-color: #dcdbdb;
     border-radius: 8px;
@@ -63,4 +62,11 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: hsl(205, 93%, 57%);
+}
+
+@media screen and (max-width:768px) {
+    form {
+        width: 90%;
+    }
+
 }
