@@ -17,7 +17,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/Processo/Processo.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/Positivo/Positivo.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/ListServer/ListServer.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/ShowAlerta/ShowAlerta.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/ShowAlerta/editForm.php.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/ShowAlerta/editForm.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/Procon/Procon.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/SmsPortabilidade/SmsPortabilidade.php";
 
