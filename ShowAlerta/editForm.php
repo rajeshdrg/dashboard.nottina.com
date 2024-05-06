@@ -11,49 +11,60 @@
 </head>
 
 <body>
-    <!--=================================
-           HEADER DESKTOP
-   ===================================-->
+
+    <section class="forms-section"></section>
+    <h2 class="section-title">Editar Alerta</h2>
+    <div class="forms">
+        <form action="guardar_edicion.php" method="post">
+            <fieldset>
+                <div class="input-block">
+                    <label for="prioridade">Prioridade</label>
+                    <input type="text" id="prioridade" name="prioridade" required>
+                </div>
+
+                <div class="input-block">
+                    <label for="cod_alerta">Cod. Alerta:</label>
+                    <input type="text" id="cod_alerta" name="cod_alerta" required>
+                </div>
 
 
+                <div class="input-block">
+                    <label for="quando">Quándo:</label>
+                    <input type="datetime-local" id="quando" name="quando" required>
+                </div>
+
+                <div class="input-block">
+                    <label for="modulo">Módulo:</label>
+                    <input type="text" id="modulo" name="modulo" required>
+                </div>
+
+                <div class="input-block">
+                    <label for="item">Item:</label>
+                    <input type="text" id="item" name="item" required>
+                </div>
+
+                <div class="input-block">
+                    <label for="valor">Valor:</label>
+                    <input type="text" id="valor" name="valor" required>
+                </div>
+
+                <div class="input-block>
+                    <label for=" descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" required></textarea>
+                </div>
+
+                <div class="input-block>
+                    <label for=" analista">Analista:</label>
+                    <input type="text" id="analista" name="analista" required>
+                </div>
+            </fieldset>
+            <button type="submit" class="btn-submit">Submit</button>
+
+        </form>
+
+    </div>
 
 
-    <h2>Editar Alerta</h2>
-    <form action="guardar_edicion.php" method="POST">
-        <div>
-            <label for="prioridade">Prioridade:</label>
-            <input type="text" id="prioridade" name="prioridade" required>
-        </div>
-        <div>
-            <label for="cod_alerta">Cod. Alerta:</label>
-            <input type="text" id="cod_alerta" name="cod_alerta" required>
-        </div>
-        <div>
-            <label for="quando">Quándo:</label>
-            <input type="datetime-local" id="quando" name="quando" required>
-        </div>
-        <div>
-            <label for="modulo">Módulo:</label>
-            <input type="text" id="modulo" name="modulo" required>
-        </div>
-        <div>
-            <label for="item">Item:</label>
-            <input type="text" id="item" name="item" required>
-        </div>
-        <div>
-            <label for="valor">Valor:</label>
-            <input type="text" id="valor" name="valor" required>
-        </div>
-        <div>
-            <label for="descricao">Descrição:</label>
-            <textarea id="descricao" name="descricao" required></textarea>
-        </div>
-        <div>
-            <label for="analista">Analista:</label>
-            <input type="text" id="analista" name="analista" required>
-        </div>
-        <button type="submit">Guarda</button>
-    </form>
 </body>
 
 </html>
