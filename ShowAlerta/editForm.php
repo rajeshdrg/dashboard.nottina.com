@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/ShowAlerta/editForm.css">
+    <!-- <link rel="stylesheet" href="/ShowAlerta/editForm.css"> -->
     <title>Editar Alerta</title>
     <?php include '../dashboard.nottina.com/top.php' ?>
 
