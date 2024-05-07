@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="/ShowAlerta/editForm.css"> -->
+    <link rel="stylesheet" href="/ShowAlerta/editForm.css">
     <title>Editar Alerta</title>
     <?php include '../dashboard.nottina.com/top.php' ?>
 
@@ -15,7 +15,7 @@
     <section class="forms-section"></section>
     <h2 class="section-title">Editar Alerta</h2>
     <div class="forms">
-        <form  id="editForm"action="guardar_edicion.php" method="post">
+        <form id="editForm" action="guardar_edicion.php" method="post">
             <fieldset>
                 <div class="input-block">
                     <label for="prioridade">Prioridade</label>
