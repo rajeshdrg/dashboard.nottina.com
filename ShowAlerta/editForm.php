@@ -48,8 +48,8 @@
                     <input type="text" id="valor" name="valor" required>
                 </div>
 
-                <div class="input-block>
-                    <label for=" analista">Analista:</label>
+                <div class="input-block">
+                    <label for="analista">Analista:</label>
                     <input type="text" id="analista" name="analista" required>
                 </div>
 
