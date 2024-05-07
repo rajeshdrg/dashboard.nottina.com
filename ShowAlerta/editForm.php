@@ -15,7 +15,7 @@
     <section class="forms-section"></section>
     <h2 class="section-title">Editar Alerta</h2>
     <div class="forms">
-        <form action="guardar_edicion.php" method="post">
+        <form  id="editForm"action="guardar_edicion.php" method="post">
             <fieldset>
                 <div class="input-block">
                     <label for="prioridade">Prioridade</label>
