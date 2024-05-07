@@ -10,7 +10,10 @@
   
   body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #0CF;
+    font-weight:300;
+	font-size: 12px;
+	line-height:30px;
   }
   
   .section-title {
@@ -20,9 +23,9 @@
   }
   
   .forms {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: #F9F9F9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -50,7 +53,7 @@
     min-height: 100px;
   }
   
-  .btn-submit {
+  .btn-submit:active {
     display: block;
     width: 100%;
     padding: 10px;
