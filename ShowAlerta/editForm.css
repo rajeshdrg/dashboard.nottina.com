@@ -1,12 +1,13 @@
 /* Reset de estilos */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  background-color: rgb(232, 232, 232);
+ body {
+  background-color:rgb(232, 232, 232);
   padding: 0;
   margin: 0;
   height: 100%;
@@ -19,10 +20,11 @@ body {
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  font-display: optional;
+  font-display: optional;  
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; 
 }
+
 
 /* Estilos para formulario de edición */
 
@@ -33,6 +35,7 @@ body {
   height: 100vh; /* Añadido para centrar verticalmente */
 }
 
+
 .section-title {
   text-align: center;
   color: #333;
@@ -42,7 +45,7 @@ body {
   max-width: 600px;
   margin: 20px;
   padding: 20px;
-  background-color: #f7f7f7; /* Color de fondo más tenue */
+  background-color: #e2dfdf;
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -57,17 +60,19 @@ body {
   color: #333;
 }
 
-.input-block input,
-.input-block textarea {
+.input-block input {
   width: 95%;
   padding: 10px;
-  border: 1px solid #dcdcdc; /* Color de borde más tenue */
+  border: 1px solid #b3b2b2;
   border-radius: 10px;
 }
 
 .input-block textarea {
-  width: 95%; /* Ajuste el ancho según sea necesario */
-  padding: 10px;
+ 
+  width: 950%;
+  padding: 50px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
 .btn-submit {

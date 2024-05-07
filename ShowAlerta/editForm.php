@@ -55,7 +55,7 @@
 
                 <div class="input-block>
                     <label for=" descricao">Descrição:</label>
-                    <textarea id="descricao" name="descricao" required></textarea>
+                    <textarea id="descricao" name="descricao" rows="10" cols="30" required></textarea>
                 </div>
 
 
