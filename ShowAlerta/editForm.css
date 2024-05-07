@@ -1,4 +1,5 @@
 /* Reset de estilos */
+/* /* Reset de estilos */
 
 * {
   margin: 0;
@@ -6,8 +7,8 @@
   box-sizing: border-box;
 }
 
- body {
-  background-color:rgb(232, 232, 232);
+body {
+  background-color: var(--color-background);
   padding: 0;
   margin: 0;
   height: 100%;
@@ -15,16 +16,25 @@
   font-family: Calibri, Arial;
   font-weight: 500;
   font-size: 11pt;
-  color: #000000;
+  color: var(--color-text);
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  font-display: optional;  
+  font-display: optional;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; 
+  -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --color-background: rgb(232, 232, 232);
+  --color-text: #000000;
+  --color-form-background: #e2dfdf;
+  --color-form-border: #b3b2b2;
+  --color-form-input-border: #ccc;
+  --color-button-background: #007bff;
+  --color-button-text: #fff;
+}
 
 /* Estilos para formulario de edición */
 
@@ -32,20 +42,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
- 
 }
-
 
 .section-title {
   text-align: center;
-  color: #333;
+  color: var(--color-text);
 }
 
 .forms {
   max-width: 600px;
   margin: 20px;
   padding: 20px;
-  background-color: #e2dfdf;
+  background-color: var(--color-form-background);
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -55,9 +63,10 @@
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  border: 1px solid #b3b2b2;
+  border: 1px solid var(--color-form-border);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .input-block {
   margin-bottom: 20px;
 }
@@ -65,29 +74,22 @@
 .input-block label {
   display: block;
   margin-bottom: 5px;
-  color: #333;
+  color: var(--color-text);
 }
 
-.input-block input {
-  width: 95%;
-  padding: 10px;
-  border: 1px solid #b3b2b2;
-  border-radius: 10px;
-}
-
+.input-block input,
 .input-block textarea {
- 
   width: 100%;
-  padding: 50px;
-  border: 1px solid #ccc;
+  padding: 10px;
+  border: 1px solid var(--color-form-input-border);
   border-radius: 10px;
 }
 
 .btn-submit {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--color-button-background);
+  color: var(--color-button-text);
   border: none;
   border-radius: 10px;
   cursor: pointer;
