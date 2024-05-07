@@ -6,29 +6,76 @@
     box-sizing: border-box;
   }
   
-  /* Estilos generales */
+  html, body, #carregar {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Calibri, Arial;
+    font-weight: 500;
+    font-size: 11pt;
+    color: #888;
+    font-display: optional;  
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
+  }
   
   body {
-    font-family: Arial, sans-serif;
-    background-color: #0CF;
-    font-weight:300;
-	font-size: 12px;
-	line-height:30px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+  
+  @media screen and (prefers-color-scheme: dark) {
+    body {
+      color: #75715e;
+    }
+    .card-div{
+      color: #75715e;
+    }
+    .xcard{
+      color: #75715e;
+    }
+    .main {
+      background: #2d3239;
+    }
+    h1 {
+      color: red;
+    }
+  }
+  
+  .center {    
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+  }
+  img, .image{
+      max-width: 100%;
+      width: auto;
+  }
+  
+  /* Estilos para formulario de edición */
+  
+  .forms-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .section-title {
-    margin-top: 30px;
     text-align: center;
     color: #333;
   }
   
   .forms {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #F9F9F9;
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
   }
   
   .input-block {
@@ -53,8 +100,7 @@
     min-height: 100px;
   }
   
-  .btn-submit:active {
-    display: block;
+  .btn-submit {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
