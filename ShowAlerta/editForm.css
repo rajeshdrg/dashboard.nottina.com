@@ -32,7 +32,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Añadido para centrar verticalmente */
+ 
 }
 
 
@@ -54,7 +54,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
+   
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
