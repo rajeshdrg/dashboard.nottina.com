@@ -29,7 +29,7 @@
 /* Estilos para formulario de edición */
 
 .forms-section {
-  display:block;
+  display:center;
   justify-content: center;
   align-items: center;
   
@@ -45,7 +45,7 @@
   margin: 20px;
   padding: 20px;
   background-color: #e2dfdf;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -63,15 +63,15 @@
   width: 95%;
   padding: 10px;
   border: 1px solid #b3b2b2;
-  border-radius: 6px;
+  border-radius: 10px;
 }
 
 .input-block textarea {
-  min-height: 100px;
+  height: 100%;
   width: 200%;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
 .btn-submit {
@@ -80,7 +80,7 @@
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }

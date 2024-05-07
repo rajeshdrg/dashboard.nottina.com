@@ -49,14 +49,16 @@
                 </div>
 
                 <div class="input-block>
+                    <label for=" analista">Analista:</label>
+                    <input type="text" id="analista" name="analista" required>
+                </div>
+
+                <div class="input-block>
                     <label for=" descricao">Descrição:</label>
                     <textarea id="descricao" name="descricao" required></textarea>
                 </div>
 
-                <div class="input-block>
-                    <label for=" analista">Analista:</label>
-                    <input type="text" id="analista" name="analista" required>
-                </div>
+
             </fieldset>
             <button type="submit" class="btn-submit">Submit</button>
 
