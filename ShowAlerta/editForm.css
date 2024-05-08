@@ -2,100 +2,92 @@
 /* /* Reset de estilos */
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: var(--color-background);
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  font-family: Calibri, Arial;
-  font-weight: 500;
-  font-size: 11pt;
-  color: var(--color-text);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  font-display: optional;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-background);
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Calibri, Arial;
+    font-weight: 500;
+    font-size: 11pt;
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: flex-start;
+    font-display: optional;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 :root {
-  --color-background: rgb(232, 232, 232);
-  --color-text: #000000;
-  --color-form-background: #e2dfdf;
-  --color-form-border: #b3b2b2;
-  --color-form-input-border: #ccc;
-  --color-button-background: #007bff;
-  --color-button-text: #fff;
+    --color-background: rgb(232, 232, 232);
+    --color-text: #000000;
+    --color-form-background: #e2dfdf;
+    --color-form-border: #b3b2b2;
+    --color-form-input-border: #ccc;
+    --color-button-background: #007bff;
+    --color-button-text: #fff;
 }
 
 /* Estilos para formulario de edición */
 
 .forms-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .section-title {
-  text-align: center;
-  color: var(--color-text);
+    text-align: center;
+    color: var(--color-text);
 }
 
 .forms {
-  max-width: 600px;
-  margin: 20px;
-  padding: 20px;
-  background-color: var(--color-form-background);
-  border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background-color: var(--color-form-background);
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.fieldset {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  border: 1px solid var(--color-form-border);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
 .input-block {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .input-block label {
-  display: block;
-  margin-bottom: 5px;
-  color: var(--color-text);
+    display: block;
+    margin-bottom: 5px;
+    color: var(--color-text);
 }
 
-.input-block input,
-.input-block textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--color-form-input-border);
-  border-radius: 10px;
+.input-block input
+{
+width: 100%;
+padding: 10px;
+border: 1px solid var(--color-form-input-border);
+border-radius: 10px;
 }
 
 .btn-submit {
-  width: 100%;
-  padding: 10px;
-  background-color: var(--color-button-background);
-  color: var(--color-button-text);
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color-button-background);
+    color: var(--color-button-text);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .btn-submit:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
