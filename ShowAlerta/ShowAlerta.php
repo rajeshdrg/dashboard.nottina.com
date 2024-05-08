@@ -50,7 +50,7 @@ class ShowAlerta extends modulo
         }
 
          function openEditForm(codAlert) {
-          $('#myModal').(modal('show');
+          $('#myModal').modal('show');
          }
 
         //     // URL del formulario de edición
