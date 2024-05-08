@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ShowAlerta/editForm.css">
-    <title>Editar Alerta</title>
-    <?php include '../dashboard.nottina.com/top.php' ?>
+    <title>EditAlerta</title>
+
 
 </head>
 
 <body>
 
     <section class="forms-section">
-        <h2 class="section-title">Editar Alerta</h2>
+
         <div class="forms">
             <form id="editForm" action="guardar_edicion.php" method="post">
 
