@@ -25,7 +25,7 @@
         <div class="modal-dialog">
 
             <!-- Contenido de la modal -->
-            <div class="modal-content">
+            <div id="iframe" class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Editar Alerta</h4>
