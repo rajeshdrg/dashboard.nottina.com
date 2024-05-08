@@ -48,17 +48,29 @@ class ShowAlerta extends modulo
         function form_alerta(id_alerta) {
             alert(id_alerta); 
         }
+
         function openEditForm(codAlert) {
             // URL del formulario de edición
             var editFormUrl = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
+
+            var xhr = new XMLHttpResquest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200){
+                    var editFormContent = xhr.responseText;
+                    alert(editFormContent);
+
+                } else if (xhr.readyState === 4 && xhr.status !== 200){
+                    alert("Error");
+                }
+            };
             
-            // Abrir la ventana emergente con el formulario de edición
-            var popup = window.alert(editFormUrl, "Editar Alerta", "width=600,height=200");
+            // // Abrir la ventana emergente con el formulario de edición
+            // var popup = window.open(editFormUrl, "Editar Alerta", "width=600,height=200");
             
-            // Verificar si la ventana emergente fue bloqueada por el navegador
-            if (!popup || popup.closed || typeof popup.closed == 'undefined') {
-                alert("La ventana emergente fue bloqueada por el navegador. Asegúrate de habilitar las ventanas emergentes para este sitio.");
-            }
+            // // Verificar si la ventana emergente fue bloqueada por el navegador
+            // if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+            //     alert("La ventana emergente fue bloqueada por el navegador. Asegúrate de habilitar las ventanas emergentes para este sitio.");
+            //}
         }
         EOT1;
     }
