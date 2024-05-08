@@ -50,24 +50,19 @@ class ShowAlerta extends modulo
         }
 
          function openEditForm(codAlert) {
-            var modal = document.getElementById('myModal');
+
+            // URL del formulario de edición
             var editFormUrl = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
-            document.getElementById("editFormFrame").src = editFormUrl;
-            $('#myModal').modal('show');
-        
-
-            // // URL del formulario de edición
-            // var editFormUrl = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
 
 
             
-            // // // Abrir la ventana emergente con el formulario de edición
-            //  var popup = window.open(editFormUrl, "Editar Alerta", "width=500,height=400");
+            // // Abrir la ventana emergente con el formulario de edición
+             var popup = window.open(editFormUrl, "Editar Alerta", "width=500,height=400");
             
-            // // // Verificar si la ventana emergente fue bloqueada por el navegador
-            //  if (!popup || popup.closed || typeof popup.closed == 'undefined') {
-            //      alert("La ventana emergente fue bloqueada por el navegador. Asegúrate de habilitar las ventanas emergentes para este sitio.");
-            // }
+            // // Verificar si la ventana emergente fue bloqueada por el navegador
+             if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+                 alert("La ventana emergente fue bloqueada por el navegador. Asegúrate de habilitar las ventanas emergentes para este sitio.");
+            }
         }
         EOT1;
     }
@@ -118,10 +113,7 @@ EOT;
             print "<td>$o->valor</td>";
             print "<td>$o->descricao</td>";
             print "<td>$o->nome</td>";
-            echo "<td>";
-            print "<button type= 'button' class= 'btn btn-primary' onclick=\"openEditForm('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></button>";
-            echo "</td>";
-            // echo "<td onclick=\"openEditForm('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></td>";
+            echo "<td onclick=\"openEditForm('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></td>";
             print "</tr>";
         }
     }
