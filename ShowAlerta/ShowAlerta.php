@@ -112,7 +112,9 @@ EOT;
             print "<td>$o->valor</td>";
             print "<td>$o->descricao</td>";
             print "<td>$o->nome</td>";
+            echo "<td>";
             echo "<button type= 'button' class= 'btn btn-primary' onclick=\"openEditForm('$o->cod_alerta')\"></button>";
+            echo "</td>";
             // echo "<td onclick=\"openEditForm('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></td>";
             print "</tr>";
         }
