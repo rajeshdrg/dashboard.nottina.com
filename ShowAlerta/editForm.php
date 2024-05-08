@@ -13,7 +13,7 @@
 
 <body>
   
-    <!-- <section class="forms-section">
+    <section class="forms-section">
 
         <div class="forms">
             <form id="editForm" action="guardar_edicion.php" method="post">
@@ -34,7 +34,7 @@
 
         </div>
 
-    </section> -->
+    </section>
   
 </body>
 
