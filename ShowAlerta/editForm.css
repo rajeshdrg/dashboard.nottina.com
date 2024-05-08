@@ -35,6 +35,11 @@ body {
     --color-button-background: #007bff;
     --color-button-text: #fff;
 }
+.head {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+}
 
 /* Estilos para formulario de edición */
 
