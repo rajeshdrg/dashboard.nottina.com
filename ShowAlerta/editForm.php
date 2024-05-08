@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ShowAlerta/editForm.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <title>EditAlerta</title>
 
 
 </head>
 
 <body>
+    <div class="alert alert-primary" role="alert">this  is primary alert</div>
 
     <section class="forms-section">
 
