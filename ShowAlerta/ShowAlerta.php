@@ -63,6 +63,8 @@ class ShowAlerta extends modulo
                     alert("Error");
                 }
             };
+            xhr.open("GET", editFormUrl, true);
+            xhr.send();
             
             // // Abrir la ventana emergente con el formulario de edición
             // var popup = window.open(editFormUrl, "Editar Alerta", "width=600,height=200");
