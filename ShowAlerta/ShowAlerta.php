@@ -94,36 +94,36 @@ class ShowAlerta extends modulo
             echo "</tr>";
         }
 
-        echo <<<EOT2
-      
-        <div class='modal fade' id='myModal' role='dialog'>
-            <div class='modal-dialog'>
-                <div class='modal-content'>
-                    <div class='modal-header'>
-                        <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                        <h4 class='modal-title'>Editar Alerta</h4>
-                    </div>
-                    <div class='modal-body'>
-                        <form id='editForm' action='guardar_edicion.php' method='post'>
-                            <input type='hidden' id='cod_alerta' name='cod_alerta'>
-                            <div class='form-group'>
-                                <label for='analista'>Analista:</label>
-                                <input type='text' class='form-control' id='analista' name='analista' required>
+                echo <<<EOT2
+            
+                <div class='modal fade' id='myModal' role='dialog'>
+                    <div class='modal-dialog'>
+                        <div class='modal-content'>
+                            <div class='modal-header'>
+                                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                                <h4 class='modal-title'>Editar Alerta</h4>
                             </div>
-                            <div class='form-group'>
-                                <label for='quando'>Quándo:</label>
-                                <input type='date' class='form-control' id='quando' name='quando' required>
+                            <div class='modal-body'>
+                                <form id='editForm' action='guardar_edicion.php' method='post'>
+                                    <input type='hidden' id='cod_alerta' name='cod_alerta'>
+                                    <div class='form-group'>
+                                        <label for='analista'>Analista:</label>
+                                        <input type='text' class='form-control' id='analista' name='analista' required>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label for='quando'>Quándo:</label>
+                                        <input type='date' class='form-control' id='quando' name='quando' required>
+                                    </div>
+                                    <button type='submit' class='btn btn-primary'>Guardar Cambios</button>
+                                </form>
                             </div>
-                            <button type='submit' class='btn btn-primary'>Guardar Cambios</button>
-                        </form>
-                    </div>
-                    <div class='modal-footer'>
-                        <button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>
+                            <div class='modal-footer'>
+                                <button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        EOT2;
+                EOT2;
 
     }
 }
