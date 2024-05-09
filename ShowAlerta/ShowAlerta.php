@@ -88,37 +88,24 @@ class ShowAlerta extends modulo
         $this->get_data();
 
         echo <<<EOT
-        <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Editar Alerta</h2>
-            <form id="editForm">
-                <label for="analista">Analista:</label>
-                <input type="text" id="analista" name="analista" required>
-                <label for="quando">Quándo:</label>
-                <input type="date" id="quando" name="quando" required>
-                <button type="submit" class="btn-submit">Guardar Cambios</button>
-            </form>
-            </div>
-        </div>
-        // <div class='xcard $dark' style='width:90%'>
-        //     <div>
-        //         <header class=r'card-header'>
-        //             <font color=black>Alertas</font><br>
-        //         </header>
-        //         <div class='card-content'>
-        //             <table width=100%>
-        //                 <tr>
-        //                     <td><b></b></td>
-        //                     <td><b>Prioridade</b></td>
-        //                     <td><b>Cod.Alerta</b></td>
-        //                     <td><b>Quando</b></td>
-        //                     <td><b>Módulo</b></td>
-        //                     <td><b>Item</b></td>
-        //                     <td><b>Valor</b></td>
-        //                     <td><b>Descrição</b></td>
-        //                     <td><b>Analista</b></td>
-        //                 </tr>
+        <div class='xcard $dark' style='width:90%'>
+            <div>
+                <header class=r'card-header'>
+                    <font color=black>Alertas</font><br>
+                </header>
+                <div class='card-content'>
+                    <table width=100%>
+                        <tr>
+                            <td><b></b></td>
+                            <td><b>Prioridade</b></td>
+                            <td><b>Cod.Alerta</b></td>
+                            <td><b>Quando</b></td>
+                            <td><b>Módulo</b></td>
+                            <td><b>Item</b></td>
+                            <td><b>Valor</b></td>
+                            <td><b>Descrição</b></td>
+                            <td><b>Analista</b></td>
+                        </tr>
     EOT;
 
         while ($o = $this->data->GetObject()) {
