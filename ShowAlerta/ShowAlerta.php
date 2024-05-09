@@ -62,78 +62,78 @@ class ShowAlerta extends modulo
 
     $this->get_data();
 
-    echo <<<EOT
-    <div class='xcard $dark' style='width:90%'>
-        <div>
-            <header class=r'card-header'>
-                <font color=black>Alertas</font><br>
-            </header>
-            <div class='card-content'>
-                <table width=100%>
-                    <tr>
-                        <td><b></b></td>
-                        <td><b>Prioridade</b></td>
-                        <td><b>Cod.Alerta</b></td>
-                        <td><b>Quando</b></td>
-                        <td><b>Módulo</b></td>
-                        <td><b>Item</b></td>
-                        <td><b>Valor</b></td>
-                        <td><b>Descrição</b></td>
-                        <td><b>Analista</b></td>
-                    </tr>
-EOT;
+        echo <<<EOT
+        <div class='xcard $dark' style='width:90%'>
+            <div>
+                <header class=r'card-header'>
+                    <font color=black>Alertas</font><br>
+                </header>
+                <div class='card-content'>
+                    <table width=100%>
+                        <tr>
+                            <td><b></b></td>
+                            <td><b>Prioridade</b></td>
+                            <td><b>Cod.Alerta</b></td>
+                            <td><b>Quando</b></td>
+                            <td><b>Módulo</b></td>
+                            <td><b>Item</b></td>
+                            <td><b>Valor</b></td>
+                            <td><b>Descrição</b></td>
+                            <td><b>Analista</b></td>
+                        </tr>
+        EOT;
 
-    while ($o = $this->data->GetObject()) {
-        print "<tr>";
-        print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
-        print "<td>$o->prioridade</td>";
-        print "<td>$o->cod_alerta</td>";
-        print "<td>$o->quando</td>";
-        print "<td>$o->modulo</td>";
-        print "<td>$o->item</td>";
-        print "<td>$o->valor</td>";
-        print "<td>$o->descricao</td>";
-        print "<td>$o->nome</td>";
-        echo "<td><button onclick=\"openEditForm('$o->cod_alerta')\" class='btn btn-primary'>Editar</button></td>";
-        print "</tr>";
-    }
+        while ($o = $this->data->GetObject()) {
+            print "<tr>";
+            print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
+            print "<td>$o->prioridade</td>";
+            print "<td>$o->cod_alerta</td>";
+            print "<td>$o->quando</td>";
+            print "<td>$o->modulo</td>";
+            print "<td>$o->item</td>";
+            print "<td>$o->valor</td>";
+            print "<td>$o->descricao</td>";
+            print "<td>$o->nome</td>";
+            echo "<td><button onclick=\"openEditForm('$o->cod_alerta')\" class='btn btn-primary'>Editar</button></td>";
+            print "</tr>";
+        }
 
-    // Agregar el modal
-    echo <<<EOT2
-    </table>
-    </div>
-    </div>
+        // Agregar el modal
+        echo <<<EOT2
+        </table>
+        </div>
+        </div>
 
-    <!-- Modal -->
-    <div class='modal fade' id='myModal' role='dialog'>
-        <div class='modal-dialog'>
-            <!-- Modal content-->
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                    <h4 class='modal-title'>Editar Alerta</h4>
-                </div>
-                <div class='modal-body'>
-                    <form id='editForm' action='guardar_edicion.php' method='post'>
-                        <input type='hidden' id='cod_alerta' name='cod_alerta'>
-                        <div class='form-group'>
-                            <label for='analista'>Analista:</label>
-                            <input type='text' class='form-control' id='analista' name='analista' required>
-                        </div>
-                        <div class='form-group'>
-                            <label for='quando'>Quándo:</label>
-                            <input type='date' class='form-control' id='quando' name='quando' required>
-                        </div>
-                        <button type='submit' class='btn btn-primary'>Guardar Cambios</button>
-                    </form>
-                </div>
-                <div class='modal-footer'>
-                    <button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>
+        <!-- Modal -->
+        <div class='modal fade' id='myModal' role='dialog'>
+            <div class='modal-dialog'>
+                <!-- Modal content-->
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                        <h4 class='modal-title'>Editar Alerta</h4>
+                    </div>
+                    <div class='modal-body'>
+                        <form id='editForm' action='guardar_edicion.php' method='post'>
+                            <input type='hidden' id='cod_alerta' name='cod_alerta'>
+                            <div class='form-group'>
+                                <label for='analista'>Analista:</label>
+                                <input type='text' class='form-control' id='analista' name='analista' required>
+                            </div>
+                            <div class='form-group'>
+                                <label for='quando'>Quándo:</label>
+                                <input type='date' class='form-control' id='quando' name='quando' required>
+                            </div>
+                            <button type='submit' class='btn btn-primary'>Guardar Cambios</button>
+                        </form>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-EOT2;
+        EOT2;
 }
 }
 
