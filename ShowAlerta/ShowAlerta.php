@@ -28,57 +28,31 @@ class ShowAlerta extends modulo
     }
 
     public function front_call()
-    {
-        parent::front_call();
-
-        echo <<<EOT1
-        function form_alerta(id_alerta) {
-            alert(id_alerta); 
-        }
-
-        function openEditForm(codAlert) {
-        //    // Obtener el modal
-        // var modal = document.getElementById("myModal");
-
-        // // Abrir el modal
-        // $('#myModal').modal('show');
-
-        // // Agregar el código del alerta al formulario de edición
-        // $('#cod_alerta').val(codAlert);
-            
-
-                // Obtiene la ventana modal y el botón de cerrar
-        var modal = document.getElementById("myModal");
-        var closeBtn = document.getElementsByClassName("close")[0];
-
-        // Abre la ventana modal cuando se hace clic en el botón
-        function openModal() {
-            modal.style.display = "block";
-        }
-
-        // Cierra la ventana modal cuando se hace clic en el botón de cerrar
-        closeBtn.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        // Cierra la ventana modal cuando se hace clic fuera de ella
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+        {
+            parent::front_call();
+    
+            echo <<<EOT1
+            function form_alerta(id_alerta) {
+                alert(id_alerta); 
             }
+    
+             function openEditForm(codAlert) {
+    
+                // URL del formulario de edición
+                var editFormUrl = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
+    
+    
+                
+                 // Abrir la ventana emergente con el formulario de edición
+                // var popup = window.open(editFormUrl, "Editar Alerta", "width=500,height=400");
+                
+                 // Verificar si la ventana emergente fue bloqueada por el navegador
+                 if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+                     alert("La ventana emergente fue bloqueada por el navegador. Asegúrate de habilitar las ventanas emergentes para este sitio.");
+                }
+            }
+            EOT1;
         }
-
-        // Envía el formulario al servidor
-        var form = document.getElementById("editForm");
-        form.addEventListener("submit", function (event) {
-            event.preventDefault(); // Evita que se recargue la página al enviar el formulario
-
-            // Aquí puedes agregar el código para enviar los datos del formulario al servidor utilizando AJAX
-            // Por ejemplo, puedes usar fetch() o XMLHttpRequest
-        });
-         }
-        EOT1;
-    }
 
     public function back_call()
     {
