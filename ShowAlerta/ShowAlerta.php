@@ -63,16 +63,7 @@ class ShowAlerta extends modulo
             }
         }
 
-        // function openEditForm(codAlert) {
-        //     // Obtener el modal
-        //     var modal = document.getElementById("myModal");
-
-        //     // Abrir el modal
-        //     $('#myModal').modal('show');
-
-        //     // Agregar el código del alerta al formulario de edición
-        //     $('#cod_alerta').val(codAlert);
-        // }
+       
         EOT1;
     }
 
