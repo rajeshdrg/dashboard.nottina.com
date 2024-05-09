@@ -30,42 +30,31 @@ class ShowAlerta extends modulo
     public function front_call()
     {
         parent::front_call();
-    
+
         echo <<<EOT1
-        
         function form_alerta(id_alerta) {
             alert(id_alerta); 
         }
-    
+
         function openEditForm(codAlert) {
-            // Obtener el modal
-            var modal = document.getElementById("myModal");
-    
-            // Abrir el modal
-            $('#myModal').modal('show');
-    
-            // Agregar el código del alerta al formulario de edición
             $('#cod_alerta').val(codAlert);
+            $('#myModal').modal('show');
         }
-        
         EOT1;
     }
 
     public function back_call()
-{
-    date_default_timezone_set("America/Sao_Paulo");
-    $hora = date('G');
-    if ($hora > 19 || $hora < 6)
-        $dark = "dark";
-    else
-        $dark = "";
+    {
+        date_default_timezone_set("America/Sao_Paulo");
+        $hora = date('G');
+        $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
 
-    $this->get_data();
+        $this->get_data();
 
         echo <<<EOT
         <div class='xcard $dark' style='width:90%'>
             <div>
-                <header class=r'card-header'>
+                <header class='card-header'>
                     <font color=black>Alertas</font><br>
                 </header>
                 <div class='card-content'>
@@ -84,30 +73,28 @@ class ShowAlerta extends modulo
         EOT;
 
         while ($o = $this->data->GetObject()) {
-            print "<tr>";
-            print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
-            print "<td>$o->prioridade</td>";
-            print "<td>$o->cod_alerta</td>";
-            print "<td>$o->quando</td>";
-            print "<td>$o->modulo</td>";
-            print "<td>$o->item</td>";
-            print "<td>$o->valor</td>";
-            print "<td>$o->descricao</td>";
-            print "<td>$o->nome</td>";
-            echo "<td><button onclick=\"openEditForm('$o->cod_alerta')\" class='btn btn-primary'>Editar</button></td>";
-            print "</tr>";
+            echo "<tr>";
+            echo "<td><span onclick='form_alerta(\"$o->id_alerta\")'>...</span></td>";
+            echo "<td>$o->prioridade</td>";
+            echo "<td>$o->cod_alerta</td>";
+            echo "<td>$o->quando</td>";
+            echo "<td>$o->modulo</td>";
+            echo "<td>$o->item</td>";
+            echo "<td>$o->valor</td>";
+            echo "<td>$o->descricao</td>";
+            echo "<td>$o->nome</td>";
+            echo "<td><button onclick='openEditForm(\"$o->cod_alerta\")' class='btn'><img src='/images/icon_edit.png' alt='edit'></button></td>";
+            echo "</tr>";
         }
 
-        // Agregar el modal
-        echo <<<EOT2
-        </table>
-        </div>
+        echo <<<EOT
+                </table>
+            </div>
         </div>
 
         <!-- Modal -->
         <div class='modal fade' id='myModal' role='dialog'>
             <div class='modal-dialog'>
-                <!-- Modal content-->
                 <div class='modal-content'>
                     <div class='modal-header'>
                         <button type='button' class='close' data-dismiss='modal'>&times;</button>
@@ -133,8 +120,9 @@ class ShowAlerta extends modulo
                 </div>
             </div>
         </div>
-        EOT2;
-}
+        EOT;
+
+    }
 }
 
 $show = new ShowAlerta();
