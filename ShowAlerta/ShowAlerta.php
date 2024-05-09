@@ -32,7 +32,7 @@ class ShowAlerta extends modulo
             parent::front_call();
     
             echo <<<EOT1
-            <script>
+           
             function form_alerta(id_alerta) {
                 alert(id_alerta); 
             }
@@ -52,7 +52,7 @@ class ShowAlerta extends modulo
                      alert("La ventana emergente fue bloqueada por el navegador. Asegúrate de habilitar las ventanas emergentes para este sitio.");
                 }
             }
-            </script>
+            
             EOT1;
         }
 

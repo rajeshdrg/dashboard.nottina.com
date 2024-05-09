@@ -16,24 +16,11 @@
 </head>
 
 <body>
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Editar Alerta</h2>
-            <form id="editForm">
-                <label for="analista">Analista:</label>
-                <input type="text" id="analista" name="analista" required>
-                <label for="quando">Quándo:</label>
-                <input type="date" id="quando" name="quando" required>
-                <button type="submit" class="btn-submit">Guardar Cambios</button>
-            </form>
-        </div>
-    </div>
-    
+   
 
-    <!-- <section class="forms-section">
+    <section class="forms-section">
 
-        <div class="forms">
+        <div id="modal" class="forms">
             <form id="editForm" action="guardar_edicion.php" method="post">
 
                 <div class="input-block">
@@ -52,7 +39,7 @@
 
         </div>
 
-    </section> -->
+    </section>
 
 
 </body>
