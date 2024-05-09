@@ -27,7 +27,7 @@ class GuardarEdicion
         // Aquí debes escribir las consultas SQL necesarias para actualizar los campos de la alerta
         // Por ejemplo:
         $Sql->query = "UPDATE alerta SET analista = $1, quando = TO_DATE($2, 'YYYY-MM-DD') WHERE cod_alerta = $3";
-        $Sql->params = array($$analista, $quando, $codAlerta);
+        $Sql->params = array($analista, $quando, $codAlerta);
         $Sql->Execute();
 
         // Puedes agregar comprobaciones adicionales, manejo de errores, etc., según sea necesario

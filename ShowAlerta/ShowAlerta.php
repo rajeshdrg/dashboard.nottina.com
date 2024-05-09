@@ -102,7 +102,21 @@ class ShowAlerta extends modulo
         }
     }
 }
-
+print "
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Editar Alerta</h2>
+        <form id="editForm">
+            <label for="analista">Analista:</label>
+            <input type="text" id="analista" name="analista" required>
+            <label for="quando">Quándo:</label>
+            <input type="date" id="quando" name="quando" required>
+            <button type="submit" class="btn-submit">Guardar Cambios</button>
+        </form>
+    </div>
+    
+"
 
 $show = new ShowAlerta();
 
