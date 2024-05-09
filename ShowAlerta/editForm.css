@@ -1,7 +1,6 @@
-Reset de estilos
-/* /* Reset de estilos */
 
-/* * {
+ /* Reset de estilos */
+ * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -43,7 +42,7 @@ body {
 
 /* Estilos para formulario de edición */
 
-/* .forms-section {
+ .forms-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,7 +94,7 @@ border-radius: 10px;
 
 .btn-submit:hover {
     background-color: #0056b3;
-} */
+} 
 
 
 
