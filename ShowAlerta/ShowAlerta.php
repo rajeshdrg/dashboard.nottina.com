@@ -32,7 +32,7 @@ class ShowAlerta extends modulo
         parent::front_call();
     
         echo <<<EOT1
-        <script>
+        
         function form_alerta(id_alerta) {
             alert(id_alerta); 
         }
@@ -47,7 +47,7 @@ class ShowAlerta extends modulo
             // Agregar el código del alerta al formulario de edición
             $('#cod_alerta').val(codAlert);
         }
-        </script>
+        
         EOT1;
     }
 
