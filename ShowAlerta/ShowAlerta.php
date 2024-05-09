@@ -38,8 +38,6 @@ class ShowAlerta extends modulo
         $this->data = $dr;
     }
 
-
-
     public function front_call()
     {
         parent::front_call();
@@ -49,20 +47,15 @@ class ShowAlerta extends modulo
             alert(id_alerta); 
         }
 
-         function openEditForm(codAlert) {
+        function openEditForm(codAlert) {
+            // Obtener el modal
+            var modal = document.getElementById("myModal");
 
-            // URL del formulario de edición
-            var editFormUrl = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
+            // Abrir el modal
+            $('#myModal').modal('show');
 
-
-            
-            // // Abrir la ventana emergente con el formulario de edición
-             var popup = window.open(editFormUrl, "Editar Alerta", "width=500,height=400");
-            
-            // // Verificar si la ventana emergente fue bloqueada por el navegador
-             if (!popup || popup.closed || typeof popup.closed == 'undefined') {
-                 alert("La ventana emergente fue bloqueada por el navegador. Asegúrate de habilitar las ventanas emergentes para este sitio.");
-            }
+            // Agregar el código del alerta al formulario de edición
+            $('#cod_alerta').val(codAlert);
         }
         EOT1;
     }
@@ -76,14 +69,11 @@ class ShowAlerta extends modulo
         else
             $dark = "";
 
-
         $this->get_data();
 
-
         echo <<<EOT
-
         <div class='xcard $dark' style='width:90%'>
-            <div >
+            <div>
                 <header class=r'card-header'>
                     <font color=black>Alertas</font><br>
                 </header>
@@ -100,7 +90,7 @@ class ShowAlerta extends modulo
                             <td><b>Descrição</b></td>
                             <td><b>Analista</b></td>
                         </tr>
-EOT;
+    EOT;
 
         while ($o = $this->data->GetObject()) {
             print "<tr>";
@@ -113,9 +103,46 @@ EOT;
             print "<td>$o->valor</td>";
             print "<td>$o->descricao</td>";
             print "<td>$o->nome</td>";
-            echo "<td onclick=\"openEditForm('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></td>";
+            echo "<td><button onclick=\"openEditForm('$o->cod_alerta')\" class='btn btn-primary'><img src='/images/icon_edit.png' alt='edit'></button></td>";
             print "</tr>";
         }
+
+        // Agregar el modal
+        echo <<<EOT
+        </table>
+        </div>
+        </div>
+
+        <!-- Modal -->
+        <div class='modal fade' id='myModal' role='dialog'>
+            <div class='modal-dialog'>
+                <!-- Modal content-->
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                        <h4 class='modal-title'>Editar Alerta</h4>
+                    </div>
+                    <div class='modal-body'>
+                        <form id='editForm' action='guardar_edicion.php' method='post'>
+                            <input type='hidden' id='cod_alerta' name='cod_alerta'>
+                            <div class='form-group'>
+                                <label for='analista'>Analista:</label>
+                                <input type='text' class='form-control' id='analista' name='analista' required>
+                            </div>
+                            <div class='form-group'>
+                                <label for='quando'>Quándo:</label>
+                                <input type='date' class='form-control' id='quando' name='quando' required>
+                            </div>
+                            <button type='submit' class='btn btn-primary'>Guardar Cambios</button>
+                        </form>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    EOT;
     }
 }
 
