@@ -37,8 +37,14 @@ class ShowAlerta extends modulo
         }
 
         function openEditForm(codAlert) {
-            $('#cod_alerta').val(' + codAlert + ');
-            $('#myModal').modal('show');
+           // Obtener el modal
+        var modal = document.getElementById("myModal");
+
+        // Abrir el modal
+        $('#myModal').modal('show');
+
+        // Agregar el código del alerta al formulario de edición
+        $('#cod_alerta').val(codAlert);
         }
         EOT1;
     }
@@ -51,79 +57,45 @@ class ShowAlerta extends modulo
 
         $this->get_data();
 
-        echo <<<EOT
-        <div class='xcard $dark' style='width:90%'>
-            <div>
-                <header class='card-header'>
-                    <font color=black>Alertas</font><br>
-                </header>
-                <div class='card-content'>
-                    <table width=100%>
-                        <tr>
-                            <td><b></b></td>
-                            <td><b>Prioridade</b></td>
-                            <td><b>Cod.Alerta</b></td>
-                            <td><b>Quando</b></td>
-                            <td><b>Módulo</b></td>
-                            <td><b>Item</b></td>
-                            <td><b>Valor</b></td>
-                            <td><b>Descrição</b></td>
-                            <td><b>Analista</b></td>
-                        </tr>
+    echo <<<EOT
+
+         <div class='xcard $dark' style='width:90%'>
+            <div >
+            <header class=r'card-header'>
+                <font color=black>Alertas</font><br>
+            </header>
+            <div class='card-content'>
+                <table width=100%>
+                    <tr>
+                        <td><b></b></td>
+                        <td><b>Prioridade</b></td>
+                        <td><b>Cod.Alerta</b></td>
+                        <td><b>Quando</b></td>
+                        <td><b>Módulo</b></td>
+                        <td><b>Item</b></td>
+                        <td><b>Valor</b></td>
+                        <td><b>Descrição</b></td>
+                        <td><b>Analista</b></td>
+                    </tr>
         EOT;
 
         while ($o = $this->data->GetObject()) {
-            echo "<tr>";
-            echo "<td><span onclick='form_alerta(\"$o->id_alerta\")'>...</span></td>";
-            echo "<td>$o->prioridade</td>";
-            echo "<td>$o->cod_alerta</td>";
-            echo "<td>$o->quando</td>";
-            echo "<td>$o->modulo</td>";
-            echo "<td>$o->item</td>";
-            echo "<td>$o->valor</td>";
-            echo "<td>$o->descricao</td>";
-            echo "<td>$o->nome</td>";
-            echo "<td><button onclick='openEditForm(\"$o->cod_alerta\")' class='btn'><img src='/images/icon_edit.png' alt='edit'></button></td>";
-            echo "</tr>";
+            print "<tr>";
+            print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
+            print "<td>$o->prioridade</td>";
+            print "<td>$o->cod_alerta</td>";
+            print "<td>$o->quando</td>";
+            print "<td>$o->modulo</td>";
+            print "<td>$o->item</td>";
+            print "<td>$o->valor</td>";
+            print "<td>$o->descricao</td>";
+            print "<td>$o->nome</td>";
+            echo "<td onclick=\"openEditForm('$o->cod_alerta')\"><img src='/images/icon_edit.png' alt='edit'></td>";
+            print "</tr>";
         }
-
-        echo <<<EOT2
-                </table>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div class='modal fade' id='myModal' role='dialog'>
-            <div class='modal-dialog'>
-                <div class='modal-content'>
-                    <div class='modal-header'>
-                        <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                        <h4 class='modal-title'>Editar Alerta</h4>
-                    </div>
-                    <div class='modal-body'>
-                        <form id='editForm' action='guardar_edicion.php' method='post'>
-                            <input type='hidden' id='cod_alerta' name='cod_alerta'>
-                            <div class='form-group'>
-                                <label for='analista'>Analista:</label>
-                                <input type='text' class='form-control' id='analista' name='analista' required>
-                            </div>
-                            <div class='form-group'>
-                                <label for='quando'>Quándo:</label>
-                                <input type='date' class='form-control' id='quando' name='quando' required>
-                            </div>
-                            <button type='submit' class='btn btn-primary'>Guardar Cambios</button>
-                        </form>
-                    </div>
-                    <div class='modal-footer'>
-                        <button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        EOT2;
-
     }
 }
+
 
 $show = new ShowAlerta();
 
