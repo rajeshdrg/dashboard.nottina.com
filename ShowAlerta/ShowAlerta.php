@@ -55,7 +55,7 @@ class ShowAlerta extends modulo
         $('#myModal').modal('show');
 
         // Agregar el código del alerta al formulario de edición
-        $('#cod_alerta').val(codAlert);
+        $('#cod_alerta').val(' + codAlerta + ');
             
         }
         EOT1;
