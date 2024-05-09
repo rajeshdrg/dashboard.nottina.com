@@ -78,23 +78,7 @@ class ShowAlerta extends modulo
                             <td><b>Analista</b></td>
                         </tr>
         EOT;
-
-        while ($o = $this->data->GetObject()) {
-            echo "<tr>";
-            echo "<td><span onclick='form_alerta(\"$o->id_alerta\")'>...</span></td>";
-            echo "<td>$o->prioridade</td>";
-            echo "<td>$o->cod_alerta</td>";
-            echo "<td>$o->quando</td>";
-            echo "<td>$o->modulo</td>";
-            echo "<td>$o->item</td>";
-            echo "<td>$o->valor</td>";
-            echo "<td>$o->descricao</td>";
-            echo "<td>$o->nome</td>";
-            echo "<td><button onclick='openEditForm(\"$o->cod_alerta\")' class='btn'><img src='/images/icon_edit.png' alt='edit'></button></td>";
-            echo "</tr>";
-        }
-
-                echo <<<EOT2
+        echo <<<EOT2
             
                 <div class='modal fade' id='myModal' role='dialog'>
                     <div class='modal-dialog'>
@@ -125,6 +109,23 @@ class ShowAlerta extends modulo
                 </div>
                 EOT2;
 
+
+        while ($o = $this->data->GetObject()) {
+            echo "<tr>";
+            echo "<td><span onclick='form_alerta(\"$o->id_alerta\")'>...</span></td>";
+            echo "<td>$o->prioridade</td>";
+            echo "<td>$o->cod_alerta</td>";
+            echo "<td>$o->quando</td>";
+            echo "<td>$o->modulo</td>";
+            echo "<td>$o->item</td>";
+            echo "<td>$o->valor</td>";
+            echo "<td>$o->descricao</td>";
+            echo "<td>$o->nome</td>";
+            echo "<td><button onclick='openEditForm(\"$o->cod_alerta\")' class='btn'><img src='/images/icon_edit.png' alt='edit'></button></td>";
+            echo "</tr>";
+        }
+
+                
     }
 }
 
