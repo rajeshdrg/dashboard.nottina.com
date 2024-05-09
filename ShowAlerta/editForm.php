@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -38,15 +38,18 @@
 
 </body>
 
-</html>
+</html> -->
 
-<!-- <!DOCTYPE html>
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="editForm.css">
+    <link rel="stylesheet" href="/ShowAlerta/editForm.css">
+    <link rel="stylesheet" href="/ShowAlerta/editForm.js">
     <title>Editar Alerta</title>
 </head>
 
@@ -67,4 +70,5 @@
     <script src="editForm.js"></script>
 </body>
 
-</html> -->
+</html>
+
