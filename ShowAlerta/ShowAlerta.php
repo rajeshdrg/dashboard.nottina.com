@@ -106,43 +106,6 @@ class ShowAlerta extends modulo
             echo "<td><button onclick=\"openEditForm('$o->cod_alerta')\" class='btn btn-primary'><img src='/images/icon_edit.png' alt='edit'></button></td>";
             print "</tr>";
         }
-
-        // Agregar el modal
-        echo <<<EOT
-        </table>
-        </div>
-        </div>
-
-        <!-- Modal -->
-        <div class='modal fade' id='myModal' role='dialog'>
-            <div class='modal-dialog'>
-                <!-- Modal content-->
-                <div class='modal-content'>
-                    <div class='modal-header'>
-                        <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                        <h4 class='modal-title'>Editar Alerta</h4>
-                    </div>
-                    <div class='modal-body'>
-                        <form id='editForm' action='guardar_edicion.php' method='post'>
-                            <input type='hidden' id='cod_alerta' name='cod_alerta'>
-                            <div class='form-group'>
-                                <label for='analista'>Analista:</label>
-                                <input type='text' class='form-control' id='analista' name='analista' required>
-                            </div>
-                            <div class='form-group'>
-                                <label for='quando'>Quándo:</label>
-                                <input type='date' class='form-control' id='quando' name='quando' required>
-                            </div>
-                            <button type='submit' class='btn btn-primary'>Guardar Cambios</button>
-                        </form>
-                    </div>
-                    <div class='modal-footer'>
-                        <button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    EOT;
     }
 }
 
