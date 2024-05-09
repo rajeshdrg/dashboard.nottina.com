@@ -67,7 +67,7 @@
             </form>
         </div>
     </div>
-    <script src="editForm.js"></script>
+    
 </body>
 
 </html>
