@@ -48,18 +48,14 @@ class ShowAlerta extends modulo
         }
 
         function openEditForm(codAlert) {
-            URL del formulario de edición
-            var editFormUrl = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
+                   // Obtener el modal
+        var modal = document.getElementById("myModal");
 
+        // Abrir el modal
+        $('#myModal').modal('show');
 
-            
-             // Abrir la ventana emergente con el formulario de edición
-            // var popup = window.open(editFormUrl, "Editar Alerta", "width=500,height=400");
-            
-             // Verificar si la ventana emergente fue bloqueada por el navegador
-             if (!popup || popup.closed || typeof popup.closed == 'undefined') {
-                 alert("La ventana emergente fue bloqueada por el navegador. Asegúrate de habilitar las ventanas emergentes para este sitio.");
-             }
+        // Agregar el código del alerta al formulario de edición
+        $('#cod_alerta').val(codAlert);
             
         }
         EOT1;
