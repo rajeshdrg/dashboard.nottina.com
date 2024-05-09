@@ -88,11 +88,7 @@ class ShowAlerta extends modulo
         }
 
         echo <<<EOT2
-                </table>
-            </div>
-        </div>
-
-        <!-- Modal -->
+      
         <div class='modal fade' id='myModal' role='dialog'>
             <div class='modal-dialog'>
                 <div class='modal-content'>
