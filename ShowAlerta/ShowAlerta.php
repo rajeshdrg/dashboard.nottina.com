@@ -87,7 +87,7 @@ class ShowAlerta extends modulo
             echo "</tr>";
         }
 
-        echo <<<EOT
+        echo <<<EOT2
                 </table>
             </div>
         </div>
@@ -120,7 +120,8 @@ class ShowAlerta extends modulo
                 </div>
             </div>
         </div>
-        EOT;
+        EOT2;
+
     }
 }
 
