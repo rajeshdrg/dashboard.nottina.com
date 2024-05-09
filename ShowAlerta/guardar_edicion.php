@@ -43,7 +43,7 @@ $guardarEdicion = new GuardarEdicion();
 if (isset($_POST['cod_alerta'])) {
     $guardarEdicion->guardarEdicion(
         $_POST['cod_alerta'],
-        $_POST['analista'],
+        $_POST['cod_usuario'],
         $_POST['quando']
 
     );
