@@ -99,7 +99,7 @@ EOT;
     }
 
     // Agregar el modal
-    echo <<<EOT
+    echo <<<EOT2
     </table>
     </div>
     </div>
@@ -133,7 +133,7 @@ EOT;
             </div>
         </div>
     </div>
-EOT;
+EOT2;
 }
 }
 
