@@ -114,7 +114,7 @@ class ShowAlerta extends modulo
             print "<td>$o->valor</td>";
             print "<td>$o->descricao</td>";
             print "<td>$o->nome</td>";
-            echo "<td><a href=\"openEditForm('$o->cod_alerta')\" class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
+            echo "<td><a href=\"/ShowAlerta/editForm.php?cod_alerta=$o->cod_alerta\" class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
             print "</tr>";
         }
     }
