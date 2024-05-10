@@ -59,7 +59,7 @@ class ShowAlerta extends modulo
                     document.getElementById("myModal").style.display = "block";
                 } else if (xhr.readyState === 4 && xhr.status !== 200) {
                     // Manejar errores en caso de que la petición AJAX falle
-                    alert("Error al cargar el formulario de edición.");
+                    alert("Erro ao carregar o formulário de edição.");
                 }
             };
             xhr.open("GET", editFormUrl, true);
