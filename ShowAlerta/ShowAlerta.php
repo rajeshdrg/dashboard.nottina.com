@@ -46,10 +46,10 @@ class ShowAlerta extends modulo
         function openEditForm(codAlert) {
             // URL del formulario de edición
             var editFormUrl = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
-        
+            console.log('$this->name')
             // Hacer una petición AJAX para obtener el contenido del formulario de edición
             var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = () =>  {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var editFormContent = xhr.responseText;
                     // Agregar el contenido del formulario de edición al cuerpo del modal
