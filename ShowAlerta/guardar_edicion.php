@@ -1,7 +1,7 @@
 <?php
 
-if ($_SERVER['DOCUMENT_ROOT'] == null)
-    $_SERVER['DOCUMENT_ROOT'] = "..";
+// if ($_SERVER['DOCUMENT_ROOT'] == null)
+//     $_SERVER['DOCUMENT_ROOT'] = "..";
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
