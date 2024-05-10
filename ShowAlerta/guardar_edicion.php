@@ -32,11 +32,12 @@ class GuardarEdicion
 
 
         $Sql->query = "UPDATE alerta
-                       SET cod_usuario = usuario.cod_usuario, quando = alerta.quando
-                       FROM usuario
-                       WHERE alerta.cod_usuario = usuario.cod_usuario
-                       AND alerta.fechamento IS NULL";
-        $Sql->params = array($codAlerta, $quando, $analista); 
+               SET cod_usuario = $1, quando = TO_DATE($2 || ' ' || TO_CHAR(CURRENT_TIMESTAMP, 'HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS')
+               FROM usuario
+               WHERE alerta.cod_usuario = usuario.cod_usuario
+               AND alerta.fechamento IS NULL";
+        $Sql->params = array($analista, $quando);
+
 
         try {
             $Sql->Execute();
