@@ -52,8 +52,11 @@ class ShowAlerta extends modulo
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var editFormContent = xhr.responseText;
-                    // Mostrar el contenido del formulario de edición como un alert
-                    alert(editFormContent);
+                    // Agregar el contenido del formulario de edición al cuerpo del modal
+                    document.getElementById("myModal").innerHTML = editFormContent;
+                    console.log(editFormContent);
+                    // Mostrar el modal
+                    document.getElementById("myModal").style.display = "block";
                 } else if (xhr.readyState === 4 && xhr.status !== 200) {
                     // Manejar errores en caso de que la petición AJAX falle
                     alert("Error al cargar el formulario de edición.");
@@ -62,6 +65,7 @@ class ShowAlerta extends modulo
             xhr.open("GET", editFormUrl, true);
             xhr.send();
         }
+        
         
        
         EOT1;
