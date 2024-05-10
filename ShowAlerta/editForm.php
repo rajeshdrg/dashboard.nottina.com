@@ -134,7 +134,7 @@
                         throw new Error('Hubo un problema al enviar la solicitud.');
                     }
                     // Redireccionar a la página de visualización de alertas después de guardar los cambios
-                    window.location.href = '/ShowAlerta.php';
+                    window.location.href = '../ShowAlerta.php';
                 })
                 .catch(error => {
                     console.error('Error al enviar la solicitud:', error);
