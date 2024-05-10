@@ -19,19 +19,18 @@ class GuardarEdicion
 
     function guardarEdicion($codAlerta, $quando,  $analista)
     {
-        // Validar los datos recibidos del formulario
+       
         if (empty($codAlerta) || empty($quando) || empty($analista)) {
-            // Si alguno de los campos está vacío, muestra un mensaje de error
+           
             echo "Error: Todos los campos son obligatorios.";
             exit();
         }
 
-        // Actualizar la entrada correspondiente en la base de datos de alertas
+        
         $Sql = new SqlCommand("Sql");
         $Sql->connection = $this->conexao;
 
-        // Aquí debes escribir las consultas SQL necesarias para actualizar los campos de la alerta
-        // Por ejemplo:
+        
         $Sql->query = "UPDATE alerta SET cod_usuario = $1, quando = TO_DATE($2, 'YYYY-MM-DD') WHERE cod_alerta = $3";
         $Sql->params = array($analista, $quando, $codAlerta);
         
