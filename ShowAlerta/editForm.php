@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alerta</title>
-    <link rel="stylesheet" href="/ShowAlerta/editForm.css">
-    <link rel="stylesheet" href="/ShowAlerta/editForm.js">
+    <link rel="stylesheet" href="../ShowAlerta/editForm.css">
+    <link rel="stylesheet" href="../ShowAlerta/editForm.js">
 </head>
 
 <body>
