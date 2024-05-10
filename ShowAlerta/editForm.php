@@ -195,3 +195,13 @@ class GuardarEdicion
         exit();
     }
 }
+
+// Instanciar la clase y llamar a la función guardarEdicion con los datos del formulario
+$guardarEdicion = new GuardarEdicion();
+if (isset($_POST['cod_alerta'])) {
+    $guardarEdicion->guardarEdicion(
+        $_POST['cod_alerta'],
+        $_POST['analista'],
+        $_POST['quando']
+    );
+}
