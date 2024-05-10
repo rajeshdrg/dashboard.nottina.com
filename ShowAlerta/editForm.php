@@ -121,8 +121,10 @@
             var modal = document.getElementById("myModal");
             var content = document.getElementById("modal-content");
 
-            // Mostrar el modal
-            modal.style.display = "block";
+            document.addEventListener("DOMContentLoaded", function() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block"; // Mostrar el modal al cargar la página
+        });
 
             // Mostrar un mensaje de carga mientras se carga el contenido
             content.innerHTML = "Cargando...";
