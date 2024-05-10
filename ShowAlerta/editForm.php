@@ -115,35 +115,40 @@
     <button id="openModalBtn" class="btn-submit">Editar Alerta</button>
 
     <script>
-                // Obtiene la ventana modal y el botón de abrir
-        var modal = document.getElementById("myModal");
-        var openModalBtn = document.getElementById("openModalBtn");
-        var closeBtn = document.getElementsByClassName("close")[0];
+                // Obtener el formulario
+    var form = document.getElementById("editForm");
 
-        // Abre la ventana modal cuando se hace clic en el botón
-        openModalBtn.onclick = function() {
-            modal.style.display = "block";
-        }
+    // Agregar un event listener para el evento submit del formulario
+    form.addEventListener("submit", function(event) {
+        // Evitar que el formulario se envíe de forma predeterminada (recargar la página)
+        event.preventDefault();
 
-        // Cierra la ventana modal cuando se hace clic en el botón de cerrar
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
-        }
+        // Obtener los datos del formulario
+        var formData = new FormData(form);
 
-        // Cierra la ventana modal cuando se hace clic fuera de ella
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+        // Enviar los datos del formulario al servidor utilizando fetch
+        fetch('guardar_edicion.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            // Verificar si la respuesta del servidor fue exitosa
+            if (!response.ok) {
+                throw new Error('Hubo un problema al enviar la solicitud.');
             }
-        }
-
-        // Envía el formulario al servidor
-        var form = document.getElementById("editForm");
-        form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Evita que se recargue la página al enviar el formulario
-            // Aquí puedes agregar el código para enviar los datos del formulario al servidor utilizando AJAX
-            // Por ejemplo, puedes usar fetch() o XMLHttpRequest
+            // Si la respuesta fue exitosa, mostrar un mensaje de éxito
+            alert('Los cambios se guardaron exitosamente.');
+            // Otra opción es redireccionar a otra página después de guardar los cambios
+            // window.location.href = '/ShowAlerta.php';
+        })
+        .catch(error => {
+            // Si hay un error, mostrarlo en la consola del navegador
+            console.error('Error al enviar la solicitud:', error);
+            // También puedes mostrar un mensaje de error al usuario si lo deseas
+            //alert('Hubo un error al enviar la solicitud. Por favor, intenta nuevamente más tarde.');
         });
+    });
+
     </script>
 </body>
 
