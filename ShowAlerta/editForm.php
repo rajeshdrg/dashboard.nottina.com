@@ -33,7 +33,7 @@
             background-color: #fefefe;
             margin: 15% auto;
             padding: 20px;
-            border: 1px solid #888;
+            border: 1px solid #dfdfdf;
             border-radius: 8px;
             width: 300px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -76,7 +76,7 @@
         .btn-submit {
             width: 100%;
             padding: 10px;
-            background-color: #007bff;
+            background-color: #b3d4f8;
             color: #fff;
             border: none;
             border-radius: 4px;
