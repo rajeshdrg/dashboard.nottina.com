@@ -116,11 +116,13 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            console.log("DOMContentLoaded event fired");
         var modal = document.getElementById("myModal");
         modal.style.display = "block"; // Mostrar el modal al cargar la página
 
         var closeButton = document.getElementsByClassName("close")[0];
         closeButton.addEventListener("click", function() {
+            console.log("Close button clicked");
             modal.style.display = "none"; // Ocultar el modal al hacer clic en el botón de cierre
         });
     });
@@ -129,15 +131,18 @@
     var form = document.getElementById("editForm");
 
     form.addEventListener("submit", function(event) {
+        console.log("Form submit event fired");
         event.preventDefault(); // Evita que se recargue la página al enviar el formulario
 
         var formData = new FormData(form);
+        console.log("Form data", formdata);
 
         fetch('/ShowAlerta/guardar_edicion.php', { // Ruta completa al archivo guardar_edicion.php
             method: 'POST',
             body: formData
         })
         .then(response => {
+            console.log("Response status:", response.status);
             if (!response.ok) {
                 throw new Error('Hubo un problema al enviar la solicitud.');
             }
