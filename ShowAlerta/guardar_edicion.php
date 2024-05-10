@@ -37,23 +37,26 @@ class GuardarEdicion
         try {
             $Sql->Execute();
         } catch (Exception $e) {
-            // Si hay algún error durante la ejecución de la consulta, muestra un mensaje de error
+            // Se houver algum erro durante a execução da consulta, será exibida uma mensagem de erro
             echo 'Error al ejecutar la consulta: ',  $e->getMessage();
             exit();
         }
 
-        // Si la actualización se realizó correctamente, redirige a la página de visualización de alertas
+        // Se a atualização for bem-sucedida, ela redirecionará para a página de exibição de alerta
         header("Location: /ShowAlerta.php");
         exit();
     }
 }
 
-// Instanciar la clase y llamar a la función guardarEdicion con los datos del formulario
+// Instancie a classe e chame a função saveEdition com os dados do formulário
 $guardarEdicion = new GuardarEdicion();
-if (isset($_POST['cod_alerta'])) {
+if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['quando'])) {
     $guardarEdicion->guardarEdicion(
         $_POST['cod_alerta'],
         $_POST['analista'],
         $_POST['quando']
     );
+} else {
+    // Manejo de errores si los campos no están configurados correctamente
+    echo "Erro: Todos os campos são obrigatórios.";
 }

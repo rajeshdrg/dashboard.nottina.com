@@ -99,6 +99,8 @@
             <span class="close">&times;</span>
             <h2>Editar Alerta</h2>
             <form id="editForm" action="guardar_edicion.php" method="post">
+            <!-- Agrega un campo oculto para el código de alerta -->
+                <input type="hidden" id="cod_alerta" name="cod_alerta" value="<?php echo $_GET['cod_alerta']; ?>">
                 <div class="input-block">
                     <label for="analista">Analista:</label>
                     <input type="text" id="analista" name="analista" required>
@@ -134,7 +136,7 @@
                         throw new Error('Hubo un problema al enviar la solicitud.');
                     }
                     // Redireccionar a la página de visualización de alertas después de guardar los cambios
-                    window.location.href = '../ShowAlerta.php';
+                    window.location.href = './ShowAlerta.php';
                 })
                 .catch(error => {
                     console.error('Error al enviar la solicitud:', error);
