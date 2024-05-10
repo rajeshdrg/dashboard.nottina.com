@@ -28,7 +28,13 @@ class GuardarEdicion
         // Por ejemplo:
         $Sql->query = "UPDATE alerta SET cod_usuario = $1, quando = TO_DATE($2, 'YYYY-MM-DD') WHERE cod_alerta = $3";
         $Sql->params = array($analista, $quando, $codAlerta);
-        $Sql->Execute();
+        try {
+            $Sql->Execute();
+        } catch (Exception $e) {
+            echo 'Error al ejecutar la consulta: ',  $e->getMessage(), "\n";
+            exit();
+        }
+        
 
         // Puedes agregar comprobaciones adicionales, manejo de errores, etc., según sea necesario
 
@@ -41,10 +47,12 @@ class GuardarEdicion
 // Instanciar la clase y llamar a la función guardarEdicion con los datos del formulario
 $guardarEdicion = new GuardarEdicion();
 if (isset($_POST['cod_alerta'])) {
+    var_dump($_POST);
     $guardarEdicion->guardarEdicion(
         $_POST['cod_alerta'],
-        $_POST['cod_usuario'],
+        $_POST['analista'],
         $_POST['quando']
 
     );
+    
 }
