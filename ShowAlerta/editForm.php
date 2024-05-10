@@ -98,7 +98,7 @@
         <div class="modal-content">
             <span class="close" name="closeButton">&times;</span>
             <h2>Editar Alerta</h2>
-            <form id="editForm" action="/ShowAlerta/guardar_edicion.php" method="post">
+            <form id="editForm" action="./ShowAlerta/guardar_edicion.php" method="post">
                 <!-- Agrega un campo oculto para el código de alerta -->
                 <input type="hidden" id="cod_alerta" name="cod_alerta" value="<?php echo $_GET['cod_alerta']; ?>">
                 <div class="input-block">
@@ -133,7 +133,7 @@
 
         var formData = new FormData(form);
 
-        fetch('/ShowAlerta/guardar_edicion.php', { // Ruta completa al archivo guardar_edicion.php
+        fetch('./ShowAlerta/guardar_edicion.php', { // Ruta completa al archivo guardar_edicion.php
             method: 'POST',
             body: formData
         })
