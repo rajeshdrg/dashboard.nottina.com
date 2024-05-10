@@ -115,34 +115,31 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        // Función para abrir el modal y cargar contenido dinámico
+        function openModal() {
+            // Obtener el modal y el contenido
             var modal = document.getElementById("myModal");
-            modal.style.display = "block"; // Mostrar el modal al cargar la página
-        });
+            var content = document.getElementById("modal-content");
 
-        var form = document.getElementById("editForm");
+            // Mostrar el modal
+            modal.style.display = "block";
 
-        form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Evita que se recargue la página al enviar el formulario
+            // Mostrar un mensaje de carga mientras se carga el contenido
+            content.innerHTML = "Cargando...";
 
-            var formData = new FormData(form);
+            // Realizar una solicitud AJAX para obtener el contenido
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Mostrar el contenido obtenido en el modal
+                    content.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("GET", "ruta_al_archivo_con_contenido.php", true);
+            xhr.send();
+        }
 
-            fetch('guardar_edicion.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Hubo un problema al enviar la solicitud.');
-                    }
-                    // Redireccionar a la página de visualización de alertas después de guardar los cambios
-                    window.location.href = './ShowAlerta.php';
-                })
-                .catch(error => {
-                    console.error('Error al enviar la solicitud:', error);
-                    alert('Hubo un error al enviar la solicitud. Por favor, intenta nuevamente más tarde.');
-                });
-        });
+        
     </script>
 </body>
 
