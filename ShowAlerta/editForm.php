@@ -96,10 +96,10 @@
     <!-- Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" name="closeButton">&times;</span>
             <h2>Editar Alerta</h2>
-            <form id="editForm" action="guardar_edicion.php" method="post">
-            <!-- Agrega un campo oculto para el código de alerta -->
+            <form id="editForm" action="/ShowAlerta/guardar_edicion.php" method="post">
+                <!-- Agrega un campo oculto para el código de alerta -->
                 <input type="hidden" id="cod_alerta" name="cod_alerta" value="<?php echo $_GET['cod_alerta']; ?>">
                 <div class="input-block">
                     <label for="analista">Analista:</label>
@@ -116,9 +116,15 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "block"; // Mostrar el modal al cargar la página
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block"; // Mostrar el modal al cargar la página
+
+        var closeButton = document.getElementsByClassName("close")[0];
+        closeButton.addEventListener("click", function() {
+            modal.style.display = "none"; // Ocultar el modal al hacer clic en el botón de cierre
         });
+    });
+
 
         var form = document.getElementById("editForm");
 
