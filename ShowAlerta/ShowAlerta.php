@@ -48,21 +48,25 @@ class ShowAlerta extends modulo
         }
 
         function openEditForm(codAlert) {
-    
             // URL del formulario de edición
             var editFormUrl = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
-        
-        
-            
-             // Abrir la ventana emergente con el formulario de edición
-            var popup = window.open(editFormUrl, "Editar Alerta", "width=500,height=400");
-            
-             // Verificar si la ventana emergente fue bloqueada por el navegador
-             if (!popup || popup.closed || typeof popup.closed == 'undefined') {
-                 alert("La ventana emergente fue bloqueada por el navegador. Asegúrate de habilitar las ventanas emergentes para este sitio.");
-            }
+
+            // Abrir la ventana modal
+            var modal = document.createElement("div");
+            modal.classList.add("modal");
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <iframe src="${editFormUrl}" frameborder="0"></iframe>
+                </div>
+            `;
+            document.body.appendChild(modal);
         }
 
+        function closeModal() {
+            var modal = document.querySelector(".modal");
+            modal.parentNode.removeChild(modal);
+        }
        
         EOT1;
     }
@@ -120,3 +124,9 @@ $show = new ShowAlerta();
 
 if (isset($_GET['back']))
     $show->back_call();
+
+
+
+
+
+    
