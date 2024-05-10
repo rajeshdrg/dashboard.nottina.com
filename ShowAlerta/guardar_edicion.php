@@ -47,7 +47,7 @@ class GuardarEdicion
         }
 
         // Si la actualización se realiza correctamente, se redirige a la página de visualización de alertas
-        header("Location: /ShowAlerta.php");
+        header("Location: /editForm.php");
         exit();
     }
 }
