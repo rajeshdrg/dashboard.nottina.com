@@ -43,26 +43,26 @@ class ShowAlerta extends modulo
         parent::front_call();
 
         echo <<<EOT1
-        function form_alerta(id_alerta) {
-            alert(id_alerta); 
-        }
-
         function openEditForm(codAlert) {
-    
             // URL del formulario de edición
             var editFormUrl = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
         
-        
-            
-             // Abrir la ventana emergente con el formulario de edición
-            var popup = window.open(editFormUrl, "Editar Alerta", "width=500,height=400");
-            
-             // Verificar si la ventana emergente fue bloqueada por el navegador
-             if (!popup || popup.closed || typeof popup.closed == 'undefined') {
-                 alert("O pop-up foi bloqueado pelo navegador. Certifique-se de ativar pop-ups para este site.");
-            }
+            // Hacer una petición AJAX para obtener el contenido del formulario de edición
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var editFormContent = xhr.responseText;
+                    // Mostrar el contenido del formulario de edición como un alert
+                    alert(editFormContent);
+                } else if (xhr.readyState === 4 && xhr.status !== 200) {
+                    // Manejar errores en caso de que la petición AJAX falle
+                    alert("Error al cargar el formulario de edición.");
+                }
+            };
+            xhr.open("GET", editFormUrl, true);
+            xhr.send();
         }
-
+        
        
         EOT1;
     }
