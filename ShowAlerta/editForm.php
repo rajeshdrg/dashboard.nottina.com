@@ -114,6 +114,7 @@
 
     <script>
         // Obtener el formulario
+        
         var form = document.getElementById("editForm");
 
         // Agregar un event listener para el evento submit del formulario
@@ -147,6 +148,13 @@
             });
         });
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block"; // Mostrar el modal al cargar la página
+    });
+</script>
+
 </body>
 
 </html>
