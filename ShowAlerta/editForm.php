@@ -113,48 +113,35 @@
     </div>
 
     <script>
-        // Obtener el formulario
-        
+        document.addEventListener("DOMContentLoaded", function() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block"; // Mostrar el modal al cargar la página
+        });
+
         var form = document.getElementById("editForm");
 
-        // Agregar un event listener para el evento submit del formulario
         form.addEventListener("submit", function(event) {
-            // Evitar que el formulario se envíe de forma predeterminada (recargar la página)
-            event.preventDefault();
+            event.preventDefault(); // Evita que se recargue la página al enviar el formulario
 
-            // Obtener los datos del formulario
             var formData = new FormData(form);
 
-            // Enviar los datos del formulario al servidor utilizando fetch
             fetch('guardar_edicion.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                // Verificar si la respuesta del servidor fue exitosa
-                if (!response.ok) {
-                    throw new Error('Hubo un problema al enviar la solicitud.');
-                }
-                // Si la respuesta fue exitosa, mostrar un mensaje de éxito
-                alert('Los cambios se guardaron exitosamente.');
-                // Otra opción es redireccionar a otra página después de guardar los cambios
-                // window.location.href = '/ShowAlerta.php';
-            })
-            .catch(error => {
-                // Si hay un error, mostrarlo en la consola del navegador
-                console.error('Error al enviar la solicitud:', error);
-                // También puedes mostrar un mensaje de error al usuario si lo deseas
-                //alert('Hubo un error al enviar la solicitud. Por favor, intenta nuevamente más tarde.');
-            });
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Hubo un problema al enviar la solicitud.');
+                    }
+                    // Redireccionar a la página de visualización de alertas después de guardar los cambios
+                    window.location.href = '/ShowAlerta.php';
+                })
+                .catch(error => {
+                    console.error('Error al enviar la solicitud:', error);
+                    alert('Hubo un error al enviar la solicitud. Por favor, intenta nuevamente más tarde.');
+                });
         });
     </script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var modal = document.getElementById("myModal");
-        modal.style.display = "block"; // Mostrar el modal al cargar la página
-    });
-</script>
-
 </body>
 
 </html>
