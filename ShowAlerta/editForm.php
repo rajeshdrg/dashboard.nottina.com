@@ -107,51 +107,46 @@
                     <label for="quando">Quándo:</label>
                     <input type="date" id="quando" name="quando" required>
                 </div>
-                <button type="submit" class="btn-submit">Guardar Cambios</button>
+                <button type="submit" class="btn-submit">Submit</button>
             </form>
         </div>
     </div>
 
-    <button id="openModalBtn" class="btn-submit">Editar Alerta</button>
-
     <script>
-                // Obtener el formulario
-    var form = document.getElementById("editForm");
+        // Obtener el formulario
+        var form = document.getElementById("editForm");
 
-    // Agregar un event listener para el evento submit del formulario
-    form.addEventListener("submit", function(event) {
-        // Evitar que el formulario se envíe de forma predeterminada (recargar la página)
-        event.preventDefault();
+        // Agregar un event listener para el evento submit del formulario
+        form.addEventListener("submit", function(event) {
+            // Evitar que el formulario se envíe de forma predeterminada (recargar la página)
+            event.preventDefault();
 
-        // Obtener los datos del formulario
-        var formData = new FormData(form);
+            // Obtener los datos del formulario
+            var formData = new FormData(form);
 
-        // Enviar los datos del formulario al servidor utilizando fetch
-        fetch('guardar_edicion.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            // Verificar si la respuesta del servidor fue exitosa
-            if (!response.ok) {
-                throw new Error('Hubo un problema al enviar la solicitud.');
-            }
-            // Si la respuesta fue exitosa, mostrar un mensaje de éxito
-            alert('Los cambios se guardaron exitosamente.');
-            // Otra opción es redireccionar a otra página después de guardar los cambios
-            // window.location.href = '/ShowAlerta.php';
-        })
-        .catch(error => {
-            // Si hay un error, mostrarlo en la consola del navegador
-            console.error('Error al enviar la solicitud:', error);
-            // También puedes mostrar un mensaje de error al usuario si lo deseas
-            //alert('Hubo un error al enviar la solicitud. Por favor, intenta nuevamente más tarde.');
+            // Enviar los datos del formulario al servidor utilizando fetch
+            fetch('guardar_edicion.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                // Verificar si la respuesta del servidor fue exitosa
+                if (!response.ok) {
+                    throw new Error('Hubo un problema al enviar la solicitud.');
+                }
+                // Si la respuesta fue exitosa, mostrar un mensaje de éxito
+                alert('Los cambios se guardaron exitosamente.');
+                // Otra opción es redireccionar a otra página después de guardar los cambios
+                // window.location.href = '/ShowAlerta.php';
+            })
+            .catch(error => {
+                // Si hay un error, mostrarlo en la consola del navegador
+                console.error('Error al enviar la solicitud:', error);
+                // También puedes mostrar un mensaje de error al usuario si lo deseas
+                //alert('Hubo un error al enviar la solicitud. Por favor, intenta nuevamente más tarde.');
+            });
         });
-    });
-
     </script>
 </body>
 
 </html>
-
-
