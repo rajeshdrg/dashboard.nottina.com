@@ -1,9 +1,11 @@
-// Obtiene la ventana modal y el botón de cerrar
+
+// Obtiene la ventana modal y el botón de abrir
 var modal = document.getElementById("myModal");
+var openModalBtn = document.getElementById("openModalBtn");
 var closeBtn = document.getElementsByClassName("close")[0];
 
 // Abre la ventana modal cuando se hace clic en el botón
-function openModal() {
+openModalBtn.onclick = function () {
     modal.style.display = "block";
 }
 
@@ -23,7 +25,6 @@ window.onclick = function (event) {
 var form = document.getElementById("editForm");
 form.addEventListener("submit", function (event) {
     event.preventDefault(); // Evita que se recargue la página al enviar el formulario
-
     // Aquí puedes agregar el código para enviar los datos del formulario al servidor utilizando AJAX
     // Por ejemplo, puedes usar fetch() o XMLHttpRequest
 });
