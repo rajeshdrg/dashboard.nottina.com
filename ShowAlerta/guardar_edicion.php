@@ -36,7 +36,7 @@ class GuardarEdicion
                        FROM usuario
                        WHERE alerta.cod_usuario = usuario.cod_usuario
                        AND alerta.fechamento IS NULL";
-        $Sql->params = array($codAlerta, $quando, $analista); // No hay parámetros en esta consulta
+        $Sql->params = array($codAlerta, $quando, $analista); 
 
         try {
             $Sql->Execute();
