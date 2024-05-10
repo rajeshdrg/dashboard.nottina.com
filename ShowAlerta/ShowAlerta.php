@@ -43,31 +43,27 @@ class ShowAlerta extends modulo
         parent::front_call();
 
         echo <<<EOT1
-        // Función para abrir el formulario de edición en una ventana modal
+        function form_alerta(id_alerta) {
+            alert(id_alerta); 
+        }
+
         function openEditForm(codAlert) {
+    
             // URL del formulario de edición
             var editFormUrl = "/ShowAlerta/editForm.php?cod_alerta=" + codAlert;
-
-            // Abrir la ventana emergente con el formulario de edición en una ventana modal
-            var modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.innerHTML = `
-                <div class="modal-content" id="modal-content">
-                    <span class="close">&times;</span>
-                    <iframe src="${editFormUrl}" frameborder="0" style="width: 100%; height: 100%;"></iframe>
-                </div>
-            `;
-            document.body.appendChild(modal);
-
-            // Obtener el botón de cierre de la ventana modal
-            var closeButton = modal.querySelector('.close');
-
-            // Agregar un event listener para cerrar la ventana modal al hacer clic en el botón de cierre
-            closeButton.addEventListener('click', function() {
-                modal.style.display = 'none';
-                document.body.removeChild(modal);
-            });
+        
+        
+            
+             // Abrir la ventana emergente con el formulario de edición
+            var popup = window.open(editFormUrl, "Editar Alerta", "width=500,height=400");
+            
+             // Verificar si la ventana emergente fue bloqueada por el navegador
+             if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+                 alert("O pop-up foi bloqueado pelo navegador. Certifique-se de ativar pop-ups para este site.");
+            }
         }
+
+       
         EOT1;
     }
 
@@ -125,3 +121,8 @@ $show = new ShowAlerta();
 if (isset($_GET['back']))
     $show->back_call();
 
+
+
+
+
+    
