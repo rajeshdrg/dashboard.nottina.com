@@ -133,7 +133,7 @@
     form.addEventListener("submit", function(event) {
         //console.log("Form submit event fired");
         event.preventDefault(); // Evita que se recargue la página al enviar el formulario
-        
+
         // Agrega un console.log para verificar los datos del formulario antes de enviarlos
         console.log("Datos del formulario:", {
             cod_alerta: form.cod_alerta.value,
@@ -142,20 +142,23 @@
         });
 
         var formData = new FormData(form);
-       // console.log("Form data", formdata);
+        console.log("Form data", formdata);
 
         fetch('/ShowAlerta/guardar_edicion.php', { // Ruta completa al archivo guardar_edicion.php
             method: 'POST',
             body: formData
         })
         .then(response => {
-           // console.log("Response status:", response.status);
+            // console.log("Response status:", response.status);
             if (!response.ok) {
                 throw new Error('Hubo un problema al enviar la solicitud.');
             }
             // Redireccionar a la página de visualización de alertas después de guardar los cambios
-            window.location.href = '../index.php';
+            setTimeout(function() {
+                window.location.href = '../index.php';
+            }, 30000); // Esperar 3 segundos (3000 milisegundos) antes de redirigir
         })
+
         .catch(error => {
             console.error('Error al enviar la solicitud:', error);
             alert('Hubo un error al enviar la solicitud. Por favor, intenta nuevamente más tarde.');
