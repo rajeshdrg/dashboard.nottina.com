@@ -142,8 +142,14 @@
         // });
 
         var formData = new FormData(form);
-        console.log("Form data", formData);
-
+    
+    // Agrega un console.log para verificar los datos del formulario antes de enviarlos
+    console.log("Datos del formulario:", {
+        cod_alerta: formData.get('cod_alerta'),
+        analista: formData.get('analista'),
+        quando: formData.get('quando')
+    });
+    
         fetch('/ShowAlerta/guardar_edicion.php', { // Ruta completa al archivo guardar_edicion.php
             method: 'POST',
             body: formData
