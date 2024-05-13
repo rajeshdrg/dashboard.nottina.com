@@ -56,6 +56,7 @@ class GuardarEdicion
 // Instancia la clase y llama a la función guardarEdicion con los datos del formulario
 $guardarEdicion = new GuardarEdicion();
 if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['quando'])) {
+    
     $guardarEdicion->guardarEdicion(
         $_POST['cod_alerta'],
         $_POST['analista'],
@@ -65,4 +66,4 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['quando'])) {
     // Manejo de errores si los campos no están configurados correctamente
     echo "Error: Todos los campos son obligatorios.";
 }
-
+echo $guardarEdicion;
