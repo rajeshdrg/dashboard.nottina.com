@@ -133,6 +133,13 @@
     form.addEventListener("submit", function(event) {
         //console.log("Form submit event fired");
         event.preventDefault(); // Evita que se recargue la página al enviar el formulario
+        
+        // Agrega un console.log para verificar los datos del formulario antes de enviarlos
+        console.log("Datos del formulario:", {
+            cod_alerta: form.cod_alerta.value,
+            analista: form.analista.value,
+            quando: form.quando.value
+        });
 
         var formData = new FormData(form);
        // console.log("Form data", formdata);
@@ -147,7 +154,7 @@
                 throw new Error('Hubo un problema al enviar la solicitud.');
             }
             // Redireccionar a la página de visualización de alertas después de guardar los cambios
-            window.location.href = '/dashboard.nottina.com/index.php';
+            window.location.href = '../index.php';
         })
         .catch(error => {
             console.error('Error al enviar la solicitud:', error);

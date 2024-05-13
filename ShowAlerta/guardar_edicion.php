@@ -19,6 +19,7 @@ class GuardarEdicion
 
     function guardarEdicion($codAlerta, $quando, $analista)
     {
+        echo "codAlerta: $codAlerta, quando: $quando, analista: $analista";
 
         if (empty($codAlerta) || empty($quando) || empty($analista)) {
 
@@ -66,4 +67,4 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['quando'])) {
     // Manejo de errores si los campos no están configurados correctamente
     echo "Error: Todos los campos son obligatorios.";
 }
-echo $guardarEdicion;
+
