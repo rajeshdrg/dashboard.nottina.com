@@ -19,14 +19,14 @@ class GuardarEdicion
 
     function guardarEdicion($codAlerta, $quando, $analista)
     {
-        echo "codAlerta: $codAlerta, quando: $quando, analista: $analista";
+        
 
         if (empty($codAlerta) || empty($quando) || empty($analista)) {
 
             echo "Error: Todos los campos son obligatorios.";
             exit();
         }
-
+        var_dump($codAlerta, $quando, $analista);
 
         $Sql = new SqlCommand("Sql");
         $Sql->connection = $this->conexao;
@@ -52,6 +52,7 @@ class GuardarEdicion
         header("Location: /editForm.php");
         exit();
     }
+    var_dump($codAlerta, $quando, $analista);
 }
 
 // Instancia la clase y llama a la función guardarEdicion con los datos del formulario
@@ -67,4 +68,5 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['quando'])) {
     // Manejo de errores si los campos no están configurados correctamente
     echo "Error: Todos los campos son obligatorios.";
 }
+var_dump($guardarEdicion);
 

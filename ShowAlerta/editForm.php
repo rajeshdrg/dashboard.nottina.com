@@ -135,21 +135,21 @@
         event.preventDefault(); // Evita que se recargue la página al enviar el formulario
 
         // Agrega un console.log para verificar los datos del formulario antes de enviarlos
-        console.log("Datos del formulario:", {
-            cod_alerta: form.cod_alerta.value,
-            analista: form.analista.value,
-            quando: form.quando.value
-        });
+        // console.log("Datos del formulario:", {
+        //     cod_alerta: form.cod_alerta.value,
+        //     analista: form.analista.value,
+        //     quando: form.quando.value
+        // });
 
         var formData = new FormData(form);
-        console.log("Form data", formdata);
+        console.log("Form data", formData);
 
         fetch('/ShowAlerta/guardar_edicion.php', { // Ruta completa al archivo guardar_edicion.php
             method: 'POST',
             body: formData
         })
         .then(response => {
-            // console.log("Response status:", response.status);
+             console.log("Response status:", response.status);
             if (!response.ok) {
                 throw new Error('Hubo un problema al enviar la solicitud.');
             }
