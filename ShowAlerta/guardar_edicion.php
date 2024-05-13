@@ -3,8 +3,8 @@
 if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
+// require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
+// require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
 
 class GuardarEdicion
 {
@@ -38,6 +38,7 @@ class GuardarEdicion
                WHERE alerta.cod_usuario = usuario.cod_usuario
                AND alerta.fechamento IS NULL";
         $Sql->params = array($analista, $quando);
+        var_dump($Sql->query);
 
 
         try {

@@ -116,7 +116,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            console.log("DOMContentLoaded event fired");
+            // console.log("DOMContentLoaded event fired");
         var modal = document.getElementById("myModal");
         modal.style.display = "block"; // Mostrar el modal al cargar la página
 
