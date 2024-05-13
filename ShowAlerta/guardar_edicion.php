@@ -34,7 +34,7 @@ class GuardarEdicion
 
         $Sql->query ="UPDATE alerta
         SET cod_usuario = $1, quando = TO_DATE($2 || ' ' || TO_CHAR(CURRENT_TIMESTAMP, 'HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS')
-        WHERE cod_alerta = $3 AND alerta.fechamento IS NULL";
+        WHERE cod_alerta = $3";
         $Sql->params = array($analista, $quando);
         var_dump($Sql->query);
         
