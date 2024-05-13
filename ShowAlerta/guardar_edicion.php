@@ -49,10 +49,11 @@ class GuardarEdicion
         }
 
         // Si la actualización se realiza correctamente, se redirige a la página de visualización de alertas
-        header("Location: /editForm.php");
-        exit();
+        // header("Location: /editForm.php");
+        // exit();
+        var_dump($codAlerta, $quando, $analista);
     }
-    var_dump($codAlerta, $quando, $analista);
+    
 }
 
 // Instancia la clase y llama a la función guardarEdicion con los datos del formulario
@@ -64,9 +65,10 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['quando'])) {
         $_POST['analista'],
         $_POST['quando']
     );
+    var_dump($guardarEdicion);
 } else {
     // Manejo de errores si los campos no están configurados correctamente
     echo "Error: Todos los campos son obligatorios.";
 }
-var_dump($guardarEdicion);
+
 
