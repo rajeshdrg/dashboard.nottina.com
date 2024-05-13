@@ -157,7 +157,7 @@
         .then(response => {
              console.log("Response status:", response.status);
             if (!response.ok) {
-                throw new Error('Hubo un problema al enviar la solicitud.');
+                throw new Error('Ocorreu um problema ao enviar a solicitação.');
             }
             // Redireccionar a la página de visualización de alertas después de guardar los cambios
             setTimeout(function() {
@@ -166,8 +166,8 @@
         })
 
         .catch(error => {
-            console.error('Error al enviar la solicitud:', error);
-            alert('Hubo un error al enviar la solicitud. Por favor, intenta nuevamente más tarde.');
+            console.error('Erro ao enviar solicitação:', error);
+            alert('Ocorreu um erro ao enviar a solicitação. Por favor, tente novamente mais tarde.');
         });
     });
 

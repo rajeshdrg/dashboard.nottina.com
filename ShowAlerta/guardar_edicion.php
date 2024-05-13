@@ -3,8 +3,8 @@
 if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";
 
-// require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
-// require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
 
 class GuardarEdicion
 {
