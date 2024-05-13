@@ -43,6 +43,11 @@ class ShowAlerta extends modulo
         parent::front_call();
 
         echo <<<EOT1
+
+        function form_alerta(id_alerta) {
+            alert(id_alerta); 
+        }
+        
         function openEditForm(codAlert) {
             // URL del formulario de edición
             var editFormUrl = "ShowAlerta/editForm.php?cod_alerta=" + codAlert;

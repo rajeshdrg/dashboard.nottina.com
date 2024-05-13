@@ -32,13 +32,19 @@ class GuardarEdicion
         $Sql->connection = $this->conexao;
 
 
-        $Sql->query = "UPDATE alerta
-               SET cod_usuario = $1, quando = TO_DATE($2 || ' ' || TO_CHAR(CURRENT_TIMESTAMP, 'HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS')
-               FROM usuario
-               WHERE alerta.cod_usuario = usuario.cod_usuario
-               AND alerta.fechamento IS NULL";
+        $Sql->query ="UPDATE alerta
+        SET cod_usuario = $1, quando = TO_DATE($2 || ' ' || TO_CHAR(CURRENT_TIMESTAMP, 'HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS')
+        WHERE cod_alerta = $3 AND alerta.fechamento IS NULL;
         $Sql->params = array($analista, $quando);
         var_dump($Sql->query);
+        "
+        // $Sql->query = "UPDATE alerta
+        //        SET cod_usuario = $1, quando = TO_DATE($2 || ' ' || TO_CHAR(CURRENT_TIMESTAMP, 'HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS')
+        //        FROM usuario
+        //        WHERE alerta.cod_usuario = usuario.cod_usuario
+        //        AND alerta.fechamento IS NULL";
+        // $Sql->params = array($analista, $quando);
+        //var_dump($Sql->query);
 
 
         try {
