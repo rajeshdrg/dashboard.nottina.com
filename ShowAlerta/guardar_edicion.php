@@ -23,7 +23,7 @@ class GuardarEdicion
 
         if (empty($codAlerta) || empty($quando) || empty($analista)) {
 
-            echo "Error: Todos los campos son obligatorios.";
+            echo "Erro: Todos os campos são obrigatórios.";
             exit();
         }
         var_dump($codAlerta, $quando, $analista);
@@ -45,7 +45,7 @@ class GuardarEdicion
             $Sql->Execute();
         } catch (Exception $e) {
             // Si hay algún error durante la ejecución de la consulta, se mostrará un mensaje de error
-            echo 'Error al ejecutar la consulta: ',  $e->getMessage();
+            echo 'Erro ao executar consulta: ',  $e->getMessage();
             exit();
         }
 
@@ -69,7 +69,7 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['quando'])) {
     var_dump($guardarEdicion);
 } else {
     // Manejo de errores si los campos no están configurados correctamente
-    echo "Error: Todos los campos son obligatorios.";
+    echo "Erro: Todos os campos são obrigatórios.";
 }
 
 
