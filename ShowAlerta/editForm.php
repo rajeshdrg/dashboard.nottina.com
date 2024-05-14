@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alerta</title>
     <link rel="stylesheet" href="/ShowAlerta/editForm.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/sweetalert2.all.js"></script>
 </head>
 
 <body>
@@ -23,15 +25,14 @@
                     <input type="text" id="analista" name="analista" required>
                 </div>
                 <div class="input-block">
-                    <label for="fechamento">echamento:</label>
-                    <input type="date" id="quando" name="quando" required>
+                    <label for="fechamento">Fechamento:</label>
+                    <input type="date" id="fechamento" name="fechamento" required>
                 </div>
                 <button type="submit" class="btn-submit">Submit</button>
             </form>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/js/sweetalert2.all.js"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var modal = document.getElementById("myModal");
@@ -46,12 +47,12 @@
             event.preventDefault(); //Impedir que a página seja recarregada ao enviar o formulário
 
             var formData = new FormData(form);
-            // Agrega un console.log para verificar los datos del formulario antes de enviarlos
-        // console.log("Datos del formulario:", {
-        //     cod_alerta: formData.get('cod_alerta'),
-        //     analista: formData.get('analista'),
-        //     quando: formData.get('quando')
-        // });
+            Agrega un console.log para verificar los datos del formulario antes de enviarlos
+        console.log("Datos del formulario:", {
+            cod_alerta: formData.get('cod_alerta'),
+            analista: formData.get('analista'),
+            quando: formData.get('fechamento')
+        });
 
             Swal.fire({
                 title: '¿Está seguro?',
@@ -61,7 +62,7 @@
                 confirmButtonText: 'Sim, atualizar',
                 cancelButtonText: 'Não, cancelar'
             }).then((result) => {
-                console.log("Response status:", response.status);
+                console.log("Response status:", result.status);
                 if (result.isConfirmed) {
                     fetch('/ShowAlerta/guardar_edicion.php', {
                         method: 'POST',
