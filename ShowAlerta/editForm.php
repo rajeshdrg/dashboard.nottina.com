@@ -106,9 +106,14 @@
                     <input type="text" id="analista" name="analista" required>
                 </div>
                 <div class="input-block">
-                    <label for="quando">Quándo:</label>
-                    <input type="date" id="quando" name="quando" required>
+                    <label for="quando_date">Fecha:</label>
+                    <input type="date" id="quando_date" name="quando_date" required>
                 </div>
+                <div class="input-block">
+                    <label for="quando_time">Hora:</label>
+                    <input type="time" id="quando_time" name="quando_time" required>
+                </div>
+
                 <button type="submit" class="btn-submit">Submit</button>
             </form>
         </div>
@@ -129,6 +134,17 @@
 
 
     var form = document.getElementById("editForm");
+    
+    document.querySelector('form').addEventListener('submit', function(event) {
+            var date = document.getElementById('quando_date').value;
+            var time = document.getElementById('quando_time').value;
+            var quando = date + ' ' + time;
+            var hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'quando';
+            hiddenInput.value = quando;
+            this.appendChild(hiddenInput);
+        });
 
     form.addEventListener("submit", function(event) {
         //console.log("Form submit event fired");
