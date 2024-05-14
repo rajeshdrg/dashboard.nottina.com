@@ -196,6 +196,10 @@
                                 title: 'Erro',
                                 text: data.message
                                
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '../index.php';
+                                }
                             });
                         }
                     })
@@ -205,7 +209,11 @@
                             icon: 'error',
                             title: 'Erro ao enviar solicitação',
                             text: 'Ocorreu um erro ao enviar a solicitação. Por favor, tente novamente mais tarde.'
-                        });
+                        }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '../index.php';
+                                }
+                            });
                     });
                 }
             });
