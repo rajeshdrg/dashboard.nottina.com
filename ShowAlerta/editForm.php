@@ -23,24 +23,21 @@
                     <input type="text" id="analista" name="analista" required>
                 </div>
                 <div class="input-block">
-                    <label for="fechamento">Fechamento:</label>
+                    <label for="fechamento">echamento:</label>
                     <input type="date" id="quando" name="quando" required>
                 </div>
                 <button type="submit" class="btn-submit">Submit</button>
             </form>
         </div>
     </div>
-    <script src="/js/sweetalert2.all.js"></script>'
-
-<script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/sweetalert2.all.min.js"></script>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             var modal = document.getElementById("myModal");
             modal.style.display = "block"; // Mostrar o modal no carregamento da página
 
-            var closeButton = document.getElementsByClassName("close")[0];
-            closeButton.addEventListener("click", function() {
-                modal.style.display = "none"; // Ocultar modal ao clicar no botão Fechar
-            });
+            
         });
 
         var form = document.getElementById("editForm");
@@ -49,6 +46,12 @@
             event.preventDefault(); //Impedir que a página seja recarregada ao enviar o formulário
 
             var formData = new FormData(form);
+            // Agrega un console.log para verificar los datos del formulario antes de enviarlos
+        // console.log("Datos del formulario:", {
+        //     cod_alerta: formData.get('cod_alerta'),
+        //     analista: formData.get('analista'),
+        //     quando: formData.get('quando')
+        // });
 
             Swal.fire({
                 title: '¿Está seguro?',
@@ -58,6 +61,7 @@
                 confirmButtonText: 'Sim, atualizar',
                 cancelButtonText: 'Não, cancelar'
             }).then((result) => {
+                console.log("Response status:", response.status);
                 if (result.isConfirmed) {
                     fetch('/ShowAlerta/guardar_edicion.php', {
                         method: 'POST',

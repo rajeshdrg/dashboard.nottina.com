@@ -122,3 +122,5 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
     echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
 }
 
+
+
