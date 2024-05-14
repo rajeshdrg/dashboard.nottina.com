@@ -47,7 +47,7 @@
             event.preventDefault(); //Impedir que a página seja recarregada ao enviar o formulário
 
             var formData = new FormData(form);
-            Agrega un console.log para verificar los datos del formulario antes de enviarlos
+            //Agrega un console.log para verificar los datos del formulario antes de enviarlos
         console.log("Datos del formulario:", {
             cod_alerta: formData.get('cod_alerta'),
             analista: formData.get('analista'),
