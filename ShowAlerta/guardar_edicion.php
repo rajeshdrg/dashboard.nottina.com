@@ -103,38 +103,22 @@ class GuardarEdicion {
 
         try {
             $Sql->Execute();
-            echo '<script src="/js/sweetalert2.all.js"></script>';
-            echo '<script>
-                Swal.fire({
-                    icon: "success",
-                    title: "Os campos foram alterados corretamente",
-                    showConfirmButton: true,
-                    confirmButtonText: "Fechar"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = "ShowAlerta.php";
-                    }
-                });
-                </script>';
+            echo json_encode(['success' => true]);
         } catch (Exception $e) {
-            echo 'Erro ao executar consulta: ', $e->getMessage();
+            echo json_encode(['success' => false, 'message' => 'Erro ao executar consulta: ' . $e->getMessage()]);
             exit();
         }
-
-        var_dump($codAlerta, $fechamento, $analista);
     }
 }
 
-// Instancia la clase y llama a la função guardarEdicion com os dados do formulário
-$guardarEdicion = new GuardarEdicion();
 if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
+    $guardarEdicion = new GuardarEdicion();
     $guardarEdicion->guardarEdicion(
         $_POST['cod_alerta'],
         $_POST['fechamento'], 
         $_POST['analista']
     );
-    var_dump($guardarEdicion);
 } else {
-    // Manejo de errores si los campos no están configurados correctamente
-    echo "Erro: Todos os campos são obrigatórios.";
+    echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
 }
+?>
