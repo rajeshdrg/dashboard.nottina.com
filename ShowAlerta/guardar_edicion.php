@@ -1,4 +1,4 @@
-<!-- <?php   
+<!--  
 
 // if ($_SERVER['DOCUMENT_ROOT'] == null) {
 //     $_SERVER['DOCUMENT_ROOT'] = "..";
@@ -123,4 +123,4 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['quando'])) {
 } else {
     echo json_encode(array('success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.'));
 }
-?>
+
