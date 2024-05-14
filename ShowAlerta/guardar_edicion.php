@@ -99,7 +99,7 @@ class GuardarEdicion {
         $Sql->query = "
             UPDATE alerta
             SET cod_usuario = $1, fechamento = TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS')
-            WHERE cod_alerta = $3 AND where fechamento IS NOT NULL 
+            WHERE cod_alerta = $3  
         ";
         $Sql->params = array($analista, $dataCompleta, $codAlerta);
 
