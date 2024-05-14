@@ -103,7 +103,7 @@ class GuardarEdicion {
 
         try {
             $Sql->Execute();
-            echo '<script src="/js/sweetalert2.min.js"></script>';
+            echo '<script src="/js/sweetalert2.all.js"></script>';
             echo '<script>
                 Swal.fire({
                     icon: "success",

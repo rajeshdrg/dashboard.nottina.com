@@ -30,7 +30,7 @@
             </form>
         </div>
     </div>
-<script src="/js/sweetalert2.min.js"></script>
+    <script src="/js/sweetalert2.all.js"></script>'
 
 <script>
         document.addEventListener("DOMContentLoaded", function() {
