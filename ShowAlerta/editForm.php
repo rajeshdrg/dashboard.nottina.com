@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    <script>
+<!-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             // console.log("DOMContentLoaded event fired");
         var modal = document.getElementById("myModal");
@@ -141,15 +141,17 @@
         //     quando: form.quando.value
         // });
 
+        
+
         var formData = new FormData(form);
     
-    // Agrega un console.log para verificar los datos del formulario antes de enviarlos
-    console.log("Datos del formulario:", {
-        cod_alerta: formData.get('cod_alerta'),
-        analista: formData.get('analista'),
-        quando: formData.get('quando')
-    });
-    
+        // Agrega un console.log para verificar los datos del formulario antes de enviarlos
+        console.log("Datos del formulario:", {
+            cod_alerta: formData.get('cod_alerta'),
+            analista: formData.get('analista'),
+            quando: formData.get('quando')
+        });
+        
         fetch('/ShowAlerta/guardar_edicion.php', { // Ruta completa al archivo guardar_edicion.php
             method: 'POST',
             body: formData
@@ -172,7 +174,42 @@
     });
 
 
-    </script>
+</script> -->
+
+
+<script>
+    $(document).ready(function() {
+        $('#editForm').on('submit', function(event) {
+            event.preventDefault(); // Evita el envío normal del formulario
+            var formData = $(this).serialize(); // Serializa los datos del formulario
+
+            $.ajax({
+                url: $(this).attr('action'), // Obtiene la URL del action del formulario
+                type: $(this).attr('method'), // Obtiene el método del formulario (POST)
+                data: formData,
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Os campos foram alterados corretamente',
+                        showConfirmButton: true,
+                        confirmButtonText: 'Fechar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "../index.php";
+                        }
+                    });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro ao executar consulta',
+                        text: errorThrown
+                    });
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
