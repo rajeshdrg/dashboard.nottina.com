@@ -195,6 +195,7 @@
                                 icon: 'error',
                                 title: 'Erro',
                                 text: data.message
+                               
                             });
                         }
                     })
