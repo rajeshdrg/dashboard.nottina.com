@@ -116,7 +116,7 @@
     <title>Alerta</title>
     <link rel="stylesheet" href="/ShowAlerta/editForm.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/js/sweetalert2.all.min.js"></script>
+    <script src="/js/sweetalert2.all.js"></script>
 </head>
 <body>
 
