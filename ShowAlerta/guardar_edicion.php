@@ -86,14 +86,14 @@ class GuardarEdicion {
             exit();
         }
 
-        // Transformar la fecha 'fechamento' para incluir la hora actual
+        // Transforme a data ‘datemento’ para incluir a hora atual
         $dataCompleta = $fechamento . ' ' . date('H:i:s');
 
-        // Preparar y ejecutar la consulta SQL
+        // Preparar e executar a consulta SQL
         $Sql = new SqlCommand("Sql");
         $Sql->connection = $this->conexao;
 
-        // Actualizar el registro en la tabla alerta
+        // Atualizar o registro na tabela de alertas
         $Sql->query = "
             UPDATE alerta
             SET cod_usuario = $1, fechamento = TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS')
@@ -121,4 +121,4 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
 } else {
     echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
 }
-?>
+

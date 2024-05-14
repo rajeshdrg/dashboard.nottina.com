@@ -35,18 +35,18 @@
 <script>
         document.addEventListener("DOMContentLoaded", function() {
             var modal = document.getElementById("myModal");
-            modal.style.display = "block"; // Mostrar el modal al cargar la página
+            modal.style.display = "block"; // Mostrar o modal no carregamento da página
 
             var closeButton = document.getElementsByClassName("close")[0];
             closeButton.addEventListener("click", function() {
-                modal.style.display = "none"; // Ocultar el modal al hacer clic en el botón de cierre
+                modal.style.display = "none"; // Ocultar modal ao clicar no botão Fechar
             });
         });
 
         var form = document.getElementById("editForm");
 
         form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Evita que se recargue la página al enviar el formulario
+            event.preventDefault(); //Impedir que a página seja recarregada ao enviar o formulário
 
             var formData = new FormData(form);
 
@@ -73,7 +73,7 @@
                                 confirmButtonText: 'Fechar'
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    window.location.href = '/ShowAlerta.php';
+                                    window.location.href = '../index.php';
                                 }
                             });
                         } else {
