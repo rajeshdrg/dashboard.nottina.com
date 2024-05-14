@@ -115,65 +115,108 @@
     </div>
 
 <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // console.log("DOMContentLoaded event fired");
-        var modal = document.getElementById("myModal");
-        modal.style.display = "block"; // Mostrar el modal al cargar la página
+    //     document.addEventListener("DOMContentLoaded", function() {
+    //         // console.log("DOMContentLoaded event fired");
+    //     var modal = document.getElementById("myModal");
+    //     modal.style.display = "block"; // Mostrar el modal al cargar la página
 
+    //     var closeButton = document.getElementsByClassName("close")[0];
+    //     closeButton.addEventListener("click", function() {
+    //        // console.log("Close button clicked");
+    //         modal.style.display = "none"; // Ocultar el modal al hacer clic en el botón de cierre
+    //     });
+    // });
+
+
+    // var form = document.getElementById("editForm");
+
+    // form.addEventListener("submit", function(event) {
+    //     //console.log("Form submit event fired");
+    //     event.preventDefault(); // Evita que se recargue la página al enviar el formulario
+
+    //     // Agrega un console.log para verificar los datos del formulario antes de enviarlos
+    //     // console.log("Datos del formulario:", {
+    //     //     cod_alerta: form.cod_alerta.value,
+    //     //     analista: form.analista.value,
+    //     //     quando: form.quando.value
+    //     // });
+
+        
+
+    //     var formData = new FormData(form);
+    
+    //     // Agrega un console.log para verificar los datos del formulario antes de enviarlos
+    //     console.log("Datos del formulario:", {
+    //         cod_alerta: formData.get('cod_alerta'),
+    //         analista: formData.get('analista'),
+    //         quando: formData.get('quando')
+    //     });
+        
+    //     fetch('/ShowAlerta/guardar_edicion.php', { // Ruta completa al archivo guardar_edicion.php
+    //         method: 'POST',
+    //         body: formData
+    //     })
+    //     .then(response => {
+    //          console.log("Response status:", response.status);
+    //         if (!response.ok) {
+    //             throw new Error('Ocorreu um problema ao enviar a solicitação.');
+    //         }
+    //         // Redireccionar a la página de visualización de alertas después de guardar los cambios
+    //         setTimeout(function() {
+    //             window.location.href = '../index.php';
+    //         }, 30000); // Esperar 3 segundos (3000 milisegundos) antes de redirigir
+    //     })
+
+    //     .catch(error => {
+    //         console.error('Erro ao enviar solicitação:', error);
+    //         alert('Ocorreu um erro ao enviar a solicitação. Por favor, tente novamente mais tarde.');
+    //     });
+    // });
+
+
+    $(document).ready(function() {
+        // Mostrar el modal al cargar la página
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block"; 
+
+        // Ocultar el modal al hacer clic en el botón de cierre
         var closeButton = document.getElementsByClassName("close")[0];
         closeButton.addEventListener("click", function() {
-           // console.log("Close button clicked");
-            modal.style.display = "none"; // Ocultar el modal al hacer clic en el botón de cierre
+            modal.style.display = "none"; 
+        });
+
+        // Manejar el envío del formulario
+        $('#editForm').on('submit', function(event) {
+            event.preventDefault(); // Evita el envío normal del formulario
+
+            var formData = $(this).serialize(); // Serializa los datos del formulario
+
+            $.ajax({
+                url: $(this).attr('action'), // Obtiene la URL del action del formulario
+                type: $(this).attr('method'), // Obtiene el método del formulario (POST)
+                data: formData,
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Os campos foram alterados corretamente',
+                        showConfirmButton: true,
+                        confirmButtonText: 'Fechar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "../index.php"; // Redirigir a la página deseada
+                        }
+                    });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro ao executar consulta',
+                        text: errorThrown
+                    });
+                }
+            });
         });
     });
-
-
-    var form = document.getElementById("editForm");
-
-    form.addEventListener("submit", function(event) {
-        //console.log("Form submit event fired");
-        event.preventDefault(); // Evita que se recargue la página al enviar el formulario
-
-        // Agrega un console.log para verificar los datos del formulario antes de enviarlos
-        // console.log("Datos del formulario:", {
-        //     cod_alerta: form.cod_alerta.value,
-        //     analista: form.analista.value,
-        //     quando: form.quando.value
-        // });
-
-        
-
-        var formData = new FormData(form);
-    
-        // Agrega un console.log para verificar los datos del formulario antes de enviarlos
-        console.log("Datos del formulario:", {
-            cod_alerta: formData.get('cod_alerta'),
-            analista: formData.get('analista'),
-            quando: formData.get('quando')
-        });
-        
-        fetch('/ShowAlerta/guardar_edicion.php', { // Ruta completa al archivo guardar_edicion.php
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-             console.log("Response status:", response.status);
-            if (!response.ok) {
-                throw new Error('Ocorreu um problema ao enviar a solicitação.');
-            }
-            // Redireccionar a la página de visualización de alertas después de guardar los cambios
-            setTimeout(function() {
-                window.location.href = '../index.php';
-            }, 30000); // Esperar 3 segundos (3000 milisegundos) antes de redirigir
-        })
-
-        .catch(error => {
-            console.error('Erro ao enviar solicitação:', error);
-            alert('Ocorreu um erro ao enviar a solicitação. Por favor, tente novamente mais tarde.');
-        });
-    });
-
-
 </script>
 </body>
 
