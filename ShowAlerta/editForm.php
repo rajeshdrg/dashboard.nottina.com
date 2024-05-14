@@ -33,14 +33,14 @@
             background-color: #fefefe;
             margin: 15% auto;
             padding: 20px;
-            border: 1px solid #dfdfdf;
+            border: 1px solid #eaeaea;
             border-radius: 8px;
             width: 300px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .close {
-            color: #aaa;
+            color: #fefefe;
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -76,7 +76,7 @@
         .btn-submit {
             width: 100%;
             padding: 10px;
-            background-color: #b3d4f8;
+            background-color: #63afff;
             color: #fff;
             border: none;
             border-radius: 4px;
@@ -89,9 +89,6 @@
             background-color: #0056b3;
         }
     </style>
-        
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
@@ -117,7 +114,7 @@
         </div>
     </div>
 
-<!-- <script>
+<script>
         document.addEventListener("DOMContentLoaded", function() {
             // console.log("DOMContentLoaded event fired");
         var modal = document.getElementById("myModal");
@@ -177,41 +174,6 @@
     });
 
 
-</script> -->
-
-
-<script>
-    $(document).ready(function() {
-        $('#editForm').on('submit', function(event) {
-            event.preventDefault(); // Evita el envío normal del formulario
-            var formData = $(this).serialize(); // Serializa los datos del formulario
-
-            $.ajax({
-                url: $(this).attr('action'), // Obtiene la URL del action del formulario
-                type: $(this).attr('method'), // Obtiene el método del formulario (POST)
-                data: formData,
-                success: function(response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Os campos foram alterados corretamente',
-                        showConfirmButton: true,
-                        confirmButtonText: 'Fechar'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location = "../index.php";
-                        }
-                    });
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erro ao executar consulta',
-                        text: errorThrown
-                    });
-                }
-            });
-        });
-    });
 </script>
 </body>
 
