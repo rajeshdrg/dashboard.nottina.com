@@ -31,7 +31,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/js/sweetalert2.all.min.js"></script>
+    <script src="/js/sweetalert2.all.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var modal = document.getElementById("myModal");
