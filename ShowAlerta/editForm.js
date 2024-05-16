@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.style.display = "block";
 
     // Carregue os analistas do backend e preencha o select 
-    fetch('/ShowAlerta/selectAn.php')
+    fetch('/ShowAlerta/guardar_edicion.php?action=obtener_analistas')
         //'/ShowAlerta/guardar_edicion.php?action=obtener_analistas'
         .then(response => response.json())
         .then(data => {

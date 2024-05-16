@@ -50,23 +50,22 @@ class GuardarEdicion {
         }
     }
 
-    function obtenerAnalistas($analista, $cod_usuario) {
-
+    function obtenerAnalistas() {
         // Preparar y ejecutar la consulta SQL
         $Sql = new SqlCommand("Sql");
         $Sql->connection = $this->conexao;
 
-        $Sql->query = "SELECT cod_usuario, nome FROM usuario";
-        $Sql->params = array($analista, $cod_usuario);
+        $Sql->query = "
+            SELECT nome, cod_usuario FROM usuario
+        ";
 
         try {
             $Sql->Execute();
-            echo json_encode(['success' => true]);
+            $analistas = $Sql->ExecuteReader(); // Obtener los resultados de la consulta
+            return $analistas;
         } catch (Exception $e) {
-            echo json_encode(['success' => false, 'message' => 'Erro ao executar consulta: ' . $e->getMessage()]);
-            exit();
+            throw new Exception('Erro ao executar consulta: ' . $e->getMessage());
         }
-            
     }
 }
 
@@ -86,13 +85,5 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
         echo json_encode(['success' => false, 'message' => 'Erro ao obter analistas: ' . $e->getMessage()]);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
+     echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
 }
-
-// $Sql->query = "UPDATE alerta
-//     SET cod_usuario = $1, quando = TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS')
-//     FROM usuario
-//     WHERE alerta.cod_usuario = usuario.cod_usuario
-//     AND alerta.cod_alerta = $3
-//     AND alerta.fechamento IS NULL";
-// $Sql->params = array($analista, $quandoFormateado, $codAlerta);

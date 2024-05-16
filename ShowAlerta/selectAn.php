@@ -8,7 +8,7 @@ if ($_SERVER['DOCUMENT_ROOT'] == null) {
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
 
-class GuardarEdicion {
+class Analista {
     public $conexao;
 
     function __construct() {
@@ -34,6 +34,9 @@ class GuardarEdicion {
         }
     }
 }
+
+
+$selecao = new Analista();
 
 if (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
     $guardarEdicion = new GuardarEdicion(); // Crear una instancia de la clase GuardarEdicion
