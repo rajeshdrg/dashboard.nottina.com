@@ -16,7 +16,7 @@
 <!-- Modal -->
 <div id="myModal" class="modal">
     <div class="modal-content">
-        <span class="close" name="closeButton">&times;</span>
+        
         <h2>Atualizar Alerta</h2>
         <form id="editForm">
             <!--Adicione um campo oculto para o código de alerta-->
