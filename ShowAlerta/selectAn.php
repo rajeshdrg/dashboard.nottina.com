@@ -27,7 +27,7 @@ class GuardarEdicion {
 
         try {
             $Sql->Execute();
-            $analistas = $Sql->resultSet(); // Obtener los resultados de la consulta
+            $analistas = $Sql->ExecuteReader(); // Obtener los resultados de la consulta
             return $analistas;
         } catch (Exception $e) {
             throw new Exception('Erro ao executar consulta: ' . $e->getMessage());
