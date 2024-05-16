@@ -63,10 +63,11 @@ class GuardarEdicion {
             $Sql->Execute();
             $analistas = $Sql->ExecuteReader(); // Obtener los resultados de la consulta
             return $analistas;
-            var_dump($analistas);
+           
         } catch (Exception $e) {
             throw new Exception('Erro ao executar consulta: ' . $e->getMessage());
         }
+        var_dump($analistas);
        
     }
 }

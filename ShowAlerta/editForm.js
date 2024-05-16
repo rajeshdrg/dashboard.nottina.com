@@ -16,8 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     option.value = analista.cod_usuario;
                     option.textContent = analista.nome;
                     select.appendChild(option);
+                    console.log(data);
                 });
-                console.log(document.getElementById('analista'));
+                
             } else {
                 console.error('Erro ao obter analistas:', data.message);
             }
