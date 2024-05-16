@@ -46,13 +46,24 @@ class GuardarEdicion {
         }
     }
 
-    // function obtenerAnalistas() {
-    //     $sql = "SELECT cod_usuario, nome FROM usuario";
-    //     $stmt = $this->conexao->prepare($sql);
-    //     $stmt->execute();
-    //     $analistas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //     return $analistas;
-    // }
+    function obtenerAnalistas($analista, $cod_usuario) {
+
+        // Preparar y ejecutar la consulta SQL
+        $Sql = new SqlCommand("Sql");
+        $Sql->connection = $this->conexao;
+
+        $Sql->query = "SELECT cod_usuario, nome FROM usuario";
+        $Sql->params = array($analista, $cod_usuario);
+
+        try {
+            $Sql->Execute();
+            echo json_encode(['success' => true]);
+        } catch (Exception $e) {
+            echo json_encode(['success' => false, 'message' => 'Erro ao executar consulta: ' . $e->getMessage()]);
+            exit();
+        }
+            
+    }
 }
 
 $guardarEdicion = new GuardarEdicion();
@@ -63,17 +74,16 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
         $_POST['fechamento'],
         $_POST['analista']
     );
+}elseif (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
+    try {
+        $analistas = $guardarEdicion->obtenerAnalistas();
+        echo json_encode(['success' => true, 'analistas' => $analistas]);
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'message' => 'Erro ao obter analistas: ' . $e->getMessage()]);
+    }
+} else {
+    echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
 }
-// elseif (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
-//     try {
-//         $analistas = $guardarEdicion->obtenerAnalistas();
-//         echo json_encode(['success' => true, 'analistas' => $analistas]);
-//     } catch (Exception $e) {
-//         echo json_encode(['success' => false, 'message' => 'Erro ao obter analistas: ' . $e->getMessage()]);
-//     }
-// } else {
-//     echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
-// }
 
 // $Sql->query = "UPDATE alerta
 //     SET cod_usuario = $1, quando = TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS')

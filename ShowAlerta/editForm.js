@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.style.display = "block";
 
     // Carregue os analistas do backend e preencha o select 
-    fetch('/ShowAlerta/selectAn.php')
+    fetch('/ShowAlerta/guardar_edicion.php?action=obtener_analistas')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -26,9 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 var form = document.getElementById("editForm");
 
-
 form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulárior
+    event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
 
     var formData = new FormData(form);
     console.log("Datos del formulario:", {
