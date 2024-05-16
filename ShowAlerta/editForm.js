@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     option.value = analista.cod_usuario;
                     option.textContent = analista.nome;
                     select.appendChild(option);
-                    console.log(data);
+                    
                 });
                 
             } else {

@@ -17,10 +17,10 @@ class GuardarEdicion {
     }
 
     function guardarEdicion($codAlerta, $fechamento, $analista) {
-        if (empty($codAlerta) || empty($fechamento) || empty($analista)) {
-            echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
-            exit();
-        }
+        // if (empty($codAlerta) || empty($fechamento) || empty($analista)) {
+        //     echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
+        //     exit();
+        // }
 
         // Transformar la fecha 'fechamento' para incluir la hora actual
         $dataCompleta = $fechamento . ' ' . date('H:i:s');
@@ -67,7 +67,7 @@ class GuardarEdicion {
         } catch (Exception $e) {
             throw new Exception('Erro ao executar consulta: ' . $e->getMessage());
         }
-        var_dump($analistas);
+      
        
     }
 }
