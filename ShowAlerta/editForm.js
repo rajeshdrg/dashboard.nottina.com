@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+
                 const select = document.getElementById('analista');
                 data.analistas.forEach(analista => {
                     const option = document.createElement('option');
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     option.textContent = analista.nome;
                     select.appendChild(option);
                 });
+                console.log(select);
             } else {
                 console.error('Erro ao obter analistas:', data.message);
             }
