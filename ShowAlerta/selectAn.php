@@ -24,7 +24,9 @@ class GuardarEdicion {
      $Sql = new SqlCommand("Sql");
      $Sql->connection = $this->conexao;
 
-     $Sql->query = "SELECT cod_usuario, nome FROM usuario";
+     $Sql->query = "
+     SELECT  nome, cod_usuario FROM usuario
+     ";
      $Sql->params = array($analista, $cod_usuario);
 
      try {

@@ -89,3 +89,9 @@ form.addEventListener("submit", function (event) {
         }
     });
 });
+
+
+UPDATE alerta
+SET fechamento = '2024-05-29 00:00:00',
+    cod_usuario = (SELECT cod_usuario FROM usuario WHERE nome = 'Daniel')
+WHERE cod_alerta = 1160;

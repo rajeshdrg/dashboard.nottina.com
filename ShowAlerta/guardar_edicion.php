@@ -29,12 +29,16 @@ class GuardarEdicion {
         $Sql = new SqlCommand("Sql");
         $Sql->connection = $this->conexao;
 
-        // Actualizar el registro en la tabla alerta
+        // Atualizar o registro na tabela alerta
         $Sql->query = "
-            UPDATE alerta
-            SET cod_usuario = $1, fechamento = TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS')
-            WHERE cod_alerta = $3  
+        UPDATE alerta
+        SET fechamento = :TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS'),
+            cod_usuario = ($1, SELECT cod_usuario FROM usuario WHERE nome = :nuevo_nome)
+        WHERE cod_alerta = $3;  
         ";
+
+        
+
         $Sql->params = array($analista, $dataCompleta, $codAlerta);
 
         try {
