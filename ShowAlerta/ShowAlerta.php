@@ -39,13 +39,13 @@ class ShowAlerta extends modulo
     }
 
 
-    SELECT alerta.cod_alerta, 
-    alerta.cod_usuario, 
-    alerta.fechamento,
-    usuario.nome 
-    FROM alerta 
-    LEFT JOIN usuario ON alerta.cod_usuario = usuario.cod_usuario 
-    WHERE fechamento IS NOT NULL;
+    // SELECT alerta.cod_alerta, 
+    // alerta.cod_usuario, 
+    // alerta.fechamento,
+    // usuario.nome 
+    // FROM alerta 
+    // LEFT JOIN usuario ON alerta.cod_usuario = usuario.cod_usuario 
+    // WHERE fechamento IS NOT NULL;
 
     public function front_call()
     {
