@@ -46,13 +46,13 @@ class GuardarEdicion {
         }
     }
 
-    function obtenerAnalistas() {
-        $sql = "SELECT cod_usuario, nome FROM usuario";
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute();
-        $analistas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $analistas;
-    }
+    // function obtenerAnalistas() {
+    //     $sql = "SELECT cod_usuario, nome FROM usuario";
+    //     $stmt = $this->conexao->prepare($sql);
+    //     $stmt->execute();
+    //     $analistas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     return $analistas;
+    // }
 }
 
 $guardarEdicion = new GuardarEdicion();
@@ -63,14 +63,15 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
         $_POST['fechamento'],
         $_POST['analista']
     );
-} elseif (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
-    try {
-        $analistas = $guardarEdicion->obtenerAnalistas();
-        echo json_encode(['success' => true, 'analistas' => $analistas]);
-    } catch (Exception $e) {
-        echo json_encode(['success' => false, 'message' => 'Erro ao obter analistas: ' . $e->getMessage()]);
-    }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
 }
+// elseif (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
+//     try {
+//         $analistas = $guardarEdicion->obtenerAnalistas();
+//         echo json_encode(['success' => true, 'analistas' => $analistas]);
+//     } catch (Exception $e) {
+//         echo json_encode(['success' => false, 'message' => 'Erro ao obter analistas: ' . $e->getMessage()]);
+//     }
+// } else {
+//     echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
+// }
 
