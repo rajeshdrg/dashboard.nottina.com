@@ -7,16 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch('/ShowAlerta/selectAn.php')
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             if (data.success) {
 
                 const select = document.getElementById('analista');
+
                 data.analistas.forEach(analista => {
                     const option = document.createElement('option');
                     option.value = analista.cod_usuario;
                     option.textContent = analista.nome;
                     select.appendChild(option);
                 });
-                console.log(select);
+
             } else {
                 console.error('Erro ao obter analistas:', data.message);
             }
