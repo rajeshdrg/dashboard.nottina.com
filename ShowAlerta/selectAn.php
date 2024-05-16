@@ -16,36 +16,32 @@ class GuardarEdicion {
         $this->conexao = $conexao;
     }
 
-  
+    function obtenerAnalistas() {
+        // Preparar y ejecutar la consulta SQL
+        $Sql = new SqlCommand("Sql");
+        $Sql->connection = $this->conexao;
 
-    function obtenerAnalistas($analista, $cod_usuario) {
+        $Sql->query = "
+            SELECT nome, cod_usuario FROM usuario
+        ";
 
-           // Preparar y ejecutar la consulta SQL
-     $Sql = new SqlCommand("Sql");
-     $Sql->connection = $this->conexao;
-
-     $Sql->query = "
-     SELECT  nome, cod_usuario FROM usuario
-     ";
-     $Sql->params = array($analista, $cod_usuario);
-
-     try {
-        $Sql->Execute();
-        echo json_encode(['success' => true]);
-    } catch (Exception $e) {
-        echo json_encode(['success' => false, 'message' => 'Erro ao executar consulta: ' . $e->getMessage()]);
-        exit();
-    }
-       
+        try {
+            $Sql->Execute();
+            $analistas = $Sql->resultSet(); // Obtener los resultados de la consulta
+            return $analistas;
+        } catch (Exception $e) {
+            throw new Exception('Erro ao executar consulta: ' . $e->getMessage());
+        }
     }
 }
 
 if (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
+    $guardarEdicion = new GuardarEdicion(); // Crear una instancia de la clase GuardarEdicion
     try {
-        $analistas = $guardarEdicion->obtenerAnalistas();
+        $analistas = $guardarEdicion->obtenerAnalistas(); // Llamar al método obtenerAnalistas
         echo json_encode(['success' => true, 'analistas' => $analistas]);
     } catch (Exception $e) {
-        echo json_encode(['success' => false, 'message' => 'Erro ao obter analistas: ' . $e->getMessage()]);
+        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     }
 } else {
     echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
