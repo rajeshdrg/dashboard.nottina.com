@@ -64,6 +64,7 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
         $_POST['analista']
     );
 } elseif (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
+    var_dump($_GET);
     try {
         $analistas = $guardarEdicion->obtenerAnalistas();
         echo json_encode(['success' => true, 'analistas' => $analistas]);
