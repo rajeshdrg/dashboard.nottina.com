@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(248, 245, 245, 0.925);
     margin: 0;
     padding: 0;
     display: flex;
@@ -29,18 +29,21 @@ body {
     border-radius: 8px;
     width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .close {
-    color: #fefefe;
-    float: right;
+    color: #aaa;
+    position: absolute;
+    right: 20px;
+    top: 10px;
     font-size: 28px;
     font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #000;
     text-decoration: none;
     cursor: pointer;
 }
@@ -56,13 +59,15 @@ label {
 }
 
 input[type="text"],
-input[type="date"] {
+input[type="date"],
+select {
     width: calc(100% - 24px);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 16px;
+    margin-top: 5px;
 }
 
 .btn-submit {
@@ -74,7 +79,8 @@ input[type="date"] {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
 .btn-submit:hover {
