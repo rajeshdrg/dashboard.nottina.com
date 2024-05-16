@@ -16,11 +16,32 @@ class GuardarEdicion {
         $this->conexao = $conexao;
     }
 
+    function obtenerAnalistas() {
+        // Preparar y ejecutar la consulta SQL
+        $Sql = new SqlCommand("Sql");
+        $Sql->connection = $this->conexao;
+
+        $Sql->query = "
+            SELECT nome, cod_usuario FROM usuario
+        ";
+
+        try {
+            $Sql->Execute();
+            $analistas = $Sql->ExecuteReader(); // Obtener los resultados de la consulta
+            return $analistas;
+           
+        } catch (Exception $e) {
+            throw new Exception('Erro ao executar consulta: ' . $e->getMessage());
+        }
+      
+       
+    }
+
     function guardarEdicion($codAlerta, $fechamento, $analista) {
-        // if (empty($codAlerta) || empty($fechamento) || empty($analista)) {
-        //     echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
-        //     exit();
-        // }
+        if (empty($codAlerta) || empty($fechamento) || empty($analista)) {
+            echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
+            exit();
+        }
 
         // Transformar la fecha 'fechamento' para incluir la hora actual
         $dataCompleta = $fechamento . ' ' . date('H:i:s');
@@ -50,26 +71,7 @@ class GuardarEdicion {
         }
     }
 
-    function obtenerAnalistas() {
-        // Preparar y ejecutar la consulta SQL
-        $Sql = new SqlCommand("Sql");
-        $Sql->connection = $this->conexao;
-
-        $Sql->query = "
-            SELECT nome, cod_usuario FROM usuario
-        ";
-
-        try {
-            $Sql->Execute();
-            $analistas = $Sql->ExecuteReader(); // Obtener los resultados de la consulta
-            return $analistas;
-           
-        } catch (Exception $e) {
-            throw new Exception('Erro ao executar consulta: ' . $e->getMessage());
-        }
-      
-       
-    }
+  
 }
 
 $guardarEdicion = new GuardarEdicion();
