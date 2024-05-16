@@ -3,26 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
 
-    // Carregue os analistas do backend e preencha o select 
-    fetch('/ShowAlerta/guardar_edicion.php?action=obtener_analistas')
-        //'/ShowAlerta/guardar_edicion.php?action=obtener_analistas'
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const select = document.getElementById('analista');
-                data.analistas.forEach(analista => {
-                    const option = document.createElement('option');
-                    option.value = analista.cod_usuario;
-                    option.textContent = analista.nome;
-                    select.appendChild(option);
-                });
-            } else {
-                console.error('Erro ao obter analistas:', data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao carregar analistas:', error);
-        });
+
 });
 
 var form = document.getElementById("editForm");
@@ -88,4 +69,25 @@ form.addEventListener("submit", function (event) {
         }
     });
 });
+
+// Carregue os analistas do backend e preencha o select 
+fetch('/ShowAlerta/guardar_edicion.php?action=obtener_analistas')
+
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const select = document.getElementById('analista');
+            data.analistas.forEach(analista => {
+                const option = document.createElement('option');
+                option.value = analista.cod_usuario;
+                option.textContent = analista.nome;
+                select.appendChild(option);
+            });
+        } else {
+            console.error('Erro ao obter analistas:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao carregar analistas:', error);
+    });
 
