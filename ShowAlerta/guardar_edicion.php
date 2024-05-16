@@ -75,3 +75,10 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
 //     echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
 // }
 
+// $Sql->query = "UPDATE alerta
+//     SET cod_usuario = $1, quando = TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS')
+//     FROM usuario
+//     WHERE alerta.cod_usuario = usuario.cod_usuario
+//     AND alerta.cod_alerta = $3
+//     AND alerta.fechamento IS NULL";
+// $Sql->params = array($analista, $quandoFormateado, $codAlerta);

@@ -25,6 +25,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 var form = document.getElementById("editForm");
+// Agrega un console.log para verificar los datos del formulario antes de enviarlos
+console.log("Datos del formulario:", {
+    cod_alerta: formData.get('cod_alerta'),
+    analista: formData.get('analista'),
+    quando: formData.get('quando')
+});
 
 form.addEventListener("submit", function (event) {
     event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
