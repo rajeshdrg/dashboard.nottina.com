@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     // Mostrar o modal no carregamento da página
     var modal = document.getElementById("myModal");
@@ -88,4 +87,3 @@ form.addEventListener("submit", function (event) {
         }
     });
 });
-

@@ -31,7 +31,7 @@
                 <label for="fechamento">Fechamento:</label>
                 <input type="date" id="fechamento" name="fechamento" required>
             </div>
-            <button type="submit" class="btn-submit">Submit</button>
+            <button type="submit" class="btn-submit">Enviar</button>
         </form>
     </div>
 </div>
