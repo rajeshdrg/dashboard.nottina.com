@@ -38,6 +38,15 @@ class ShowAlerta extends modulo
         $this->data = $dr;
     }
 
+
+    SELECT alerta.cod_alerta, 
+    alerta.cod_usuario, 
+    alerta.fechamento,
+    usuario.nome 
+    FROM alerta 
+    LEFT JOIN usuario ON alerta.cod_usuario = usuario.cod_usuario 
+    WHERE fechamento IS NOT NULL;
+
     public function front_call()
     {
         parent::front_call();
@@ -110,7 +119,7 @@ class ShowAlerta extends modulo
 
         while ($o = $this->data->GetObject()) {
             print "<tr>";
-            print "<td><span onclick=form_alerta('$o->id_alerta')>...</span></td>";
+            print "<td><span onclick=form_alerta()></span></td>";
             print "<td>$o->prioridade</td>";
             print "<td>$o->cod_alerta</td>";
             print "<td>$o->quando</td>";

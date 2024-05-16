@@ -1,5 +1,4 @@
 <?php
-
 header('Content-Type: application/json');
 
 if ($_SERVER['DOCUMENT_ROOT'] == null) {
@@ -23,14 +22,14 @@ class GuardarEdicion {
             exit();
         }
 
-        // Transforme a data ‘datemento’ para incluir a hora atual
+        // Transformar la fecha 'fechamento' para incluir la hora actual
         $dataCompleta = $fechamento . ' ' . date('H:i:s');
 
-        // Preparar e executar a consulta SQL
+        // Preparar y ejecutar la consulta SQL
         $Sql = new SqlCommand("Sql");
         $Sql->connection = $this->conexao;
 
-        // Atualizar o registro na tabela de alertas
+        // Actualizar el registro en la tabla alerta
         $Sql->query = "
             UPDATE alerta
             SET cod_usuario = $1, fechamento = TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS')
@@ -46,19 +45,32 @@ class GuardarEdicion {
             exit();
         }
     }
+
+    function obtenerAnalistas() {
+        $sql = "SELECT cod_usuario, nome FROM usuario";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+        $analistas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $analistas;
+    }
 }
 
+$guardarEdicion = new GuardarEdicion();
+
 if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
-    $guardarEdicion = new GuardarEdicion();
     $guardarEdicion->guardarEdicion(
         $_POST['cod_alerta'],
         $_POST['fechamento'],
         $_POST['analista']
     );
+} elseif (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
+    try {
+        $analistas = $guardarEdicion->obtenerAnalistas();
+        echo json_encode(['success' => true, 'analistas' => $analistas]);
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'message' => 'Erro ao obter analistas: ' . $e->getMessage()]);
+    }
 } else {
     echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
 }
-
-
-
 
