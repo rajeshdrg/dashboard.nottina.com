@@ -28,7 +28,7 @@ var form = document.getElementById("editForm");
 
 
 form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
+    event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulárior
 
     var formData = new FormData(form);
     console.log("Datos del formulario:", {
