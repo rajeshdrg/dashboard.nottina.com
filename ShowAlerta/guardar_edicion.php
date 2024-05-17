@@ -58,8 +58,6 @@ class GuardarEdicion {
         WHERE cod_alerta = $3;  
         ";
 
-        
-
         $Sql->params = array($analista, $dataCompleta, $codAlerta);
 
         try {
@@ -76,13 +74,7 @@ class GuardarEdicion {
 
 $guardarEdicion = new GuardarEdicion();
 
-if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
-    $guardarEdicion->guardarEdicion(
-        $_POST['cod_alerta'],
-        $_POST['fechamento'],
-        $_POST['analista']
-    );
-}elseif (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
+if (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
     try {
         $analistas = $guardarEdicion->obtenerAnalistas();
         echo json_encode(['success' => true, 'analistas' => $analistas]);
@@ -91,4 +83,12 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
     }
 } else {
      echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
+}
+
+if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
+    $guardarEdicion->guardarEdicion(
+        $_POST['cod_alerta'],
+        $_POST['fechamento'],
+        $_POST['analista']
+    );
 }
