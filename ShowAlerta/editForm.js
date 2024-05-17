@@ -1,15 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Mostrar o modal no carregamento da página
+
     var modal = document.getElementById("myModal");
-    var form1 = document.getElementById("editFom");
+
     modal.style.display = "block";
 
     // Carregue os analistas do backend e preencha o select 
-    fetch('/ShowAlerta/selectAn.php?action=obtener_analistas', {
-
-        method: 'GET',
-        body: 'form1'
-    })
+    fetch('/ShowAlerta/selectAn.php?action=obtener_analistas')
 
         .then(response => response.json())
 

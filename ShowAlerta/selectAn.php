@@ -17,17 +17,17 @@ class Analista {
     }
 
     function obtenerAnalistas() {
-        // Preparar y ejecutar la consulta SQL
+        
         $Sql = new SqlCommand("Sql");
         $Sql->connection = $this->conexao;
 
         $Sql->query = "
-            SELECT nome, cod_usuario FROM usuario
+            SELECT nome FROM usuario
         ";
 
         try {
             $Sql->Execute();
-            $analistas = $Sql->ExecuteReader(); // Obtener los resultados de la consulta
+            $analistas = $Sql->ExecuteReader(); 
             return $analistas;
         } catch (Exception $e) {
             throw new Exception('Erro ao executar consulta: ' . $e->getMessage());
@@ -39,9 +39,9 @@ class Analista {
 $selecao = new Analista();
 
 if (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
-    $selecao = new Analista(); // Crear una instancia de la clase GuardarEdicion
+    $selecao = new Analista(); 
     try {
-        $analistas = $selecao->obtenerAnalistas(); // Llamar al método obtenerAnalistas
+        $analistas = $selecao->obtenerAnalistas(); 
         echo json_encode(['success' => true, 'analistas' => $analistas]);
     } catch (Exception $e) {
         echo json_encode(['success' => false, 'message' => $e->getMessage()]);
