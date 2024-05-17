@@ -4,11 +4,16 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.style.display = "block";
 
     // Carregue os analistas do backend e preencha o select 
-    fetch('/ShowAlerta/selectAn.php?action=obtener_analistas')
+    fetch('/ShowAlerta/selectAn.php?action=obtener_analistas', {
+
+        method: 'GET',
+        body: 'form1'
+    })
 
         .then(response => response.json())
 
         .then(data => {
+            console.log(data);
             if (data.success) {
                 const select = document.getElementById('analista');
                 data.analistas.forEach(analista => {
