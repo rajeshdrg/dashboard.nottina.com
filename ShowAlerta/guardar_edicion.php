@@ -7,44 +7,47 @@ if ($_SERVER['DOCUMENT_ROOT'] == null) {
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
-require_once $_SERVER['DOCUMENT_ROOT']. "/erpme/ui/dropdownlist.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/ui/dropdownlist.php";
 
 
-class GuardarEdicion {
+class GuardarEdicion
+{
     public $conexao;
 
-    function __construct() {
+    function __construct()
+    {
         require $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conecta.php';
         $this->conexao = $conexao;
     }
 
-    
 
-    function guardarEdicion($codAlerta, $fechamento, $analista) {
+
+    function guardarEdicion($codAlerta, $fechamento, $analista)
+    {
         if (empty($codAlerta) || empty($fechamento) || empty($analista)) {
             echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
             exit();
         }
 
-          // Transformar la fecha 'fechamento' para incluir la hora actual
-          $dataCompleta = $fechamento. ' '. date('H:i:s');
-          $dataCompleta = date('Y-m-d H:i:s', strtotime($dataCompleta));
+        // Transformar la fecha 'fechamento' para incluir la hora actual
+        $dataCompleta = $fechamento . ' ' . date('H:i:s');
+        $dataCompleta = date('Y-m-d H:i:s', strtotime($dataCompleta));
 
         // Atualizar o registro na tabela alerta
-          $Sql->query = "
+        $sqlCommand = new SqlCommand("Sql");
+        $sqlCommand->connection = $this->conexao;
+
+        $sqlCommand->query = "
           UPDATE alerta
           SET fechamento = :TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS'),
               cod_usuario = ($1, SELECT cod_usuario FROM usuario WHERE nome = :nuevo_nome)
           WHERE cod_alerta = $3;  
           ";
 
-        
-        $Sql = new SqlCommand("Sql");
-        $sqlCommand = new SqlCommand($sql, $this->conexao); 
-        $sqlCommand->array($analista, $dataCompleta, $codAlerta);
-      
+        $sqlCommand->params = array($analista, $dataCompleta, $codAlerta);
 
-       
+
+
 
         try {
             $sqlCommand->Execute();
@@ -55,7 +58,7 @@ class GuardarEdicion {
         }
     }
 
-  
+
 }
 
 $guardarEdicion = new GuardarEdicion();
