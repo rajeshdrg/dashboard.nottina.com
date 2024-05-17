@@ -23,7 +23,7 @@ class Analista {
         $Sql = new SqlCommand("Sql");
         $Sql->connection = $this->conexao;
 
-        $Sql->query = "select cod_usuario,usuario from usuario order by usuario";
+        $Sql->query = "select cod_usuario, nome from usuario order by usuario";
         $cod_usuario->SqlCommand =  $Sql;
 
 
