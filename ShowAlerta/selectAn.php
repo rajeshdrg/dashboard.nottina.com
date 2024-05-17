@@ -47,5 +47,5 @@ if (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
         echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
+    echo json_encode(['success' => false, 'message' => 'Erro: Todos los campos são obrigatórios.']);
 }
