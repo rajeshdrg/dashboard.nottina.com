@@ -7,6 +7,8 @@ if ($_SERVER['DOCUMENT_ROOT'] == null) {
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
+require_once $_SERVER['DOCUMENT_ROOT']. "/erpme/ui/dropdownlist.php";
+
 
 class GuardarEdicion {
     public $conexao;
@@ -24,25 +26,28 @@ class GuardarEdicion {
             exit();
         }
 
-        // Transformar la fecha 'fechamento' para incluir la hora actual
-        $dataCompleta = $fechamento . ' ' . date('H:i:s');
-
-        // Preparar y ejecutar la consulta SQL
-        $Sql = new SqlCommand("Sql");
-        $Sql->connection = $this->conexao;
+          // Transformar la fecha 'fechamento' para incluir la hora actual
+          $dataCompleta = $fechamento. ' '. date('H:i:s');
+          $dataCompleta = date('Y-m-d H:i:s', strtotime($dataCompleta));
 
         // Atualizar o registro na tabela alerta
-        $Sql->query = "
-        UPDATE alerta
-        SET fechamento = :TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS'),
-            cod_usuario = ($1, SELECT cod_usuario FROM usuario WHERE nome = :nuevo_nome)
-        WHERE cod_alerta = $3;  
-        ";
+          $Sql->query = "
+          UPDATE alerta
+          SET fechamento = :TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS'),
+              cod_usuario = ($1, SELECT cod_usuario FROM usuario WHERE nome = :nuevo_nome)
+          WHERE cod_alerta = $3;  
+          ";
 
-        $Sql->params = array($analista, $dataCompleta, $codAlerta);
+        
+        $Sql = new SqlCommand("Sql");
+        $sqlCommand = new SqlCommand($sql, $this->conexao); 
+        $sqlCommand->array($analista, $dataCompleta, $codAlerta);
+      
+
+       
 
         try {
-            $Sql->Execute();
+            $sqlCommand->Execute();
             echo json_encode(['success' => true]);
         } catch (Exception $e) {
             echo json_encode(['success' => false, 'message' => 'Erro ao executar consulta: ' . $e->getMessage()]);

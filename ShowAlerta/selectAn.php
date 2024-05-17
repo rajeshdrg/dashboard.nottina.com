@@ -42,8 +42,7 @@ class Analista {
         } catch (Exception $e) {
             throw new Exception('Erro ao executar consulta: ' . $e->getMessage());
         }
-        $cod_usuario->bind();
-        $cod_usuario->ShowMe();
+     
     }
 }
 
