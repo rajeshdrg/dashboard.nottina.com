@@ -57,6 +57,4 @@ if (isset($_GET['action']) == 'obter_analistas') {
 }
 
 $print = print_r($analistas, 1);
-echo "<script>
-console.log('$print')
-</script>";
+error_log($print);
