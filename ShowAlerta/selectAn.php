@@ -32,7 +32,11 @@ class Analista {
 
         try {
             $Sql->Execute();
-            $analistas = $Sql->ExecuteReader();
+            $analistasReader = $Sql->ExecuteReader();
+            $analistas = [];
+            while ($o = $analistasReader->GetObject()) {
+                $analistas[] = $o;
+            }
             error_log(print_r($analistas, 1)); 
             return $analistas;
         } catch (Exception $e) {
