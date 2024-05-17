@@ -24,7 +24,7 @@
             <div class="input-block">
                 <label for="analista">Analista:</label>
                 <select id="analista" name="analista" required>
-                    <option value="<?php echo $_GET['analista']; ?>">Selecione um analista</option>
+                    <option value="">Selecione um analista</option>
                 </select>
             </div>
             <div class="input-block">
