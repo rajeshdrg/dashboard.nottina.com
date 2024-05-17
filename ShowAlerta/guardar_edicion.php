@@ -32,8 +32,10 @@ class GuardarEdicion
         // Transformar la fecha 'fechamento' para incluir la hora actual
         $dataCompleta = $fechamento . ' ' . date('H:i:s');
         $dataCompleta = date('Y-m-d H:i:s', strtotime($dataCompleta));
+
         echo "Datos recibidos:";
         var_dump($codAlerta, $dataCompleta, $analista);
+        error_log("Datos recibidos: " . print_r([$codAlerta, $dataCompleta, $analista], true));
 
         // Atualizar o registro na tabela alerta
         $sqlCommand = new SqlCommand("Sql");
@@ -50,6 +52,11 @@ class GuardarEdicion
 
         echo "Consulta SQL:";
         print_r($sqlCommand->query);
+        error_log("Consulta SQL: " . $sqlCommand->query);
+
+        echo "Parámetros:";
+        print_r($sqlCommand->params);
+        error_log("Parámetros: " . print_r($sqlCommand->params, true));
 
         try {
             $sqlCommand->Execute();
@@ -67,6 +74,7 @@ $guardarEdicion = new GuardarEdicion();
 if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
     echo "Datos POST recibidos:";
     print_r($_POST);
+    error_log("Datos POST recibidos: " . print_r($_POST, true));
     $guardarEdicion->guardarEdicion(
         $_POST['cod_alerta'],
         $_POST['fechamento'],
