@@ -7,7 +7,7 @@ if ($_SERVER['DOCUMENT_ROOT'] == null) {
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
-
+require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/ui/dropdownlist.php";
 class Analista {
     public $conexao;
 
@@ -16,14 +16,20 @@ class Analista {
         $this->conexao = $conexao;
     }
 
-    function obtenerAnalistas() {
+    function obterAnalistas() {
+
+        $cod_usuario = new DropDownList("cod_usuario");
         
         $Sql = new SqlCommand("Sql");
         $Sql->connection = $this->conexao;
 
-        $Sql->query = "
-            SELECT nome FROM usuario
-        ";
+        $Sql->query = "select cod_usuario,usuario from usuario order by usuario";
+        $cod_usuario->SqlCommand =  $Sql;
+
+
+
+        $cod_usuario->bind();
+        $cod_usuario->ShowMe();
 
         try {
             $Sql->Execute();
@@ -38,14 +44,19 @@ class Analista {
 
 $selecao = new Analista();
 
-if (isset($_GET['action']) == 'obtener_analistas') {
+if (isset($_GET['analista']) == 'obter_analistas') {
     $selecao = new Analista(); 
     try {
-        $analistas = $selecao->obtenerAnalistas(); 
+        $analistas = $selecao->obterAnalistas(); 
         echo json_encode(['success' => true, 'analistas' => $analistas]);
     } catch (Exception $e) {
         echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'Erro: Todos los campos são obrigatórios.']);
+    echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
 }
+
+$print = print_r($analistas, 1);
+echo "<script>
+console.log('$print')
+</script>";
