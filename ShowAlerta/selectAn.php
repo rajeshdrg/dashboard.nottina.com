@@ -28,16 +28,18 @@ class Analista {
 
 
 
-        $cod_usuario->bind();
-        $cod_usuario->ShowMe();
+       
 
         try {
             $Sql->Execute();
-            $analistas = $Sql->ExecuteReader(); 
+            $analistas = $Sql->ExecuteReader();
+            error_log(print_r($analistas, 1)); 
             return $analistas;
         } catch (Exception $e) {
             throw new Exception('Erro ao executar consulta: ' . $e->getMessage());
         }
+        $cod_usuario->bind();
+        $cod_usuario->ShowMe();
     }
 }
 
