@@ -44,7 +44,7 @@ class Analista {
 
 $selecao = new Analista();
 
-if (isset($_GET['analista']) == 'obter_analistas') {
+if (isset($_GET['action']) == 'obter_analistas') {
     $selecao = new Analista(); 
     try {
         $analistas = $selecao->obterAnalistas(); 
