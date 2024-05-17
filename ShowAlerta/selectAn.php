@@ -39,9 +39,9 @@ class Analista {
 $selecao = new Analista();
 
 if (isset($_GET['action']) && $_GET['action'] == 'obtener_analistas') {
-    $guardarEdicion = new GuardarEdicion(); // Crear una instancia de la clase GuardarEdicion
+    $selecao = new Analista(); // Crear una instancia de la clase GuardarEdicion
     try {
-        $analistas = $guardarEdicion->obtenerAnalistas(); // Llamar al método obtenerAnalistas
+        $analistas = $selecao->obtenerAnalistas(); // Llamar al método obtenerAnalistas
         echo json_encode(['success' => true, 'analistas' => $analistas]);
     } catch (Exception $e) {
         echo json_encode(['success' => false, 'message' => $e->getMessage()]);

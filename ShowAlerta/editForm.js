@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.style.display = "block";
 
     // Carregue os analistas do backend e preencha o select 
-    fetch('/ShowAlerta/guardar_edicion.php?action=obtener_analistas')
-    
+    fetch('/ShowAlerta/selectAn?action=obtener_analistas')
+
         .then(response => response.json())
 
         .then(data => {
@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     option.value = analista.cod_usuario;
                     option.textContent = analista.nome;
                     select.appendChild(option);
-                    
+
                 });
-                
+
             } else {
                 console.error('Erro ao obter analistas:', data.message);
             }
