@@ -57,10 +57,11 @@ form.addEventListener("submit", function (event) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: formData
+                body: JSON.stringify(formData)
             })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     if (data.success) {
                         Swal.fire({
                             icon: 'success',
