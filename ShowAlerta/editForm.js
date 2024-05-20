@@ -251,7 +251,7 @@ form.addEventListener("submit", function (event) {
     }).then((result) => {
         console.log(result);
 
-        if (result.success) {
+        if (result.isConfirmed) {
             fetch('/ShowAlerta/guardar_edicion.php', {
                 method: 'POST',
                 headers: {
