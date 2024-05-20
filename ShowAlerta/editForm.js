@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
 var form = document.getElementById("editForm");
 
 form.addEventListener("submit", function (event) {
-    event.preventDefault();
+    event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
 
     var formData = new FormData(form);
     var formObject = {
@@ -251,7 +251,7 @@ form.addEventListener("submit", function (event) {
     }).then((result) => {
         console.log(result);
 
-        if (result.isConfirmed) {
+        if (result.value) {
             fetch('/ShowAlerta/guardar_edicion.php', {
 
                 method: 'POST',
