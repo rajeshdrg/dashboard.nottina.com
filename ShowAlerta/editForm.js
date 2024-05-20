@@ -48,7 +48,7 @@ form.addEventListener("submit", event => {
         .then((result) => {
             console.log(result);
 
-            if (result) {
+            if (result.isConfirmed) {
                 fetch('/ShowAlerta/guardar_edicion.php', {
 
                     method: 'POST',
@@ -68,10 +68,10 @@ form.addEventListener("submit", event => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
                         }
-                        return response.json; // Aquí puede estar ocurriendo el error
+                        return response.json(); // Aquí puede estar ocurriendo el error
                     })
 
-                    .then(data => data.json())
+                    
                     .then(data => {
                         console.log("Resultado de la solicitud: ", data);
                         if (data.success) {
