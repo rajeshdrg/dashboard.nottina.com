@@ -261,17 +261,19 @@ form.addEventListener("submit", function (event) {
                 body: JSON.stringify(formObject)
 
             })
-            console.log(result)
 
-                .then(response => {
-                    console.log("HTTP response status:", response.status);
-                    console.log("HTTP response:", response);
 
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json; // Aquí puede estar ocurriendo el error
-                })
+                // .then(response => {
+                //     console.log("HTTP response status:", response.status);
+                //     console.log("HTTP response:", response);
+
+                //     if (!response.ok) {
+                //         throw new Error('Network response was not ok');
+                //     }
+                //     return response.json; // Aquí puede estar ocurriendo el error
+                // })
+
+                .then(data => data.json())
                 .then(data => {
                     console.log("Resultado de la solicitud: ", data);
                     if (data.success) {
