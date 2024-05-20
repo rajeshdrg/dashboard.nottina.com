@@ -203,11 +203,9 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Mostrar o modal no carregamento da página
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
 
-    // Carregue os analistas do backend e preencha o select 
     fetch('/ShowAlerta/selectAn.php?action=obter_analistas')
         .then(response => response.json())
         .then(data => {
@@ -232,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
 var form = document.getElementById("editForm");
 
 form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
+    event.preventDefault();
 
     var formData = new FormData(form);
     var formObject = {
@@ -251,17 +249,25 @@ form.addEventListener("submit", function (event) {
         confirmButtonText: 'Sim, atualizar',
         cancelButtonText: 'Não, cancelar'
     }).then((result) => {
-        console.log("respuesta de solicitud:", result);
+        console.log(result);
 
-        if (!result.ok) {
+        if (result.isConfirmed) {
             fetch('/ShowAlerta/guardar_edicion.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formObject) // Enviar o objeto convertido a JSON
+                body: JSON.stringify(formObject)
             })
-                .then(response => response.json())
+                .then(response => {
+                    console.log("HTTP response status:", response.status);
+                    console.log("HTTP response:", response);
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json(); // Aquí puede estar ocurriendo el error
+                })
                 .then(data => {
                     console.log("Resultado de la solicitud: ", data);
                     if (data.success) {
@@ -300,3 +306,4 @@ form.addEventListener("submit", function (event) {
         }
     });
 });
+
