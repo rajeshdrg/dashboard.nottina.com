@@ -251,7 +251,7 @@ form.addEventListener("submit", function (event) {
     }).then((result) => {
         console.log(result);
 
-        if (result.isConfirmed) {
+        if (result.success) {
             fetch('/ShowAlerta/guardar_edicion.php', {
                 method: 'POST',
                 headers: {
@@ -263,7 +263,7 @@ form.addEventListener("submit", function (event) {
                     console.log("HTTP response status:", response.status);
                     console.log("HTTP response:", response);
 
-                    if (!response == false) {
+                    if (!response == true) {
                         throw new Error('Network response was not ok');
                     }
                     return response; // Aquí puede estar ocurriendo el error
