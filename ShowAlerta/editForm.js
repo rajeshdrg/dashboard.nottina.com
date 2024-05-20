@@ -233,13 +233,9 @@ form.addEventListener("submit", function (event) {
     event.preventDefault();
 
     var formData = new FormData(form);
-    var formObject = {
-        cod_alerta: formData.get('cod_alerta'),
-        analista: formData.get('analista'),
-        fechamento: formData.get('fechamento')
-    };
 
-    console.log("Datos del formulario:", formObject);
+
+    console.log("Datos del formulario:", formData);
 
     Swal.fire({
         title: 'Tem certeza?',
@@ -249,7 +245,7 @@ form.addEventListener("submit", function (event) {
         confirmButtonText: 'Sim, atualizar',
         cancelButtonText: 'Não, cancelar'
     }).then((result) => {
-        console.log(result);
+        console.log(statusbar);
 
         if (result.isConfirmed) {
             fetch('/ShowAlerta/guardar_edicion.php', {
