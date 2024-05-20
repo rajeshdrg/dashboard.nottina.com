@@ -70,7 +70,7 @@ class GuardarEdicion
         try {
             $sqlCommand->Execute();
             $Sql = $sqlCommand->ExecuteReader();
-            $Sql->GetObject();
+            $Sql->SetResult();
             echo json_encode(['success' => true]);
         } catch (Exception $e) {
             echo json_encode(['success' => false, 'message' => 'Erro ao executar consulta: ' . $e->getMessage()]);
