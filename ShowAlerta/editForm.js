@@ -252,7 +252,7 @@ form.addEventListener("submit", function (event) {
         console.log(result);
 
         if (result.isConfirmed) {
-            const dados = fetch('/ShowAlerta/guardar_edicion.php', {
+            fetch('/ShowAlerta/guardar_edicion.php', {
 
                 method: 'POST',
                 headers: {
@@ -261,7 +261,7 @@ form.addEventListener("submit", function (event) {
                 body: JSON.stringify(formData)
 
             })
-            console.log(dados)
+
                 .then(response => {
                     console.log("HTTP response status:", response.status);
                     console.log("HTTP response:", response);
@@ -271,8 +271,8 @@ form.addEventListener("submit", function (event) {
                     }
                     return response.json; // Aquí puede estar ocurriendo el error
                 })
-                .then(data => {
-                    console.log("Resultado de la solicitud: ", data);
+                .then(result => {
+                    console.log("Resultado de la solicitud: ", result);
                     if (data.success) {
                         Swal.fire({
                             icon: 'success',
