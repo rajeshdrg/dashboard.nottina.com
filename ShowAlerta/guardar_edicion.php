@@ -39,10 +39,10 @@ class GuardarEdicion
         $dataCompleta = $fechamento . ' ' . date('H:i:s');
         $dataCompleta = date('Y-m-d H:i:s', strtotime($dataCompleta));
 
-        // echo "Datos recibidos:<br>";
-        // var_dump($codAlerta, $dataCompleta, $analista);
-        // echo "<br>";
-        // error_log("Datos recibidos: " . print_r([$codAlerta, $dataCompleta, $analista], true));
+        echo "Datos recibidos:<br>";
+        var_dump($codAlerta, $dataCompleta, $analista);
+        echo "<br>";
+        error_log("Datos recibidos: " . print_r([$codAlerta, $dataCompleta, $analista], true));
 
         // Atualizar o registro na tabela alerta
         $sqlCommand = new SqlCommand("Sql");
@@ -58,14 +58,14 @@ class GuardarEdicion
         $sqlCommand->params = array($analista, $dataCompleta, $codAlerta);
 
 
-        // echo "Consulta SQL:<br>";
-        // print_r($sqlCommand->query);
-        // echo "<br>";
+        echo "Consulta SQL:<br>";
+        print_r($sqlCommand->query);
+        echo "<br>";
 
-        // echo "Parámetros:<br>";
-        // print_r($sqlCommand->params);
-        // echo "<br>";
-        // error_log("Parámetros: " . print_r($sqlCommand->params, true));
+        echo "Parámetros:<br>";
+        print_r($sqlCommand->params);
+        echo "<br>";
+        error_log("Parámetros: " . print_r($sqlCommand->params, true));
 
         try {
             $sqlCommand->Execute();
@@ -83,10 +83,10 @@ class GuardarEdicion
 
 $guardarEdicion = new GuardarEdicion();
 if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
-    // echo "Datos POST recibidos:<br>";
-    // print_r($_POST);
-    // echo "<br>";
-    // error_log("Dados POST recibidos: " . print_r($_POST, true));
+    echo "Datos POST recibidos:<br>";
+    print_r($_POST);
+    echo "<br>";
+    error_log("Dados POST recibidos: " . print_r($_POST, true));
     $guardarEdicion->guardarEdicion(
         $_POST['cod_alerta'],
         $_POST['fechamento'],
