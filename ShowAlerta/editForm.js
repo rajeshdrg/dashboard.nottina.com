@@ -36,7 +36,11 @@ form.addEventListener("submit", event => {
     };
 
     console.log("Datos del formulario:", formObject);
-
+    const data = {}
+    for (const key of formObject) {
+        data[key[0]] = key[1]
+    }
+    console.log(data);
     Swal.fire({
         title: 'Tem certeza?',
         text: "Deseja atualizar os dados do alerta?",
