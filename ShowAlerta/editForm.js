@@ -257,7 +257,7 @@ form.addEventListener("submit", function (event) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formObject)
+                body: JSON.stringify(formData)
             })
                 .then(response => {
                     console.log("HTTP response status:", response.status);
