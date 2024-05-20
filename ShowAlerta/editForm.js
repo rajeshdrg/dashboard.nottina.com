@@ -263,7 +263,7 @@ form.addEventListener("submit", function (event) {
                     console.log("HTTP response status:", response.status);
                     console.log("HTTP response:", response);
 
-                    if (!response == true) {
+                    if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
                     return response; // Aquí puede estar ocurriendo el error
