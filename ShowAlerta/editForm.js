@@ -52,6 +52,7 @@ form.addEventListener("submit", event => {
                 fetch('/ShowAlerta/guardar_edicion.php', {
 
                     method: 'POST',
+                    mode: "cors",
                     headers: {
                         'Content-Type': 'application/json'
                     },

@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/json');
 header('Accesss-Control-Allow-Methods: GET, POST');
+header("Access-Control-Allow-Origin: *");
 echo json_encode($_POST);
 
 ini_set('display_errors', 1);
