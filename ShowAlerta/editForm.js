@@ -233,9 +233,13 @@ form.addEventListener("submit", function (event) {
     event.preventDefault();
 
     var formData = new FormData(form);
+    var formObject = {
+        cod_alerta: formData.get('cod_alerta'),
+        analista: formData.get('analista'),
+        fechamento: formData.get('fechamento')
+    };
 
-
-    console.log("Datos del formulario:", formData);
+    console.log("Datos del formulario:", formObject);
 
     Swal.fire({
         title: 'Tem certeza?',
@@ -245,7 +249,7 @@ form.addEventListener("submit", function (event) {
         confirmButtonText: 'Sim, atualizar',
         cancelButtonText: 'Não, cancelar'
     }).then((result) => {
-        console.log(statusbar);
+        console.log(result);
 
         if (result.isConfirmed) {
             fetch('/ShowAlerta/guardar_edicion.php', {
@@ -254,9 +258,10 @@ form.addEventListener("submit", function (event) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formObject)
 
             })
+            console.log(result)
 
                 .then(response => {
                     console.log("HTTP response status:", response.status);
@@ -267,8 +272,8 @@ form.addEventListener("submit", function (event) {
                     }
                     return response.json; // Aquí puede estar ocurriendo el error
                 })
-                .then(result => {
-                    console.log("Resultado de la solicitud: ", result);
+                .then(data => {
+                    console.log("Resultado de la solicitud: ", data);
                     if (data.success) {
                         Swal.fire({
                             icon: 'success',
