@@ -54,6 +54,9 @@ form.addEventListener("submit", function (event) {
         if (result.isConfirmed) {
             fetch('/ShowAlerta/guardar_edicion.php', {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: formData
             })
                 .then(response => response.json())
