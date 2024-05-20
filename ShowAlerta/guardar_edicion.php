@@ -84,6 +84,8 @@ class GuardarEdicion
 
 }
 
+$rawPostData = file_get_contents("php://input");
+$data = json_decode($rawPostData, true);
 
 if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
     $guardarEdicion = new GuardarEdicion();
@@ -94,9 +96,10 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
     error_log("Dados POST recibidos: " . print_r($_POST, true));
 
     $guardarEdicion->guardarEdicion(
-        $_POST['cod_alerta'],
-        $_POST['fechamento'],
-        $_POST['analista']
+        $data['cod_alerta'],
+        $data['analista'],
+        $data['fechamento']
+        
     );
 }else {
     echo json_encode(['success' =>false, 'message'=> 'Não se recibieron dados do formulario']);
