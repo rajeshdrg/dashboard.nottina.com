@@ -252,13 +252,16 @@ form.addEventListener("submit", function (event) {
         console.log(result);
 
         if (result.isConfirmed) {
-            fetch('/ShowAlerta/guardar_edicion.php', {
+            const dados = fetch('/ShowAlerta/guardar_edicion.php', {
+
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
+
             })
+            console.log(dados)
                 .then(response => {
                     console.log("HTTP response status:", response.status);
                     console.log("HTTP response:", response);
