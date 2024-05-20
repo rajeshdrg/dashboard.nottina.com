@@ -251,9 +251,9 @@ form.addEventListener("submit", function (event) {
         confirmButtonText: 'Sim, atualizar',
         cancelButtonText: 'Não, cancelar'
     }).then((result) => {
-        console.log(result);
+        console.log("respuesta de solicitud:", result);
 
-        if (result.isConfirmed) {
+        if (!result.ok) {
             fetch('/ShowAlerta/guardar_edicion.php', {
                 method: 'POST',
                 headers: {
