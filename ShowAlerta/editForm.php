@@ -18,7 +18,7 @@
     <div class="modal-content">
         
         <h2>Atualizar Alerta</h2>
-        <form id="editForm">
+        <form id="editForm" method="post">
             <!--Adicione um campo oculto para o código de alerta-->
             <input type="hidden" id="cod_alerta" name="cod_alerta" value="<?php echo $_GET['cod_alerta']; ?>">
             <div class="input-block">
