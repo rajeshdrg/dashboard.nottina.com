@@ -36,11 +36,7 @@ form.addEventListener("submit", event => {
     };
 
     console.log("Datos del formulario:", formObject);
-    const data = {}
-    for (const key of formObject) {
-        data[key[0]] = key[1]
-    }
-    console.log(data);
+
     Swal.fire({
         title: 'Tem certeza?',
         text: "Deseja atualizar os dados do alerta?",
@@ -65,15 +61,15 @@ form.addEventListener("submit", event => {
                 })
 
 
-                    // .then(response => {
-                    //     console.log("HTTP response status:", response.status);
-                    //     console.log("HTTP response:", response);
+                    .then(response => {
+                        console.log("HTTP response status:", response.status);
+                        console.log("HTTP response:", response);
 
-                    //     if (!response.ok) {
-                    //         throw new Error('Network response was not ok');
-                    //     }
-                    //     return response.json; // Aquí puede estar ocurriendo el error
-                    // })
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json; // Aquí puede estar ocurriendo el error
+                    })
 
                     .then(data => data.json())
                     .then(data => {
