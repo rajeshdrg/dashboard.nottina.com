@@ -1,5 +1,7 @@
 <?php
 header('Content-Type: application/json');
+header('Accesss-Control-Allow-Methods: GET, POST');
+echo json_encode($_POST);
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
