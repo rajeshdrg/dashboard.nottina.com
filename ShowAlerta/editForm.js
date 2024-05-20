@@ -263,10 +263,10 @@ form.addEventListener("submit", function (event) {
                     console.log("HTTP response status:", response.status);
                     console.log("HTTP response:", response);
 
-                    if (!response.ok) {
+                    if (!response == false) {
                         throw new Error('Network response was not ok');
                     }
-                    return response.json(); // Aquí puede estar ocurriendo el error
+                    return response; // Aquí puede estar ocurriendo el error
                 })
                 .then(data => {
                     console.log("Resultado de la solicitud: ", data);
