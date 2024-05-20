@@ -33,11 +33,13 @@ class GuardarEdicion
 
     function guardarEdicion($codAlerta, $fechamento, $analista)
     {
-        if (empty($codAlerta) || empty($fechamento) || empty($analista)) {
-            echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios.']);
-            exit();
-        }
+        if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])){
+            if(empty($codAlerta)|| empty($analista) || empty($fechamento)){
+                echo json_encode(['success' =>false, 'message'=> 'Erro: Todos os campos são obrigatorios']);
+                exit();
+            }
 
+        }
         // Transformar la fecha 'fechamento' para incluir la hora actual
         $dataCompleta = $fechamento . ' ' . date('H:i:s');
         $dataCompleta = date('Y-m-d H:i:s', strtotime($dataCompleta));
@@ -72,8 +74,6 @@ class GuardarEdicion
 
         try {
             $sqlCommand->Execute();
-            $Sql = $sqlCommand->ExecuteReader();
-            $Sql->SetResult();
             echo json_encode(['success' => true]);
         } catch (Exception $e) {
             echo json_encode(['success' => false, 'message' => 'Erro ao executar consulta: ' . $e->getMessage()]);
