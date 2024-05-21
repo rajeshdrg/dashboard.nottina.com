@@ -94,7 +94,7 @@ form.addEventListener("submit", event => {
                             }
                             
                         } catch (error) {
-                            console.error('Erro ao analisar JSON:', errror);
+                            console.error('Erro ao analisar JSON:', error);
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Erro',
