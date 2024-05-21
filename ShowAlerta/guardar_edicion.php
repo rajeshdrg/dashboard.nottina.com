@@ -31,10 +31,10 @@ class GuardarEdicion
 
 
 
-    function guardarEdicion($codAlerta, $analista, $fechamento)
+    function guardarEdicion($codAlerta, $fechamento, $analista)
     {
 
-        if(empty($codAlerta)|| empty($analista) || empty($fechamento)){
+        if(empty($codAlerta) || empty($fechamento) || empty($analista) ){
                 echo json_encode(['success' =>false, 'message'=> 'Erro: Todos os campos são obrigatorios']);
                 exit();
             }

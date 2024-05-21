@@ -28,12 +28,8 @@ var form = document.getElementById("editForm");
 form.addEventListener("submit", event => {
     event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
 
-    var formData = new FormData(form);
-    var formObject = {
-        cod_alerta: formData.get('cod_alerta'),
-        analista: formData.get('analista'),
-        fechamento: formData.get('fechamento')
-    };
+    var formData = new FormData(this);
+    var formObject = Object.fromEntries(formData.entries());
 
     console.log("Datos del formulario:", formObject);
 
@@ -52,7 +48,6 @@ form.addEventListener("submit", event => {
                 fetch('/ShowAlerta/guardar_edicion.php', {
 
                     method: 'POST',
-                    mode: "cors",
                     headers: {
                         'Content-Type': 'application/json'
                     },
