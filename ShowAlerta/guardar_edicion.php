@@ -74,4 +74,3 @@ if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fe
 } else {
     echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
 }
-?>
