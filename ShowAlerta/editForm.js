@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+
+
     var today = new Date().toISOString().split('T')[0];
     var fechamentoInput = document.getElementById('fechamento');
     fechamentoInput.setAttribute('min', today);
