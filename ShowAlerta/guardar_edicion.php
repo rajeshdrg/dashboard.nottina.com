@@ -83,6 +83,7 @@ class GuardarEdicion
 
 
 }
+ob_start();
 
 $rawPostData = file_get_contents("php://input");
 $data = json_decode($rawPostData, true);
@@ -104,3 +105,5 @@ if (isset($_POST['cod_alerta'], $_POST['analista'], $_POST['fechamento'])) {
 }else {
     echo json_encode(['success' =>false, 'message'=> 'Não se recibieron dados do formulario']);
 }
+$output = ob_get_clean();
+echo  $output;
