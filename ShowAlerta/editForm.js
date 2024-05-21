@@ -44,7 +44,7 @@ form.addEventListener("submit", event => {
         fechamento: formData.get('fechamento')
 
     };
-    console.log("Datos del formulario:", formObject);
+    // console.log("Datos del formulario:", formObject);
 
     Swal.fire({
         title: 'Tem certeza?',
@@ -65,14 +65,14 @@ form.addEventListener("submit", event => {
                     body: JSON.stringify(formObject)
                 })
                     .then(response => {
-                        console.log("HTTP response:", response);
+                        // console.log("HTTP response:", response);
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
                         }
                         return response.json();
                     })
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                         if (data.success) {
                             Swal.fire({
                                 icon: 'success',
