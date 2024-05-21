@@ -55,12 +55,12 @@ class GuardarEdicion
 
         $sqlCommand->query = "
           UPDATE alerta
-          SET fechamento = :TO_DATE($2, 'YYYY-MM-DD HH24:MI:SS'),
-              cod_usuario = ($1, SELECT cod_usuario FROM usuario WHERE nome = :nuevo_nome)
-          WHERE cod_alerta = $3;  
+          SET fechamento = $2,
+              cod_usuario = (SELECT cod_usuario FROM usuario WHERE nome = $3)
+          WHERE cod_alerta = $1;  
           ";
 
-        $sqlCommand->params = array($analista, $dataCompleta, $codAlerta);
+        $sqlCommand->params = array($codAlerta, $dataCompleta, $analista,);
 
 
         // echo "Consulta SQL:<br>";
