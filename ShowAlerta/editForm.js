@@ -62,31 +62,47 @@ form.addEventListener("submit", event => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
                         }
-                        return response; // Aquí puede estar ocurriendo el error
+                        return response.text(); // Aquí puede estar ocurriendo el error
                     })
 
-                    
-                    .then(data => {
-                        console.log("Resultado de la solicitud: ", data);
-                        if (data.success) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Os campos foram alterados corretamente',
-                                showConfirmButton: true,
-                                confirmButtonText: 'Fechar'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
+                    .then(text =>{
+                        console.log("Raw response text:", text);
+
+                        try {
+                            var  data = JSON.parse(text);
+                            console.log(data);
+
+                            if (data.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Os campos foram alterados corretamente',
+                                    showConfirmButton: true,
+                                    confirmButtonText: 'Fechar'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = '../index.php';
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Erro',
+                                    text: data.message
+                                }).then(() => {
                                     window.location.href = '../index.php';
-                                }
-                            });
-                        } else {
+                                });
+                            }
+                            
+                        } catch (error) {
+                            console.error('Erro ao analisar JSON:', errror);
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Erro',
-                                text: data.message
+                                text: 'Resposta do servidor invalido'
                             }).then(() => {
                                 window.location.href = '../index.php';
                             });
+                            
                         }
                     })
                     .catch(error => {
