@@ -110,6 +110,11 @@ cancelButton.addEventListener("click", () => {
 });
 
 
+window.addEventListener('popstate', function (event) {
+    window.location.href = '../index.php';
+});
+
+
 // document.addEventListener("DOMContentLoaded", function () {
 //     var modal = document.getElementById("myModal");
 //     modal.style.display = "block";
