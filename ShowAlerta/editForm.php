@@ -19,7 +19,7 @@
 
             <h2>Atualizar Alerta</h2>
             <form id="editForm" method="post">
-                <!--Adicione um campo oculto para o código de alerta-->
+                <!-- Adicione um campo oculto para o código de alerta -->
                 <input type="hidden" id="cod_usuario" name="cod_usuario" value="<?php echo $_GET['cod_usuario']; ?>">
                 <input type="hidden" id="cod_alerta" name="cod_alerta" value="<?php echo $_GET['cod_alerta']; ?>">
                 <div class="input-block">
@@ -33,6 +33,7 @@
                     <input type="date" id="fechamento" name="fechamento" required>
                 </div>
                 <button type="submit" class="btn-submit">Enviar</button>
+                <button type="button" id="cancelButton" class="btn-cancel">Cancelar</button>
             </form>
         </div>
     </div>
