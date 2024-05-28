@@ -106,10 +106,10 @@ form.addEventListener("submit", event => {
 
 var cancelButton = document.getElementById("cancelButton");
 cancelButton.addEventListener("click", () => {
-    window.location.href = '../index.php';
+    window.location.href = './index.php';
 });
 
 
 window.addEventListener('popstate', function (event) {
-    window.location.href = '../index.php';
+    window.location.href = './index.php';
 });
