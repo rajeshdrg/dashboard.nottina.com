@@ -27,7 +27,7 @@ class Esms extends modulo
         $this->gateway[0] = new GatewaySMS('Curitiba', "/dados/cap/status/status_pr.xml");
         $this->gateway[1] = new GatewaySMS('São Paulo', "/dados/cap/status/status_sp.xml");
         $this->gateway[2] = new GatewaySMS('Kannel51', "/dados/cap/status/status_kannel51.xml");
-        $this->gateway[3] = new GatewaySMS('AML RJ 13', "/dados/cap/status/status_kannel51.xml");
+        $this->gateway[3] = new GatewaySMS('AML RJ 13', "/dados/cap/status/status_amlrj13.xml");
 
         $this->alerta[0] = new EsmsAlerta("/dados/cap/status/alerta.xml");
 
