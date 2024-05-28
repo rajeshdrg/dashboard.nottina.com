@@ -54,7 +54,7 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
   <link rel="stylesheet" type="text/css" href="css/dbox.css" />
 
   <!-- 
-	<link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css"/> 
+  <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css"/> 
 -->
   <link rel="manifest" href="manifest.json" />
 
@@ -203,7 +203,7 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
     $processo->front_call();
 
     ?>
-
+ 
     var funcao = 'Painel';
     var PainelInterval = null;
 
@@ -211,7 +211,7 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
       switch (funcao) {
         case 'Painel':
           painel();
-          break;
+           break;
       }
     }
 
@@ -230,7 +230,7 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
     }
 
     function painel() {
-      post = new XMLHttpRequest();
+       post = new XMLHttpRequest();
       post.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           var data = JSON.parse(this.responseText);
@@ -251,7 +251,7 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
 
       post = new XMLHttpRequest();
       post.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState  == 4 && this.status == 200) {
           var data = JSON.parse(this.responseText);
           data.forEach(plota_grafico);
         }
@@ -274,10 +274,12 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
     });
     window.onload = function() {
       PainelRefresh();
-      PainelInterval = setInterval(PainelRefresh, 300000);
+
+              PainelInterval = setInterval(PainelRefresh, 300000);
     }
   </script>
 
+         
 
 
 </head>
@@ -289,12 +291,12 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
    ===================================-->
   <div class="topo">
     <div style="width: 2%;height: 100%; float: left;">
-      <button class="header_back" onclick="voltar();" style="margin:36px auto auto 8px; font-size: 15pt;">
+      <!-- <button class="header_back" onclick="voltar();" style="margin:36px auto auto 8px; font-size: 15pt;">
         <i class="fa fa-arrow-left" style="color:#003366"></i>
-      </button>
+      </button> -->
     </div>
     <div style="width: 30%;height: 100%; float: left;">
-      <img src="images/nottina.png" style="margin:auto auto auto 12px; width: 250px; height: 85px;" />
+      <img src="images/nottina.png" style="margin:auto auto auto 12px; width: 250px; height: 85px;" onclick="voltar();"/>
     </div>
     <div style="width: 68%;height: 100%; float: left;">
       <a id="btnSair" href="sair.php" class="headerUser" style="width: 35px; height: 35px;margin-top: 50px;"><img src="images/logout_small.png"></a>
