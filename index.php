@@ -296,11 +296,11 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
       </button> -->
     </div>
     <div style="width: 30%;height: 100%; float: left;">
-      <img src="images/nottina.png" style="margin:auto auto auto 12px; width: 250px; height: 85px;" onclick="voltar();"/>
+      <img src="images/nottina.png" style="margin:auto auto auto 12px; width: 250px; height: 85px; cursor:pointer;" onclick="voltar();"/>
     </div>
     <div style="width: 68%;height: 100%; float: left;">
       <a id="btnSair" href="sair.php" class="headerUser" style="width: 35px; height: 35px;margin-top: 50px;"><img src="images/logout_small.png"></a>
-      <h4 class="headerUser"><?php print $nome; ?></h4>
+      <h4 class="headerUser" style="color:#999999"><?php print $nome; ?></h4>
     </div>
   </div>
 
