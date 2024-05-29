@@ -88,6 +88,7 @@ if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fe
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
+header("Access-Control-Allow-Origin: *");
 // Especifique dominios en lugar de usar '*'
 // header("Access-Control-Allow-Origin: https://example.com");
 
