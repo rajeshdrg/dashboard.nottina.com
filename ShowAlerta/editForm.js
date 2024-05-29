@@ -154,9 +154,9 @@ document.addEventListener("DOMContentLoaded", function () {
         history.pushState(null, null, location.href);
     }, false);
 
-    // window.addEventListener("beforeunload", function (event) {
-    //     event.preventDefault();
-    // });
+    window.addEventListener("beforeunload", function (event) {
+        event.preventDefault();
+    });
 });
 
 var form = document.getElementById("editForm");
@@ -246,6 +246,9 @@ window.addEventListener('popstate', function (event) {
     history.pushState(null, null, location.href);
 }, false);
 
+window.addEventListener("beforeunload", function (event) {
+    event.preventDefault();
+});
 // window.location.hash = "no-back-button";
 // window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
 // window.onhashchange = function () { window.location.hash = "no-back-button"; }
