@@ -151,11 +151,12 @@ document.addEventListener("DOMContentLoaded", function () {
     history.pushState(null, null, location.href);
     window.addEventListener('popstate', function () {
         history.pushState(null, null, location.href);
+        history.pushState(null, null, location.href);
     }, false);
 
-    window.addEventListener("beforeunload", function (event) {
-        event.preventDefault();
-    });
+    // window.addEventListener("beforeunload", function (event) {
+    //     event.preventDefault();
+    // });
 });
 
 var form = document.getElementById("editForm");
@@ -241,6 +242,7 @@ if (cancelButton) {
 
 // Interceptar botón "atrás" del navegador
 window.addEventListener('popstate', function (event) {
+    history.pushState(null, null, location.href);
     history.pushState(null, null, location.href);
 }, false);
 
