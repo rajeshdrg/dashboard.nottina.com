@@ -246,15 +246,15 @@ if (cancelButton) {
     });
 }
 
-// Interceptar botón "atrás" del navegador
-window.addEventListener('popstate', function (event) {
-    history.pushState(null, null, location.href);
-    history.pushState(null, null, location.href);
-}, false);
+// // // Interceptar botón "atrás" del navegador
+// // window.addEventListener('popstate', function (event) {
+// //     history.pushState(null, null, location.href);
+// //     history.pushState(null, null, location.href);
+// // }, false);
 
-window.addEventListener("beforeunload", function (event) {
-    event.preventDefault();
-});
+// // window.addEventListener("beforeunload", function (event) {
+// //     event.preventDefault();
+// });
 // window.location.hash = "no-back-button";
 // window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
 // window.onhashchange = function () { window.location.hash = "no-back-button"; }
