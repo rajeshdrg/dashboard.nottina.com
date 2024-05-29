@@ -72,18 +72,14 @@ class ShowAlerta extends modulo
             xhr.open("GET", editFormUrl, true);
             xhr.send();
         }
-        
+
         function disableNavigationButtons() {
             history.pushState(null, null, location.href);
             window.addEventListener('popstate', function () {
                 history.pushState(null, null, location.href);
             });
         
-            window.addEventListener("beforeunload", function (event) {
-                event.preventDefault();
-        
-            });
-        
+                 
         }
         
         disableNavigationButtons();
