@@ -148,10 +148,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     // Prevenir la navegación hacia atrás y adelante
-    history.pushState(null, document.title, location.href);
+    history.pushState(null, null, location.href);
     window.addEventListener('popstate', function () {
-        history.pushState(null, document.title, location.href);
-    });
+        history.pushState(null, null, location.href);
+    }, false);
 
     window.addEventListener("beforeunload", function (event) {
         event.preventDefault();
@@ -241,5 +241,9 @@ if (cancelButton) {
 
 // Interceptar botón "atrás" del navegador
 window.addEventListener('popstate', function (event) {
-    history.pushState(null, document.title, location.href);
-});
+    history.pushState(null, null, location.href);
+}, false);
+
+// window.location.hash = "no-back-button";
+// window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
+// window.onhashchange = function () { window.location.hash = "no-back-button"; }
