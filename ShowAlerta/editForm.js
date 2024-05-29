@@ -112,18 +112,15 @@
 
 // window.addEventListener('popstate', function (event) {
 //     window.location.href = './index.php';
-// });
+//     history.pushState(null, null, window.location.href);
+//     history.pushState(null, null, window.location.href);
+// }, false);
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
-    window.onload = function () {
-        window.location.hash = "no-back-button";
-        window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
-        window.onhashchange = function () { window.location.hash = "no-back-button"; }
-
-    }
 
     var today = new Date().toISOString().split('T')[0];
     var fechamentoInput = document.getElementById('fechamento');
@@ -153,16 +150,19 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Erro ao carregar analistas:', error);
         });
 
-    // // Prevenir la navegación hacia atrás y adelante
-    // history.pushState(null, null, location.href);
-    // window.addEventListener('popstate', function () {
-    //     history.pushState(null, null, location.href);
-    //     history.pushState(null, null, location.href);
-    // }, false);
+    // Prevenir la navegación hacia atrás y adelante
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, location.href);
+    });
 
-    // window.addEventListener("beforeunload", function (event) {
-    //     event.preventDefault();
-    // });
+    // Prevenir el refresco de la página
+    window.addEventListener("beforeunload", function (event) {
+        event.preventDefault();
+
+    });
+
+
 });
 
 var form = document.getElementById("editForm");
@@ -238,23 +238,23 @@ form.addEventListener("submit", event => {
         });
 });
 
-// Botón de cancelación que redirige a la página principal
 var cancelButton = document.getElementById("cancelButton");
-if (cancelButton) {
-    cancelButton.addEventListener("click", () => {
-        window.location.href = '../index.php';
+cancelButton.addEventListener("click", () => {
+    window.location.href = '../index.php';
+});
+
+// Función para deshabilitar botones de navegación
+function disableNavigationButtons() {
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, location.href);
     });
+
+    window.addEventListener("beforeunload", function (event) {
+        event.preventDefault();
+
+    });
+
 }
 
-// // // Interceptar botón "atrás" del navegador
-// // window.addEventListener('popstate', function (event) {
-// //     history.pushState(null, null, location.href);
-// //     history.pushState(null, null, location.href);
-// // }, false);
-
-// // window.addEventListener("beforeunload", function (event) {
-// //     event.preventDefault();
-// });
-// window.location.hash = "no-back-button";
-// window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
-// window.onhashchange = function () { window.location.hash = "no-back-button"; }
+disableNavigationButtons();
