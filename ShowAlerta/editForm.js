@@ -118,6 +118,12 @@
 document.addEventListener("DOMContentLoaded", function () {
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
+    window.onload = function () {
+        window.location.hash = "no-back-button";
+        window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
+        window.onhashchange = function () { window.location.hash = "no-back-button"; }
+
+    }
 
     var today = new Date().toISOString().split('T')[0];
     var fechamentoInput = document.getElementById('fechamento');
@@ -147,16 +153,16 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Erro ao carregar analistas:', error);
         });
 
-    // Prevenir la navegación hacia atrás y adelante
-    history.pushState(null, null, location.href);
-    window.addEventListener('popstate', function () {
-        history.pushState(null, null, location.href);
-        history.pushState(null, null, location.href);
-    }, false);
+    // // Prevenir la navegación hacia atrás y adelante
+    // history.pushState(null, null, location.href);
+    // window.addEventListener('popstate', function () {
+    //     history.pushState(null, null, location.href);
+    //     history.pushState(null, null, location.href);
+    // }, false);
 
-    window.addEventListener("beforeunload", function (event) {
-        event.preventDefault();
-    });
+    // window.addEventListener("beforeunload", function (event) {
+    //     event.preventDefault();
+    // });
 });
 
 var form = document.getElementById("editForm");
