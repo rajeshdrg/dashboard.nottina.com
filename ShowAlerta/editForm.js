@@ -115,7 +115,7 @@
 // });
 
 
-document.addEventListener("DOMContentLoaded", function () {
+ddocument.addEventListener("DOMContentLoaded", function () {
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
 
@@ -147,17 +147,17 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Erro ao carregar analistas:', error);
         });
 
-    // Interceptar evento de recarga de página
+    // Prevenir la navegación hacia atrás y adelante
+    history.pushState(null, document.title, location.href);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, document.title, location.href);
+    });
+
+    // Prevenir el refresco de la página
     window.addEventListener('beforeunload', function (e) {
         var confirmationMessage = 'Você tem certeza que deseja sair? As alterações não serão salvas.';
         (e || window.event).returnValue = confirmationMessage; // Gecko + IE
         return confirmationMessage; // Webkit, Safari, Chrome
-    });
-
-    // Manipular historial para deshabilitar botón "atrás"
-    history.pushState(null, document.title, location.href);
-    window.addEventListener('popstate', function () {
-        history.pushState(null, document.title, location.href);
     });
 });
 
@@ -234,12 +234,15 @@ form.addEventListener("submit", event => {
         });
 });
 
+// Botón de cancelación que redirige a la página principal
 var cancelButton = document.getElementById("cancelButton");
-cancelButton.addEventListener("click", () => {
-    window.location.href = '../index.php';
-});
+if (cancelButton) {
+    cancelButton.addEventListener("click", () => {
+        window.location.href = '../index.php';
+    });
+}
 
-
+// Interceptar botón "atrás" del navegador
 window.addEventListener('popstate', function (event) {
-    window.location.href = './index.php';
+    history.pushState(null, document.title, location.href);
 });
