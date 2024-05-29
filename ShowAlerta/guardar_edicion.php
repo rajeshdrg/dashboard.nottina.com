@@ -85,91 +85,91 @@ if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fe
 
 
 
-<!-- 
-header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: POST');
-header("Access-Control-Allow-Origin: *");
-// Especifique dominios en lugar de usar '*'
-// header("Access-Control-Allow-Origin: https://example.com");
 
-ini_set('display_errors', 0); // No mostrar errores en producción
-ini_set('display_startup_errors', 0);
-ini_set('error_log', $_SERVER['DOCUMENT_ROOT'] . '/logs/php_errors.log');
-error_reporting(E_ALL);
+// header('Content-Type: application/json');
+// header('Access-Control-Allow-Methods: POST');
+// header("Access-Control-Allow-Origin: *");
+// // Especifique dominios en lugar de usar '*'
+// // header("Access-Control-Allow-Origin: https://example.com");
 
-if ($_SERVER['DOCUMENT_ROOT'] == null) {
-    $_SERVER['DOCUMENT_ROOT'] = "..";
-}
+// ini_set('display_errors', 0); // No mostrar errores en producción
+// ini_set('display_startup_errors', 0);
+// ini_set('error_log', $_SERVER['DOCUMENT_ROOT'] . '/logs/php_errors.log');
+// error_reporting(E_ALL);
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/ui/dropdownlist.php";
+// if ($_SERVER['DOCUMENT_ROOT'] == null) {
+//     $_SERVER['DOCUMENT_ROOT'] = "..";
+// }
 
-class GuardarEdicion
-{
-    public $conexao;
+// require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
+// require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
+// require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/ui/dropdownlist.php";
 
-    function __construct()
-    {
-        require $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conecta.php';
-        $this->conexao = $conexao;
-    }
+// class GuardarEdicion
+// {
+//     public $conexao;
 
-    function guardarEdicion($codAlerta, $fechamento, $analista)
-    {
-        // Validación de entradas
-        if (!is_numeric($codAlerta) || !is_string($analista) || !$this->validarFecha($fechamento)) {
-            echo json_encode(['success' => false, 'message' => 'Erro: Dados inválidos']);
-            exit();
-        }
+//     function __construct()
+//     {
+//         require $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conecta.php';
+//         $this->conexao = $conexao;
+//     }
 
-        // Transformar y validar la fecha
-        $dataCompleta = date('Y-m-d H:i:s', strtotime($fechamento . ' ' . date('H:i:s')));
+//     function guardarEdicion($codAlerta, $fechamento, $analista)
+//     {
+//         // Validación de entradas
+//         if (!is_numeric($codAlerta) || !is_string($analista) || !$this->validarFecha($fechamento)) {
+//             echo json_encode(['success' => false, 'message' => 'Erro: Dados inválidos']);
+//             exit();
+//         }
 
-        // Utilizar consultas preparadas
-        $sqlCommand = new SqlCommand("Sql");
-        $sqlCommand->connection = $this->conexao;
+//         // Transformar y validar la fecha
+//         $dataCompleta = date('Y-m-d H:i:s', strtotime($fechamento . ' ' . date('H:i:s')));
 
-        $sqlCommand->query = "
-            UPDATE alerta
-            SET fechamento = TO_TIMESTAMP($2, 'YYYY-MM-DD HH24:MI:SS'),
-                cod_usuario = $1
-            WHERE cod_alerta = $3
-        ";
+//         // Utilizar consultas preparadas
+//         $sqlCommand = new SqlCommand("Sql");
+//         $sqlCommand->connection = $this->conexao;
 
-        $sqlCommand->params = array($analista, $dataCompleta, $codAlerta);
+//         $sqlCommand->query = "
+//             UPDATE alerta
+//             SET fechamento = TO_TIMESTAMP($2, 'YYYY-MM-DD HH24:MI:SS'),
+//                 cod_usuario = $1
+//             WHERE cod_alerta = $3
+//         ";
 
-        try {
-            $sqlCommand->Execute();
-            echo json_encode(['success' => true]);
-        } catch (Exception $e) {
-            // No mostrar detalles del error al usuario final
-            error_log('Erro ao executar consulta: ' . $e->getMessage());
-            echo json_encode(['success' => false, 'message' => 'Erro ao executar consulta']);
-            exit();
-        }
-    }
+//         $sqlCommand->params = array($analista, $dataCompleta, $codAlerta);
 
-    // Función para validar la fecha
-    private function validarFecha($fecha)
-    {
-        $d = DateTime::createFromFormat('Y-m-d', $fecha);
-        return $d && $d->format('Y-m-d') === $fecha;
-    }
-}
+//         try {
+//             $sqlCommand->Execute();
+//             echo json_encode(['success' => true]);
+//         } catch (Exception $e) {
+//             // No mostrar detalles del error al usuario final
+//             error_log('Erro ao executar consulta: ' . $e->getMessage());
+//             echo json_encode(['success' => false, 'message' => 'Erro ao executar consulta']);
+//             exit();
+//         }
+//     }
 
-// Leer y decodificar los datos JSON
-$rawPostData = file_get_contents("php://input");
-$data = json_decode($rawPostData, true);
+//     // Función para validar la fecha
+//     private function validarFecha($fecha)
+//     {
+//         $d = DateTime::createFromFormat('Y-m-d', $fecha);
+//         return $d && $d->format('Y-m-d') === $fecha;
+//     }
+// }
 
-// Validar los datos recibidos
-if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento'])) {
-    $guardarEdicion = new GuardarEdicion();
-    $guardarEdicion->guardarEdicion(
-        htmlspecialchars($data['cod_alerta']), // Escapar la entrada
-        htmlspecialchars($data['fechamento']), // Escapar la entrada
-        htmlspecialchars($data['analista'])    // Escapar la entrada
-    );
-} else {
-    echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
-} -->
+// // Leer y decodificar los datos JSON
+// $rawPostData = file_get_contents("php://input");
+// $data = json_decode($rawPostData, true);
+
+// // Validar los datos recibidos
+// if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento'])) {
+//     $guardarEdicion = new GuardarEdicion();
+//     $guardarEdicion->guardarEdicion(
+//         htmlspecialchars($data['cod_alerta']), // Escapar la entrada
+//         htmlspecialchars($data['fechamento']), // Escapar la entrada
+//         htmlspecialchars($data['analista'])    // Escapar la entrada
+//     );
+// } else {
+//     echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
+// } -->
