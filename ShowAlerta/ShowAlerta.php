@@ -32,7 +32,7 @@ class ShowAlerta extends modulo
         $Sql->connection = $conexao;
         $Sql->query = "select md5('hgtk'||cod_alerta::varchar) id_alerta,* from alerta left outer join modulo on alerta.cod_modulo = modulo.cod_modulo "
             . "left outer join usuario on alerta.cod_usuario = usuario.cod_usuario "
-            . "where fechamento is null order by alerta.cod_alerta desc";
+            . "where fechamento is not null order by alerta.cod_alerta desc";
         $dr = $Sql->ExecuteReader();
 
         $this->data = $dr;
