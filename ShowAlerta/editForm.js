@@ -153,11 +153,8 @@ ddocument.addEventListener("DOMContentLoaded", function () {
         history.pushState(null, document.title, location.href);
     });
 
-    // Prevenir el refresco de la página
-    window.addEventListener('beforeunload', function (e) {
-        var confirmationMessage = 'Você tem certeza que deseja sair? As alterações não serão salvas.';
-        (e || window.event).returnValue = confirmationMessage; // Gecko + IE
-        return confirmationMessage; // Webkit, Safari, Chrome
+    window.addEventListener("beforeunload", function (event) {
+        event.preventDefault();
     });
 });
 
