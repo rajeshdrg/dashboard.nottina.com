@@ -1,4 +1,4 @@
-<!-- 
+<?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header("Access-Control-Allow-Origin: *");
@@ -74,7 +74,6 @@ if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fe
 } else {
     echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
 }
- -->
 
 
 
@@ -85,7 +84,8 @@ if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fe
 
 
 
-<?php
+
+<!-- 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header("Access-Control-Allow-Origin: *");
@@ -172,4 +172,4 @@ if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fe
     );
 } else {
     echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
-}
+} -->

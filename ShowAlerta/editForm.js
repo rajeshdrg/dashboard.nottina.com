@@ -233,29 +233,12 @@ form.addEventListener("submit", event => {
         });
 });
 
-// Botón de cancelación que redirige a la página principal
 var cancelButton = document.getElementById("cancelButton");
-if (cancelButton) {
-    cancelButton.addEventListener("click", () => {
-        window.location.href = '../index.php';
-    });
-}
+cancelButton.addEventListener("click", () => {
+    window.location.href = '../index.php';
+});
 
-// Interceptar botón "atrás" del navegador
+
 window.addEventListener('popstate', function (event) {
-    history.pushState(null, document.title, location.href);
-    Swal.fire({
-        icon: 'warning',
-        title: 'Atenção',
-        text: 'Você tem certeza que deseja sair? As alterações não serão salvas.',
-        showCancelButton: true,
-        confirmButtonText: 'Sim',
-        cancelButtonText: 'Não'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = '../index.php';
-        } else {
-            history.pushState(null, document.title, location.href);
-        }
-    });
+    window.location.href = './index.php';
 });
