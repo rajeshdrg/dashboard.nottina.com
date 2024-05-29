@@ -250,6 +250,16 @@ function disableNavigationButtons() {
         history.pushState(null, null, location.href);
     });
 
+    window.addEventListener("beforeunload", function (event) {
+        // Si se cumplen ciertas condiciones, muestra una advertencia al usuario
+        var showWarning = true; // Cambia esta condición según sea necesario
+        if (showWarning) {
+            event.preventDefault();
+
+        }
+    });
+
+
 
 
 }
