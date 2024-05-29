@@ -250,10 +250,7 @@ function disableNavigationButtons() {
         history.pushState(null, null, location.href);
     });
 
-    window.addEventListener("beforeunload", function (event) {
-        event.preventDefault();
 
-    });
 
 }
 
