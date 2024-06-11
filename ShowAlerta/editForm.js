@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     option.textContent = analista.nome;
                     select.appendChild(option);
                     if (cod_usuario == analista.cod_usuario) {
-                        select.selectedIndex = index
+                        select.selectedIndex = index + 1
                     }
                 });
             } else {
