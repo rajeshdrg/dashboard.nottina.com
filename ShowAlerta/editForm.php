@@ -21,7 +21,7 @@
             <form id="editForm" method="post">
                 <!-- Adicione um campo oculto para o código de alerta -->
                 <input type="hidden" id="cod_usuario" name="cod_usuario" value="<?php session_start();
-                echo $_GET['cod_alerta'];
+                echo $_SESSION['cod_usuario'];
                 ?>">
 
                 <input type="hidden" id="cod_alerta" name="cod_alerta" value="<?php echo $_GET['cod_alerta']; ?>">
