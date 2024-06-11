@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const cod_usuario = input.value
 
                 console.log("codigo usuario: " + cod_usuario);
+
                 data.analistas.forEach(analista, index => {
                     const option = document.createElement('option');
                     option.value = analista.cod_usuario;
