@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const select = document.getElementById('analista');
                 const urlParams = new URLSearchParams(window.location.search);
                 const cod_usuario = urlParams.get('cod_usuario');
-
+                console.log("codigo usuario: " + cod_usuario);
                 data.analistas.forEach(analista, index => {
                     const option = document.createElement('option');
                     option.value = analista.cod_usuario;
