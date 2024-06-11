@@ -11,8 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             if (data.success) {
                 const select = document.getElementById('analista');
-                const urlParams = new URLSearchParams(window.location.search);
-                const cod_usuario = urlParams.get('cod_usuario');
+                const input = document.getElementById('cod_usuario')
+                const cod_usuario = input.value
+
                 console.log("codigo usuario: " + cod_usuario);
                 data.analistas.forEach(analista, index => {
                     const option = document.createElement('option');
