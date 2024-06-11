@@ -5,37 +5,43 @@ document.addEventListener("DOMContentLoaded", function () {
     var today = new Date().toISOString().split('T')[0];
     var fechamentoInput = document.getElementById('fechamento');
     fechamentoInput.value = today; // Set the input value to today's date
-});
-fetch('/ShowAlerta/selectAn.php?action=obter_analistas')
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            const select = document.getElementById('analista');
-            data.analistas.forEach(analista => {
-                const option = document.createElement('option');
-                option.value = analista.cod_usuario;
-                option.textContent = analista.nome;
-                select.appendChild(option);
-            });
-        } else {
-            console.error('Erro ao obter analistas:', data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Erro ao carregar analistas:', error);
+
+    fetch('/ShowAlerta/selectAn.php?action=obter_analistas')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const select = document.getElementById('analista');
+                const urlParams = new URLSearchParams(window.location.search);
+                const cod_usuario = urlParams.get('cod_usuario');
+
+                data.analistas.forEach(analista, index => {
+                    const option = document.createElement('option');
+                    option.value = analista.cod_usuario;
+                    option.textContent = analista.nome;
+                    select.appendChild(option);
+                    if (cod_usuario == analista.cod_usuario) {
+                        select.selectedIndex = index
+                    }
+                });
+            } else {
+                console.error('Erro ao obter analistas:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao carregar analistas:', error);
+        });
+
+    // Prevenir la navegación hacia atrás y adelante
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, location.href);
     });
 
-// Prevenir la navegación hacia atrás y adelante
-history.pushState(null, null, location.href);
-window.addEventListener('popstate', function () {
-    history.pushState(null, null, location.href);
-});
+    // Prevenir el refresco de la página
+    window.addEventListener("beforeunload", function (event) {
+        event.preventDefault();
 
-// Prevenir el refresco de la página
-window.addEventListener("beforeunload", function (event) {
-    event.preventDefault();
-
-});
+    });
 
 
 });
