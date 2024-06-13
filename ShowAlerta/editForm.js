@@ -85,7 +85,7 @@ function handleSubmit(event) {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ analista, fechamento })
+                    body: JSON.stringify(formObject)
                 })
                     .then(response => {
                         if (!response.ok) {
@@ -106,8 +106,54 @@ function handleSubmit(event) {
                                 }
                             });
                         } else {
-                            handleError('Erro:', data.message);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro',
+                                text: data.message
+                            }).then(() => {
+                                window.location.href = '../index.php';
+                            });
                         }
                     })
                     .catch(error => {
-                        handleError('Erro ao
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Erro ao enviar solicitação',
+                            text: 'Ocorreu um erro ao enviar a solicitação. Por favor, tente novamente mais tarde.'
+                        }).then(() => {
+                            window.location.href = '../index.php';
+                        });
+                    });
+            } else {
+                window.location.href = '../index.php';
+            }
+        });
+});
+
+var cancelButton = document.getElementById("cancelButton");
+cancelButton.addEventListener("click", () => {
+    window.location.href = '../index.php';
+});
+
+
+function disableNavigationButtons() {
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, location.href);
+    });
+
+    window.addEventListener("beforeunload", function (event) {
+
+        var showWarning = true;
+        if (showWarning) {
+            event.preventDefault();
+
+        }
+    });
+
+
+
+
+}
+
+disableNavigationButtons();
