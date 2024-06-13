@@ -53,7 +53,7 @@ form.addEventListener("submit", event => {
         cod_alerta: formData.get('cod_alerta'),
         analista: formData.get('analista'),
         fechamento: formData.get('fechamento'),
-
+        cod_usuario: formData.get('cod_usuario')
     };
 
     Swal.fire({

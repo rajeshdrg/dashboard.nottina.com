@@ -16,6 +16,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/ui/dropdownlist.php";
 
+
 class GuardarEdicion
 {
     public $conexao;
@@ -63,16 +64,17 @@ class GuardarEdicion
 $rawPostData = file_get_contents("php://input");
 $data = json_decode($rawPostData, true);
 
-// Debug: Verificar datos recibidos
-error_log(print_r($data, true));
+echo "Datos recibidos: ";
+print_r($data);
+echo "\n";
 
-if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento'])) {
+if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento']) && !empty($data['cod_usuario'])) {
     $guardarEdicion = new GuardarEdicion();
     $guardarEdicion->guardarEdicion(
         $data['cod_alerta'],
         $data['fechamento'],
-        $data['analista']
-
+        $data['analista'],
+        $data['cod_usuario']
     );
 } else {
     echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
