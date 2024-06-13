@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
     history.pushState(null, null, location.href);
     window.addEventListener('popstate', function () {
         history.pushState(null, null, location.href);
@@ -49,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
 var form = document.getElementById("editForm");
 
 form.addEventListener("submit", event => {
-    event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
+    event.preventDefault(); // Impedir que la página seja recarregada ao enviar o formulário
 
     var formData = new FormData(form);
     var formObject = {
@@ -71,7 +72,6 @@ form.addEventListener("submit", event => {
             if (result.isConfirmed) {
                 fetch('/ShowAlerta/guardar_edicion.php', {
                     method: 'POST',
-                    mode: "cors",
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -124,26 +124,5 @@ var cancelButton = document.getElementById("cancelButton");
 cancelButton.addEventListener("click", () => {
     window.location.href = '../index.php';
 });
-
-
-function disableNavigationButtons() {
-    history.pushState(null, null, location.href);
-    window.addEventListener('popstate', function () {
-        history.pushState(null, null, location.href);
-    });
-
-    window.addEventListener("beforeunload", function (event) {
-
-        var showWarning = true;
-        if (showWarning) {
-            event.preventDefault();
-
-        }
-    });
-
-
-
-
-}
 
 disableNavigationButtons();
