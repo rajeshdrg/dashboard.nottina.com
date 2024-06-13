@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var today = new Date().toISOString().split('T')[0];
     var fechamentoInput = document.getElementById('fechamento');
-    fechamentoInput.value = today; // Set the input value to today's date
-
+    fechamentoInput.value = today; // Establecer el valor del input como la fecha de hoy
 
     fetch('/ShowAlerta/selectAn.php?action=obter_analistas')
         .then(response => response.json())
@@ -46,73 +45,73 @@ document.addEventListener("DOMContentLoaded", function () {
 var form = document.getElementById("editForm");
 
 form.addEventListener("submit", event => {
-    event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
+    event.preventDefault(); // Evitar que la página se recargue al enviar el formulario
 
     var formData = new FormData(form);
     var formObject = {
         cod_alerta: formData.get('cod_alerta'),
         analista: formData.get('analista'),
-        fechamento: formData.get('fechamento'),
-         cod_usuario: formData.get('cod_usuario')
+        fechamento: formData.get('fechamento')
     };
-    console.log("Datos a enviar:", formObject); // Depuración: Verificar datos antes de enviar
+    
+    console.log("Datos a enviar:", formObject); // Mostrar datos antes de enviarlos
 
     Swal.fire({
-        title: 'Tem certeza?',
-        text: "Deseja atualizar os dados do alerta?",
+        title: '¿Está seguro?',
+        text: "¿Desea actualizar los datos del alerta?",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Sim, atualizar',
-        cancelButtonText: 'Não, cancelar'
+        confirmButtonText: 'Sí, actualizar',
+        cancelButtonText: 'No, cancelar'
     })
-        .then((result) => {
-            if (result.isConfirmed) {
-                
-                fetch('/ShowAlerta/guardar_edicion.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formObject)
-                })
-                    .then(response => response.json())
-                    .then(data => {                       
-                                               
-                        if (data.success) {
-                            console.log(data);
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Os campos foram alterados corretamente',
-                                showConfirmButton: true,
-                                confirmButtonText: 'Fechar'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.href = '../index.php';
-                                }
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Erro',
-                                text: data.message
-                            }).then(() => {
-                                window.location.href = '../index.php';
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Erro ao enviar solicitação',
-                            text: 'Ocorreu um erro ao enviar a solicitação. Por favor, tente novamente mais tarde.'
-                        }).then(() => {
+    .then((result) => {
+        if (result.isConfirmed) {
+            fetch('/ShowAlerta/guardar_edicion.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formObject)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Respuesta del servidor:', data);
+
+                if (data.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Los campos se han actualizado correctamente',
+                        showConfirmButton: true,
+                        confirmButtonText: 'Cerrar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
                             window.location.href = '../index.php';
-                        });
+                        }
                     });
-            } else {
-                window.location.href = '../index.php';
-            }
-        });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: data.message
+                    }).then(() => {
+                        window.location.href = '../index.php';
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error al enviar solicitud:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al enviar solicitud',
+                    text: 'Ocurrió un error al enviar la solicitud. Por favor, inténtelo de nuevo más tarde.'
+                }).then(() => {
+                    window.location.href = '../index.php';
+                });
+            });
+        } else {
+            window.location.href = '../index.php';
+        }
+    });
 });
 
 var cancelButton = document.getElementById("cancelButton");
@@ -133,6 +132,7 @@ function disableNavigationButtons() {
 }
 
 disableNavigationButtons();
+
 
 
 
