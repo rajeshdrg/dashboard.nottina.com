@@ -66,13 +66,13 @@ $data = json_decode($rawPostData, true);
 // Debug: Verificar datos recibidos
 error_log(print_r($data, true));
 
-if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento']) && !empty($data['cod_usuario'])) {
+if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento'])) {
     $guardarEdicion = new GuardarEdicion();
     $guardarEdicion->guardarEdicion(
         $data['cod_alerta'],
         $data['fechamento'],
-        $data['analista'],
-        $data['cod_usuario']
+        $data['analista']
+
     );
 } else {
     echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
