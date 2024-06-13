@@ -19,14 +19,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (analista) {
                     analistaInput.value = analista.nome;
                 } else {
-                    console.error('Analista não encontrado.');
+                    console.error('Analista no encontrado.');
                 }
             } else {
-                console.error('Erro ao obter analistas:', data.message);
+                console.error('Error al obtener analistas:', data.message);
             }
         })
         .catch(error => {
-            console.error('Erro ao carregar analistas:', error);
+            console.error('Error al cargar analistas:', error);
         });
 
     // Prevenir la navegación hacia atrás y adelante
@@ -73,7 +73,12 @@ form.addEventListener("submit", event => {
                 },
                 body: JSON.stringify(formObject)
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
                 console.log('Respuesta del servidor:', data);
 
@@ -132,6 +137,7 @@ function disableNavigationButtons() {
 }
 
 disableNavigationButtons();
+
 
 
 
