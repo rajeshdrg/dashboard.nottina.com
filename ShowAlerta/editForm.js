@@ -67,7 +67,7 @@ form.addEventListener("submit", event => {
     })
         .then((result) => {
             if (result.isConfirmed) {
-                let responseData;
+                
                 fetch('/ShowAlerta/guardar_edicion.php', {
                     method: 'POST',
                     headers: {
@@ -76,11 +76,10 @@ form.addEventListener("submit", event => {
                     body: JSON.stringify(formObject)
                 })
                     .then(response => response.json())
-                    .then(data => {
-                        
-                        console.log('respuesta del servidor:', responseData)
-                        
+                    .then(data => {                       
+                                               
                         if (data.success) {
+                            console.log(data);
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Os campos foram alterados corretamente',
