@@ -7,6 +7,8 @@ ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 ini_set('error_log', $_SERVER['DOCUMENT_ROOT'] . '/logs/php_errors.log');
 error_reporting(E_ALL);
+//verificar si esta llegando los datos:
+var_dump($_POST);
 
 if ($_SERVER['DOCUMENT_ROOT'] == null) {
     $_SERVER['DOCUMENT_ROOT'] = "..";
