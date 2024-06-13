@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var today = new Date().toISOString().split('T')[0];
     var fechamentoInput = document.getElementById('fechamento');
-    fechamentoInput.value = today; // Set the input value to today's date
+    fechamentoInput.value = today; // Establecer el valor del campo `fechamento` a la fecha de hoy
     fechamentoInput.disabled = true;
 
     fetch('/ShowAlerta/selectAn.php?action=obter_analistas')
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
 var form = document.getElementById("editForm");
 
 form.addEventListener("submit", event => {
-    event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
+    event.preventDefault(); // Impedir que la página se recargue al enviar el formulario
 
     var formData = new FormData(form);
     var formObject = {
@@ -279,3 +279,4 @@ function disableNavigationButtons() {
 }
 
 disableNavigationButtons();
+
