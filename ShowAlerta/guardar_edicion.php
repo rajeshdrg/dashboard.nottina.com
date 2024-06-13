@@ -60,43 +60,24 @@ class GuardarEdicion
     }
 }
 
-// $rawPostData = file_get_contents("php://input");
-// $data = json_decode($rawPostData, true);
+$rawPostData = file_get_contents("php://input");
+$data = json_decode($rawPostData, true);
+$data = $_POST;
 
-// // Depuración: imprimir datos recibidos
-// echo "Datos recibidos: ";
-// print_r($data);
-// echo "\n";
+// Depuración: imprimir datos recibidos
+echo "Datos recibidos: ";
+print_r($data);
+echo "\n";
 
-// if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento']) && !empty($data['cod_usuario'])) {
-//     $guardarEdicion = new GuardarEdicion();
+if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento']) && !empty($data['cod_usuario'])) {
+    $guardarEdicion = new GuardarEdicion();
 
-//     $guardarEdicion->guardarEdicion(
-//         $data['cod_alerta'],
-//         $data['analista'],
-//         $data['fechamento']
+    $guardarEdicion->guardarEdicion(
+        $data['cod_alerta'],
+        $data['analista'],
+        $data['fechamento']
 
-//     );
-// } else {
-//     echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
-// }
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = $_POST;
-
-    // Verificar si los datos están vacíos
-    if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento'])) {
-        $guardarEdicion = new GuardarEdicion();
-        $guardarEdicion->guardarEdicion(
-            $data['cod_alerta'],
-            $data['fechamento'],
-            $data['analista']
-        );
-
-        echo json_encode(['success' => true, 'Message' => 'Os campos foram alterados corretamente']);
-    } else {
-        echo json_encode(['success' => false, 'Message' => 'Não se receberam dados do formulário']);
-    }
+    );
 } else {
-    echo json_encode(['success' => false, 'Message' => 'Método de solicitud incorrecto']);
+    echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
 }
