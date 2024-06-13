@@ -15,14 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 const input = document.getElementById('cod_usuario')
                 const cod_usuario = input.value
 
-                data.analistas.forEach(analista => {
+                data.analistas.forEach((analista, index) => {
                     const option = document.createElement('option');
                     option.value = analista.cod_usuario;
                     option.textContent = analista.nome;
                     select.appendChild(option);
+                    if (cod_usuario == analista.cod_usuario) {
+                        select.selectedIndex = index
+                    }
                 });
-
-                select.value = cod_usuario
             } else {
                 console.error('Erro ao obter analistas:', data.message);
             }
