@@ -27,6 +27,7 @@
 
                 <div class="input-block">
                     <label for="analista">Analista:</label>
+                    <input type="text" id="analista" name="analista" value="" disabled>
                     <select id="analista" name="analista" required>
                         <option value="" disabled selected>Selecione um analista</option>
                     </select>
