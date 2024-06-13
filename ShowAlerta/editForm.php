@@ -20,16 +20,17 @@
             <h2>Atualizar Alerta</h2>
             <form id="editForm" method="post" action="guardar_edicion.php">
                 <!-- Adicione um campo oculto para o código de alerta -->
-                <input type=" hidden" id="cod_usuario" name="cod_usuario" value="<?php session_start();
+                <input type="hidden" id="cod_usuario" name="cod_usuario" value="<?php session_start();
                 echo $_SESSION['cod_usuario'];
                 ?>">
-                <input type="hidden" id="cod_alerta" name="cod_alerta" value="<?php echo $_GET['cod_alerta']; ?>">
 
+                <input type="hidden" id="cod_alerta" name="cod_alerta" value="<?php echo $_GET['cod_alerta']; ?>">
                 <div class="input-block">
                     <label for="analista">Analista:</label>
-                    <input type="text" id="analista" name="analista" readonly>
+                    <select id="analista" name="analista" required>
+                        <option value="" disabled selected>Selecione um analista</option>
+                    </select>
                 </div>
-
                 <div class="input-block">
                     <label for="fechamento">Fechamento:</label>
                     <input type="date" id="fechamento" name="fechamento" required>

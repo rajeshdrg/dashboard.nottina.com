@@ -7,8 +7,6 @@ ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 ini_set('error_log', $_SERVER['DOCUMENT_ROOT'] . '/logs/php_errors.log');
 error_reporting(E_ALL);
-//verificar si esta llegando los datos:
-var_dump($_POST);
 
 if ($_SERVER['DOCUMENT_ROOT'] == null) {
     $_SERVER['DOCUMENT_ROOT'] = "..";
@@ -30,7 +28,7 @@ class GuardarEdicion
 
     function guardarEdicion($codAlerta, $fechamento, $analista)
     {
-        if (empty($codAlerta) || empty($fechamento) || empty($analista) || empty($cod_usuario)) {
+        if (empty($codAlerta) || empty($fechamento) || empty($analista)) {
             echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios']);
             exit();
         }
@@ -65,17 +63,14 @@ class GuardarEdicion
 $rawPostData = file_get_contents("php://input");
 $data = json_decode($rawPostData, true);
 
-if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento'] && !empty($data['cod_usuario']))) {
+if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento'])) {
     $guardarEdicion = new GuardarEdicion();
 
     $guardarEdicion->guardarEdicion(
         $data['cod_alerta'],
-        $data['analista'],
         $data['fechamento'],
-        $data['$cod_usuario']
-
+        $data['analista']
     );
 } else {
-    echo json_encode(['success' => false, 'message' => 'Nao se receberam dados do formulario']);
+    echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
 }
-

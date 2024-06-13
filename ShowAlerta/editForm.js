@@ -11,17 +11,18 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                const analistaInput = document.getElementById('analista');
-                const input = document.getElementById('cod_usuario');
-                const cod_usuario = input.value;
+                const select = document.getElementById('analista');
+                const input = document.getElementById('cod_usuario')
+                const cod_usuario = input.value
 
-                const analista = data.analistas.find(analista => analista.cod_usuario === cod_usuario);
+                data.analistas.forEach(analista => {
+                    const option = document.createElement('option');
+                    option.value = analista.cod_usuario;
+                    option.textContent = analista.nome;
+                    select.appendChild(option);
+                });
 
-                if (analista) {
-                    analistaInput.value = analista.nome;
-                } else {
-                    console.error('Analista não encontrado.');
-                }
+                select.value = cod_usuario
             } else {
                 console.error('Erro ao obter analistas:', data.message);
             }
@@ -30,15 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Erro ao carregar analistas:', error);
         });
 
-
-
-
+    // Prevenir la navegación hacia atrás y adelante
     history.pushState(null, null, location.href);
     window.addEventListener('popstate', function () {
         history.pushState(null, null, location.href);
     });
 
-
+    // Prevenir el refresco de la página
     window.addEventListener("beforeunload", function (event) {
         event.preventDefault();
 
@@ -50,14 +49,13 @@ document.addEventListener("DOMContentLoaded", function () {
 var form = document.getElementById("editForm");
 
 form.addEventListener("submit", event => {
-    event.preventDefault(); // Impedir que la página seja recarregada ao enviar o formulário
+    event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
 
     var formData = new FormData(form);
     var formObject = {
         cod_alerta: formData.get('cod_alerta'),
         analista: formData.get('analista'),
-        fechamento: formData.get('fechamento'),
-        cod_usuario: formData.get('cod_usuario')
+        fechamento: formData.get('fechamento')
     };
 
     Swal.fire({
@@ -72,6 +70,7 @@ form.addEventListener("submit", event => {
             if (result.isConfirmed) {
                 fetch('/ShowAlerta/guardar_edicion.php', {
                     method: 'POST',
+                    mode: "cors",
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -125,4 +124,25 @@ cancelButton.addEventListener("click", () => {
     window.location.href = '../index.php';
 });
 
+// Función para deshabilitar botones de navegación
+function disableNavigationButtons() {
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, location.href);
+    });
 
+    window.addEventListener("beforeunload", function (event) {
+        // Si se cumplen ciertas condiciones, muestra una advertencia al usuario
+        var showWarning = true; // Cambia esta condición según sea necesario
+        if (showWarning) {
+            event.preventDefault();
+
+        }
+    });
+
+
+
+
+}
+
+disableNavigationButtons();
