@@ -23,6 +23,8 @@
                 <input type=" hidden" id="cod_usuario" name="cod_usuario" value="<?php session_start();
                 echo $_SESSION['cod_usuario'];
                 ?>">
+
+                <input type="hidden" name="cod_usuario" value="<?php echo $cod_usuario; ?>">
                 <input type="hidden" id="cod_alerta" name="cod_alerta" value="<?php echo $_GET['cod_alerta']; ?>">
 
                 <div class="input-block">

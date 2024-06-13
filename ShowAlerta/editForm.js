@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             if (data.success) {
                 const analistaInput = document.getElementById('analista');
-                // const input = document.getElementById('cod_usuario');
+                const input = document.getElementById('cod_usuario');
                 const cod_usuario = input.value;
 
                 const analista = data.analistas.find(analista => analista.cod_usuario === cod_usuario);
