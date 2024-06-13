@@ -128,7 +128,7 @@ function handleSubmit(event) {
                 window.location.href = '../index.php';
             }
         });
-});
+
 
 var cancelButton = document.getElementById("cancelButton");
 cancelButton.addEventListener("click", () => {
