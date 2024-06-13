@@ -18,7 +18,7 @@
         <div class="modal-content">
 
             <h2>Atualizar Alerta</h2>
-            <form id="editForm" method="post">
+            <form id="editForm" method="post" action="guardar_edicion.php">
                 <!-- Adicione um campo oculto para o código de alerta -->
                 <input type="hidden" id="cod_usuario" name="cod_usuario" value="<?php session_start();
                 echo $_SESSION['cod_usuario'];
