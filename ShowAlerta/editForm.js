@@ -66,6 +66,7 @@ form.addEventListener("submit", event => {
         cancelButtonText: 'Não, cancelar'
     })
         .then((result) => {
+            console.log(result);
             if (result.isConfirmed) {
                 fetch('/ShowAlerta/guardar_edicion.php', {
                     method: 'POST',
@@ -76,6 +77,7 @@ form.addEventListener("submit", event => {
                     body: JSON.stringify(formObject)
                 })
                     .then(response => {
+                        console.log("HTTP response:", response);
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
                         }
