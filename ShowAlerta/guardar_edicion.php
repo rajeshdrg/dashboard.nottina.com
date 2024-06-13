@@ -85,19 +85,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
 
     // Verificar si los datos están vacíos
-    if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento']) && !empty($data['cod_usuario'])) {
+    if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento'])) {
         $guardarEdicion = new GuardarEdicion();
         $guardarEdicion->guardarEdicion(
             $data['cod_alerta'],
             $data['fechamento'],
-            $data['analista'],
-            $data['cod_usuario']
+            $data['analista']
         );
 
-        echo json_encode(['success' => true, 'essage' => 'Os campos foram alterados corretamente']);
+        echo json_encode(['success' => true, 'Message' => 'Os campos foram alterados corretamente']);
     } else {
-        echo json_encode(['success' => false, 'essage' => 'Não se receberam dados do formulário']);
+        echo json_encode(['success' => false, 'Message' => 'Não se receberam dados do formulário']);
     }
 } else {
-    echo json_encode(['success' => false, 'essage' => 'Método de solicitud incorrecto']);
+    echo json_encode(['success' => false, 'Message' => 'Método de solicitud incorrecto']);
 }
