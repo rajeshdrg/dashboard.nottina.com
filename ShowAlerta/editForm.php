@@ -27,7 +27,7 @@
 
                 <div class="input-block">
                     <label for="analista">Analista:</label>
-                    <span id="analistaNome"></span>
+                    <input type="text" id="analista" name="analista" readonly>
                 </div>
 
                 <div class="input-block">

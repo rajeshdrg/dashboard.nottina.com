@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                const analistaNome = document.getElementById('analistaNome');
+                const analistaNome = document.getElementById('analista');
                 const input = document.getElementById('cod_usuario');
                 const cod_usuario = input.value;
 
                 const analista = data.analistas.find(analista => analista.cod_usuario === cod_usuario);
 
                 if (analista) {
-                    analistaNome.textContent = analista.nome;
+                    analista.textContent = analista.nome;
                 } else {
                     console.error('Analista não encontrado.');
                 }
