@@ -33,17 +33,17 @@ class GuardarEdicion
             exit();
         }
 
-        // Transforme a data ‘fechamento’ para incluir a hora atual
+        // Transformar la fecha de 'fechamento' para incluir la hora actual
         $dataCompleta = $fechamento . ' ' . date('H:i:s');
         $dataCompleta = date('Y-m-d H:i:s', strtotime($dataCompleta));
 
-        // Atualizar o registro na tabela alerta
+        // Actualizar el registro en la tabla alerta
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
 
         $sqlCommand->query = "
             UPDATE alerta
-            SET fechamento = TO_TIMESTAMP($2, 'YYYY-MM-DD HH24:MI:SS'),
+            SET fechamento = TO_TIMESTAMP($2, 'YYYY-MM-DD HH24:MI:SS'),  -- Asegúrate que TO_TIMESTAMP funcione según tu motor de base de datos
                 cod_usuario = $1
             WHERE cod_alerta = $3
         ";
@@ -62,7 +62,6 @@ class GuardarEdicion
 
 $rawPostData = file_get_contents("php://input");
 $data = json_decode($rawPostData, true);
-$data = $_POST;
 
 // Depuración: imprimir datos recibidos
 echo "Datos recibidos: ";
@@ -74,9 +73,8 @@ if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fe
 
     $guardarEdicion->guardarEdicion(
         $data['cod_alerta'],
-        $data['analista'],
-        $data['fechamento']
-
+        $data['fechamento'],  // Asegúrate de que 'fechamento' esté en el formato correcto esperado en tu consulta SQL
+        $data['analista']
     );
 } else {
     echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
