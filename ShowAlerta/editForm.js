@@ -32,13 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Erro ao carregar analistas:', error);
         });
 
-    // Prevenir la navegación hacia atrás y adelante
+    
     history.pushState(null, null, location.href);
     window.addEventListener('popstate', function () {
         history.pushState(null, null, location.href);
     });
 
-    // Prevenir el refresco de la página
+    
     window.addEventListener("beforeunload", function (event) {
         event.preventDefault();
 
@@ -125,7 +125,7 @@ cancelButton.addEventListener("click", () => {
     window.location.href = '../index.php';
 });
 
-// Función para deshabilitar botones de navegación
+
 function disableNavigationButtons() {
     history.pushState(null, null, location.href);
     window.addEventListener('popstate', function () {
@@ -133,8 +133,8 @@ function disableNavigationButtons() {
     });
 
     window.addEventListener("beforeunload", function (event) {
-        // Si se cumplen ciertas condiciones, muestra una advertencia al usuario
-        var showWarning = true; // Cambia esta condición según sea necesario
+        
+        var showWarning = true; 
         if (showWarning) {
             event.preventDefault();
 
