@@ -27,9 +27,7 @@
                 <input type="hidden" id="cod_alerta" name="cod_alerta" value="<?php echo $_GET['cod_alerta']; ?>">
                 <div class="input-block">
                     <label for="analista">Analista:</label>
-                    <select id="analista" name="analista" required>
-                        <option value="" disabled selected>Selecione um analista</option>
-                    </select>
+                    <input type="text" id="analista" name="analista" readonly>
                 </div>
                 <div class="input-block">
                     <label for="fechamento">Fechamento:</label>

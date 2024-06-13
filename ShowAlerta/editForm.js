@@ -11,19 +11,17 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                const select = document.getElementById('analista');
-                const input = document.getElementById('cod_usuario')
-                const cod_usuario = input.value
+                const analistaInput = document.getElementById('analista');
+                const input = document.getElementById('cod_usuario');
+                const cod_usuario = input.value;
 
-                data.analistas.forEach((analista, index) => {
-                    const option = document.createElement('option');
-                    option.value = analista.cod_usuario;
-                    option.textContent = analista.nome;
-                    select.appendChild(option);
-                    if (cod_usuario == analista.cod_usuario) {
-                        select.selectedIndex = index + 1;
-                    }
-                });
+                const analista = data.analistas.find(analista => analista.cod_usuario === cod_usuario);
+
+                if (analista) {
+                    analistaInput.value = analista.nome;
+                } else {
+                    console.error('Analista não encontrado.');
+                }
             } else {
                 console.error('Erro ao obter analistas:', data.message);
             }
@@ -41,9 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Prevenir el refresco de la página
     window.addEventListener("beforeunload", function (event) {
         event.preventDefault();
-
     });
-
 
 });
 
@@ -56,7 +52,8 @@ form.addEventListener("submit", event => {
     var formObject = {
         cod_alerta: formData.get('cod_alerta'),
         analista: formData.get('analista'),
-        fechamento: formData.get('fechamento')
+        fechamento: formData.get('fechamento'),
+        cod_usuario: formData.get('cod_usuario')
     };
 
     Swal.fire({
@@ -133,17 +130,8 @@ function disableNavigationButtons() {
     });
 
     window.addEventListener("beforeunload", function (event) {
-        // Si se cumplen ciertas condiciones, muestra una advertencia al usuario
-        var showWarning = true; // Cambia esta condición según sea necesario
-        if (showWarning) {
-            event.preventDefault();
-
-        }
+        event.preventDefault();
     });
-
-
-
-
 }
 
 disableNavigationButtons();
