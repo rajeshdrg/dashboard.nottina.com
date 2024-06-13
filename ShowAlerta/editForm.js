@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var today = new Date().toISOString().split('T')[0];
     var fechamentoInput = document.getElementById('fechamento');
     fechamentoInput.value = today; // Set the input value to today's date
+    fechamentoInput.disabled = true;
+
 
     fetch('/ShowAlerta/selectAn.php?action=obter_analistas')
         .then(response => response.json())
