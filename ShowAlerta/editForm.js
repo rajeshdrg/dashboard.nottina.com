@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var today = new Date().toISOString().split('T')[0];
     var fechamentoInput = document.getElementById('fechamento');
     fechamentoInput.value = today; // Establecer el valor del campo `fechamento` a la fecha de hoy
-    fechamentoInput.disabled = true;
+    
 
     fetch('/ShowAlerta/selectAn.php?action=obter_analistas')
         .then(response => response.json())
