@@ -20,9 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     option.value = analista.cod_usuario;
                     option.textContent = analista.nome;
                     select.appendChild(option);
+                    select.value = cod_usuario
                 });
 
-                select.value = cod_usuario
+                // select.value = cod_usuario
             } else {
                 console.error('Erro ao obter analistas:', data.message);
             }
