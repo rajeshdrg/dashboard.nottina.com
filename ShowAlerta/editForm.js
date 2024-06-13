@@ -125,4 +125,4 @@ cancelButton.addEventListener("click", () => {
     window.location.href = '../index.php';
 });
 
-disableNavigationButtons();
+
