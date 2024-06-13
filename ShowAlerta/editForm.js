@@ -15,12 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 const input = document.getElementById('cod_usuario')
                 const cod_usuario = input.value
 
-                data.analistas.forEach((analista, index) => {
+                data.analistas.forEach(analista => {
                     const option = document.createElement('option');
                     option.value = analista.cod_usuario;
                     option.textContent = analista.nome;
                     select.appendChild(option);
-                    select.value = cod_usuario
+
                 });
 
                 // select.value = cod_usuario
