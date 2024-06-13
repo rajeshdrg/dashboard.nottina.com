@@ -63,10 +63,10 @@ class GuardarEdicion
 $rawPostData = file_get_contents("php://input");
 $data = json_decode($rawPostData, true);
 
-// Depuración: imprimir datos recibidos
-echo "Datos recibidos: ";
-print_r($data);
-echo "\n";
+// // Depuración: imprimir datos recibidos
+// echo "Datos recibidos: ";
+// print_r($data);
+// echo "\n";
 
 if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento']) && !empty($data['cod_usuario'])) {
     $guardarEdicion = new GuardarEdicion();
