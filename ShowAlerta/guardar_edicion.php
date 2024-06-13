@@ -63,13 +63,16 @@ class GuardarEdicion
 $rawPostData = file_get_contents("php://input");
 $data = json_decode($rawPostData, true);
 
-if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento'])) {
-    $guardarEdicion = new GuardarEdicion();
+// Debug: Verificar datos recibidos
+error_log(print_r($data, true));
 
+if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento']) && !empty($data['cod_usuario'])) {
+    $guardarEdicion = new GuardarEdicion();
     $guardarEdicion->guardarEdicion(
         $data['cod_alerta'],
         $data['fechamento'],
-        $data['analista']
+        $data['analista'],
+        $data['cod_usuario']
     );
 } else {
     echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);

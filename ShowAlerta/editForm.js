@@ -68,18 +68,12 @@ form.addEventListener("submit", event => {
             if (result.isConfirmed) {
                 fetch('/ShowAlerta/guardar_edicion.php', {
                     method: 'POST',
-                    mode: "cors",
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(formObject)
                 })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
+                    .then(response => response.json())
                     .then(data => {
                         if (data.success) {
                             Swal.fire({
