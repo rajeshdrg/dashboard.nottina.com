@@ -55,6 +55,7 @@ form.addEventListener("submit", event => {
         fechamento: formData.get('fechamento'),
         // cod_usuario: formData.get('cod_usuario')
     };
+    console.log("Datos a enviar:", formObject); // Depuración: Verificar datos antes de enviar
 
     Swal.fire({
         title: 'Tem certeza?',
