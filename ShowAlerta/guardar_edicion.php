@@ -26,9 +26,9 @@ class GuardarEdicion
         $this->conexao = $conexao;
     }
 
-    function guardarEdicion($codAlerta, $fechamento, $analista)
+    function guardarEdicion($codAlerta, $fechamento, $analista, $codUsuario)
     {
-        if (empty($codAlerta) || empty($analista) || empty($fechamento)) {
+        if (empty($codAlerta) || empty($analista) || empty($fechamento) || empty($codUsuario)) {
             echo json_encode(['success' => false, 'message' => 'Erro: Todos os campos são obrigatórios']);
             exit();
         }
@@ -48,7 +48,7 @@ class GuardarEdicion
             WHERE cod_alerta = $3
         ";
 
-        $sqlCommand->params = array($analista, $dataCompleta, $codAlerta);
+        $sqlCommand->params = array($codUsuario, $dataCompleta, $codAlerta);
 
         try {
             $sqlCommand->Execute();
@@ -74,7 +74,8 @@ if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fe
     $guardarEdicion->guardarEdicion(
         $data['cod_alerta'],
         $data['fechamento'],  // Asegúrate de que 'fechamento' esté en el formato correcto esperado en tu consulta SQL
-        $data['analista']
+        $data['analista'],
+        $data['cod_usuario']
     );
 } else {
     echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
