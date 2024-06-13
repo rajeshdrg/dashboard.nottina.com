@@ -27,11 +27,9 @@
 
                 <div class="input-block">
                     <label for="analista">Analista:</label>
-
-                    <select id="analista" name="analista" required>
-                        <option value="" disabled selected>Selecione um analista</option>
-                    </select>
+                    <span id="analistaNome"></span>
                 </div>
+
                 <div class="input-block">
                     <label for="fechamento">Fechamento:</label>
                     <input type="date" id="fechamento" name="fechamento" required>

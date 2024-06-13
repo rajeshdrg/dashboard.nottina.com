@@ -11,19 +11,17 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                const select = document.getElementById('analista');
-                const input = document.getElementById('cod_usuario')
-                const cod_usuario = input.value
+                const analistaNome = document.getElementById('analistaNome');
+                const input = document.getElementById('cod_usuario');
+                const cod_usuario = input.value;
 
-                data.analistas.forEach(analista => {
-                    const option = document.createElement('option');
-                    option.value = analista.cod_usuario;
-                    option.textContent = analista.nome;
-                    select.appendChild(option);
+                const analista = data.analistas.find(analista => analista.cod_usuario === cod_usuario);
 
-                });
-
-                select.value = cod_usuario
+                if (analista) {
+                    analistaNome.textContent = analista.nome;
+                } else {
+                    console.error('Analista não encontrado.');
+                }
             } else {
                 console.error('Erro ao obter analistas:', data.message);
             }
@@ -31,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error('Erro ao carregar analistas:', error);
         });
+
 
 
     history.pushState(null, null, location.href);
