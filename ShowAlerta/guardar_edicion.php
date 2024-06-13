@@ -70,10 +70,11 @@ if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fe
 
     $guardarEdicion->guardarEdicion(
         $data['cod_alerta'],
-        $data['fechamento'],
-        $data['analista']
+        $data['analista'],
+        $data['fechamento']
+
     );
 } else {
-    echo json_encode(['success' => false, 'message' => 'Não se receberam dados do formulário']);
+    echo json_encode(['success' => false, 'message' => 'Nao se receberam dados do formulário']);
 }
 
