@@ -76,8 +76,9 @@ form.addEventListener("submit", event => {
                 })
                     .then(response => response.json())
                     .then(data => {
-
+                        
                         console.log('respuesta del servidor:', data)
+                        
                         if (data.success) {
                             Swal.fire({
                                 icon: 'success',
