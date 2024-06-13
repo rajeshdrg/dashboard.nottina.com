@@ -15,7 +15,7 @@ if ($_SERVER['DOCUMENT_ROOT'] == null) {
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/ui/dropdownlist.php";
-
+var_dump($_POST);
 class GuardarEdicion
 {
     public $conexao;
