@@ -67,6 +67,7 @@ form.addEventListener("submit", event => {
     })
         .then((result) => {
             if (result.isConfirmed) {
+                let responseData;
                 fetch('/ShowAlerta/guardar_edicion.php', {
                     method: 'POST',
                     headers: {
@@ -77,7 +78,7 @@ form.addEventListener("submit", event => {
                     .then(response => response.json())
                     .then(data => {
                         
-                        console.log('respuesta del servidor:', data)
+                        console.log('respuesta del servidor:', responseData)
                         
                         if (data.success) {
                             Swal.fire({
