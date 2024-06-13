@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 });
 
-                // select.value = cod_usuario
+                select.value = cod_usuario
             } else {
                 console.error('Erro ao obter analistas:', data.message);
             }
