@@ -27,25 +27,18 @@
 
                 <div class="input-block">
                     <label for="analista">Analista:</label>
-                    <input type="text" id="analista" name="analista" value="<?php echo $_SESSION['analista']; ?>"
-                        readonly>
-                </div>
-
-
-                <!-- <div class="input-block">
-                    <label for="analista">Analista:</label>
                     <select id="analista" name="analista" required>
                         <option value="" disabled selected>Selecione um analista</option>
-                    </select> -->
+                    </select>
+                </div>
+                <div class="input-block">
+                    <label for="fechamento">Fechamento:</label>
+                    <input type="date" id="fechamento" name="fechamento" required>
+                </div>
+                <button type="submit" class="btn-submit">Enviar</button>
+                <button type="button" id="cancelButton" class="btn-cancel">Cancelar</button>
+            </form>
         </div>
-        <div class="input-block">
-            <label for="fechamento">Fechamento:</label>
-            <input type="date" id="fechamento" name="fechamento" required>
-        </div>
-        <button type="submit" class="btn-submit">Enviar</button>
-        <button type="button" id="cancelButton" class="btn-cancel">Cancelar</button>
-        </form>
-    </div>
     </div>
     <script src="/ShowAlerta/editForm.js"></script>
 </body>
