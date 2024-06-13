@@ -65,13 +65,14 @@ class GuardarEdicion
 $rawPostData = file_get_contents("php://input");
 $data = json_decode($rawPostData, true);
 
-if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento'])) {
+if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento'] && !empty($data['cod_usuario']))) {
     $guardarEdicion = new GuardarEdicion();
 
     $guardarEdicion->guardarEdicion(
         $data['cod_alerta'],
         $data['analista'],
-        $data['fechamento']
+        $data['fechamento'],
+        $data['$cod_usuario']
 
     );
 } else {

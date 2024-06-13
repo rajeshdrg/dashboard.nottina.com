@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             if (data.success) {
                 const analistaInput = document.getElementById('analista');
-                const input = document.getElementById('cod_usuario');
+                // const input = document.getElementById('cod_usuario');
                 const cod_usuario = input.value;
 
                 const analista = data.analistas.find(analista => analista.cod_usuario === cod_usuario);
@@ -55,7 +55,8 @@ form.addEventListener("submit", event => {
     var formObject = {
         cod_alerta: formData.get('cod_alerta'),
         analista: formData.get('analista'),
-        fechamento: formData.get('fechamento')
+        fechamento: formData.get('fechamento'),
+        cod_usuario: formData.get('cod_usuario')
     };
 
     Swal.fire({
