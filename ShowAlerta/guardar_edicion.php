@@ -33,11 +33,11 @@ class GuardarEdicion
             exit();
         }
 
-        // Transformar la fecha de 'fechamento' para incluir la hora actual
+        // Transformar a data de 'fechamento' para incluir a hora atual
         $dataCompleta = $fechamento . ' ' . date('H:i:s');
         $dataCompleta = date('Y-m-d H:i:s', strtotime($dataCompleta));
 
-        // Actualizar el registro en la tabla alerta
+        // Atualizar o registro na tabela alerta
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
 
@@ -63,17 +63,14 @@ class GuardarEdicion
 $rawPostData = file_get_contents("php://input");
 $data = json_decode($rawPostData, true);
 
-// // Depuración: imprimir datos recibidos
-// echo "Datos recibidos: ";
-// print_r($data);
-// echo "\n";
+
 
 if (!empty($data['cod_alerta']) && !empty($data['analista']) && !empty($data['fechamento']) && !empty($data['cod_usuario'])) {
     $guardarEdicion = new GuardarEdicion();
 
     $guardarEdicion->guardarEdicion(
         $data['cod_alerta'],
-        $data['fechamento'],  // Asegúrate de que 'fechamento' esté en el formato correcto esperado en tu consulta SQL
+        $data['fechamento'],
         $data['analista'],
         $data['cod_usuario']
     );
