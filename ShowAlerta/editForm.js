@@ -58,53 +58,7 @@ form.addEventListener("submit", async (event) => {
 
     //console.log("Datos a enviar:", formObject); //Depuração: verifique os dados antes de enviar
 
-    // const result = await Swal.fire({
-    //     title: 'Tem certeza?',
-    //     text: "Deseja atualizar os dados do alerta?",
-    //     icon: 'warning',
-    //     showCancelButton: true,
-    //     confirmButtonText: 'Sim, atualizar',
-    //     cancelButtonText: 'Não, cancelar'
-    // })
-
-    // if (result.isConfirmed) {
-    //     const response = await fetch('/ShowAlerta/guardar_edicion.php', {
-    //         method: 'POST',
-    //         mode: "cors",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(formObject)
-    //     })
-
-    //     if (!response.ok) {
-    //         throw new Error('Network response was not ok');
-    //     }
-
-    //     const data = await response.json();
-    //     if (data.success) {
-    //         const result2 = await Swal.fire({
-    //             icon: 'success',
-    //             title: 'Os campos foram alterados corretamente',
-    //             showConfirmButton: true,
-    //             confirmButtonText: 'Fechar'
-    //         })
-
-    //         if (result2.isConfirmed) {
-    //             window.location.href = '../index.php';
-    //         }
-    //     } else {
-    //         const result3 = await Swal.fire({
-    //             icon: 'error',
-    //             title: 'Erro',
-    //             text: data.message
-    //         })
-    //         window.location.href = '../index.php';
-    //     }
-    // }
-
-
-    Swal.fire({
+    const result = await Swal.fire({
         title: 'Tem certeza?',
         text: "Deseja atualizar os dados do alerta?",
         icon: 'warning',
@@ -112,60 +66,119 @@ form.addEventListener("submit", async (event) => {
         confirmButtonText: 'Sim, atualizar',
         cancelButtonText: 'Não, cancelar'
     })
-        .then((result) => {
-            console.log(result);
-            if (result.isConfirmed) {
-                fetch('/ShowAlerta/guardar_edicion.php', {
-                    method: 'POST',
-                    mode: "cors",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formObject)
+
+    if (result.isConfirmed) {
+        try {
+            const response = await fetch('/ShowAlerta/guardar_edicion.php', {
+                method: 'POST',
+                mode: "cors",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formObject)
+            })
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            if (data.success) {
+                const result2 = await Swal.fire({
+                    icon: 'success',
+                    title: 'Os campos foram alterados corretamente',
+                    showConfirmButton: true,
+                    confirmButtonText: 'Fechar'
                 })
-                    .then(response => {
-                        console.log("HTTP response:", response);
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log(data);
-                        if (data.success) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Os campos foram alterados corretamente',
-                                showConfirmButton: true,
-                                confirmButtonText: 'Fechar'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.href = '../index.php';
-                                }
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Erro',
-                                text: data.message
-                            }).then(() => {
-                                window.location.href = '../index.php';
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Erro ao enviar solicitação',
-                            text: 'Ocorreu um erro ao enviar a solicitação. Por favor, tente novamente mais tarde.'
-                        }).then(() => {
-                            window.location.href = '../index.php';
-                        });
-                    });
+
+
+                if (result2.isConfirmed) {
+                    window.location.href = '../index.php';
+                }
             } else {
+                const result3 = await Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: data.message
+                })
                 window.location.href = '../index.php';
             }
-        });
+        } catch (error) {
+            const result4 = await Swal.fire({
+                icon: 'error',
+                title: 'Erro ao enviar solicitação',
+                text: 'Ocorreu um erro ao enviar a solicitação. Por favor, tente novamente mais tarde.'
+            })
+            window.location.href = '../index.php';
+
+        }
+
+    }
+
+
+
+    //     Swal.fire({
+    //         title: 'Tem certeza?',
+    //         text: "Deseja atualizar os dados do alerta?",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonText: 'Sim, atualizar',
+    //         cancelButtonText: 'Não, cancelar'
+    //     })
+    //         .then((result) => {
+    //             console.log(result);
+    //             if (result.isConfirmed) {
+    //                 fetch('/ShowAlerta/guardar_edicion.php', {
+    //                     method: 'POST',
+    //                     mode: "cors",
+    //                     headers: {
+    //                         'Content-Type': 'application/json'
+    //                     },
+    //                     body: JSON.stringify(formObject)
+    //                 })
+    //                     .then(response => {
+    //                         console.log("HTTP response:", response);
+    //                         if (!response.ok) {
+    //                             throw new Error('Network response was not ok');
+    //                         }
+    //                         return response.json();
+    //                     })
+    //                     .then(data => {
+    //                         console.log(data);
+    //                         if (data.success) {
+    //                             Swal.fire({
+    //                                 icon: 'success',
+    //                                 title: 'Os campos foram alterados corretamente',
+    //                                 showConfirmButton: true,
+    //                                 confirmButtonText: 'Fechar'
+    //                             }).then((result) => {
+    //                                 if (result.isConfirmed) {
+    //                                     window.location.href = '../index.php';
+    //                                 }
+    //                             });
+    //                         } else {
+    //                             Swal.fire({
+    //                                 icon: 'error',
+    //                                 title: 'Erro',
+    //                                 text: data.message
+    //                             }).then(() => {
+    //                                 window.location.href = '../index.php';
+    //                             });
+    //                         }
+    //                     })
+    //                     .catch(error => {
+    //                         Swal.fire({
+    //                             icon: 'error',
+    //                             title: 'Erro ao enviar solicitação',
+    //                             text: 'Ocorreu um erro ao enviar a solicitação. Por favor, tente novamente mais tarde.'
+    //                         }).then(() => {
+    //                             window.location.href = '../index.php';
+    //                         });
+    //                     });
+    //             } else {
+    //                 window.location.href = '../index.php';
+    //             }
+    //         });
 });
 
 var cancelButton = document.getElementById("cancelButton");
@@ -173,7 +186,7 @@ cancelButton.addEventListener("click", () => {
     window.location.href = '../index.php';
 });
 
-// Función para deshabilitar botones de navegación
+// Função para desativar botões de navegação
 function disableNavigationButtons() {
     history.pushState(null, null, location.href);
     window.addEventListener('popstate', function () {
