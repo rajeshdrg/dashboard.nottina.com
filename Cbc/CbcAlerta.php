@@ -17,19 +17,39 @@ class CbcAlerta extends modulo
         $this->icone = "fa fa-signal";
 
         // $this->CbcFile = new Cbc("/dados/cap/status/wspre_cbc.xml");
-        $this->CbcFile = new Cbc("/Cbc/test.xml"); // Cambia "test.xml" por la ruta real de tu archivo XML
+        $this->CbcFile = new Cbc("test.xml"); // Cambia "test.xml" por la ruta real de tu archivo XML
 
     }
 
+
+    // public function get_data()
+    // {
+    //     $hora = date('G');
+    //     foreach ($this->CbcAlerta as $sf) {
+    //         $this->CbcFile->ShowMe();
+    //         ;
+    //     }
+    // }
 
     public function get_data()
     {
-        $hora = date('G');
-        foreach ($this->CbcAlerta as $sf) {
-            $this->CbcFile->ShowMe();
-            ;
+        // Cargar el contenido del archivo XML
+        $xmlContent = file_get_contents($this->CbcFile);
+
+        // Cargar el XML como objeto SimpleXMLElement
+        $cbcData = simplexml_load_string($xmlContent);
+
+        // Procesar cada elemento <cbcAlerta>
+        foreach ($cbcData->cbcAlerta as $alerta) {
+            echo "ID: " . $alerta->cbcAlerta_id . "\n";
+            echo "Status: " . $alerta->status . "\n";
+            echo "Test realizado: " . $alerta->test_done . "\n";
+            echo "Routing: " . $alerta->routing . "\n";
+            echo "\n";
         }
     }
+
+
 
     public function front_call()
     {
