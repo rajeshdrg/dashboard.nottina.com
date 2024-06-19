@@ -19,7 +19,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/ListServer/ListServer.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/ShowAlerta/ShowAlerta.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/Procon/Procon.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/SmsPortabilidade/SmsPortabilidade.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/Cbc/CbcAlerta.php";
+// require_once $_SERVER["DOCUMENT_ROOT"] . "/Cbc/CbcAlerta.php";
 
 $hora = date('G');
 if ($hora > 21 || $hora < 6)
@@ -202,7 +202,7 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
     $procon->front_call();
     $smsPor->front_call();
     $processo->front_call();
-    $cbc->front_call();
+    // $cbc->front_call();
 
 
     ?>
@@ -368,10 +368,10 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
         <?php $nmp->button(); ?>
       </div>
 
-      <div class="card-div">
+      <!-- <div class="card-div">
         <?php $cbc->button(); ?>
         
-      </div>
+      </div> -->
 
     </div>
     <div id='conteudo' style='display:none;' class="<?php print $dark; ?>"></div>
