@@ -369,10 +369,7 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
         <?php $nmp->button(); ?>
       </div>
 
-         <!--CBC Alerta -->
-      <!-- <div class="card-div">
-        <?php $cbcAlerta->Button(); ?>
-      </div> -->
+   
 
     </div>
     <div id='conteudo' style='display:none;' class="<?php print $dark; ?>"></div>
