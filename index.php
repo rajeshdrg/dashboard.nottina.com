@@ -19,6 +19,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/ListServer/ListServer.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/ShowAlerta/ShowAlerta.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/Procon/Procon.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/SmsPortabilidade/SmsPortabilidade.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/Cbc/cbc.php";
 
 $hora = date('G');
 if ($hora > 21 || $hora < 6)
