@@ -202,6 +202,8 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
     $procon->front_call();
     $smsPor->front_call();
     $processo->front_call();
+    $cbc->front_call();
+
 
     ?>
  
@@ -364,6 +366,11 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
       <div class="card-div">
         <?php $procon->button(); ?>
         <?php $nmp->button(); ?>
+      </div>
+
+      <div class="card-div">
+        <?php $cbc->button(); ?>
+        
       </div>
 
     </div>
