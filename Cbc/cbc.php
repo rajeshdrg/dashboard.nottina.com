@@ -12,6 +12,7 @@ class Cbc
             throw new Exception("Erro: arquivo xml não encontrado");
         }
         $this->file = $file;
+        $this->get_data();  // Llamar a get_data al inicializar
     }
 
     public function get_data()
@@ -63,6 +64,4 @@ class Cbc
         echo "</div>";
         echo "</div>";
     }
-
-
 }
