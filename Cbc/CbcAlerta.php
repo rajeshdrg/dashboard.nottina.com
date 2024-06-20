@@ -20,6 +20,7 @@ class CbcAlerta extends modulo
         // trocar a ruta do arquivo do test
         //$this->CbcFile = new Cbc("/dados/cap/status/wspre_cbc.xml"); 
         $this->CbcFile = new Cbc($_SERVER["DOCUMENT_ROOT"] . "/Cbc/test.xml");
+
     }
 
     public function get_data()
@@ -50,7 +51,9 @@ class CbcAlerta extends modulo
 
         foreach ($this->CbcAlerta as $sf) {
             $sf->ShowMe();
+            print_r($sf);
         }
+
         // $this->CbcFile->ShowMe();  // Mostrar os dados diretamente
     }
 }
