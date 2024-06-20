@@ -26,7 +26,7 @@ class CbcAlerta extends modulo
     {
         $hora = date('G');
         foreach ($this->CbcAlerta as $sf) {
-            $this->CbcFile->ShowMe();
+            $sf->get_data();
         }
 
         // $this->CbcFile->get_data();  //  obtener os dados do arquivo XML
@@ -49,7 +49,7 @@ class CbcAlerta extends modulo
         $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
 
         foreach ($this->CbcAlerta as $sf) {
-            $this->CbcFile->ShowMe();
+            $sf->ShowMe();
         }
         // $this->CbcFile->ShowMe();  // Mostrar os dados diretamente
     }
