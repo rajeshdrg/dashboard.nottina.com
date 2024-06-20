@@ -96,7 +96,7 @@ class CbcAlerta extends modulo
         echo "<script>console.log('Getting data...');</script>";
         try {
             // Llama al método get_data de Cbc
-            $this->CbcFile->get_data();
+            // $this->CbcFile->get_data();
         } catch (Exception $e) {
             echo "<script>console.error('Erro ao obter dados: " . $e->getMessage() . "');</script>";
         }
