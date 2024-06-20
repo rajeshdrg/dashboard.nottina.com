@@ -48,13 +48,13 @@ class Cbc
         $hora = date('G');
         $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
 
-        echo "<script>console.log('Showing XML data');</script>";
-        echo "<div class='$dark' style='width:50%; margin: 20px auto;'>";
-        echo "<header class='card-header'>";
-        echo "<b>CBC - Alerta</b><br>";
-        echo "<span>Atualização " . htmlspecialchars($this->file_date) . "</span>";
-        echo "</header>";
-        echo "<div class='card-content'>";
+        print "<script>console.log('Showing XML data');</script>";
+        print "<div class='$dark' style='width:50%; margin: 20px auto;'>";
+        print "<header class='card-header'>";
+        print "<b>CBC - Alerta</b><br>";
+        print "<span>Atualização " . htmlspecialchars($this->file_date) . "</span>";
+        print "</header>";
+        print "<div class='card-content'>";
 
         // Mostrar los datos del XML
         foreach ($this->xml->cbcAlerta as $alerta) {
@@ -62,20 +62,20 @@ class Cbc
             $status = (string) $alerta->status;
             $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
 
-            echo "<p>";
-            echo "<span style='display:inline-block; width:300px;'>";
-            echo "<b>ID: " . htmlspecialchars($cbcAlerta_id) . "</b></span>";
-            echo "<span style='display:inline-block; width:100px; color:$color;'>";
-            echo "<b>Status: " . htmlspecialchars($status) . "</b></span>";
-            echo "<span style='display:inline-block; width:100px;'>";
-            echo "<b>Teste: " . htmlspecialchars((string) $alerta->test_done) . "</b></span>";
-            echo "<span style='display:inline-block; width:100px;'>";
-            echo "<b>Roteamento: " . htmlspecialchars((string) $alerta->routing) . "</b></span>";
-            echo "</p>";
+            print "<p>";
+            print "<span style='display:inline-block; width:300px;'>";
+            print "<b>ID: " . htmlspecialchars($cbcAlerta_id) . "</b></span>";
+            print "<span style='display:inline-block; width:100px; color:$color;'>";
+            print "<b>Status: " . htmlspecialchars($status) . "</b></span>";
+            print "<span style='display:inline-block; width:100px;'>";
+            print "<b>Teste: " . htmlspecialchars((string) $alerta->test_done) . "</b></span>";
+            print "<span style='display:inline-block; width:100px;'>";
+            print "<b>Roteamento: " . htmlspecialchars((string) $alerta->routing) . "</b></span>";
+            print "</p>";
         }
 
-        echo "</div>";
-        echo "</div>";
+        print "</div>";
+        print "</div>";
     }
 }
 
