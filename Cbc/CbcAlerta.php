@@ -7,24 +7,29 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/Cbc/cbc.php";
 class CbcAlerta extends modulo
 {
     public $CbcFile; // Define $CbcFile property
+    public $CbcAlerta;
 
     public function __construct()
     {
         parent::__construct();
 
         $this->name = "Cbc";
-        $this->sigla = "CBC Alerta";
+        $this->sigla = "CBC";
         $this->icone = "fa fa-signal";
 
-        // trocar a ruta do arquivo de test
+        // trocar a ruta do arquivo do test
         //$this->CbcFile = new Cbc("/dados/cap/status/wspre_cbc.xml"); 
         $this->CbcFile = new Cbc($_SERVER["DOCUMENT_ROOT"] . "/Cbc/test.xml");
     }
 
     public function get_data()
     {
+        $hora = date('G');
+        foreach ($this->CbcAlerta as $sf) {
+            $this->CbcFile->ShowMe();
+        }
 
-        $this->CbcFile->get_data();  //  obtener os dados do arquivo XML
+        // $this->CbcFile->get_data();  //  obtener os dados do arquivo XML
     }
 
     public function front_call()
@@ -39,7 +44,14 @@ class CbcAlerta extends modulo
 
     public function ShowMe()
     {
-        $this->CbcFile->ShowMe();  // Mostrar os dados diretamente
+        date_default_timezone_set("America/Sao_Paulo");
+        $hora = date('G');
+        $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
+
+        foreach ($this->CbcAlerta as $sf) {
+            $this->CbcFile->ShowMe();
+        }
+        // $this->CbcFile->ShowMe();  // Mostrar os dados diretamente
     }
 }
 
