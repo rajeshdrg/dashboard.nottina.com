@@ -1,9 +1,11 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/modulo/modulo.php";
+if ($_SERVER['DOCUMENT_ROOT'] == null)
+    $_SERVER['DOCUMENT_ROOT'] = "..";
+
 require_once $_SERVER["DOCUMENT_ROOT"] . "/alerta/alerta.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/Cbc/cbc.php";
-
+require_once $_SERVER["DOCUMENT_ROOT"] . "/modulo/modulo.php";
 class CbcAlerta extends modulo
 {
     public $CbcFile; // Define $CbcFile property
@@ -20,6 +22,8 @@ class CbcAlerta extends modulo
         // trocar a ruta do arquivo do test
         //$this->CbcFile = new Cbc("/dados/cap/status/wspre_cbc.xml"); 
         $this->CbcFile = new Cbc($_SERVER["DOCUMENT_ROOT"] . "/Cbc/test.xml");
+        $this->CbcAlerta = new Alerta();
+
 
     }
 
