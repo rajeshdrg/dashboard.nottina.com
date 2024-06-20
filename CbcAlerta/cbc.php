@@ -18,7 +18,7 @@ class Cbc
 
     private function get_data()
     {
-        echo "<script>console.log('Loading XML data from file: {$this->file}');</script>";
+        echo "<script>console.log('Carregando dados XML do arquivo: {$this->file}');</script>";
 
         // Leer la fecha de modificación del archivo
         $this->file_date = date("d/m/Y H:i:s", filemtime($this->file));
@@ -39,7 +39,7 @@ class Cbc
             throw new Exception("Erro: conteúdo XML inválido. Detalhes: " . implode(", ", $errors));
         }
 
-        echo "<script>console.log('XML data loaded successfully');</script>";
+        echo "<script>console.log('Dados XML carregados com sucesso');</script>";
     }
 
     public function ShowMe()
@@ -48,35 +48,45 @@ class Cbc
         $hora = date('G');
         $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
 
-        print "<script>console.log('Showing XML data');</script>";
-        print "<div class='$dark' style='width:50%; margin: 20px auto;'>";
-        print "<header class='card-header'>";
-        print "<b>CBC - Alerta</b><br>";
-        print "<span>Atualização " . htmlspecialchars($this->file_date) . "</span>";
-        print "</header>";
-        print "<div class='card-content'>";
+        echo "<script>console.log('Mostrando dados XML');</script>";
+        echo "<div class='$dark' style='width:80%; margin: 20px auto;'>";
+        echo "<header class='card-header'>";
+        echo "<b>CBC - Alerta</b><br>";
+        echo "<span>Última atualização: " . htmlspecialchars($this->file_date) . "</span>";
+        echo "</header>";
+        echo "<div class='card-content'>";
+        echo "<table class='table table-striped'>"; // Utilizando uma tabela para organizar os dados
 
+        echo "<thead>";
+        echo "<tr>";
+        echo "<th>ID</th>";
+        echo "<th>Status</th>";
+        echo "<th>Teste</th>";
+        echo "<th>Roteamento</th>";
+        echo "</tr>";
+        echo "</thead>";
+
+        echo "<tbody>";
         // Mostrar los datos del XML
         foreach ($this->xml->cbcAlerta as $alerta) {
             $cbcAlerta_id = (string) $alerta->cbcAlerta_id;
             $status = (string) $alerta->status;
             $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
 
-            print "<p>";
-            print "<span style='display:inline-block; width:300px;'>";
-            print "<b>ID: " . htmlspecialchars($cbcAlerta_id) . "</b></span>";
-            print "<span style='display:inline-block; width:100px; color:$color;'>";
-            print "<b>Status: " . htmlspecialchars($status) . "</b></span>";
-            print "<span style='display:inline-block; width:100px;'>";
-            print "<b>Teste: " . htmlspecialchars((string) $alerta->test_done) . "</b></span>";
-            print "<span style='display:inline-block; width:100px;'>";
-            print "<b>Roteamento: " . htmlspecialchars((string) $alerta->routing) . "</b></span>";
-            print "</p>";
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($cbcAlerta_id) . "</td>";
+            echo "<td style='color:$color; font-weight:bold;'>" . htmlspecialchars($status) . "</td>";
+            echo "<td>" . htmlspecialchars((string) $alerta->test_done) . "</td>";
+            echo "<td>" . htmlspecialchars((string) $alerta->routing) . "</td>";
+            echo "</tr>";
         }
+        echo "</tbody>";
 
-        print "</div>";
-        print "</div>";
+        echo "</table>"; // Fechando a tabela
+
+        echo "</div>";
+        echo "</div>";
     }
 }
 
-
+?>
