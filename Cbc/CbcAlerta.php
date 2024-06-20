@@ -55,7 +55,7 @@ class CbcAlerta extends modulo
 
         foreach ($this->CbcAlerta as $sf) {
             $sf->ShowMe();
-            print_r($sf);
+            echo $sf;
         }
 
         // $this->CbcFile->ShowMe();  // Mostrar os dados diretamente
