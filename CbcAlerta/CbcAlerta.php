@@ -36,7 +36,7 @@ class CbcAlerta extends modulo
     // Método para obter dados do objeto Cbc
     public function get_data()
     {
-        echo "<script>console.log('Obtendo dados...');</script>";
+        // echo "<script>console.log('Obtendo dados...');</script>";
         try {
             // Chama o método get_data de Cbc (ajustar conforme a implementação de Cbc)
             // $this->CbcFile->get_data();
@@ -54,14 +54,14 @@ class CbcAlerta extends modulo
     // Método de chamada de retorno (back-end)
     public function back_call()
     {
-        echo "<script>console.log('Chamada de retorno iniciada');</script>";
+        // echo "<script>console.log('Chamada de retorno iniciada');</script>";
         $this->get_data(); // Chama o método get_data para obter os dados do Cbc
     }
 
     // Método para mostrar os dados do objeto Cbc
     public function ShowMe()
     {
-        echo "<script>console.log('Chamando método ShowMe');</script>";
+        // echo "<script>console.log('Chamando método ShowMe');</script>";
         date_default_timezone_set("America/Sao_Paulo");
         $hora = date('G');
         $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
@@ -76,91 +76,7 @@ $cbcAlerta = new CbcAlerta();
 
 // Se o parâmetro 'back' estiver presente na URL, chama os métodos back_call e ShowMe
 if (isset($_GET['back'])) {
-    echo "<script>console.log('Parâmetro back detectado');</script>";
+    // echo "<script>console.log('Parâmetro back detectado');</script>";
     $cbcAlerta->back_call();
     $cbcAlerta->ShowMe();
 }
-
-
-
-
-
-
-// if ($_SERVER['DOCUMENT_ROOT'] == null)
-//     $_SERVER['DOCUMENT_ROOT'] = "..";
-
-
-
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/modulo/modulo.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/alerta/alerta.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/CbcAlerta/cbc.php";
-
-// class CbcAlerta extends modulo
-// {
-//     public $CbcFile; // Define $CbcFile property
-//     public $CbcAlerta = []; // Initialize $CbcAlerta as an array
-
-//     public function __construct()
-//     {
-//         parent::__construct();
-
-//         $this->name = "CbcAlerta";
-//         $this->sigla = "CBC";
-//         $this->icone = "fa fa-signal";
-
-//         try {
-//             $this->CbcFile = new Cbc("/home/rajesh/dashboard.nottina.com/CbcAlerta/test.xml");
-//             echo "<script>console.log('Cbc object created successfully');</script>";
-//         } catch (Exception $e) {
-//             echo "<script>console.error('Erro: " . $e->getMessage() . "');</script>";
-//         }
-//     }
-
-//     public function get_data()
-//     {
-//         $hora = date('G');
-//         echo "<script>console.log('Getting data...');</script>";
-//         try {
-//             // Llama al método get_data de Cbc
-//             // $this->CbcFile->get_data();
-//         } catch (Exception $e) {
-//             echo "<script>console.error('Erro ao obter dados: " . $e->getMessage() . "');</script>";
-//         }
-//     }
-
-//     public function front_call()
-//     {
-//         parent::front_call();
-//     }
-
-//     public function back_call()
-//     {
-//         echo "<script>console.log('Back call initiated');</script>";
-//         $this->get_data();
-//     }
-
-//     public function ShowMe()
-//     {
-//         echo "<script>console.log('Calling ShowMe method');</script>";
-//         date_default_timezone_set("America/Sao_Paulo");
-//         $hora = date('G');
-//         $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
-
-//         // Llama al método ShowMe de Cbc
-//         $this->CbcFile->ShowMe();
-
-//     }
-// }
-
-// $cbcAlerta = new CbcAlerta();
-// if (isset($_GET['back'])) {
-//     echo "<script>console.log('Back parameter detected');</script>";
-//     $cbcAlerta->back_call();
-//     $cbcAlerta->ShowMe();
-// }
-
-
-
-
-// trocar a ruta do arquivo do test
-//         //$this->CbcFile = new Cbc("/dados/cap/status/wspre_cbc.xml"); 

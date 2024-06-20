@@ -9,7 +9,7 @@ class Cbc
     public function __construct($file)
     {
         if (!file_exists($file)) {
-            throw new Exception("Erro: arquivo XML não encontrado");
+            throw new Exception();
         }
 
         $this->file = $file;
@@ -18,19 +18,19 @@ class Cbc
 
     private function get_data()
     {
-        echo "<script>console.log('Carregando dados XML do arquivo: {$this->file}');</script>";
+        // echo "<script>console.log('Carregando dados XML do arquivo: {$this->file}');</script>";
 
-        // Leer la fecha de modificación del archivo
+        //Lê a data de modificação do arquivo
         $this->file_date = date("d/m/Y H:i:s", filemtime($this->file));
 
-        // Leer el contenido del archivo XML
+        // Lẽ o conteudo do arquivo XML
         $xmlstr = file_get_contents($this->file);
 
         if ($xmlstr === false) {
             throw new Exception("Erro: não foi possível ler o arquivo XML");
         }
 
-        // Intentar cargar el XML
+        // Intentar carregar o XML
         libxml_use_internal_errors(true); // Habilitar errores libxml
         $this->xml = simplexml_load_string($xmlstr);
 
@@ -67,7 +67,7 @@ class Cbc
         echo "</thead>";
 
         echo "<tbody>";
-        // Mostrar los datos del XML
+        // Mostrar os dados del XML
         foreach ($this->xml->cbcAlerta as $alerta) {
             $cbcAlerta_id = (string) $alerta->cbcAlerta_id;
             $status = (string) $alerta->status;
@@ -89,4 +89,3 @@ class Cbc
     }
 }
 
-?>
