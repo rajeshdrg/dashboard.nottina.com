@@ -96,7 +96,7 @@ class CbcAlerta extends modulo
         echo "<script>console.log('Getting data...');</script>";
         foreach ($this->CbcAlerta as $sf) {
             echo "<script>console.log('Showing alert...');</script>";
-            $this->CbcFile->ShowMe();
+            $sf->ShowMe();
         }
     }
 
@@ -119,7 +119,7 @@ class CbcAlerta extends modulo
         $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
 
         foreach ($this->CbcAlerta as $sf) {
-            $this->CbcFile->ShowMe();
+            $sf->ShowMe();
         }
     }
 }
