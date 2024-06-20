@@ -79,7 +79,7 @@ class CbcAlerta extends modulo
         parent::__construct();
 
         $this->name = "Cbc";
-        $this->sigla = "CBC Alerta";
+        $this->sigla = "CBC";
         $this->icone = "fa fa-signal";
 
         try {
@@ -113,6 +113,7 @@ class CbcAlerta extends modulo
 
     public function ShowMe()
     {
+        echo "<script>console.log('Calling ShowMe method');</script>";
         date_default_timezone_set("America/Sao_Paulo");
         $hora = date('G');
         $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
@@ -124,7 +125,7 @@ class CbcAlerta extends modulo
 }
 
 $cbcAlerta = new CbcAlerta();
-
+echo "<script>console.log('Back parameter detected');</script>";
 if (isset($_GET['back'])) {
     $cbcAlerta->back_call();
     $cbcAlerta->ShowMe();

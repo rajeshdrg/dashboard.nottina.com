@@ -40,6 +40,7 @@ class Cbc
         $hora = date('G');
         $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
 
+        echo "<script>console.log('Showing XML data');</script>";
         echo "<div class='$dark' style='width:50%; margin: 20px auto;'>";
         echo "<header class='card-header'>";
         echo "<b>CBC - Alerta</b><br>";
