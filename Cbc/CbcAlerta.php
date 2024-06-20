@@ -78,7 +78,7 @@ class CbcAlerta extends modulo
     {
         parent::__construct();
 
-        $this->name = "Cbc";
+        $this->name = "CbcAlerta";
         $this->sigla = "CBC";
         $this->icone = "fa fa-signal";
 
