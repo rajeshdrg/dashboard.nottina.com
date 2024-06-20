@@ -125,8 +125,8 @@ class CbcAlerta extends modulo
 }
 
 $cbcAlerta = new CbcAlerta();
-echo "<script>console.log('Back parameter detected');</script>";
 if (isset($_GET['back'])) {
+    echo "<script>console.log('Back parameter detected');</script>";
     $cbcAlerta->back_call();
     $cbcAlerta->ShowMe();
 }
