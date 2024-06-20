@@ -8,6 +8,7 @@ class Cbc
     public function __construct($file)
     {
         if (!file_exists($file)) {
+            echo "Archivo no encontrado: $file\n";
             throw new Exception("Erro: arquivo xml não encontrado");
         }
         $this->file = $file;
