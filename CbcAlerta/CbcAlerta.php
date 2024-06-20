@@ -83,7 +83,7 @@ class CbcAlerta extends modulo
         $this->icone = "fa fa-signal";
 
         try {
-            $this->CbcFile = new Cbc("/home/rajesh/dashboard.nottina.com/Cbc/test.xml");
+            $this->CbcFile = new Cbc("/home/rajesh/dashboard.nottina.com/CbcAlerta/test.xml");
             echo "<script>console.log('Cbc object created successfully');</script>";
         } catch (Exception $e) {
             echo "<script>console.error('Erro: " . $e->getMessage() . "');</script>";
