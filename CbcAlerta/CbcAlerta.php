@@ -67,7 +67,7 @@ if ($_SERVER['DOCUMENT_ROOT'] == null)
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/modulo/modulo.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/alerta/alerta.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/Cbc/cbc.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/CbcAlerta/cbc.php";
 
 class CbcAlerta extends modulo
 {
