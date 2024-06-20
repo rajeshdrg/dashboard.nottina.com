@@ -43,8 +43,8 @@ class ListServer extends modulo
         $this->server[] = new Server('/dados/cap/status/disco_sv_banco.xml');
         $this->server[] = new Server('/dados/cap/status/disco_sv_mail.xml');
         $this->server[] = new Server('/dados/cap/status/disco_sv-sql.xml');
-        // $this->server[]= new Server('/dados/cap/status/disco_sp26.xml');
-        // $this->server[]= new Server('/dados/cap/status/disco_sp25.xml');
+        $this->server[] = new Server('/dados/cap/status/disco_sp26.xml');
+        $this->server[] = new Server('/dados/cap/status/disco_sp25.xml');
         $this->server[] = new Server('/dados/cap/status/disco_kannel51.xml');
         $this->server[] = new Server('/dados/cap/status/disco_sp27.abstract.com.br.xml');
         //  $this->server[]= new Server('/dados/cap/status/disco_vsp250.abstract.com.br.xml');
