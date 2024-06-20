@@ -72,7 +72,7 @@ class SmsPortabilidade extends modulo
 $smsPor = new SmsPortabilidade();
 
 if (isset($_GET['back'])) {
-    echo "<script>console.log('Back parameter detected');</script>";
+
     $smsPor->back_call();
     $smsPor->ShowMe();
 }
