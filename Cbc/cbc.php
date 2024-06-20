@@ -2,36 +2,44 @@
 
 class Cbc
 {
-    public $file;
-    public $xml;
-    public $file_date;
+    private $file;
+    private $xml;
+    private $file_date;
 
     public function __construct($file)
     {
         if (!file_exists($file)) {
-            throw new Exception("Erro: arquivo xml não encontrado");
+            throw new Exception("Erro: arquivo XML não encontrado");
         }
+
         $this->file = $file;
         $this->get_data();
     }
 
-    public function get_data()
+    private function get_data()
     {
         echo "<script>console.log('Loading XML data from file: {$this->file}');</script>";
 
+        // Leer la fecha de modificación del archivo
         $this->file_date = date("d/m/Y H:i:s", filemtime($this->file));
+
+        // Leer el contenido del archivo XML
         $xmlstr = file_get_contents($this->file);
 
         if ($xmlstr === false) {
-            throw new Exception("Erro: não foi possível ler o arquivo xml");
+            throw new Exception("Erro: não foi possível ler o arquivo XML");
         }
 
-        try {
-            $this->xml = new SimpleXMLElement($xmlstr);
-            echo "<script>console.log('XML data loaded successfully');</script>";
-        } catch (Exception $e) {
-            throw new Exception("Erro: conteúdo xml inválido");
+        // Intentar cargar el XML
+        libxml_use_internal_errors(true); // Habilitar errores libxml
+        $this->xml = simplexml_load_string($xmlstr);
+
+        if ($this->xml === false) {
+            $errors = libxml_get_errors();
+            throw new Exception("Erro: conteúdo XML inválido. Detalhes: " . implode(", ", $errors));
         }
+
+        echo "<script>console.log('XML data loaded successfully');</script>";
     }
 
     public function ShowMe()
@@ -48,6 +56,7 @@ class Cbc
         echo "</header>";
         echo "<div class='card-content'>";
 
+        // Mostrar los datos del XML
         foreach ($this->xml->cbcAlerta as $alerta) {
             $cbcAlerta_id = (string) $alerta->cbcAlerta_id;
             $status = (string) $alerta->status;
@@ -69,4 +78,5 @@ class Cbc
         echo "</div>";
     }
 }
-?>
+
+

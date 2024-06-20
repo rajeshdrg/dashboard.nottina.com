@@ -94,9 +94,11 @@ class CbcAlerta extends modulo
     {
         $hora = date('G');
         echo "<script>console.log('Getting data...');</script>";
-        foreach ($this->CbcFile as $sf) {
-            echo "<script>console.log('Showing alert...');</script>";
-            $sf->get_data();
+        try {
+            // Llama al método get_data de Cbc
+            $this->CbcFile->get_data();
+        } catch (Exception $e) {
+            echo "<script>console.error('Erro ao obter dados: " . $e->getMessage() . "');</script>";
         }
     }
 
@@ -118,9 +120,9 @@ class CbcAlerta extends modulo
         $hora = date('G');
         $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
 
-        foreach ($this->CbcFile as $sf) {
-            $sf->ShowMe();
-        }
+        // Llama al método ShowMe de Cbc
+        $this->CbcFile->ShowMe();
+
     }
 }
 
