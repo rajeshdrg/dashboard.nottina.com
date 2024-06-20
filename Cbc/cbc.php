@@ -25,8 +25,9 @@ class Cbc
         }
 
         try {
-            $this->xml = new SimpleXMLElement($xmlstr);
+            echo "<script>console.log('XML data loaded successfully');</script>";
         } catch (Exception $e) {
+            echo "<script>console.error('Erro: conteúdo xml inválido');</script>";
             throw new Exception("Erro: conteúdo xml inválido");
         }
     }
@@ -63,6 +64,8 @@ class Cbc
 
         echo "</div>";
         echo "</div>";
+
+        echo "<script>console.log('ShowMe function executed');</script>";
     }
 }
 

@@ -29,12 +29,12 @@ class CbcAlerta extends modulo
 
     public function get_data()
     {
-        $hora = date('G');
-        foreach ($this->CbcAlerta as $sf) {
-            $sf->get_data();
-        }
+        // $hora = date('G');
+        // foreach ($this->CbcAlerta as $sf) {
+        //     $sf->get_data();
+        // }
 
-        // $this->CbcFile->get_data();  //  obtener os dados do arquivo XML
+        $this->CbcFile->get_data();  //  obtener os dados do arquivo XML
     }
 
     public function front_call()
@@ -55,7 +55,7 @@ class CbcAlerta extends modulo
 
         foreach ($this->CbcAlerta as $sf) {
             $sf->ShowMe();
-            echo $sf;
+
         }
 
         // $this->CbcFile->ShowMe();  // Mostrar os dados diretamente
