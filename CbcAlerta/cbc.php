@@ -166,7 +166,7 @@ class Cbc
         foreach ($dados_agrupados as $estado => $operadoras) {
             foreach ($operadoras as $operadora => $alertas) {
                 foreach ($alertas as $alerta) {
-                    $mme = isset($alerta->mme) ? (string) $alerta->mme : null;
+                    $mme = isset($alerta->mme) ? (string) $alerta->mme : $alerta->tecnologia->amf;
                     $status = (string) $alerta->status;
                     $test_done = (string) $alerta->test_done;
                     $routing = (string) $alerta->routing;
