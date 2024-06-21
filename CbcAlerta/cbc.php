@@ -196,9 +196,9 @@ class Cbc
                         $routing_tecnologia = (string) $alerta->tecnologia->routing;
 
                         // Verificar si hay datos en todos los campos de la tecnología
-                        if (empty($amf) && empty($status_tecnologia) && empty($test_done_tecnologia) && empty($routing_tecnologia)) {
-                            continue; // Omitir fila si todos los campos están vacíos
-                        }
+                        // if (empty($amf) && empty($status_tecnologia) && empty($test_done_tecnologia) && empty($routing_tecnologia)) {
+                        //     continue; // Omitir fila si todos los campos están vacíos
+                        // }
 
                         $color_tecnologia = ($status_tecnologia === "ok") ? "green" : (($status_tecnologia === "fora") ? "red" : "black");
 
