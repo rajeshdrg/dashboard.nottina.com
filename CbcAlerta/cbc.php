@@ -69,17 +69,23 @@ class Cbc
         echo "</thead>";
 
         echo "<tbody>";
-        // Mostrar os dados del XML
+        // Mostrar os dados do XML
         foreach ($this->xml->cbcAlerta as $alerta) {
             $cbcAlerta_operadora = (string) $alerta->cbcAlerta_operadora;
+            $estado = (string) $alerta->estado;
+            $mme = (string) $alerta->mme;
             $status = (string) $alerta->status;
+            $test_done = (string) $alerta->test_done;
+            $routing = (string) $alerta->routing;
             $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
 
             echo "<tr>";
             echo "<td>" . htmlspecialchars($cbcAlerta_operadora) . "</td>";
+            echo "<td>" . htmlspecialchars($estado) . "</td>";
+            echo "<td>" . htmlspecialchars($mme) . "</td>";
             echo "<td style='color:$color; font-weight:bold;'>" . htmlspecialchars($status) . "</td>";
-            echo "<td>" . htmlspecialchars((string) $alerta->test_done) . "</td>";
-            echo "<td>" . htmlspecialchars((string) $alerta->routing) . "</td>";
+            echo "<td>" . htmlspecialchars($test_done) . "</td>";
+            echo "<td>" . htmlspecialchars($routing) . "</td>";
             echo "</tr>";
         }
         echo "</tbody>";
@@ -89,5 +95,6 @@ class Cbc
         echo "</div>";
         echo "</div>";
     }
+
 }
 
