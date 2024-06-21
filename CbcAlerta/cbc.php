@@ -42,6 +42,81 @@ class Cbc
         echo "<script>console.log('Dados XML carregados com sucesso');</script>";
     }
 
+    // public function ShowMe()
+    // {
+    //     date_default_timezone_set("America/Sao_Paulo");
+    //     $hora = date('G');
+    //     $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
+
+    //     echo "<script>console.log('Mostrando dados XML');</script>";
+    //     echo "<div class='$dark' style='width:80%; margin: 20px auto;'>";
+    //     echo "<header class='card-header'>";
+    //     echo "<b>CBC</b><br>";
+    //     echo "<span>Última atualização: " . htmlspecialchars($this->file_date) . "</span>";
+    //     echo "</header>";
+    //     echo "<div class='card-content'>";
+    //     echo "<table class='table table-striped'>"; // Utilizando uma tabela para organizar os dados
+
+    //     echo "<thead>";
+    //     echo "<tr>";
+    //     echo "<th>Operadora</th>";
+    //     echo "<th>Estado/Região</th>";
+    //     echo "<th>MME/AMF</th>";
+    //     echo "<th>Status</th>";
+    //     echo "<th>Teste</th>";
+    //     echo "<th>Roteamento</th>";
+    //     echo "</tr>";
+    //     echo "</thead>";
+
+    //     echo "<tbody>";
+    //     // Mostrar os dados do XML
+    //     foreach ($this->xml->cbcAlerta as $alerta) {
+    //         $cbcAlerta_operadora = (string) $alerta->cbcAlerta_operadora;
+    //         $estado = (string) $alerta->estado;
+    //         $status = (string) $alerta->status;
+    //         $test_done = (string) $alerta->test_done;
+    //         $routing = (string) $alerta->routing;
+    //         $mme_amf = (string) $alerta->mme;
+    //         $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
+
+    //         echo "<tr>";
+    //         echo "<td>" . htmlspecialchars($cbcAlerta_operadora) . "</td>";
+    //         echo "<td>" . htmlspecialchars($estado) . "</td>";
+    //         echo "<td>" . htmlspecialchars($mme_amf) . "</td>";
+    //         echo "<td style='color:$color; font-weight:bold;'>" . htmlspecialchars($status) . "</td>";
+    //         echo "<td>" . htmlspecialchars($test_done) . "</td>";
+    //         echo "<td>" . htmlspecialchars($routing) . "</td>";
+    //         echo "</tr>";
+
+    //         // Verificar se existem subgrupo do tecnologia
+    //         if (isset($alerta->tecnologia)) {
+    //             $tipo = (string) $alerta->tecnologia->tipo;
+    //             $amf = (string) $alerta->tecnologia->amf;
+    //             $status_tecnologia = (string) $alerta->tecnologia->status;
+    //             $test_done_tecnologia = (string) $alerta->tecnologia->test_done;
+    //             $routing_tecnologia = (string) $alerta->tecnologia->routing;
+    //             $color_tecnologia = ($status_tecnologia === "ok") ? "green" : (($status_tecnologia === "fora") ? "red" : "black");
+
+    //             echo "<tr>";
+    //             echo "<td>" . htmlspecialchars($cbcAlerta_operadora) . " (Tecnologia $tipo)</td>";
+    //             echo "<td>" . htmlspecialchars($estado) . "</td>";
+    //             echo "<td>" . htmlspecialchars($amf) . "</td>";
+    //             echo "<td style='color:$color_tecnologia; font-weight:bold;'>" . htmlspecialchars($status_tecnologia) . "</td>";
+    //             echo "<td>" . htmlspecialchars($test_done_tecnologia) . "</td>";
+    //             echo "<td>" . htmlspecialchars($routing_tecnologia) . "</td>";
+    //             echo "</tr>";
+    //         }
+    //     }
+    //     echo "</tbody>";
+
+    //     echo "</table>"; // Fechando a tabela
+
+    //     echo "</div>";
+    //     echo "</div>";
+    // }
+
+
+
     public function ShowMe()
     {
         date_default_timezone_set("America/Sao_Paulo");
@@ -59,8 +134,8 @@ class Cbc
 
         echo "<thead>";
         echo "<tr>";
-        echo "<th>Operadora</th>";
         echo "<th>Estado/Região</th>";
+        echo "<th>Operadora</th>";
         echo "<th>MME/AMF</th>";
         echo "<th>Status</th>";
         echo "<th>Teste</th>";
@@ -69,44 +144,66 @@ class Cbc
         echo "</thead>";
 
         echo "<tbody>";
-        // Mostrar os dados do XML
+
+        // Agrupar os dados por estado e operadora
+        $dados_agrupados = [];
         foreach ($this->xml->cbcAlerta as $alerta) {
-            $cbcAlerta_operadora = (string) $alerta->cbcAlerta_operadora;
             $estado = (string) $alerta->estado;
-            $status = (string) $alerta->status;
-            $test_done = (string) $alerta->test_done;
-            $routing = (string) $alerta->routing;
-            $mme_amf = (string) $alerta->mme;
-            $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
+            $operadora = (string) $alerta->cbcAlerta_operadora;
+            $tecnologia = isset($alerta->tecnologia) ? '5G' : 'normal';
 
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($cbcAlerta_operadora) . "</td>";
-            echo "<td>" . htmlspecialchars($estado) . "</td>";
-            echo "<td>" . htmlspecialchars($mme_amf) . "</td>";
-            echo "<td style='color:$color; font-weight:bold;'>" . htmlspecialchars($status) . "</td>";
-            echo "<td>" . htmlspecialchars($test_done) . "</td>";
-            echo "<td>" . htmlspecialchars($routing) . "</td>";
-            echo "</tr>";
+            if (!isset($dados_agrupados[$estado])) {
+                $dados_agrupados[$estado] = [];
+            }
 
-            // Verificar se existem subgrupo do tecnologia
-            if (isset($alerta->tecnologia)) {
-                $tipo = (string) $alerta->tecnologia->tipo;
-                $amf = (string) $alerta->tecnologia->amf;
-                $status_tecnologia = (string) $alerta->tecnologia->status;
-                $test_done_tecnologia = (string) $alerta->tecnologia->test_done;
-                $routing_tecnologia = (string) $alerta->tecnologia->routing;
-                $color_tecnologia = ($status_tecnologia === "ok") ? "green" : (($status_tecnologia === "fora") ? "red" : "black");
+            if (!isset($dados_agrupados[$estado][$operadora])) {
+                $dados_agrupados[$estado][$operadora] = [];
+            }
 
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($cbcAlerta_operadora) . " (Tecnologia $tipo)</td>";
-                echo "<td>" . htmlspecialchars($estado) . "</td>";
-                echo "<td>" . htmlspecialchars($amf) . "</td>";
-                echo "<td style='color:$color_tecnologia; font-weight:bold;'>" . htmlspecialchars($status_tecnologia) . "</td>";
-                echo "<td>" . htmlspecialchars($test_done_tecnologia) . "</td>";
-                echo "<td>" . htmlspecialchars($routing_tecnologia) . "</td>";
-                echo "</tr>";
+            $dados_agrupados[$estado][$operadora][] = $alerta;
+        }
+
+        // Mostrar os dados agrupados
+        foreach ($dados_agrupados as $estado => $operadoras) {
+            foreach ($operadoras as $operadora => $alertas) {
+                foreach ($alertas as $alerta) {
+                    $mme = isset($alerta->mme) ? (string) $alerta->mme : null;
+                    $status = (string) $alerta->status;
+                    $test_done = (string) $alerta->test_done;
+                    $routing = (string) $alerta->routing;
+                    $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
+
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($estado) . "</td>";
+                    echo "<td>" . htmlspecialchars($operadora) . "</td>";
+                    echo "<td>" . htmlspecialchars($mme) . "</td>";
+                    echo "<td style='color:$color; font-weight:bold;'>" . htmlspecialchars($status) . "</td>";
+                    echo "<td>" . htmlspecialchars($test_done) . "</td>";
+                    echo "<td>" . htmlspecialchars($routing) . "</td>";
+                    echo "</tr>";
+
+                    // Verificar si hay subgrupo de tecnologia
+                    if (isset($alerta->tecnologia)) {
+                        $tipo = (string) $alerta->tecnologia->tipo;
+                        $amf = (string) $alerta->tecnologia->amf;
+                        $status_tecnologia = (string) $alerta->tecnologia->status;
+                        $test_done_tecnologia = (string) $alerta->tecnologia->test_done;
+                        $routing_tecnologia = (string) $alerta->tecnologia->routing;
+                        $color_tecnologia = ($status_tecnologia === "ok") ? "green" : (($status_tecnologia === "fora") ? "red" : "black");
+
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($estado) . "</td>";
+                        echo "<td>" . htmlspecialchars($operadora) . " (Tecnologia $tipo)</td>";
+                        echo "<td>" . htmlspecialchars($amf) . "</td>";
+                        echo "<td style='color:$color_tecnologia; font-weight:bold;'>" . htmlspecialchars($status_tecnologia) . "</td>";
+                        echo "<td>" . htmlspecialchars($test_done_tecnologia) . "</td>";
+                        echo "<td>" . htmlspecialchars($routing_tecnologia) . "</td>";
+                        echo "</tr>";
+                    }
+                }
             }
         }
+
         echo "</tbody>";
 
         echo "</table>"; // Fechando a tabela
@@ -114,6 +211,7 @@ class Cbc
         echo "</div>";
         echo "</div>";
     }
+
 
 
 }
