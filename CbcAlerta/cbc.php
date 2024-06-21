@@ -51,7 +51,7 @@ class Cbc
         echo "<script>console.log('Mostrando dados XML');</script>";
         echo "<div class='$dark' style='width:80%; margin: 20px auto;'>";
         echo "<header class='card-header'>";
-        echo "<b>CBC - Alerta</b><br>";
+        echo "<b>CBC</b><br>";
         echo "<span>Última atualização: " . htmlspecialchars($this->file_date) . "</span>";
         echo "</header>";
         echo "<div class='card-content'>";
@@ -59,7 +59,9 @@ class Cbc
 
         echo "<thead>";
         echo "<tr>";
-        echo "<th>ID</th>";
+        echo "<th>Operadora</th>";
+        echo "<th>Estado/Região</th>";
+        echo "<th>MME</th>";
         echo "<th>Status</th>";
         echo "<th>Teste</th>";
         echo "<th>Roteamento</th>";

@@ -13,6 +13,7 @@
         <routing>nao</routing>
     </cbcAlerta>
     <cbcAlerta>
+        
         <cbcAlerta_id>mmec40mmegi8501mnc02mcc724.3gppnetwork.org</cbcAlerta_id>
         <status>ok</status>
         <test_done>nan</test_done>
