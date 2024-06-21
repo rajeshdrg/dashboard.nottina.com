@@ -71,12 +71,12 @@ class Cbc
         echo "<tbody>";
         // Mostrar os dados del XML
         foreach ($this->xml->cbcAlerta as $alerta) {
-            $cbcAlerta_id = (string) $alerta->cbcAlerta_id;
+            $cbcAlerta_operadora = (string) $alerta->cbcAlerta_operadora;
             $status = (string) $alerta->status;
             $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
 
             echo "<tr>";
-            echo "<td>" . htmlspecialchars($cbcAlerta_id) . "</td>";
+            echo "<td>" . htmlspecialchars($cbcAlerta_operadora) . "</td>";
             echo "<td style='color:$color; font-weight:bold;'>" . htmlspecialchars($status) . "</td>";
             echo "<td>" . htmlspecialchars((string) $alerta->test_done) . "</td>";
             echo "<td>" . htmlspecialchars((string) $alerta->routing) . "</td>";

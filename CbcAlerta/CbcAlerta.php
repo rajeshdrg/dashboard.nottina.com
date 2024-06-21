@@ -26,7 +26,7 @@ class CbcAlerta extends modulo
             // trocar a ruta do arquivo do test
             //$this->CbcFile = new Cbc("/dados/cap/status/wspre_cbc.xml"); 
 
-            $this->CbcFile = new Cbc("/home/rajesh/dashboard.nottina.com/CbcAlerta/test.xml");
+            $this->CbcFile = new Cbc("/home/rajesh/dashboard.nottina.com/CbcAlerta/cbcRelatorio.xml");
             echo "<script>console.log('Objeto Cbc criado com sucesso');</script>";
         } catch (Exception $e) {
             echo "<script>console.error('Erro: " . $e->getMessage() . "');</script>";

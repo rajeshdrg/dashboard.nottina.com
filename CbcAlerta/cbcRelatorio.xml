@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CbcAlertas>
+    <cbcAlerta>
+        <cbcAlerta_operadora>Tim</cbcAlerta_operadora>
+        <estado>Sp</estado>
+        <mme>mmec38mmegi8501mnc02mcc724.3gppnetwork.org</mme>
+        <status>fora</status>
+        <test_done>ping/telnet</test_done>
+        <routing>nao</routing>
+    </cbcAlerta>
+
+    <cbcAlerta>
+        <cbcAlerta_operadora>Tim</cbcAlerta_operadora>
+        <estado>Sp</estado>
+        <mme>mmec40mmegi8501mnc02mcc724.3gppnetwork.org</mme>
+        <status>ok</status>
+        <test_done>nan</test_done>
+        <routing>sim</routing>
+    </cbcAlerta>
+
+    <cbcAlerta>
+        <cbcAlerta_operadora>Claro</cbcAlerta_operadora>
+        <estado>Sp</estado>
+        <mme>mmec38mmegi8501mnc02mcc724.3gppnetwork.org</mme>
+        <status>fora</status>
+        <test_done>ping/telnet</test_done>
+        <routing>nao</routing>
+    </cbcAlerta>
+
+    <cbcAlerta>
+        <cbcAlerta_operadora>Claro</cbcAlerta_operadora>
+        <estado>Sp</estado>
+        <mme>mmec40mmegi8501mnc02mcc724.3gppnetwork.org</mme>
+        <status>ok</status>
+        <test_done>nan</test_done>
+        <routing>sim</routing>
+    </cbcAlerta>
+</CbcAlertas>
