@@ -74,7 +74,7 @@ class Cbc
         echo "<tr>";
         echo "<th>Estado/Região</th>";
         echo "<th>Operadora</th>";
-        echo "<th>MME/AMF</th>";
+        echo "<th>MME</th>";
         echo "<th>Status</th>";
         echo "<th>Teste</th>";
         echo "<th>Roteamento</th>";
@@ -150,7 +150,7 @@ class Cbc
 
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($estado) . "</td>";
-                echo "<td>" . htmlspecialchars($operadora) . " (Tecnologia $tipo)</td>";
+                echo "<td>" . htmlspecialchars($operadora) . " ($tipo)</td>";
                 echo "<td>" . htmlspecialchars($amf) . "</td>";
                 echo "<td style='color:$color_tecnologia; font-weight:bold;'>" . htmlspecialchars($status_tecnologia) . "</td>";
                 echo "<td>" . htmlspecialchars($test_done_tecnologia) . "</td>";
