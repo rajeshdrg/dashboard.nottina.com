@@ -76,7 +76,7 @@ class Cbc
             $status = (string) $alerta->status;
             $test_done = (string) $alerta->test_done;
             $routing = (string) $alerta->routing;
-            $mme_amf = isset($alerta->mme) ? (string) $alerta->mme : (string) $alerta->tecnologia->amf;
+            $mme_amf = (string) $alerta->mme;
             $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
 
             echo "<tr>";
@@ -88,7 +88,7 @@ class Cbc
             echo "<td>" . htmlspecialchars($routing) . "</td>";
             echo "</tr>";
 
-            // Verificar si hay subgrupo de tecnologia
+            // Verificar se existem subgrupo de tecnologia
             if (isset($alerta->tecnologia)) {
                 $tipo = (string) $alerta->tecnologia->tipo;
                 $amf = (string) $alerta->tecnologia->amf;
