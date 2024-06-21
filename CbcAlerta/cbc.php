@@ -56,10 +56,10 @@ class Cbc
         echo "</header>";
         echo "<div class='card-content'>";
 
-        // Mostrar datos de MME
+        // Mostrar dados de MME
         $this->showMMETable();
 
-        // Mostrar datos de tecnología 5G
+        // Mostrar dados de tecnología 5G
         $this->show5GTable();
 
         echo "</div>";
