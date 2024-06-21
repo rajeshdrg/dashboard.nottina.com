@@ -129,8 +129,21 @@ class Cbc
         echo "<span>Última atualização: " . htmlspecialchars($this->file_date) . "</span>";
         echo "</header>";
         echo "<div class='card-content'>";
-        echo "<table class='table table-striped'>"; // Utilizando uma tabela para organizar os dados
 
+        // Mostrar datos de MME
+        $this->showMMETable();
+
+        // Mostrar datos de tecnología 5G
+        $this->show5GTable();
+
+        echo "</div>";
+        echo "</div>";
+    }
+
+    private function showMMETable()
+    {
+        echo "<table class='table table-striped' style='margin-bottom: 20px;'>";
+        echo "<caption>MME</caption>";
         echo "<thead>";
         echo "<tr>";
         echo "<th>Estado/Região</th>";
@@ -141,87 +154,89 @@ class Cbc
         echo "<th>Roteamento</th>";
         echo "</tr>";
         echo "</thead>";
-
         echo "<tbody>";
 
-        // Agrupar os dados por estado e operadora
+        // Agrupar los datos por estado y operadora para MME
         $dados_agrupados = [];
         foreach ($this->xml->cbcAlerta as $alerta) {
             $estado = (string) $alerta->estado;
             $operadora = (string) $alerta->cbcAlerta_operadora;
-            $tecnologia = isset($alerta->tecnologia) ? '5G' : 'normal';
 
-            if (!isset($dados_agrupados[$estado])) {
-                $dados_agrupados[$estado] = [];
+            $mme = isset($alerta->mme) ? (string) $alerta->mme : '';
+            $status = (string) $alerta->status;
+            $test_done = (string) $alerta->test_done;
+            $routing = (string) $alerta->routing;
+
+            // Verificar si hay datos en todos los campos
+            if (empty($mme) && empty($status) && empty($test_done) && empty($routing)) {
+                continue; // Omitir fila si todos los campos están vacíos
             }
 
-            if (!isset($dados_agrupados[$estado][$operadora])) {
-                $dados_agrupados[$estado][$operadora] = [];
-            }
+            $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
 
-            $dados_agrupados[$estado][$operadora][] = $alerta;
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($estado) . "</td>";
+            echo "<td>" . htmlspecialchars($operadora) . "</td>";
+            echo "<td>" . htmlspecialchars($mme) . "</td>";
+            echo "<td style='color:$color; font-weight:bold;'>" . htmlspecialchars($status) . "</td>";
+            echo "<td>" . htmlspecialchars($test_done) . "</td>";
+            echo "<td>" . htmlspecialchars($routing) . "</td>";
+            echo "</tr>";
         }
 
-        // Mostrar os dados agrupados
-        foreach ($dados_agrupados as $estado => $operadoras) {
-            foreach ($operadoras as $operadora => $alertas) {
-                foreach ($alertas as $alerta) {
-                    $mme = isset($alerta->mme) ? (string) $alerta->mme : $alerta->tecnologia->amf;
-                    $status = (string) $alerta->status;
-                    $test_done = (string) $alerta->test_done;
-                    $routing = (string) $alerta->routing;
+        echo "</tbody>";
+        echo "</table>";
+    }
 
-                    // Verificar si hay datos en todos los campos
-                    if (empty($mme) && empty($status) && empty($test_done) && empty($routing)) {
-                        continue; // Omitir fila si todos los campos están vacíos
-                    }
+    private function show5GTable()
+    {
+        echo "<table class='table table-striped'>";
+        echo "<caption>Tecnología 5G</caption>";
+        echo "<thead>";
+        echo "<tr>";
+        echo "<th>Estado/Região</th>";
+        echo "<th>Operadora (Tecnologia 5G)</th>";
+        echo "<th>AMF</th>";
+        echo "<th>Status</th>";
+        echo "<th>Teste</th>";
+        echo "<th>Roteamento</th>";
+        echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
 
-                    $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
+        // Agrupar los datos por estado y operadora para tecnología 5G
+        foreach ($this->xml->cbcAlerta as $alerta) {
+            if (isset($alerta->tecnologia)) {
+                $estado = (string) $alerta->estado;
+                $operadora = (string) $alerta->cbcAlerta_operadora;
+                $tipo = (string) $alerta->tecnologia->tipo;
+                $amf = (string) $alerta->tecnologia->amf;
+                $status_tecnologia = (string) $alerta->tecnologia->status;
+                $test_done_tecnologia = (string) $alerta->tecnologia->test_done;
+                $routing_tecnologia = (string) $alerta->tecnologia->routing;
 
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($estado) . "</td>";
-                    echo "<td>" . htmlspecialchars($operadora) . "</td>";
-                    echo "<td>" . htmlspecialchars($mme) . "</td>";
-                    echo "<td style='color:$color; font-weight:bold;'>" . htmlspecialchars($status) . "</td>";
-                    echo "<td>" . htmlspecialchars($test_done) . "</td>";
-                    echo "<td>" . htmlspecialchars($routing) . "</td>";
-                    echo "</tr>";
-
-                    // Verificar si hay subgrupo de tecnologia
-                    if (isset($alerta->tecnologia)) {
-                        $tipo = (string) $alerta->tecnologia->tipo;
-                        $amf = (string) $alerta->tecnologia->amf;
-                        $status_tecnologia = (string) $alerta->tecnologia->status;
-                        $test_done_tecnologia = (string) $alerta->tecnologia->test_done;
-                        $routing_tecnologia = (string) $alerta->tecnologia->routing;
-
-                        // Verificar si hay datos en todos los campos de la tecnología
-                        if (empty($status_tecnologia) && empty($test_done_tecnologia) && empty($routing_tecnologia)) {
-                            continue; // Omitir fila si todos los campos están vacíos
-                        }
-
-                        $color_tecnologia = ($status_tecnologia === "ok") ? "green" : (($status_tecnologia === "fora") ? "red" : "black");
-
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($estado) . "</td>";
-                        echo "<td>" . htmlspecialchars($operadora) . " (Tecnologia $tipo)</td>";
-                        echo "<td>" . htmlspecialchars($amf) . "</td>";
-                        echo "<td style='color:$color_tecnologia; font-weight:bold;'>" . htmlspecialchars($status_tecnologia) . "</td>";
-                        echo "<td>" . htmlspecialchars($test_done_tecnologia) . "</td>";
-                        echo "<td>" . htmlspecialchars($routing_tecnologia) . "</td>";
-                        echo "</tr>";
-                    }
+                // Verificar si hay datos en todos los campos de la tecnología
+                if (empty($status_tecnologia) && empty($test_done_tecnologia) && empty($routing_tecnologia)) {
+                    continue; // Omitir fila si todos los campos están vacíos
                 }
+
+                $color_tecnologia = ($status_tecnologia === "ok") ? "green" : (($status_tecnologia === "fora") ? "red" : "black");
+
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($estado) . "</td>";
+                echo "<td>" . htmlspecialchars($operadora) . " (Tecnologia $tipo)</td>";
+                echo "<td>" . htmlspecialchars($amf) . "</td>";
+                echo "<td style='color:$color_tecnologia; font-weight:bold;'>" . htmlspecialchars($status_tecnologia) . "</td>";
+                echo "<td>" . htmlspecialchars($test_done_tecnologia) . "</td>";
+                echo "<td>" . htmlspecialchars($routing_tecnologia) . "</td>";
+                echo "</tr>";
             }
         }
 
         echo "</tbody>";
-
-        echo "</table>"; // Fechando a tabela
-
-        echo "</div>";
-        echo "</div>";
+        echo "</table>";
     }
+
 
 
 
