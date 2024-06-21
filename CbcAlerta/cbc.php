@@ -61,7 +61,7 @@ class Cbc
         echo "<tr>";
         echo "<th>Operadora</th>";
         echo "<th>Estado/Região</th>";
-        echo "<th>MME</th>";
+        echo "<th>MME/AMF</th>";
         echo "<th>Status</th>";
         echo "<th>Teste</th>";
         echo "<th>Roteamento</th>";
@@ -73,20 +73,39 @@ class Cbc
         foreach ($this->xml->cbcAlerta as $alerta) {
             $cbcAlerta_operadora = (string) $alerta->cbcAlerta_operadora;
             $estado = (string) $alerta->estado;
-            $mme = (string) $alerta->mme;
             $status = (string) $alerta->status;
             $test_done = (string) $alerta->test_done;
             $routing = (string) $alerta->routing;
+            $mme_amf = isset($alerta->mme) ? (string) $alerta->mme : (string) $alerta->tecnologia->amf;
             $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
 
             echo "<tr>";
             echo "<td>" . htmlspecialchars($cbcAlerta_operadora) . "</td>";
             echo "<td>" . htmlspecialchars($estado) . "</td>";
-            echo "<td>" . htmlspecialchars($mme) . "</td>";
+            echo "<td>" . htmlspecialchars($mme_amf) . "</td>";
             echo "<td style='color:$color; font-weight:bold;'>" . htmlspecialchars($status) . "</td>";
             echo "<td>" . htmlspecialchars($test_done) . "</td>";
             echo "<td>" . htmlspecialchars($routing) . "</td>";
             echo "</tr>";
+
+            // Verificar si hay subgrupo de tecnologia
+            if (isset($alerta->tecnologia)) {
+                $tipo = (string) $alerta->tecnologia->tipo;
+                $amf = (string) $alerta->tecnologia->amf;
+                $status_tecnologia = (string) $alerta->tecnologia->status;
+                $test_done_tecnologia = (string) $alerta->tecnologia->test_done;
+                $routing_tecnologia = (string) $alerta->tecnologia->routing;
+                $color_tecnologia = ($status_tecnologia === "ok") ? "green" : (($status_tecnologia === "fora") ? "red" : "black");
+
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($cbcAlerta_operadora) . " (Tecnologia $tipo)</td>";
+                echo "<td>" . htmlspecialchars($estado) . "</td>";
+                echo "<td>" . htmlspecialchars($amf) . "</td>";
+                echo "<td style='color:$color_tecnologia; font-weight:bold;'>" . htmlspecialchars($status_tecnologia) . "</td>";
+                echo "<td>" . htmlspecialchars($test_done_tecnologia) . "</td>";
+                echo "<td>" . htmlspecialchars($routing_tecnologia) . "</td>";
+                echo "</tr>";
+            }
         }
         echo "</tbody>";
 
@@ -95,6 +114,7 @@ class Cbc
         echo "</div>";
         echo "</div>";
     }
+
 
 }
 
