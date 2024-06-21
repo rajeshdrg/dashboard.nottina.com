@@ -116,13 +116,12 @@ class Cbc
     // }
 
 
-
     public function ShowMe()
     {
         date_default_timezone_set("America/Sao_Paulo");
         $hora = date('G');
         $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
-    
+
         echo "<script>console.log('Mostrando dados XML');</script>";
         echo "<div class='$dark' style='width:80%; margin: 20px auto;'>";
         echo "<header class='card-header'>";
@@ -131,7 +130,7 @@ class Cbc
         echo "</header>";
         echo "<div class='card-content'>";
         echo "<table class='table table-striped'>"; // Utilizando uma tabela para organizar os dados
-    
+
         echo "<thead>";
         echo "<tr>";
         echo "<th>Estado/Região</th>";
@@ -142,27 +141,27 @@ class Cbc
         echo "<th>Roteamento</th>";
         echo "</tr>";
         echo "</thead>";
-    
+
         echo "<tbody>";
-    
+
         // Agrupar os dados por estado e operadora
         $dados_agrupados = [];
         foreach ($this->xml->cbcAlerta as $alerta) {
             $estado = (string) $alerta->estado;
             $operadora = (string) $alerta->cbcAlerta_operadora;
             $tecnologia = isset($alerta->tecnologia) ? '5G' : 'normal';
-    
+
             if (!isset($dados_agrupados[$estado])) {
                 $dados_agrupados[$estado] = [];
             }
-    
+
             if (!isset($dados_agrupados[$estado][$operadora])) {
                 $dados_agrupados[$estado][$operadora] = [];
             }
-    
+
             $dados_agrupados[$estado][$operadora][] = $alerta;
         }
-    
+
         // Mostrar os dados agrupados
         foreach ($dados_agrupados as $estado => $operadoras) {
             foreach ($operadoras as $operadora => $alertas) {
@@ -171,14 +170,14 @@ class Cbc
                     $status = (string) $alerta->status;
                     $test_done = (string) $alerta->test_done;
                     $routing = (string) $alerta->routing;
-                    
+
                     // Verificar si hay datos en todos los campos
                     if (empty($mme) || empty($status) || empty($test_done) || empty($routing)) {
                         continue; // Omitir fila si hay campos vacíos
                     }
-    
+
                     $color = ($status === "ok") ? "green" : (($status === "fora") ? "red" : "black");
-    
+
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($estado) . "</td>";
                     echo "<td>" . htmlspecialchars($operadora) . "</td>";
@@ -187,7 +186,7 @@ class Cbc
                     echo "<td>" . htmlspecialchars($test_done) . "</td>";
                     echo "<td>" . htmlspecialchars($routing) . "</td>";
                     echo "</tr>";
-    
+
                     // Verificar si hay subgrupo de tecnologia
                     if (isset($alerta->tecnologia)) {
                         $tipo = (string) $alerta->tecnologia->tipo;
@@ -195,14 +194,14 @@ class Cbc
                         $status_tecnologia = (string) $alerta->tecnologia->status;
                         $test_done_tecnologia = (string) $alerta->tecnologia->test_done;
                         $routing_tecnologia = (string) $alerta->tecnologia->routing;
-    
+
                         // Verificar si hay datos en todos los campos de la tecnología
                         if (empty($amf) || empty($status_tecnologia) || empty($test_done_tecnologia) || empty($routing_tecnologia)) {
                             continue; // Omitir fila si hay campos vacíos
                         }
-    
+
                         $color_tecnologia = ($status_tecnologia === "ok") ? "green" : (($status_tecnologia === "fora") ? "red" : "black");
-    
+
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($estado) . "</td>";
                         echo "<td>" . htmlspecialchars($operadora) . " (Tecnologia $tipo)</td>";
@@ -215,15 +214,16 @@ class Cbc
                 }
             }
         }
-    
+
         echo "</tbody>";
-    
+
         echo "</table>"; // Fechando a tabela
-    
+
         echo "</div>";
         echo "</div>";
     }
-    
+
+
 
 
 
