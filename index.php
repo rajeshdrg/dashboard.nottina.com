@@ -19,7 +19,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/ListServer/ListServer.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/ShowAlerta/ShowAlerta.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/Procon/Procon.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/SmsPortabilidade/SmsPortabilidade.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/Cbc/CbcAlerta.php";
+// require_once $_SERVER["DOCUMENT_ROOT"] . "/Cbc/CbcAlerta.php";
 
 $hora = date('G');
 if ($hora > 21 || $hora < 6)
@@ -202,12 +202,12 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
     $procon->front_call();
     $smsPor->front_call();
     $processo->front_call();
-    $cbcAlerta->front_call();
+    // $cbcAlerta->front_call();
     
 
 
     ?>
- 
+
     var funcao = 'Painel';
     var PainelInterval = null;
 
@@ -215,7 +215,7 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
       switch (funcao) {
         case 'Painel':
           painel();
-           break;
+          break;
       }
     }
 
@@ -227,15 +227,15 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
     }
 
 
-    function pre() {}
+    function pre() { }
 
     function tv() {
       window.location = "tv.php";
     }
 
     function painel() {
-       post = new XMLHttpRequest();
-      post.onreadystatechange = function() {
+      post = new XMLHttpRequest();
+      post.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           var data = JSON.parse(this.responseText);
 
@@ -254,8 +254,8 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
     function drawDashboardGlobal() {
 
       post = new XMLHttpRequest();
-      post.onreadystatechange = function() {
-        if (this.readyState  == 4 && this.status == 200) {
+      post.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
           var data = JSON.parse(this.responseText);
           data.forEach(plota_grafico);
         }
@@ -276,14 +276,14 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
     google.charts.load('current', {
       'packages': ['line']
     });
-    window.onload = function() {
+    window.onload = function () {
       PainelRefresh();
 
-              PainelInterval = setInterval(PainelRefresh, 300000);
+      PainelInterval = setInterval(PainelRefresh, 300000);
     }
   </script>
 
-         
+
 
 
 </head>
@@ -300,10 +300,12 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
       </button> -->
     </div>
     <div style="width: 30%;height: 100%; float: left;">
-      <img src="images/nottina.png" style="margin:auto auto auto 12px; width: 250px; height: 85px; cursor:pointer;" onclick="voltar();"/>
+      <img src="images/nottina.png" style="margin:auto auto auto 12px; width: 250px; height: 85px; cursor:pointer;"
+        onclick="voltar();" />
     </div>
     <div style="width: 68%;height: 100%; float: left;">
-      <a id="btnSair" href="sair.php" class="headerUser" style="width: 35px; height: 35px;margin-top: 50px;"><img src="images/logout_small.png"></a>
+      <a id="btnSair" href="sair.php" class="headerUser" style="width: 35px; height: 35px;margin-top: 50px;"><img
+          src="images/logout_small.png"></a>
       <h4 class="headerUser" style="color:#999999"><?php print $nome; ?></h4>
     </div>
   </div>
@@ -369,11 +371,8 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
         <?php $nmp->button(); ?>
       </div>
 
-      <div class="card-div">
-        <?php $cbcAlerta->button(); ?>
-      </div>
 
-   
+
 
     </div>
     <div id='conteudo' style='display:none;' class="<?php print $dark; ?>"></div>
