@@ -375,8 +375,6 @@ $painel = json_decode(file_get_contents('/dados/cap/status/painel.json'), true);
         <?php $cbcAlerta->button(); ?>
       </div>
 
-
-
     </div>
     <div id='conteudo' style='display:none;' class="<?php print $dark; ?>"></div>
   </main>

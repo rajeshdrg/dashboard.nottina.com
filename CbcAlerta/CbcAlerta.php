@@ -1,7 +1,8 @@
 <?php
 // Se o DOCUMENT_ROOT não estiver definido, atribui um valor padrão
-if ($_SERVER['DOCUMENT_ROOT'] == null)
+if (!isset($_SERVER['DOCUMENT_ROOT']) || $_SERVER['DOCUMENT_ROOT'] == null) {
     $_SERVER['DOCUMENT_ROOT'] = "..";
+}
 
 // Inclui os arquivos necessários
 require_once $_SERVER["DOCUMENT_ROOT"] . "/modulo/modulo.php";
@@ -22,11 +23,13 @@ class CbcAlerta extends modulo
 
         try {
 
-            // Cria uma instância de Cbc e atribui a $CbcFile
             // trocar a ruta do arquivo do test
             //$this->CbcFile = new Cbc("/dados/cap/status/wspre_cbc.xml"); 
 
-            $this->CbcFile = new Cbc("/home/rajesh/dashboard.nottina.com/CbcAlerta/cbcRelatorio.xml");
+            // Cria uma instância de Cbc e atribui a $CbcFile
+            // Substitui a rota do arquivo pelo uso de $_SERVER['DOCUMENT_ROOT']
+            $filePath = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml";
+            $this->CbcFile = new Cbc($filePath);
             echo "<script>console.log('Objeto Cbc criado com sucesso');</script>";
         } catch (Exception $e) {
             echo "<script>console.error('Erro: " . $e->getMessage() . "');</script>";

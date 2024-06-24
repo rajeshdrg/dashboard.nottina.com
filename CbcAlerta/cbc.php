@@ -9,7 +9,7 @@ class Cbc
     public function __construct($file)
     {
         if (!file_exists($file)) {
-            throw new Exception();
+            throw new Exception("Erro: arquivo não encontrado.");
         }
 
         $this->file = $file;
@@ -20,22 +20,23 @@ class Cbc
     {
         // echo "<script>console.log('Carregando dados XML do arquivo: {$this->file}');</script>";
 
-        //Lê a data de modificação do arquivo
+        // Lê a data de modificação do arquivo
         $this->file_date = date("d/m/Y H:i:s", filemtime($this->file));
 
-        // Lẽ o conteudo do arquivo XML
+        // Lê o conteúdo do arquivo XML
         $xmlstr = file_get_contents($this->file);
 
         if ($xmlstr === false) {
             throw new Exception("Erro: não foi possível ler o arquivo XML");
         }
 
-        // Intentar carregar o XML
-        libxml_use_internal_errors(true); // Habilitar errores libxml
+        // Tentar carregar o XML
+        libxml_use_internal_errors(true); // Habilitar erros libxml
         $this->xml = simplexml_load_string($xmlstr);
 
         if ($this->xml === false) {
             $errors = libxml_get_errors();
+            libxml_clear_errors();
             throw new Exception("Erro: conteúdo XML inválido. Detalhes: " . implode(", ", $errors));
         }
 
@@ -59,7 +60,7 @@ class Cbc
         // Mostrar dados de MME
         $this->showMMETable();
 
-        // Mostrar dados de tecnología 5G
+        // Mostrar dados de tecnologia 5G
         $this->show5GTable();
 
         echo "</div>";
@@ -82,8 +83,7 @@ class Cbc
         echo "</thead>";
         echo "<tbody>";
 
-        //Agrupar dados por estado e operadora para MME
-        $dados_agrupados = [];
+        // Agrupar dados por estado e operadora para MME
         foreach ($this->xml->cbcAlerta as $alerta) {
             $estado = (string) $alerta->estado;
             $operadora = (string) $alerta->cbcAlerta_operadora;
@@ -117,7 +117,7 @@ class Cbc
     private function show5GTable()
     {
         echo "<table class='table table-striped'>";
-        echo "<caption>Tecnología 5G</caption>";
+        echo "<caption>Tecnologia 5G</caption>";
         echo "<thead>";
         echo "<tr>";
         echo "<th>Estado/Região</th>";
@@ -162,12 +162,4 @@ class Cbc
         echo "</tbody>";
         echo "</table>";
     }
-
-
-
-
-
-
-
 }
-
