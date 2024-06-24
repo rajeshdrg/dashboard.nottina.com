@@ -207,7 +207,7 @@ class Cbc
             throw new Exception("Erro: conteúdo XML inválido. Detalhes: " . implode(", ", $errors));
         }
 
-        echo "<script>console.log('Dados XML carregados com sucesso.');</script>";
+        // echo "<script>console.log('Dados XML carregados com sucesso.');</script>";
     }
 
     public function ShowMe()
@@ -295,7 +295,7 @@ class Cbc
         echo "<thead>";
         echo "<tr>";
         echo "<th>Estado/Região</th>";
-        echo "<th>Operadora (Tecnologia 5G)</th>";
+        echo "<th>Operadora (5G)</th>";
         echo "<th>AMF</th>";
         echo "<th>Status</th>";
         echo "<th>Teste</th>";
