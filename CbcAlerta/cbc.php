@@ -352,6 +352,8 @@
 
 
 
+
+
 class Cbc
 {
     private $file;
@@ -400,7 +402,7 @@ class Cbc
         $hora = date('G');
         $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
 
-        // echo "<script>console.log('Mostrando dados XML');</script>";
+        echo "<script>console.log('Mostrando dados XML');</script>";
         echo "<div class='$dark' style='width:80%; margin: 20px auto;'>";
         echo "<header class='card-header'>";
         echo "<b>CBC</b><br>";
@@ -455,10 +457,22 @@ class Cbc
             echo "<td>" . htmlspecialchars($estado) . "</td>";
             echo "<td>" . htmlspecialchars($operadora) . "</td>";
             echo "<td>" . htmlspecialchars($mme) . "</td>";
-            echo "<td style='color:$color; font-weight:bold;'>" . htmlspecialchars($status) . "</td>";
+            echo "<td style='color:$color; font-weight:bold;'>";
+            if ($status === "fora") {
+                echo "<select>
+                        <option value='ok'" . ($status === "ok" ? " selected" : "") . ">ok</option>
+                        <option value='fora'" . ($status === "fora" ? " selected" : "") . ">fora</option>
+                      </select>";
+            } else {
+                echo htmlspecialchars($status);
+            }
+            echo "</td>";
             if ($status === "fora") {
                 echo "<td><input type='text' value='" . htmlspecialchars($test_done) . "' /></td>";
-                echo "<td><select><option value='sim'" . ($routing === "sim" ? " selected" : "") . ">sim</option><option value='não'" . ($routing === "não" ? " selected" : "") . ">não</option></select></td>";
+                echo "<td><select>
+                        <option value='sim'" . ($routing === "sim" ? " selected" : "") . ">sim</option>
+                        <option value='não'" . ($routing === "não" ? " selected" : "") . ">não</option>
+                      </select></td>";
             } else {
                 echo "<td>" . htmlspecialchars($test_done) . "</td>";
                 echo "<td>" . htmlspecialchars($routing) . "</td>";
@@ -508,10 +522,22 @@ class Cbc
                 echo "<td>" . htmlspecialchars($estado) . "</td>";
                 echo "<td>" . htmlspecialchars($operadora) . " ($tipo)</td>";
                 echo "<td>" . htmlspecialchars($amf) . "</td>";
-                echo "<td style='color:$color_tecnologia; font-weight:bold;'>" . htmlspecialchars($status_tecnologia) . "</td>";
+                echo "<td style='color:$color_tecnologia; font-weight:bold;'>";
+                if ($status_tecnologia === "fora") {
+                    echo "<select>
+                            <option value='ok'" . ($status_tecnologia === "ok" ? " selected" : "") . ">ok</option>
+                            <option value='fora'" . ($status_tecnologia === "fora" ? " selected" : "") . ">fora</option>
+                          </select>";
+                } else {
+                    echo htmlspecialchars($status_tecnologia);
+                }
+                echo "</td>";
                 if ($status_tecnologia === "fora") {
                     echo "<td><input type='text' value='" . htmlspecialchars($test_done_tecnologia) . "' /></td>";
-                    echo "<td><select><option value='sim'" . ($routing_tecnologia === "sim" ? " selected" : "") . ">sim</option><option value='não'" . ($routing_tecnologia === "não" ? " selected" : "") . ">não</option></select></td>";
+                    echo "<td><select>
+                            <option value='sim'" . ($routing_tecnologia === "sim" ? " selected" : "") . ">sim</option>
+                            <option value='não'" . ($routing_tecnologia === "não" ? " selected" : "") . ">não</option>
+                          </select></td>";
                 } else {
                     echo "<td>" . htmlspecialchars($test_done_tecnologia) . "</td>";
                     echo "<td>" . htmlspecialchars($routing_tecnologia) . "</td>";
@@ -524,4 +550,6 @@ class Cbc
         echo "</table>";
     }
 }
+
+
 
