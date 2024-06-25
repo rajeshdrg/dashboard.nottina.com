@@ -26,19 +26,6 @@ class cbcRelatorio
     function guardarCbcRelatorio($estado, $operadora, $mme, $amf, $status, $teste, $roteamento)
     {
 
-        // Generar el script de consola
-        $script = "<script>console.log('Datos recibidos: ";
-        $script .= "Estado: $estado, ";
-        $script .= "Operadora: $operadora, ";
-        $script .= "MME: $mme, ";
-        $script .= "AMF: $amf, ";
-        $script .= "Status: $status, ";
-        $script .= "Teste: $teste, ";
-        $script .= "Roteamento: $roteamento";
-        $script .= "');</script>";
-
-        // Imprimir el script de consola
-        echo $script;
 
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
