@@ -417,9 +417,10 @@ class Cbc
         echo "<script>console.log('Dados XML carregados com sucesso');</script>";
     }
 
+
     private function sendData($data)
     {
-        $url = $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conection.php';
+        $url = $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conection.php'; // Cambia 'yourserver.com' por el dominio correcto
         $options = [
             'http' => [
                 'header' => "Content-Type: application/json\r\n",
@@ -432,10 +433,11 @@ class Cbc
 
         if ($result === FALSE) {
             echo "<script>console.error('Erro ao enviar dados para conection.php');</script>";
+        } else {
+            echo "<script>console.log('Dados enviados para conection.php com sucesso');</script>";
         }
-
-        echo "<script>console.log('Dados enviados para conection.php com sucesso');</script>";
     }
+
 
     public function ShowMe()
     {
