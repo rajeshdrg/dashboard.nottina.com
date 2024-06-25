@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     if (!isset($data['estado'], $data['operadora'], $data['mme'], $data['amf'], $data['status'], $data['teste'], $data['roteamento'])) {
-        echo json_encode(['success' => false, 'message' => 'Faltan datos requeridos']);
+        echo json_encode(['success' => false, 'message' => 'Faltan dados requeridos']);
         exit;
     }
 

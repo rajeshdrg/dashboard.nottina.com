@@ -395,6 +395,10 @@ class Cbc
 
     private function get_data()
     {
+        echo "<script>console.log('Intentando ler o arquivo: {$this->file}');</script>";
+        if (!file_exists($this->file)) {
+            throw new Exception("Erro: O arquivo {$this->file} não existe");
+        }
         $this->file_date = date("d/m/Y H:i:s", filemtime($this->file));
         $xmlstr = file_get_contents($this->file);
 
