@@ -1,29 +1,8 @@
-<!-- -- Crear tipo ENUM para status
-CREATE TYPE status_type AS ENUM ('ok', 'fora');
-
--- Crear tipo ENUM para roteamento
-CREATE TYPE roteamento_type AS ENUM ('sim', 'não');
-
-
--- Crear la tabla cbc_alerta con los tipos ENUM definidos
-CREATE TABLE cbc_alerta (
-    id SERIAL PRIMARY KEY,
-    estado VARCHAR(100) NOT NULL,
-    operadora VARCHAR(100) NOT NULL,
-    mme VARCHAR(100),
-    amf VARCHAR(100),
-    status status_type DEFAULT 'fora',
-    teste TEXT,
-    roteamento roteamento_type DEFAULT 'não'
-); -->
-
-
 <?php
 
 header('Content-Type: application');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
-
 
 
 if ($_SERVER['DOCUMENT_ROOT'] == null)
@@ -44,8 +23,23 @@ class cbcRelatorio
         $this->conexao = $conexao;
     }
 
-    public function guardarCbcRelatorio($estado, $operadora, $mme, $amf, $status, $teste, $roteamento)
+    function guardarCbcRelatorio($estado, $operadora, $mme, $amf, $status, $teste, $roteamento)
     {
+
+        // Generar el script de consola
+        $script = "<script>console.log('Datos recibidos: ";
+        $script .= "Estado: $estado, ";
+        $script .= "Operadora: $operadora, ";
+        $script .= "MME: $mme, ";
+        $script .= "AMF: $amf, ";
+        $script .= "Status: $status, ";
+        $script .= "Teste: $teste, ";
+        $script .= "Roteamento: $roteamento";
+        $script .= "');</script>";
+
+        // Imprimir el script de consola
+        echo $script;
+
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
 

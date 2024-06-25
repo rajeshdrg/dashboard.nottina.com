@@ -555,7 +555,10 @@
 
 //========================================================= copia 2=================================================================
 
+if ($_SERVER['DOCUMENT_ROOT'] == null)
+    $_SERVER['DOCUMENT_ROOT'] = "..";
 
+require_once $_SERVER["DOCUMENT_ROOT"] . "/CbcAlerta/conection.php";
 
 
 class Cbc
@@ -688,6 +691,7 @@ class Cbc
             echo "</tr>";
 
             // Llamar al método para guardar en la base de datos
+
             $this->guardarCbcRelatorio($estado, $operadora, $mme, '', $status, $test_done, $routing);
         }
 
@@ -748,12 +752,15 @@ class Cbc
                     echo "<td><select>
                             <option value='sim'" . ($routing_tecnologia === "sim" ? " selected" : "") . ">sim</option>
                             <option value='não'" . ($routing_tecnologia === "não" ? " selected " : "") . ">não</option>
-                            </select></td>";
+                          </select></td>";
                 } else {
                     echo "<td>" . htmlspecialchars($test_done_tecnologia) . "</td>";
                     echo "<td>" . htmlspecialchars($routing_tecnologia) . "</td>";
                 }
                 echo "</tr>";
+
+                // Llamar al método para guardar en la base de datos
+                $this->guardarCbcRelatorio($estado, $operadora, '', $amf, $status_tecnologia, $test_done_tecnologia, $routing_tecnologia);
             }
         }
 
