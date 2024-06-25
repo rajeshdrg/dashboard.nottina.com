@@ -28,6 +28,7 @@ class CbcAlerta extends modulo
 
             // Cria uma instância de Cbc e atribui a $CbcFile
             // Substitui a rota do arquivo pelo uso de $_SERVER['DOCUMENT_ROOT']
+
             $filePath = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml";
             $this->CbcFile = new Cbc($filePath);
 

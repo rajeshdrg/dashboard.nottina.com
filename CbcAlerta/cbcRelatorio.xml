@@ -92,7 +92,7 @@
         <tecnologia>
             <tipo>5G</tipo>
             <amf>10.96.235.72</amf>
-            <status>ok</status>
+            <status>fora</status>
             <test_done></test_done>
             <routing>sim</routing>
         </tecnologia>
@@ -103,7 +103,7 @@
         <tecnologia>
             <tipo>5G</tipo>
             <amf>10.96.235.72</amf>
-            <status>ok</status>
+            <status>fora</status>
             <test_done></test_done>
             <routing>sim</routing>
         </tecnologia>
