@@ -420,7 +420,7 @@ class Cbc
 
     private function sendData($data)
     {
-        $url = $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conection.php'; // Cambia 'yourserver.com' por el dominio correcto
+        $url = $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conection.php';
         $options = [
             'http' => [
                 'header' => "Content-Type: application/json\r\n",

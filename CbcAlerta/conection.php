@@ -4,9 +4,8 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 
-if ($_SERVER['DOCUMENT_ROOT'] == null) {
+if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";
-}
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
@@ -23,9 +22,19 @@ class cbcRelatorio
 
     public function guardarCbcRelatorio($estado, $operadora, $mme, $amf, $status, $teste, $roteamento)
     {
-        // Log de datos recibidos
-        $log = error_log("Datos recibidos: Estado: $estado, Operadora: $operadora, MME: $mme, AMF: $amf, Status: $status, Teste: $teste, Roteamento: $roteamento");
-        echo "<script>console.log($log);</script>";
+        // Generar el script de consola
+        $script = "<script>console.log('Datos recibidos: ";
+        $script .= "Estado: $estado, ";
+        $script .= "Operadora: $operadora, ";
+        $script .= "MME: $mme, ";
+        $script .= "AMF: $amf, ";
+        $script .= "Status: $status, ";
+        $script .= "Teste: $teste, ";
+        $script .= "Roteamento: $roteamento";
+        $script .= "');</script>";
+
+        // Imprimir el script de consola
+        echo $script;
 
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
@@ -51,27 +60,22 @@ class cbcRelatorio
     }
 }
 
-// Crear instancia de la clase y procesar la solicitud POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
+$data = json_decode(file_get_contents('php://input'), true);
 
-    if (!isset($data['estado'], $data['operadora'], $data['mme'], $data['amf'], $data['status'], $data['teste'], $data['roteamento'])) {
-        echo json_encode(['success' => false, 'message' => 'Faltan dados requeridos']);
-        exit;
+if ($data) {
+    $cbcRelatorio = new cbcRelatorio();
+    foreach ($data as $item) {
+        $cbcRelatorio->guardarCbcRelatorio(
+            $item['estado'],
+            $item['operadora'],
+            $item['mme'],
+            $item['amf'],
+            $item['status'],
+            $item['test_done'],
+            $item['routing']
+        );
     }
-
-    $relatorio = new cbcRelatorio();
-    $relatorio->guardarCbcRelatorio(
-        $data['estado'],
-        $data['operadora'],
-        $data['mme'],
-        $data['amf'],
-        $data['status'],
-        $data['teste'],
-        $data['roteamento']
-    );
 } else {
-    echo json_encode(['success' => false, 'message' => 'Método não permitido']);
+    echo json_encode(['success' => false, 'message' => 'Nenhum dado recebido']);
 }
-
 
