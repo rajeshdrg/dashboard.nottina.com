@@ -450,9 +450,55 @@ class Cbc
         $this->showMMETable();
         $this->show5GTable();
 
+        echo "<button id='sendDataButton'>Enviar Informação</button>";
+
+        echo "
+        <script>
+        document.getElementById('sendDataButton').addEventListener('click', function() {
+            var data = gatherData();
+            sendDataToServer(data);
+        });
+    
+        function gatherData() {
+            var table = document.querySelector('.table.table-striped tbody');
+            var rows = table.getElementsByTagName('tr');
+            var data = [];
+    
+            for (var i = 0; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName('td');
+                var rowData = {
+                    estado: cells[0].innerText,
+                    operadora: cells[1].innerText.split(' (')[0],
+                    mme: cells[2].innerText || '',
+                    amf: cells[3] ? cells[3].innerText : '',
+                    status: cells[4].querySelector('select') ? cells[4].querySelector('select').value : cells[4].innerText,
+                    teste: cells[5].querySelector('input') ? cells[5].querySelector('input').value : cells[5].innerText,
+                    roteamento: cells[6].querySelector('select') ? cells[6].querySelector('select').value : cells[6].innerText
+                };
+                data.push(rowData);
+            }
+            return data;
+        }
+    
+        function sendDataToServer(data) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/erpme/banco/conection.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert('Dados enviados com sucesso!');
+                    window.location.reload();
+                }
+            };
+            xhr.send(JSON.stringify(data));
+        }
+        </script>
+        ";
+
         echo "</div>";
         echo "</div>";
     }
+
 
     private function showMMETable()
     {
