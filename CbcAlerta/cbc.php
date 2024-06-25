@@ -450,23 +450,21 @@ class Cbc
         $this->showMMETable();
         $this->show5GTable();
 
-        echo "<button id='sendDataButton'>Enviar Informação</button>";
-
         echo "
         <script>
         document.getElementById('sendDataButton').addEventListener('click', function() {
-            var data = gatherData();
+            let data = gatherData();
             sendDataToServer(data);
         });
     
         function gatherData() {
-            var table = document.querySelector('.table.table-striped tbody');
-            var rows = table.getElementsByTagName('tr');
-            var data = [];
+            let table = document.querySelector('.table.table-striped tbody');
+            let rows = table.getElementsByTagName('tr');
+            let data = [];
     
-            for (var i = 0; i < rows.length; i++) {
-                var cells = rows[i].getElementsByTagName('td');
-                var rowData = {
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName('td');
+                let rowData = {
                     estado: cells[0].innerText,
                     operadora: cells[1].innerText.split(' (')[0],
                     mme: cells[2].innerText || '',
@@ -481,7 +479,7 @@ class Cbc
         }
     
         function sendDataToServer(data) {
-            var xhr = new XMLHttpRequest();
+            let xhr = new XMLHttpRequest();
             xhr.open('POST', '/erpme/banco/conection.php', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onreadystatechange = function () {
@@ -494,6 +492,10 @@ class Cbc
         }
         </script>
         ";
+
+        echo "<button id='sendDataButton'>Enviar Informação</button>";
+
+
 
         echo "</div>";
         echo "</div>";
