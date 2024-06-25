@@ -1,16 +1,10 @@
 <?php
-
-header('Content-Type: application');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-
-
 if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqldatareader.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/banco/sqlcommand.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/erpme/ui/dropdownlist.php";
+
 
 
 class cbcRelatorio
