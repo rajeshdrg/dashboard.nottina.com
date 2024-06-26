@@ -3,7 +3,7 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
-var_dump($_POST);
+
 if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";
 
@@ -66,11 +66,12 @@ echo "<script>console.log('Datos crudos recibidos: " . json_encode($rawData) . "
 
 
 $data = json_decode(file_get_contents('php://input'), true);
+
 if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
     echo json_encode(['success' => false, 'message' => 'Erro ao decodificar dados JSON: ' . json_last_error_msg()]);
     exit;
 }
-
+echo "<script>console.log($data);</script>";
 if ($data) {
     $cbcRelatorio = new cbcRelatorio();
     foreach ($data as $item) {

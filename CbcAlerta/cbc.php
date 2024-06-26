@@ -459,36 +459,58 @@ class Cbc
 
         echo "
         <script>
-        document.getElementById('sendDataButton').addEventListener('click', function() {
-            let data = gatherData();
-            
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('sendDataButton').addEventListener('click', function() {
+                let data = gatherData();
+                sendDataToServer(data);
+            });
 
-        function gatherData() {
-            let table = document.querySelector('.table.table-striped tbody');
-            let rows = table.getElementsByTagName('tr');
-            let data = [];
+            function gatherData() {
+                let table = document.querySelector('.table.table-striped tbody');
+                let rows = table.getElementsByTagName('tr');
+                let data = [];
 
-            for (let i = 0; i < rows.length; i++) {
-                let cells = rows[i].getElementsByTagName('td');
-                let rowData = {
-                    estado: cells[0].innerText,
-                    operadora: cells[1].innerText.split(' (')[0],
-                    mme: cells[2].innerText || '',
-                    amf: cells[3] ? cells[3].innerText : '',
-                    status: cells[4].querySelector('select') ? cells[4].querySelector('select').value : cells[4].innerText,
-                    teste: cells[5].querySelector('input') ? cells[5].querySelector('input').value : cells[5].innerText,
-                    roteamento: cells[6].querySelector('select') ? cells[6].querySelector('select').value : cells[6].innerText
-                };
-                data.push(rowData);
+                for (let i = 0; i < rows.length; i++) {
+                    let cells = rows[i].getElementsByTagName('td');
+                    let rowData = {
+                        estado: cells[0].innerText,
+                        operadora: cells[1].innerText.split(' (')[0],
+                        mme: cells[2].innerText || '',
+                        amf: cells[3] ? cells[3].innerText : '',
+                        status: cells[4].querySelector('select') ? cells[4].querySelector('select').value : cells[4].innerText,
+                        teste: cells[5].querySelector('input') ? cells[5].querySelector('input').value : cells[5].innerText,
+                        roteamento: cells[6].querySelector('select') ? cells[6].querySelector('select').value : cells[6].innerText
+                    };
+                    data.push(rowData);
+                }
+                return data;
             }
-            return data;
-        }
 
+            function sendDataToServer(data) {
+                let url = '/erpme/banco/conection.php';
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao enviar dados para conection.php');
+                    }
+                    console.log('Dados enviados para conection.php com sucesso');
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            }
+        });
         </script>
         ";
 
         echo "<button id='sendDataButton'>Enviar Informação</button>";
+
 
 
 
