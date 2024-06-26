@@ -461,7 +461,7 @@ class Cbc
         <script>
         document.getElementById('sendDataButton').addEventListener('click', function() {
             let data = gatherData();
-            sendDataToServer(data);
+            
         });
 
         function gatherData() {
