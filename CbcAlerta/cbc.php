@@ -463,12 +463,12 @@
 //             let data = gatherData();
 //             sendDataToServer(data);
 //         });
-    
+
 //         function gatherData() {
 //             let table = document.querySelector('.table.table-striped tbody');
 //             let rows = table.getElementsByTagName('tr');
 //             let data = [];
-    
+
 //             for (let i = 0; i < rows.length; i++) {
 //                 let cells = rows[i].getElementsByTagName('td');
 //                 let rowData = {
@@ -484,7 +484,7 @@
 //             }
 //             return data;
 //         }
-    
+
 //         function sendDataToServer(data) {
 //             let xhr = new XMLHttpRequest();
 //             xhr.open('POST', '/erpme/banco/conection.php', true);
@@ -662,7 +662,7 @@
 
 //============================================ copia 3=======================================
 
-<?php
+
 class Cbc
 {
     private $file;
