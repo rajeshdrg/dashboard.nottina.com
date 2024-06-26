@@ -62,6 +62,11 @@ class cbcRelatorio
 
 $data = json_decode(file_get_contents('php://input'), true);
 
+if ($data === null) {
+    echo json_encode(['success' => false, 'message' => 'Erro ao decodificar dados JSON']);
+    exit;
+}
+
 if ($data) {
     $cbcRelatorio = new cbcRelatorio();
     foreach ($data as $item) {
@@ -71,11 +76,10 @@ if ($data) {
             $item['mme'],
             $item['amf'],
             $item['status'],
-            $item['test_done'],
-            $item['routing']
+            $item['teste'],
+            $item['roteamento']
         );
     }
 } else {
     echo json_encode(['success' => false, 'message' => 'Nenhum dado recebido']);
 }
-
