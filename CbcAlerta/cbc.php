@@ -49,7 +49,7 @@ class Cbc
             ],
         ];
         $context = stream_context_create($options);
-        echo "<script>console.log($data);</script>";
+
         $result = file_get_contents($url, false, $context);
 
         if ($result === FALSE) {
@@ -205,6 +205,8 @@ class Cbc
             ];
             $data = json_encode($data);
             $this->sendData($data);
+            echo "<script>console.log('Enviando datos:', " . json_encode($data) . ");</script>";
+
         }
 
         echo "</tbody>";
