@@ -459,11 +459,13 @@ class Cbc
 
         echo "
         <script>
+        function send(){
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('sendDataButton').addEventListener('click', function() {
                 let data = gatherData();
                 sendDataToServer(data);
             });
+    }
 
             function gatherData() {
                 let table = document.querySelector('.table.table-striped tbody');
@@ -509,7 +511,7 @@ class Cbc
         </script>
         ";
 
-        echo "<button id='sendDataButton'>Enviar Informação</button>";
+        echo "<input type='button' onclick='send()' value='Submit form'>";
 
 
 
