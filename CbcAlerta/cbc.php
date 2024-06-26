@@ -485,18 +485,6 @@ class Cbc
             return data;
         }
 
-        function sendDataToServer(data) {
-            let xhr = new XMLHttpRequest();
-            xhr.open('POST', '/erpme/banco/conection.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    alert('Dados enviados com sucesso!');
-                    window.location.reload();
-                }
-            };
-            xhr.send(JSON.stringify(data));
-        }
         </script>
         ";
 
