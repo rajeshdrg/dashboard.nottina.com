@@ -419,7 +419,7 @@ class Cbc
     }
 
 
-    private function sendData($data)
+    function sendData($data)
     {
         $url = $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conection.php';
         $options = [
