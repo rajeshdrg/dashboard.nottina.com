@@ -102,7 +102,7 @@ class Cbc
 
             // Agregar ícono de edición si el status es "fora"
             if ($status === "fora") {
-                echo "<td><a href='" . $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcEditForm.php' class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
+                echo "<td><a href=\"/CbcAlerta/cbcEditForm.php\" class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
             } else {
                 echo "<td></td>";
             }
@@ -157,7 +157,7 @@ class Cbc
 
                 // Agregar ícono de edición si el status de la tecnología es "fora"
                 if ($status_tecnologia === "fora") {
-                    echo "<td><a href='" . $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcEditForm.php' class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
+                    echo "<td><a href=\"/CbcAlerta/cbcEditForm.php\" class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
                 } else {
                     echo "<td></td>";
                 }
