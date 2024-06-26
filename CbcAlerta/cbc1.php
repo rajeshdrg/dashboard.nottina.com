@@ -427,6 +427,7 @@ class Cbc
             ],
         ];
         $context = stream_context_create($options);
+        var_dump($data);
         $result = file_get_contents($url, false, $context);
 
         if ($result === FALSE) {
@@ -486,7 +487,7 @@ class Cbc
             }
 
             function sendDataToServer(data) {
-                let url = '/erpme/banco/conection.php';
+                let url = '/erpme/banco/conecta.php';
                 fetch(url, {
                     method: 'POST',
                     headers: {
@@ -584,6 +585,7 @@ class Cbc
                 'teste' => $test_done,
                 'roteamento' => $routing,
             ];
+            $data = json_encode($data);
             $this->sendData($data);
         }
 
