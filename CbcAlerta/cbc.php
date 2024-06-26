@@ -377,6 +377,7 @@
 
 //==========================================copia 2 envios de datos============================
 
+
 class Cbc
 {
     private $file;
@@ -386,7 +387,7 @@ class Cbc
     public function __construct($file)
     {
         if (!file_exists($file)) {
-            throw new Exception("Erro: O arquivo {$file} não existe");
+            throw new Exception();
         }
 
         $this->file = $file;
@@ -396,6 +397,9 @@ class Cbc
     private function get_data()
     {
         echo "<script>console.log('Intentando ler o arquivo: {$this->file}');</script>";
+        if (!file_exists($this->file)) {
+            throw new Exception("Erro: O arquivo {$this->file} não existe");
+        }
         $this->file_date = date("d/m/Y H:i:s", filemtime($this->file));
         $xmlstr = file_get_contents($this->file);
 
@@ -414,6 +418,28 @@ class Cbc
         echo "<script>console.log('Dados XML carregados com sucesso');</script>";
     }
 
+
+    private function sendData($data)
+    {
+        $url = $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conection.php';
+        $options = [
+            'http' => [
+                'header' => "Content-Type: application/json\r\n",
+                'method' => 'POST',
+                'content' => json_encode($data),
+            ],
+        ];
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+
+        if ($result === FALSE) {
+            echo "<script>console.error('Erro ao enviar dados para conection.php');</script>";
+        } else {
+            echo "<script>console.log('Dados enviados para conection.php com sucesso');</script>";
+        }
+    }
+
+
     public function ShowMe()
     {
         date_default_timezone_set("America/Sao_Paulo");
@@ -430,11 +456,6 @@ class Cbc
 
         $this->showMMETable();
         $this->show5GTable();
-
-        echo "</div>";
-        echo "</div>";
-
-        echo "<button id='sendDataButton'>Enviar Informação</button>";
 
         echo "
         <script>
@@ -478,7 +499,15 @@ class Cbc
         }
         </script>
         ";
+
+        echo "<button id='sendDataButton'>Enviar Informação</button>";
+
+
+
+        echo "</div>";
+        echo "</div>";
     }
+
 
     private function showMMETable()
     {
@@ -495,8 +524,6 @@ class Cbc
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
-
-        $dataToSend = [];
 
         foreach ($this->xml->cbcAlerta as $alerta) {
             $estado = (string) $alerta->estado;
@@ -538,8 +565,8 @@ class Cbc
             }
             echo "</tr>";
 
-            // Agregar datos al array para enviar
-            $dataToSend[] = [
+            // Enviar datos a conection.php
+            $data = [
                 'estado' => $estado,
                 'operadora' => $operadora,
                 'mme' => $mme,
@@ -548,13 +575,11 @@ class Cbc
                 'teste' => $test_done,
                 'roteamento' => $routing,
             ];
+            $this->sendData($data);
         }
 
         echo "</tbody>";
         echo "</table>";
-
-        // Enviar datos a conection.php
-        $this->sendData($dataToSend);
     }
 
     private function show5GTable()
@@ -573,15 +598,13 @@ class Cbc
         echo "</thead>";
         echo "<tbody>";
 
-        $dataToSend = [];
-
         foreach ($this->xml->cbcAlerta as $alerta) {
             if (isset($alerta->tecnologia)) {
                 $estado = (string) $alerta->estado;
                 $operadora = (string) $alerta->cbcAlerta_operadora;
                 $tipo = (string) $alerta->tecnologia->tipo;
                 $amf = isset($alerta->tecnologia->amf) ? (string) $alerta->tecnologia->amf : '';
-                $status = in_array((string) $alerta->tecnologia->status, ['ok', 'fora']) ? (string) $alerta->tecnologia->status : '';
+                $status_tecnologia = in_array((string) $alerta->tecnologia->status, ['ok', 'fora']) ? (string) $alerta->tecnologia->status : '';
                 $test_done_tecnologia = (string) $alerta->tecnologia->test_done;
                 $routing_tecnologia = in_array((string) $alerta->tecnologia->routing, ['sim', 'não']) ? (string) $alerta->tecnologia->routing : '';
 
@@ -618,8 +641,8 @@ class Cbc
                 }
                 echo "</tr>";
 
-                // Agregar datos al array para enviar
-                $dataToSend[] = [
+                // Enviar datos a conection.php
+                $data = [
                     'estado' => $estado,
                     'operadora' => $operadora,
                     'mme' => '',
@@ -628,34 +651,11 @@ class Cbc
                     'teste' => $test_done_tecnologia,
                     'roteamento' => $routing_tecnologia,
                 ];
+                $this->sendData($data);
             }
         }
 
         echo "</tbody>";
         echo "</table>";
-
-        // Enviar datos a conection.php
-        $this->sendData($dataToSend);
-    }
-
-    private function sendData($data)
-    {
-        $url = $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conection.php';
-        $options = [
-            'http' => [
-                'header' => "Content-Type: application/json\r\n",
-                'method' => 'POST',
-                'content' => json_encode($data),
-            ],
-        ];
-        $context = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
-
-        if ($result === FALSE) {
-            echo "<script>console.error('Erro ao enviar dados para conection.php');</script>";
-        } else {
-            echo "<script>console.log('Dados enviados para conection.php com sucesso');</script>";
-        }
     }
 }
-
