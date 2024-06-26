@@ -771,7 +771,7 @@ class Cbc
                     }
                 </script>
 
-                <button id='sendDataButton'>Enviar Información</button>
+                <button id='sendDataButton' onclick="sendDataToServer()">Enviar Información</button>
 
             </div>
         </div>
