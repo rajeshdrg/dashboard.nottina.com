@@ -60,10 +60,19 @@ class cbcRelatorio
     }
 }
 
+// Imprimir los datos crudos recibidos para depuración en consola de navegador
+$rawData = file_get_contents('php://input');
+echo "<script>console.log('Datos crudos recibidos: " . json_encode($rawData) . "');</script>";
+// Convertir los datos crudos recibidos a un array
+$data = json_decode($rawData, true);
+// Imprimir los datos crudos recibidos para depuración en consola de navegador
+echo "<script>console.log('Datos recibidos: " . json_encode($data) . "
+</script>";
+
 $data = json_decode(file_get_contents('php://input'), true);
 
-if ($data === null) {
-    echo json_encode(['success' => false, 'message' => 'Erro ao decodificar dados JSON']);
+if (json_last_error() !== JSON_ERROR_NONE) {
+    echo json_encode(['success' => false, 'message' => 'Erro ao decodificar dados JSON: ' . json_last_error_msg()]);
     exit;
 }
 

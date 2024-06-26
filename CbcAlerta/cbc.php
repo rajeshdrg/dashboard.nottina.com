@@ -749,18 +749,23 @@ class Cbc
             return data;
         }
 
-        function sendDataToServer(data) {
+            function sendDataToServer(data) {
             let xhr = new XMLHttpRequest();
             xhr.open('POST', '/erpme/banco/conection.php', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    alert('Dados enviados com sucesso!');
-                    window.location.reload();
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        alert('Dados enviados com sucesso!');
+                        window.location.reload();
+                    } else {
+                        console.error('Erro ao enviar dados: ', xhr.responseText);
+                    }
                 }
             };
             xhr.send(JSON.stringify(data));
         }
+
         </script>
         ";
 
