@@ -418,7 +418,7 @@ class Cbc
 
     function sendData($data)
     {
-        $url = $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conecta.php';
+        $url = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/conection.php";
         $options = [
             'http' => [
                 'header' => "Content-Type: application/json\r\n",
@@ -487,7 +487,7 @@ class Cbc
             }
 
             function sendDataToServer(data) {
-                let url = '/erpme/banco/conecta.php';
+                let url = '/CbcAlerta/conection.php';  // Ruta relativa al dominio base
                 fetch(url, {
                     method: 'POST',
                     headers: {
@@ -505,6 +505,7 @@ class Cbc
                     console.error(error);
                 });
             }
+
         });
         </script>
         ";
