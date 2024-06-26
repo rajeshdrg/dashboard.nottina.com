@@ -671,25 +671,13 @@ class Cbc
     public function __construct($file)
     {
 
-        $file = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml";
 
-        // Verifica si el archivo existe
-        if (file_exists($file)) {
-            try {
-                $cbc = new Cbc($file);
-                $cbc->ShowMe();
-            } catch (Exception $e) {
-                echo "Error: " . $e->getMessage();
-            }
-        } else {
-            echo "Error: Archivo no encontrado en la ruta especificada.";
+        if (!file_exists($file)) {
+            throw new Exception();
         }
-        // if (!file_exists($file)) {
-        //     throw new Exception();
-        // }
 
-        // $this->file = $file;
-        // $this->get_data();
+        $this->file = $file;
+        $this->get_data();
     }
 
     private function get_data()
