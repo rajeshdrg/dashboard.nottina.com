@@ -134,7 +134,7 @@ class Cbc
 
 
 
-        echo "<input id='sendDataButton' type='button' onclick='send()' value='Submit form'>";
+        echo "<button id='sendDataButton' onclick='send()'>Enviar Datos</button>";
 
 
         echo "</div>";
