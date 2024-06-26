@@ -670,8 +670,9 @@ class Cbc
 
     public function __construct($file)
     {
+        $file = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml";
         if (!file_exists($file)) {
-            throw new Exception("Archivo no encontrado");
+            throw new Exception();
         }
 
         $this->file = $file;
