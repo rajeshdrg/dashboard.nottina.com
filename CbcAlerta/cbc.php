@@ -682,51 +682,26 @@ class Cbc
 
     private function get_data()
     {
-        echo "<script>console.log('Intentando ler o arquivo: {$this->file}');</script>";
+        echo "<script>console.log('Intentando leer el archivo: {$this->file}');</script>";
         if (!file_exists($this->file)) {
-            throw new Exception("Erro: O arquivo {$this->file} não existe");
+            throw new Exception("Error: El archivo {$this->file} no existe");
         }
         $this->file_date = date("d/m/Y H:i:s", filemtime($this->file));
         $xmlstr = file_get_contents($this->file);
 
         if ($xmlstr === false) {
-            throw new Exception("Erro: não foi possível ler o arquivo XML");
+            throw new Exception("Error: No se pudo leer el archivo XML");
         }
 
         libxml_use_internal_errors(true);
         $this->xml = simplexml_load_string($xmlstr);
-
         if ($this->xml === false) {
             $errors = libxml_get_errors();
-            throw new Exception("Erro: conteúdo XML inválido. Detalhes: " . implode(", ", $errors));
+            throw new Exception("Error: Contenido XML inválido. Detalles: " . implode(", ", $errors));
         }
 
-        echo "<script>console.log('Dados XML carregados com sucesso');</script>";
+        echo "<script>console.log('Datos XML cargados con éxito');</script>";
     }
-
-
-    // private function get_data()
-    // {
-    //     echo "<script>console.log('Intentando leer el archivo: {$this->file}');</script>";
-    //     if (!file_exists($this->file)) {
-    //         throw new Exception("Error: El archivo {$this->file} no existe");
-    //     }
-    //     $this->file_date = date("d/m/Y H:i:s", filemtime($this->file));
-    //     $xmlstr = file_get_contents($this->file);
-
-    //     if ($xmlstr === false) {
-    //         throw new Exception("Error: No se pudo leer el archivo XML");
-    //     }
-
-    //     libxml_use_internal_errors(true);
-    //     $this->xml = simplexml_load_string($xmlstr);
-    //     if ($this->xml === false) {
-    //         $errors = libxml_get_errors();
-    //         throw new Exception("Error: Contenido XML inválido. Detalles: " . implode(", ", $errors));
-    //     }
-
-    //     echo "<script>console.log('Datos XML cargados con éxito');</script>";
-    // }
 
     public function ShowMe()
     {
