@@ -7,7 +7,7 @@ if (!isset($_SERVER['DOCUMENT_ROOT']) || $_SERVER['DOCUMENT_ROOT'] == null) {
 // Inclui os arquivos necessários
 require_once $_SERVER["DOCUMENT_ROOT"] . "/modulo/modulo.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/alerta/alerta.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/CbcAlerta/cbc.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/CbcAlerta/cbc1.php";
 
 class CbcAlerta extends modulo
 {
