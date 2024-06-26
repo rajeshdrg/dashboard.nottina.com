@@ -662,6 +662,7 @@ class Cbc
                 ];
                 $data = json_encode($data);
                 $this->sendData($data);
+                var_dump($data);
             }
         }
 
