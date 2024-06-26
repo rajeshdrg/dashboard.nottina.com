@@ -719,6 +719,13 @@ class Cbc
         $this->showMMETable();
         $this->show5GTable();
 
+
+
+        echo "<button id='sendDataButton'>Enviar Informação</button>";
+
+        echo "</div>";
+        echo "</div>";
+
         echo "
         <script>
         document.getElementById('sendDataButton').addEventListener('click', function() {
@@ -768,11 +775,6 @@ class Cbc
 
         </script>
         ";
-
-        echo "<button id='sendDataButton'>Enviar Informação</button>";
-
-        echo "</div>";
-        echo "</div>";
     }
 
     private function showMMETable()
