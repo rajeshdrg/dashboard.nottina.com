@@ -757,7 +757,7 @@ class Cbc
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
                         alert('Dados enviados com sucesso!');
-                        window.location.reload();
+                        window.location.href = '../index.php';
                     } else {
                         console.error('Erro ao enviar dados: ', xhr.responseText);
                     }
