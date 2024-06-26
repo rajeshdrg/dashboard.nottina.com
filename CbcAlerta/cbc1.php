@@ -418,7 +418,7 @@ class Cbc
 
     function sendData($data)
     {
-        $url = $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conection.php';
+        $url = $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conecta.php';
         $options = [
             'http' => [
                 'header' => "Content-Type: application/json\r\n",
