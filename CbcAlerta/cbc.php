@@ -17,8 +17,6 @@ class Cbc
 
     private function get_data()
     {
-        // echo "<script>console.log('Carregando dados XML do arquivo: {$this->file}');</script>";
-
         // Lê a data de modificação do arquivo
         $this->file_date = date("d/m/Y H:i:s", filemtime($this->file));
 
@@ -38,11 +36,30 @@ class Cbc
             libxml_clear_errors();
             throw new Exception("Erro: conteúdo XML inválido. Detalhes: " . implode(", ", $errors));
         }
-
-        // echo "<script>console.log('Dados XML carregados com sucesso');</script>";
     }
 
+    public function ShowMe()
+    {
+        date_default_timezone_set("America/Sao_Paulo");
+        $hora = date('G');
+        $dark = ($hora > 19 || $hora < 6) ? "dark" : "";
 
+        echo "<div class='$dark' style='width:80%; margin: 20px auto;'>";
+        echo "<header class='card-header'>";
+        echo "<b>CBC</b><br>";
+        echo "<span>Última atualização: " . htmlspecialchars($this->file_date) . "</span>";
+        echo "</header>";
+        echo "<div class='card-content'>";
+
+        // Mostrar datos de MME
+        $this->showMMETable();
+
+        // Mostrar datos de tecnología 5G
+        $this->show5GTable();
+
+        echo "</div>";
+        echo "</div>";
+    }
 
     private function showMMETable()
     {
@@ -86,7 +103,6 @@ class Cbc
             // Agregar ícono de edición si el status es "fora"
             if ($status === "fora") {
                 echo "<td><a href='" . $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcEditForm.php' class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
-
             } else {
                 echo "<td></td>";
             }
@@ -142,7 +158,6 @@ class Cbc
                 // Agregar ícono de edición si el status de la tecnología es "fora"
                 if ($status_tecnologia === "fora") {
                     echo "<td><a href='" . $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcEditForm.php' class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
-
                 } else {
                     echo "<td></td>";
                 }
@@ -154,7 +169,5 @@ class Cbc
         echo "</tbody>";
         echo "</table>";
     }
-
-
 }
 
