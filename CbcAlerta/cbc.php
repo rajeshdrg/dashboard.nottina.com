@@ -639,6 +639,7 @@ class Cbc
                     'teste' => $test_done_tecnologia,
                     'roteamento' => $routing_tecnologia,
                 ];
+                $data = json_encode($data);
                 $this->sendData($data);
             }
         }
