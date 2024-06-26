@@ -1,3 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBC</title>
+    <!-- <link rel="stylesheet" href="path/to/your/css/styles.css"> Ruta a tu archivo CSS -->
+    <script src="/home/rajesh/dashboard.nottina.com/CbcAlerta/cbc.js" defer></script>
+    <!-- Ruta a tu archivo JavaScript -->
+</head>
+
+<body>
+    <?php
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/CbcAlerta/cbc.php";
+
+    try {
+        $cbc = new Cbc($_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml"); // Ruta a tu archivo XML
+        $cbc->showMe();
+    } catch (Exception $e) {
+        echo "Erro: " . $e->getMessage();
+    }
+    ?>
+</body>
+
+</html>
+
+
+
 <?php
 // Se o DOCUMENT_ROOT não estiver definido, atribui um valor padrão
 if (!isset($_SERVER['DOCUMENT_ROOT']) || $_SERVER['DOCUMENT_ROOT'] == null) {
@@ -85,3 +114,4 @@ if (isset($_GET['back'])) {
     $cbcAlerta->back_call();
     $cbcAlerta->ShowMe();
 }
+
