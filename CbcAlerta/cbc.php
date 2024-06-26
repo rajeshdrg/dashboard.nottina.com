@@ -729,6 +729,7 @@ class Cbc
         echo "
         <script>
         document.getElementById('sendDataButton').addEventListener('click', function() {
+            console.log('Boton clicado);
             let data = gatherData();
             sendDataToServer(data);
         });
