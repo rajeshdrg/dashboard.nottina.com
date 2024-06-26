@@ -936,13 +936,6 @@ class Cbc
     }
 }
 
-// Uso del objeto Cbc
-$file = '/datos/sites/dashboard.nottina.com/CbcAlerta/cbcRelatorio.xml';
-try {
-    $cbc = new Cbc($file);
-    $cbc->ShowMe();
-} catch (Exception $e) {
-    echo "Error: " . $e->getMessage();
-}
+
 
 
