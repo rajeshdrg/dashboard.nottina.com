@@ -40,7 +40,7 @@ class Cbc
 
     function sendData($data)
     {
-        $url = $_SERVER['DOCUMENT_ROOT'] . '/erpme/banco/conection.php';
+        $url = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/conection.php";
         $options = [
             'http' => [
                 'header' => "Content-Type: application/json\r\n",
@@ -49,6 +49,7 @@ class Cbc
             ],
         ];
         $context = stream_context_create($options);
+        echo "<script>console.log($data);</script>";
         $result = file_get_contents($url, false, $context);
 
         if ($result === FALSE) {
@@ -107,7 +108,7 @@ class Cbc
             }
 
             function sendDataToServer(data) {
-                let url = '/erpme/banco/conection.php';
+                let url = '/CbcAlerta/conection.php';  // Ruta relativa al dominio base
                 fetch(url, {
                     method: 'POST',
                     headers: {
@@ -202,6 +203,7 @@ class Cbc
                 'teste' => $test_done,
                 'roteamento' => $routing,
             ];
+            $data = json_encode($data);
             $this->sendData($data);
         }
 
@@ -278,6 +280,7 @@ class Cbc
                     'teste' => $test_done_tecnologia,
                     'roteamento' => $routing_tecnologia,
                 ];
+                $data = json_encode($data);
                 $this->sendData($data);
             }
         }
