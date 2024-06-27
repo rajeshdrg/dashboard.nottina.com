@@ -112,6 +112,7 @@ function getAlertaById($id_xml)
             formData.forEach((value, key) => {
                 formObject[key] = value;
             });
+            console.log("Datos a enviar:", formObject); //Depuração: verifique os dados antes de enviar
 
             // Enviando dados conection.php usando fetch
             try {
@@ -126,7 +127,7 @@ function getAlertaById($id_xml)
                 });
 
                 const contentType = response.headers.get('content-type');
-                console.log(contentType);
+
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
