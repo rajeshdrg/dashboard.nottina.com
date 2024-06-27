@@ -3,7 +3,7 @@
 $id_xml = isset($_GET['id']) ? $_GET['id'] : null;
 
 // Verificar se foi fornecido um ID
-if ($id === null) {
+if ($id_xml === null) {
     echo "ID da alerta não fornecido.";
     exit;
 }
