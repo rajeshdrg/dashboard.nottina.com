@@ -129,31 +129,34 @@ function getAlertaById($id_xml)
             const data = await response.json();
             console.log(data);
             if (data.success) {
-                Swal.fire('Success', 'Dados enviados corretamente', 'success');
+                const enviar = await Swal.fire({
+                    icon: 'success',
+                    title: 'Dados enviados corretamente',
+                    showConfirmButton: true,
+                    confirmButtonText: 'Fechar'
+                });
             } else {
-                Swal.fire('Error', 'Erro ao enviar dados: ' + data.message, 'error');
+                const erro = await Swal.fire({
+                    icon: 'Error',
+                    title: 'Erro ao enviar dados' text: data.message,
+                });
             }
-
-                .catch (error => {
-                console.error('Erro ao enviar dados:', error);
-                Swal.fire('Error', 'Erro ao enviar dados: ' + error.message, 'error');
-            });
 
         });
 
         // Função para desativar botões de navegação
-        function disableNavigationButtons() {
-            history.pushState(null, null, location.href);
-            window.addEventListener('popstate', function () {
-                history.pushState(null, null, location.href);
-            });
+        // function disableNavigationButtons() {
+        //     history.pushState(null, null, location.href);
+        //     window.addEventListener('popstate', function () {
+        //         history.pushState(null, null, location.href);
+        //     });
 
-            window.addEventListener("beforeunload", function (event) {
-                event.preventDefault();
-            });
-        }
+        //     window.addEventListener("beforeunload", function (event) {
+        //         event.preventDefault();
+        //     });
+        // }
 
-        disableNavigationButtons();
+        // disableNavigationButtons();
     </script>
 </body>
 
