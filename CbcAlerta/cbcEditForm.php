@@ -1,45 +1,46 @@
 <?php
-// Recuperar o ID da URL
-$id_xml = isset($_GET['id']) ? $_GET['id'] : null;
+// Recuperar el ID de la URL de manera segura
+$id_xml = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
 
-// Verificar se foi fornecido um ID
-if ($id_xml === null) {
-    exit("ID da alerta não fornecido.");
+if ($id_xml === null || $id_xml === false) {
+    exit("ID da alerta não fornecido ou inválido.");
 }
 
-// Recuperar dados da alerta para edição usando o ID
+// Obtener datos de la alerta para edición usando el ID
 $alerta = getAlertaById($id_xml);
 
-// Certificar-se de que os dados da alerta foram encontrados
 if ($alerta === null) {
     exit("Alerta não encontrada.");
 }
 
-// Atribuir os dados da alerta às variáveis
-$estado = $alerta['estado'];
-$operadora = $alerta['operadora'];
-$mme = isset($alerta['mme']) ? $alerta['mme'] : '';
-$amf = isset($alerta['amf']) ? $alerta['amf'] : null;
+// Atribuir los datos de la alerta a las variables
+$estado = htmlspecialchars($alerta['estado']);
+$operadora = htmlspecialchars($alerta['operadora']);
+$mme = isset($alerta['mme']) ? htmlspecialchars($alerta['mme']) : '';
+$amf = isset($alerta['amf']) ? htmlspecialchars($alerta['amf']) : '';
 
 function getAlertaById($id_xml)
 {
-    // Carregar o arquivo XML
+    // Cargar el archivo XML de manera segura
     $file = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml";
+    if (!file_exists($file)) {
+        return null;
+    }
+
+    // Intentar cargar el XML
     $xml = simplexml_load_file($file);
+    if ($xml === false) {
+        return null;
+    }
 
-    // Procurar a alerta com o ID correspondente
-    foreach ($xml->cbcAlerta as $index => $alerta) {
+    // Buscar la alerta con el ID correspondiente
+    foreach ($xml->cbcAlerta as $alerta) {
         if ((string) $alerta['id'] === $id_xml) {
-            $estado = (string) $alerta->estado;
-            $operadora = (string) $alerta->cbcAlerta_operadora;
-            $mme = isset($alerta->mme) ? (string) $alerta->mme : null;
-            $amf = isset($alerta->tecnologia->amf) ? (string) $alerta->tecnologia->amf : null;
-
             return [
-                'estado' => $estado,
-                'operadora' => $operadora,
-                'mme' => $mme,
-                'amf' => $amf
+                'estado' => (string) $alerta->estado,
+                'operadora' => (string) $alerta->cbcAlerta_operadora,
+                'mme' => isset($alerta->mme) ? (string) $alerta->mme : null,
+                'amf' => isset($alerta->tecnologia->amf) ? (string) $alerta->tecnologia->amf : null
             ];
         }
     }
@@ -47,6 +48,7 @@ function getAlertaById($id_xml)
     return null;
 }
 ?>
+
 
 
 
