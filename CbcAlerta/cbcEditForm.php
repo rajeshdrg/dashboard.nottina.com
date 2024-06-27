@@ -8,7 +8,7 @@ if ($id === null) {
     exit;
 }
 
-// Recuperar dados da alerta para edição usando o ID (substitua pela sua lógica de obtenção de dados)
+// Recuperar dados da alerta para edição usando o ID
 $alerta = getAlertaById($id);
 
 // Certificar-se de que os dados da alerta foram encontrados
@@ -83,45 +83,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Opcionalmente, você pode redirecionar ou mostrar uma mensagem de sucesso ao usuário
     exit;
 }
+
 function getAlertaById($id)
 {
-    $file = $_SERVER['DOCUMENT_ROOT'] . '/CbcAlerta/cbcRelatorio.xml';
+    // Carregar o arquivo XML
+    $file = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml";
+    $xml = simplexml_load_file($file);
 
-    if (!file_exists($file)) {
-        throw new Exception("Erro: arquivo não encontrado.");
-    }
-
-    $xmlstr = file_get_contents($file);
-
-    if ($xmlstr === false) {
-        throw new Exception("Erro: não foi possível ler o arquivo XML");
-    }
-
-    libxml_use_internal_errors(true);
-    $xml = simplexml_load_string($xmlstr);
-
-    if ($xml === false) {
-        $errors = libxml_get_errors();
-        libxml_clear_errors();
-        throw new Exception("Erro: conteúdo XML inválido. Detalhes: " . implode(", ", $errors));
-    }
-
-    foreach ($xml->cbcAlerta as $alerta) {
+    // Procurar a alerta com o ID correspondente
+    foreach ($xml->cbcAlerta as $index => $alerta) {
         if ((string) $alerta['id'] === $id) {
+            $estado = (string) $alerta->estado;
+            $operadora = (string) $alerta->cbcAlerta_operadora;
+            $mme = isset($alerta->mme) ? (string) $alerta->mme : null;
+            $amf = isset($alerta->tecnologia->amf) ? (string) $alerta->tecnologia->amf : null;
+
             return [
-                'estado' => (string) $alerta->estado,
-                'operadora' => (string) $alerta->cbcAlerta_operadora,
-                'mme' => isset($alerta->mme) ? (string) $alerta->mme : '',
-                'amf' => isset($alerta->tecnologia->amf) ? (string) $alerta->tecnologia->amf : null,
+                'estado' => $estado,
+                'operadora' => $operadora,
+                'mme' => $mme,
+                'amf' => $amf
             ];
         }
     }
 
     return null;
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -130,14 +117,15 @@ function getAlertaById($id)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBC Relatorio</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src=""></script>
+    <title>Editar Alerta</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/sweetalert2.all.js"></script>
 </head>
 
 <body>
-    <h1>Editar CBC Relatorio </h1>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . urlencode($id); ?>" method="POST">
+    <h1>Editar Relatório CBC</h1>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
         <label for="estado">Estado/Região:</label>
         <input type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($estado); ?>" readonly><br><br>
 
