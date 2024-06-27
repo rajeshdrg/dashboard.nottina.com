@@ -121,10 +121,12 @@ function getAlertaById($id_xml)
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify([formObject]) // Aqui garantimos que ele seja enviado como um array
+                    body: JSON.stringify(formObject) // Aqui garantimos que ele seja enviado como um array
+
                 });
 
                 const contentType = response.headers.get('content-type');
+                console.log(contentType);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
