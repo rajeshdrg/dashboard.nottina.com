@@ -3,7 +3,7 @@ var_dump($_GET);
 // Recuperar el ID de la URL de manera segura
 $id_xml = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
 
-if ($id_xml === null || $id_xml === false) {
+if ($id_xml === null) {
     exit("ID da alerta não fornecido ou inválido.");
 }
 
