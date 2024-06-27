@@ -128,7 +128,7 @@ function getAlertaById($id_xml)
 
 <body>
     <h1>Editar Relatório CBC</h1>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id=" . $_GET['id']); ?>" method="POST">
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id']); ?>">
         <label for="estado">Estado/Região:</label>
         <input type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($estado); ?>" readonly><br><br>
