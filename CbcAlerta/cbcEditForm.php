@@ -1,15 +1,15 @@
 <?php
 // Recuperar o ID da URL
-$id = isset($_GET['id']) ? $_GET['id'] : null;
+$id_xml = isset($_GET['id']) ? $_GET['id'] : null;
 
 // Verificar se foi fornecido um ID
-if ($id === null) {
+if ($id_xml === null) {
     echo "ID da alerta não fornecido.";
     exit;
 }
 
 // Recuperar dados da alerta para edição usando o ID
-$alerta = getAlertaById($id);
+$alerta = getAlertaById($id_xml);
 
 // Certificar-se de que os dados da alerta foram encontrados
 if ($alerta === null) {
@@ -25,12 +25,13 @@ $amf = isset($alerta['amf']) ? $alerta['amf'] : null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Processar os dados enviados pelo formulário
+    $id_xml = $_POST['id'];
     $estado = $_POST['estado'];
     $operadora = $_POST['operadora'];
     $mme = $_POST['mme'];
     $amf = isset($_POST['amf']) ? $_POST['amf'] : null;
     $status = $_POST['status'];
-    $teste = $_POST['test'];
+    $teste = $_POST['teste'];
     $roteamento = $_POST['roteamento'];
 
     // Aqui você pode realizar validações adicionais antes de enviar os dados para o banco de dados
@@ -38,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Preparar os dados para enviar a connection.php
     $data = [
-        'id' => $id,
+        'id' => $id_xml,
         'estado' => $estado,
         'operadora' => $operadora,
         'mme' => $mme,
@@ -83,62 +84,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Opcionalmente, você pode redirecionar ou mostrar uma mensagem de sucesso ao usuário
     exit;
 }
-
-function getAlertaById($id)
-{
-    // Carregar o arquivo XML
-    $file = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml";
-    $xml = simplexml_load_file($file);
-
-    // Procurar a alerta com o ID correspondente
-    foreach ($xml->cbcAlerta as $index => $alerta) {
-        if ((string) $alerta['id'] === $id) {
-            $estado = (string) $alerta->estado;
-            $operadora = (string) $alerta->cbcAlerta_operadora;
-            $mme = isset($alerta->mme) ? (string) $alerta->mme : null;
-            $amf = isset($alerta->tecnologia->amf) ? (string) $alerta->tecnologia->amf : null;
-
-            return [
-                'estado' => $estado,
-                'operadora' => $operadora,
-                'mme' => $mme,
-                'amf' => $amf
-            ];
-        }
-    }
-
-    return null;
-}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Alerta</title>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/js/sweetalert2.all.js"></script>
+    <!-- Adicione seus estilos CSS aqui, se necessário -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <h1>Editar Relatório CBC</h1>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id']); ?>">
+
         <label for="estado">Estado/Região:</label>
-        <input type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($estado); ?>" readonly><br><br>
+        <input type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($estado); ?>"><br><br>
 
         <label for="operadora">Operadora:</label>
-        <input type="text" id="operadora" name="operadora" value="<?php echo htmlspecialchars($operadora); ?>"
-            readonly><br><br>
+        <input type="text" id="operadora" name="operadora" value="<?php echo htmlspecialchars($operadora); ?>"><br><br>
 
         <label for="mme">MME:</label>
-        <input type="text" id="mme" name="mme" value="<?php echo htmlspecialchars($mme); ?>" readonly><br><br>
+        <input type="text" id="mme" name="mme" value="<?php echo htmlspecialchars($mme); ?>"><br><br>
 
         <?php if (!empty($amf)): ?>
             <label for="amf">AMF:</label>
-            <input type="text" id="amf" name="amf" value="<?php echo htmlspecialchars($amf); ?>" readonly><br><br>
+            <input type="text" id="amf" name="amf" value="<?php echo htmlspecialchars($amf); ?>"><br><br>
         <?php endif; ?>
 
         <label for="status">Status:</label>
@@ -147,8 +122,8 @@ function getAlertaById($id)
             <option value="fora">Fora</option>
         </select><br><br>
 
-        <label for="test">Teste:</label>
-        <input type="text" id="test" name="test" required><br><br>
+        <label for="teste">Teste:</label>
+        <input type="text" id="teste" name="teste" required><br><br>
 
         <label for="roteamento">Roteamento:</label>
         <select id="roteamento" name="roteamento">
@@ -156,7 +131,7 @@ function getAlertaById($id)
             <option value="nao">Não</option>
         </select><br><br>
 
-        <input type="submit" value="Enviar">
+        <input type="submit" value="Guardar Alterações">
     </form>
 </body>
 

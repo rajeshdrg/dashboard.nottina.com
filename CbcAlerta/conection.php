@@ -20,28 +20,15 @@ class cbcRelatorio
         $this->conexao = $conexao;
     }
 
-    public function guardarCbcRelatorio($estado, $operadora, $mme, $amf, $status, $teste, $roteamento)
+    public function guardarCbcRelatorio($id_xml, $estado, $operadora, $mme, $amf, $status, $teste, $roteamento)
     {
-        // Generar el script de consola
-        $script = "<script>console.log('Datos recibidos: ";
-        $script .= "Estado: $estado, ";
-        $script .= "Operadora: $operadora, ";
-        $script .= "MME: $mme, ";
-        $script .= "AMF: $amf, ";
-        $script .= "Status: $status, ";
-        $script .= "Teste: $teste, ";
-        $script .= "Roteamento: $roteamento";
-        $script .= "');</script>";
-
-        // Imprimir el script de consola
-        echo $script;
-
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
 
-        $sqlCommand->sql = "INSERT INTO cbc_relatorio (estado, operadora, mme, amf, status, teste, roteamento, created_at)
-                            VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())";
+        $sqlCommand->sql = "INSERT INTO cbc_relatorio (id_xml, estado, operadora, mme, amf, status, teste, roteamento, created_at)
+                            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW())";
         $sqlCommand->params = array(
+            $id_xml,
             $estado,
             $operadora,
             $mme,
@@ -60,31 +47,38 @@ class cbcRelatorio
     }
 }
 
-// Imprimir los datos crudos recibidos para depuración en consola de navegador
-$rawData = file_get_contents('php://input');
-echo "<script>console.log('Datos crudos recibidos: " . json_encode($rawData) . "');</script>";
-
-
+// Obtener datos del cuerpo de la solicitud POST
 $data = json_decode(file_get_contents('php://input'), true);
 
+// Verificar si se recibieron datos válidos
 if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
     echo json_encode(['success' => false, 'message' => 'Erro ao decodificar dados JSON: ' . json_last_error_msg()]);
     exit;
 }
-echo "<script>console.log($data);</script>";
-if ($data) {
-    $cbcRelatorio = new cbcRelatorio();
-    foreach ($data as $item) {
-        $cbcRelatorio->guardarCbcRelatorio(
-            $item['estado'],
-            $item['operadora'],
-            $item['mme'],
-            $item['amf'],
-            $item['status'],
-            $item['teste'],
-            $item['roteamento']
-        );
-    }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Nenhum dado recebido']);
+
+// Obtener el ID desde los datos enviados por cbcEditForm.php
+$id = isset($data['id']) ? $data['id'] : null;
+
+// Verificar si se recibió un ID válido
+if ($id === null) {
+    echo json_encode(['success' => false, 'message' => 'ID da alerta não fornecido.']);
+    exit;
+}
+
+// Crear una instancia de la clase cbcRelatorio
+$cbcRelatorio = new cbcRelatorio();
+
+// Procesar cada conjunto de datos recibidos
+foreach ($data as $item) {
+    // Extraer valores de cada ítem y llamar al método para guardar en la base de datos
+    $cbcRelatorio->guardarCbcRelatorio(
+        $id,
+        $item['estado'],
+        $item['operadora'],
+        $item['mme'],
+        $item['amf'],
+        $item['status'],
+        $item['teste'],
+        $item['roteamento']
+    );
 }

@@ -51,10 +51,10 @@ class Cbc
         echo "</header>";
         echo "<div class='card-content'>";
 
-        // Mostrar datos de MME
+        // Mostrar dados de MME
         $this->showMMETable();
 
-        // Mostrar datos de tecnología 5G
+        // Mostrar dados de tecnologia 5G
         $this->show5GTable();
 
         echo "</div>";
@@ -79,7 +79,6 @@ class Cbc
         echo "<tbody>";
 
         foreach ($this->xml->cbcAlerta as $alerta) {
-            $id = (string) $alerta['id'];
             $estado = (string) $alerta->estado;
             $operadora = (string) $alerta->cbcAlerta_operadora;
             $mme = isset($alerta->mme) ? (string) $alerta->mme : '';
@@ -103,7 +102,7 @@ class Cbc
 
             // Agregar ícono de edición si el status es "fora"
             if ($status === "fora") {
-                echo "<td><a href=\"/CbcAlerta/cbcEditForm.php?id=" . urlencode($id) . "\" class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
+                echo "<td><a href=\"/CbcAlerta/cbcEditForm.php?id={$alerta['id']}\" class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
             } else {
                 echo "<td></td>";
             }
@@ -134,7 +133,6 @@ class Cbc
 
         foreach ($this->xml->cbcAlerta as $alerta) {
             if (isset($alerta->tecnologia)) {
-                $id = (string) $alerta['id'];
                 $estado = (string) $alerta->estado;
                 $operadora = (string) $alerta->cbcAlerta_operadora;
                 $tipo = (string) $alerta->tecnologia->tipo;
@@ -159,7 +157,7 @@ class Cbc
 
                 // Agregar ícono de edición si el status de la tecnología es "fora"
                 if ($status_tecnologia === "fora") {
-                    echo "<td><a href=\"/CbcAlerta/cbcEditForm.php?id=" . urlencode($id) . "\" class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
+                    echo "<td><a href=\"/CbcAlerta/cbcEditForm.php?id={$alerta['id']}\" class='btn'><img src='/images/icon_edit.png' alt='edit'></a></td>";
                 } else {
                     echo "<td></td>";
                 }
@@ -172,3 +170,4 @@ class Cbc
         echo "</table>";
     }
 }
+
