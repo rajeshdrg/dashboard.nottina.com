@@ -124,12 +124,15 @@ function getAlertaById($id_xml)
                     body: JSON.stringify([formObject]) // Aqui garantimos que ele seja enviado como um array
                 });
 
+                const contentType = response.headers.get('content-type');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
+                if (!contentType || !contentType.includes('application/json')) {
+                    throw new Error('Esperava uma resposta JSON, mas recebeu outra coisa.');
+                }
 
                 const data = await response.json();
-                console.log(data);
 
                 if (data.success) {
                     await Swal.fire({
@@ -154,6 +157,7 @@ function getAlertaById($id_xml)
                 });
             }
         });
+
 
         // Função para desativar botões de navegação
         // function disableNavigationButtons() {
