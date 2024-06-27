@@ -131,14 +131,14 @@ function getAlertaById($id_xml)
                     } else {
                         Swal.fire('Error', 'Erro ao enviar dados: ' + data.message, 'error');
                     }
-                    window.location.href = '../index.php';
+
                 })
 
                 .catch(error => {
                     console.error('Erro ao enviar dados:', error);
                     Swal.fire('Error', 'Erro ao enviar dados: ' + error.message, 'error');
                 });
-            window.location.href = '../index.php';
+
         });
 
         // Função para desativar botões de navegação
