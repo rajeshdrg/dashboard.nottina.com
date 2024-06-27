@@ -9,7 +9,7 @@ if ($id === null) {
 }
 
 // Recuperar dados da alerta para edição usando o ID (substitua pela sua lógica de obtenção de dados)
-$alerta = getAlertaById($id);
+// $alerta = getAlertaById($id);
 
 // Certificar-se de que os dados da alerta foram encontrados
 if ($alerta === null) {
