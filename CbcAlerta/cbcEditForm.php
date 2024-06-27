@@ -1,9 +1,28 @@
 <?php
-// Ejemplo de recuperación de datos para edición (simulado, reemplaza con tus datos reales)
-$estado = "Estado Ejemplo";
-$operadora = "Operadora Ejemplo";
-$mme = "MME Ejemplo";
-$amf = "AMF Ejemplo"; // En caso de existir
+
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+
+
+if ($id === null) {
+    echo "ID de alerta no proporcionado.";
+    exit;
+}
+
+// Ejemplo de recuperación de datos para edición usando el ID (simulado, reemplaza con tus datos reales)
+// Supongamos que tienes una función que recupera los datos de la alerta por su ID
+$alerta = getAlertaById($id);
+
+// Asegurarse de que se encontraron los datos de la alerta
+if ($alerta === null) {
+    echo "Alerta no encontrada.";
+    exit;
+}
+
+// Asignar los datos de la alerta a variables
+$estado = $alerta['estado'];
+$operadora = $alerta['operadora'];
+$mme = isset($alerta['mme']) ? $alerta['mme'] : '';
+$amf = isset($alerta['amf']) ? $alerta['amf'] : null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Procesar los datos enviados por el formulario
@@ -20,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Preparar los datos para enviar a connection.php
     $data = [
+        'id' => $id,
         'estado' => $estado,
         'operadora' => $operadora,
         'mme' => $mme,
@@ -34,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Puedes ajustar la URL según la ubicación de tu archivo connection.php
     $url = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/conection.php";
-    ;
 
     // Configurar la solicitud HTTP POST
     $options = [
@@ -45,12 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]
     ];
 
-    // Realizar la solicitud HTTP
+    // Realizar solicitud HTTP
     $context = stream_context_create($options);
     $result = file_get_contents($url, false, $context);
 
     if ($result === false) {
-        // Manejar el error si la solicitud falla
+
         echo "Error al enviar datos a connection.php";
     } else {
         // Procesar la respuesta del servidor (si se desea)
@@ -65,6 +84,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Opcionalmente, puedes redirigir o mostrar un mensaje de éxito al usuario
     exit;
 }
+
+// Función simulada para obtener datos de la alerta por ID (reemplazar con la lógica real)
+function getAlertaById($id)
+{
+    // Simulación de datos
+    $alertas = [
+        "1" => [
+            'estado' => "Estado Ejemplo",
+            'operadora' => "Operadora Ejemplo",
+            'mme' => "MME Ejemplo",
+            'amf' => "AMF Ejemplo"
+        ],
+        // Agregar más alertas según sea necesario
+    ];
+
+    return isset($alertas[$id]) ? $alertas[$id] : null;
+}
 ?>
 
 <!DOCTYPE html>
@@ -73,14 +109,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Alerta</title>
-    <!-- Agrega aquí tus estilos CSS si es necesario -->
+    <title>CBC Relatorio</title>
     <link rel="stylesheet" href="styles.css">
+    <script src=""></script>
 </head>
 
 <body>
-    <h1>Editar Alerta</h1>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+    <h1>Editar CBC Relatorio </h1>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . urlencode($id); ?>" method="POST">
         <label for="estado">Estado/Região:</label>
         <input type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($estado); ?>" readonly><br><br>
 
@@ -111,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="nao">Não</option>
         </select><br><br>
 
-        <input type="submit" value="Guardar Cambios">
+        <input type="submit" value="Enviar">
     </form>
 </body>
 
