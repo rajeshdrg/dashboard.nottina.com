@@ -1,7 +1,6 @@
 <?php
 // Recuperar o ID da URL
 $id_xml = isset($_GET['id']) ? $_GET['id'] : null;
-echo "ID recibido: " . $id_xml;
 
 // Verificar se foi fornecido um ID
 if ($id_xml === null) {
@@ -30,11 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mme = $_POST['mme'];
     $amf = isset($_POST['amf']) ? $_POST['amf'] : null;
     $status = $_POST['status'];
-    $teste = $_POST['test']; // Ajustado a 'test' en lugar de 'teste' para coincidir con el nombre del campo en el formulario
+    $teste = $_POST['test'];
     $roteamento = $_POST['roteamento'];
-
-    // Aqui você pode realizar validações adicionais antes de enviar os dados para o banco de dados
-    // Por exemplo, garantir que os campos obrigatórios não estejam vazios, etc.
 
     // Preparar os dados para enviar a connection.php
     $data = [
@@ -49,10 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ];
 
     // Enviar dados para connection.php usando JSON
-    $jsonData = json_encode([$data]);
+    $jsonData = json_encode($data);
 
     // Ajustar a URL conforme a localização do seu arquivo connection.php
-    $url = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/conection.php";
+    $url = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cnection.php";
 
     // Configurar a solicitação HTTP POST
     $options = [
@@ -110,6 +106,8 @@ function getAlertaById($id_xml)
     return null;
 }
 ?>
+
+
 
 
 <!DOCTYPE html>

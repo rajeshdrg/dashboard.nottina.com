@@ -4,6 +4,7 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 
+var_dump(file_get_contents('php://input'));
 
 if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";
@@ -49,9 +50,7 @@ class cbcRelatorio
 }
 
 // Obtener datos del cuerpo de la solicitud POST
-$rawPostData = file_get_contents("php://input");
-$data = json_decode($rawPostData, true);
-
+$data = json_decode(file_get_contents('php://input'), true);
 
 // Verificar si se recibieron datos válidos
 if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
@@ -90,4 +89,4 @@ foreach ($data as $item) {
 }
 
 echo json_encode(['success' => true, 'results' => $results]);
-var_dump($result);
+
