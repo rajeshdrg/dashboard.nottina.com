@@ -100,24 +100,24 @@ function getAlertaById($id_xml)
 
     <script>
         document.getElementById('cbcForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevenir el envío del formulario por defecto
+            event.preventDefault();
 
-            // Recopilar los datos del formulario
+            //Coletar dados do formulário
             const formData = new FormData(this);
 
-            // Convertir FormData a un objeto para poder ser convertido a JSON
+            // Converte FormData em um objeto para que possa ser convertido em JSON
             const formObject = {};
             formData.forEach((value, key) => {
                 formObject[key] = value;
             });
 
-            // Enviar datos a conection.php usando fetch
+            // Enviando dados conection.php usando fetch
             fetch('/CbcAlerta/conection.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify([formObject]) // Aquí aseguramos que se envía como un array
+                body: JSON.stringify([formObject]) // Aqui garantimos que ele seja enviado como um array
             })
                 .then(response => {
                     if (!response.ok) {
@@ -131,12 +131,29 @@ function getAlertaById($id_xml)
                     } else {
                         Swal.fire('Error', 'Erro ao enviar dados: ' + data.message, 'error');
                     }
+                    window.location.href = '../index.php';
                 })
+
                 .catch(error => {
                     console.error('Erro ao enviar dados:', error);
                     Swal.fire('Error', 'Erro ao enviar dados: ' + error.message, 'error');
                 });
+            window.location.href = '../index.php';
         });
+
+        // Função para desativar botões de navegação
+        function disableNavigationButtons() {
+            history.pushState(null, null, location.href);
+            window.addEventListener('popstate', function () {
+                history.pushState(null, null, location.href);
+            });
+
+            window.addEventListener("beforeunload", function (event) {
+                event.preventDefault();
+            });
+        }
+
+        disableNavigationButtons();
     </script>
 </body>
 
