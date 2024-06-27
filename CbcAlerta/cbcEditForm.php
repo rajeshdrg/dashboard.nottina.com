@@ -21,65 +21,6 @@ $operadora = $alerta['operadora'];
 $mme = isset($alerta['mme']) ? $alerta['mme'] : '';
 $amf = isset($alerta['amf']) ? $alerta['amf'] : null;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Processar os dados enviados pelo formulário
-    $id_xml = $_POST['id'];
-    $estado = $_POST['estado'];
-    $operadora = $_POST['operadora'];
-    $mme = $_POST['mme'];
-    $amf = isset($_POST['amf']) ? $_POST['amf'] : null;
-    $status = $_POST['status'];
-    $teste = $_POST['test'];
-    $roteamento = $_POST['roteamento'];
-
-    // Preparar os dados para enviar a connection.php
-    $data = [
-        'id' => $id_xml,
-        'estado' => $estado,
-        'operadora' => $operadora,
-        'mme' => $mme,
-        'amf' => $amf,
-        'status' => $status,
-        'teste' => $teste,
-        'roteamento' => $roteamento
-    ];
-
-    // Enviar dados para connection.php usando JSON
-    $jsonData = json_encode($data);
-
-    // Ajustar a URL conforme a localização do seu arquivo connection.php
-    $url = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cnection.php";
-
-    // Configurar a solicitação HTTP POST
-    $options = [
-        'http' => [
-            'header' => "Content-Type: application/json\r\n",
-            'method' => 'POST',
-            'content' => $jsonData
-        ]
-    ];
-
-    // Realizar a solicitação HTTP
-    $context = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-
-    if ($result === false) {
-        // Lidar com o erro se a solicitação falhar
-        echo "Erro ao enviar dados para connection.php";
-    } else {
-        // Processar a resposta do servidor (se desejado)
-        $response = json_decode($result, true);
-        if ($response['success']) {
-            echo "Dados enviados corretamente";
-        } else {
-            echo "Erro ao enviar dados: " . $response['message'];
-        }
-    }
-
-    // Opcionalmente, você pode redirecionar ou mostrar uma mensagem de sucesso ao usuário
-    exit;
-}
-
 function getAlertaById($id_xml)
 {
     // Carregar o arquivo XML
@@ -108,6 +49,7 @@ function getAlertaById($id_xml)
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,7 +67,6 @@ function getAlertaById($id_xml)
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id']); ?>">
         <label for="estado">Estado/Região:</label>
         <input type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($estado); ?>" readonly><br><br>
-
 
         <label for="operadora">Operadora:</label>
         <input type="text" id="operadora" name="operadora" value="<?php echo htmlspecialchars($operadora); ?>"
@@ -176,9 +117,14 @@ function getAlertaById($id_xml)
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify([formObject])
+                body: JSON.stringify([formObject]) // Aquí aseguramos que se envía como un array
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => { throw new Error(text) });
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     if (data.success) {
                         Swal.fire('Success', 'Dados enviados corretamente', 'success');

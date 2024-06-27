@@ -1,3 +1,113 @@
+<?php
+// Recuperar o ID da URL
+$id_xml = isset($_GET['id']) ? $_GET['id'] : null;
+
+// Verificar se foi fornecido um ID
+if ($id_xml === null) {
+    exit("ID da alerta não fornecido.");
+}
+
+// Recuperar dados da alerta para edição usando o ID
+$alerta = getAlertaById($id_xml);
+
+// Certificar-se de que os dados da alerta foram encontrados
+if ($alerta === null) {
+    exit("Alerta não encontrada.");
+}
+
+// Atribuir os dados da alerta às variáveis
+$estado = $alerta['estado'];
+$operadora = $alerta['operadora'];
+$mme = isset($alerta['mme']) ? $alerta['mme'] : '';
+$amf = isset($alerta['amf']) ? $alerta['amf'] : null;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Processar os dados enviados pelo formulário
+    $id_xml = $_POST['id'];
+    $estado = $_POST['estado'];
+    $operadora = $_POST['operadora'];
+    $mme = $_POST['mme'];
+    $amf = isset($_POST['amf']) ? $_POST['amf'] : null;
+    $status = $_POST['status'];
+    $teste = $_POST['test'];
+    $roteamento = $_POST['roteamento'];
+
+    // Preparar os dados para enviar a connection.php
+    $data = [
+        'id' => $id_xml,
+        'estado' => $estado,
+        'operadora' => $operadora,
+        'mme' => $mme,
+        'amf' => $amf,
+        'status' => $status,
+        'teste' => $teste,
+        'roteamento' => $roteamento
+    ];
+
+    // Enviar dados para connection.php usando JSON
+    $jsonData = json_encode($data);
+
+    // Ajustar a URL conforme a localização do seu arquivo connection.php
+    $url = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cnection.php";
+
+    // Configurar a solicitação HTTP POST
+    $options = [
+        'http' => [
+            'header' => "Content-Type: application/json\r\n",
+            'method' => 'POST',
+            'content' => $jsonData
+        ]
+    ];
+
+    // Realizar a solicitação HTTP
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    if ($result === false) {
+        // Lidar com o erro se a solicitação falhar
+        echo "Erro ao enviar dados para connection.php";
+    } else {
+        // Processar a resposta do servidor (se desejado)
+        $response = json_decode($result, true);
+        if ($response['success']) {
+            echo "Dados enviados corretamente";
+        } else {
+            echo "Erro ao enviar dados: " . $response['message'];
+        }
+    }
+
+    // Opcionalmente, você pode redirecionar ou mostrar uma mensagem de sucesso ao usuário
+    exit;
+}
+
+function getAlertaById($id_xml)
+{
+    // Carregar o arquivo XML
+    $file = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml";
+    $xml = simplexml_load_file($file);
+
+    // Procurar a alerta com o ID correspondente
+    foreach ($xml->cbcAlerta as $index => $alerta) {
+        if ((string) $alerta['id'] === $id_xml) {
+            $estado = (string) $alerta->estado;
+            $operadora = (string) $alerta->cbcAlerta_operadora;
+            $mme = isset($alerta->mme) ? (string) $alerta->mme : null;
+            $amf = isset($alerta->tecnologia->amf) ? (string) $alerta->tecnologia->amf : null;
+
+            return [
+                'estado' => $estado,
+                'operadora' => $operadora,
+                'mme' => $mme,
+                'amf' => $amf
+            ];
+        }
+    }
+
+    return null;
+}
+?>
+
+
 <!-- <!DOCTYPE html>
 <html lang="en">
 
