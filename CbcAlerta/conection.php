@@ -3,7 +3,7 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
-
+var_dump($_POST);
 if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";
 

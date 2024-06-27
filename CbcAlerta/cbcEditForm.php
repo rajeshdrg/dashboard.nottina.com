@@ -5,8 +5,7 @@ echo "ID recibido: " . $id_xml;
 
 // Verificar se foi fornecido um ID
 if ($id_xml === null) {
-    echo "ID da alerta não fornecido.";
-    exit;
+    exit("ID da alerta não fornecido.");
 }
 
 // Recuperar dados da alerta para edição usando o ID
@@ -14,8 +13,7 @@ $alerta = getAlertaById($id_xml);
 
 // Certificar-se de que os dados da alerta foram encontrados
 if ($alerta === null) {
-    echo "Alerta não encontrada.";
-    exit;
+    exit("Alerta não encontrada.");
 }
 
 // Atribuir os dados da alerta às variáveis
