@@ -105,7 +105,7 @@ function getAlertaById($id_xml)
             event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
 
             //Coletar dados do formulário
-            const formData = new FormData(this);
+            const formData = new FormData(form);
 
             // Converte FormData em um objeto para que possa ser convertido em JSON
             const formObject = {};
@@ -114,35 +114,45 @@ function getAlertaById($id_xml)
             });
 
             // Enviando dados conection.php usando fetch
-            const response = await fetch('/CbcAlerta/conection.php', {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify([formObject]) // Aqui garantimos que ele seja enviado como um array
-            })
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            console.log(data);
-            if (data.success) {
-                const enviar = await Swal.fire({
-                    icon: 'success',
-                    title: 'Dados enviados corretamente',
-                    showConfirmButton: true,
-                    confirmButtonText: 'Fechar'
+            try {
+                const response = await fetch('/CbcAlerta/conection.php', {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify([formObject]) // Aqui garantimos que ele seja enviado como um array
                 });
-            } else {
-                const erro = await Swal.fire({
-                    icon: 'Error',
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                console.log(data);
+
+                if (data.success) {
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Dados enviados corretamente',
+                        showConfirmButton: true,
+                        confirmButtonText: 'Fechar'
+                    });
+                } else {
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Erro ao enviar dados',
+                        text: data.message,
+                    });
+                }
+            } catch (error) {
+                console.error('Erro ao enviar dados:', error);
+                await Swal.fire({
+                    icon: 'error',
                     title: 'Erro ao enviar dados',
-                    text: data.message,
+                    text: error.message,
                 });
             }
-
         });
 
         // Função para desativar botões de navegação
