@@ -49,6 +49,8 @@ class cbcRelatorio
 
 // Obtener datos del cuerpo de la solicitud POST
 $data = json_decode(file_get_contents('php://input'), true);
+print_r($data);
+echo "<br><br>";
 
 // Verificar si se recibieron datos válidos
 if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
@@ -71,6 +73,8 @@ if ($id === null) {
 // Procesar cada conjunto de datos recibidos
 $results = [];
 foreach ($data as $item) {
+    print_r($item);
+    echo "<br><br>";
     // Extraer valores de cada ítem y llamar al método para guardar en la base de datos
     $result = $cbcRelatorio->guardarCbcRelatorio(
         $id,
