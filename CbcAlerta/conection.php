@@ -49,7 +49,9 @@ class cbcRelatorio
 }
 
 // Obtener datos del cuerpo de la solicitud POST
-$data = json_decode(file_get_contents('php://input'), true);
+$rawPostData = file_get_contents("php://input");
+$data = json_decode($rawPostData, true);
+
 
 // Verificar si se recibieron datos válidos
 if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
@@ -88,3 +90,4 @@ foreach ($data as $item) {
 }
 
 echo json_encode(['success' => true, 'results' => $results]);
+var_dump($result);
