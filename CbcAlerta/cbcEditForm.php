@@ -138,7 +138,8 @@ function getAlertaById($id_xml)
             } else {
                 const erro = await Swal.fire({
                     icon: 'Error',
-                    title: 'Erro ao enviar dados' text: data.message,
+                    title: 'Erro ao enviar dados',
+                    text: data.message,
                 });
             }
 
