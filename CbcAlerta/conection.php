@@ -4,8 +4,6 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 
-var_dump(file_get_contents('php://input'));
-
 if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";
 
@@ -62,7 +60,7 @@ if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
 $cbcRelatorio = new cbcRelatorio();
 
 // Obtener el ID desde los datos enviados por cbcEditForm.php
-$id = isset($data['id']) ? $data['id'] : null;
+$id = isset($data[0]['id']) ? $data[0]['id'] : null;
 
 // Verificar si se recibió un ID válido
 if ($id === null) {
