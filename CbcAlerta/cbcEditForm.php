@@ -99,8 +99,10 @@ function getAlertaById($id_xml)
     </form>
 
     <script>
-        document.getElementById('cbcForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+        let form = document.getElementById("editForm");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
 
             //Coletar dados do formulário
             const formData = new FormData(this);
@@ -112,32 +114,30 @@ function getAlertaById($id_xml)
             });
 
             // Enviando dados conection.php usando fetch
-            fetch('/CbcAlerta/conection.php', {
+            const response = await fetch('/CbcAlerta/conection.php', {
                 method: 'POST',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify([formObject]) // Aqui garantimos que ele seja enviado como um array
             })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.text().then(text => { throw new Error(text) });
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire('Success', 'Dados enviados corretamente', 'success');
-                    } else {
-                        Swal.fire('Error', 'Erro ao enviar dados: ' + data.message, 'error');
-                    }
 
-                })
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log(data);
+            if (data.success) {
+                Swal.fire('Success', 'Dados enviados corretamente', 'success');
+            } else {
+                Swal.fire('Error', 'Erro ao enviar dados: ' + data.message, 'error');
+            }
 
-                .catch(error => {
-                    console.error('Erro ao enviar dados:', error);
-                    Swal.fire('Error', 'Erro ao enviar dados: ' + error.message, 'error');
-                });
+                .catch (error => {
+                console.error('Erro ao enviar dados:', error);
+                Swal.fire('Error', 'Erro ao enviar dados: ' + error.message, 'error');
+            });
 
         });
 
