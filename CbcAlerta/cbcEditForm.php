@@ -99,7 +99,7 @@ function getAlertaById($id_xml)
     </form>
 
     <script>
-        let form = document.getElementById("editForm");
+        let form = document.getElementById("cbcForm");
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
