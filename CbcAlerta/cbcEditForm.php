@@ -68,6 +68,7 @@ function getAlertaById($id_xml)
     <h1>Editar Relatório CBC</h1>
     <form id="cbcForm" method="post" action="conection.php">
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id']); ?>">
+
         <label for="estado">Estado/Região:</label>
         <input type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($estado); ?>" readonly><br><br>
 
@@ -101,7 +102,6 @@ function getAlertaById($id_xml)
         <button type="submit">Enviar</button>
         <button type="button" id="cancelButton">Cancelar</button>
     </form>
-
     <script>
         let form = document.getElementById("cbcForm");
 
