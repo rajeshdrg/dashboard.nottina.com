@@ -1,31 +1,30 @@
 <?php
-
+// Recuperar o ID da URL
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-
+// Verificar se foi fornecido um ID
 if ($id === null) {
-    echo "ID de alerta no proporcionado.";
+    echo "ID da alerta não fornecido.";
     exit;
 }
 
-// Ejemplo de recuperación de datos para edición usando el ID (simulado, reemplaza con tus datos reales)
-// Supongamos que tienes una función que recupera los datos de la alerta por su ID
+// Recuperar dados da alerta para edição usando o ID (substitua pela sua lógica de obtenção de dados)
 $alerta = getAlertaById($id);
 
-// Asegurarse de que se encontraron los datos de la alerta
+// Certificar-se de que os dados da alerta foram encontrados
 if ($alerta === null) {
-    echo "Alerta no encontrada.";
+    echo "Alerta não encontrada.";
     exit;
 }
 
-// Asignar los datos de la alerta a variables
+// Atribuir os dados da alerta às variáveis
 $estado = $alerta['estado'];
 $operadora = $alerta['operadora'];
 $mme = isset($alerta['mme']) ? $alerta['mme'] : '';
 $amf = isset($alerta['amf']) ? $alerta['amf'] : null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Procesar los datos enviados por el formulario
+    // Processar os dados enviados pelo formulário
     $estado = $_POST['estado'];
     $operadora = $_POST['operadora'];
     $mme = $_POST['mme'];
@@ -34,10 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $teste = $_POST['test'];
     $roteamento = $_POST['roteamento'];
 
-    // Aquí puedes realizar validaciones adicionales antes de enviar los datos a la base de datos
-    // Por ejemplo, asegurarte de que los campos obligatorios no estén vacíos, etc.
+    // Aqui você pode realizar validações adicionais antes de enviar os dados para o banco de dados
+    // Por exemplo, garantir que os campos obrigatórios não estejam vazios, etc.
 
-    // Preparar los datos para enviar a connection.php
+    // Preparar os dados para enviar a connection.php
     $data = [
         'id' => $id,
         'estado' => $estado,
@@ -49,13 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'roteamento' => $roteamento
     ];
 
-    // Enviar datos a connection.php usando JSON
+    // Enviar dados para connection.php usando JSON
     $jsonData = json_encode([$data]);
 
-    // Puedes ajustar la URL según la ubicación de tu archivo connection.php
+    // Ajustar a URL conforme a localização do seu arquivo connection.php
     $url = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/conection.php";
 
-    // Configurar la solicitud HTTP POST
+    // Configurar a solicitação HTTP POST
     $options = [
         'http' => [
             'header' => "Content-Type: application/json\r\n",
@@ -64,43 +63,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]
     ];
 
-    // Realizar solicitud HTTP
+    // Realizar a solicitação HTTP
     $context = stream_context_create($options);
     $result = file_get_contents($url, false, $context);
 
     if ($result === false) {
-
-        echo "Error al enviar datos a connection.php";
+        // Lidar com o erro se a solicitação falhar
+        echo "Erro ao enviar dados para connection.php";
     } else {
-        // Procesar la respuesta del servidor (si se desea)
+        // Processar a resposta do servidor (se desejado)
         $response = json_decode($result, true);
         if ($response['success']) {
-            echo "Datos enviados correctamente";
+            echo "Dados enviados corretamente";
         } else {
-            echo "Error al enviar datos: " . $response['message'];
+            echo "Erro ao enviar dados: " . $response['message'];
         }
     }
 
-    // Opcionalmente, puedes redirigir o mostrar un mensaje de éxito al usuario
+    // Opcionalmente, você pode redirecionar ou mostrar uma mensagem de sucesso ao usuário
     exit;
 }
+// function getAlertaById($id)
 
-// Función simulada para obtener datos de la alerta por ID (reemplazar con la lógica real)
-function getAlertaById($id)
-{
-    // Simulación de datos
-    $alertas = [
-        "1" => [
-            'estado' => "Estado Ejemplo",
-            'operadora' => "Operadora Ejemplo",
-            'mme' => "MME Ejemplo",
-            'amf' => "AMF Ejemplo"
-        ],
-        // Agregar más alertas según sea necesario
-    ];
+//     {
+//         // Configuração da conexão com o banco de dados
+//         $servername = "localhost";
+//         $username = "seu_usuario";
+//         $password = "sua_senha";
+//         $dbname = "nome_do_banco_de_dados";
 
-    return isset($alertas[$id]) ? $alertas[$id] : null;
-}
+//         // Criar a conexão
+//         $conn = new mysqli($servername, $username, $password, $dbname);
+
+//         // Verificar a conexão
+//         if ($conn->connect_error) {
+//             die("Conexão falhou: " . $conn->connect_error);
+//         }
+
+//         // Consulta SQL para obter os dados da alerta
+//         $sql = "SELECT estado, operadora, mme, amf FROM alertas WHERE id = ?";
+//         $stmt = $conn->prepare($sql);
+//         $stmt->bind_param("i", $id);
+//         $stmt->execute();
+//         $result = $stmt->get_result();
+
+//         // Verificar se os dados foram encontrados
+//         if ($result->num_rows > 0) {
+//             // Retornar os dados da alerta
+//             $alerta = $result->fetch_assoc();
+//         } else {
+//             $alerta = null;
+//         }
+
+//         // Fechar a conexão
+//         $stmt->close();
+//         $conn->close();
+
+//         return $alerta;
+//     }
+
+
+
 ?>
 
 <!DOCTYPE html>
