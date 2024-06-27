@@ -3,7 +3,7 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
-var_dump($_POST);
+
 if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";
 
@@ -39,16 +39,18 @@ class cbcRelatorio
         );
 
         try {
-            $sqlCommand->execute();
+            $sqlCommand->Execute();
             echo json_encode(['success' => true]);
-        } catch (\Throwable $e) {
+        } catch (Exception $e) {
             echo json_encode(['success' => false, 'message' => 'Erro ao executar consulta: ' . $e->getMessage()]);
+            exit();
         }
     }
 }
 
 // Obtener datos del cuerpo de la solicitud POST
 $data = json_decode(file_get_contents('php://input'), true);
+var_dump($data);
 
 // Verificar si se recibieron datos válidos
 if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
