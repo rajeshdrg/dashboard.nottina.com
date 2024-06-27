@@ -9,7 +9,7 @@ if ($id === null) {
 }
 
 // Recuperar dados da alerta para edição usando o ID (substitua pela sua lógica de obtenção de dados)
-// $alerta = getAlertaById($id);
+$alerta = getAlertaById($id);
 
 // Certificar-se de que os dados da alerta foram encontrados
 if ($alerta === null) {
@@ -83,44 +83,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Opcionalmente, você pode redirecionar ou mostrar uma mensagem de sucesso ao usuário
     exit;
 }
-// function getAlertaById($id)
+function getAlertaById($id)
+{
+    $file = $_SERVER['DOCUMENT_ROOT'] . '/CbcAlerta/cbcRelatorio.xml';
 
-//     {
-//         // Configuração da conexão com o banco de dados
-//         $servername = "localhost";
-//         $username = "seu_usuario";
-//         $password = "sua_senha";
-//         $dbname = "nome_do_banco_de_dados";
+    if (!file_exists($file)) {
+        throw new Exception("Erro: arquivo não encontrado.");
+    }
 
-//         // Criar a conexão
-//         $conn = new mysqli($servername, $username, $password, $dbname);
+    $xmlstr = file_get_contents($file);
 
-//         // Verificar a conexão
-//         if ($conn->connect_error) {
-//             die("Conexão falhou: " . $conn->connect_error);
-//         }
+    if ($xmlstr === false) {
+        throw new Exception("Erro: não foi possível ler o arquivo XML");
+    }
 
-//         // Consulta SQL para obter os dados da alerta
-//         $sql = "SELECT estado, operadora, mme, amf FROM alertas WHERE id = ?";
-//         $stmt = $conn->prepare($sql);
-//         $stmt->bind_param("i", $id);
-//         $stmt->execute();
-//         $result = $stmt->get_result();
+    libxml_use_internal_errors(true);
+    $xml = simplexml_load_string($xmlstr);
 
-//         // Verificar se os dados foram encontrados
-//         if ($result->num_rows > 0) {
-//             // Retornar os dados da alerta
-//             $alerta = $result->fetch_assoc();
-//         } else {
-//             $alerta = null;
-//         }
+    if ($xml === false) {
+        $errors = libxml_get_errors();
+        libxml_clear_errors();
+        throw new Exception("Erro: conteúdo XML inválido. Detalhes: " . implode(", ", $errors));
+    }
 
-//         // Fechar a conexão
-//         $stmt->close();
-//         $conn->close();
+    foreach ($xml->cbcAlerta as $alerta) {
+        if ((string) $alerta['id'] === $id) {
+            return [
+                'estado' => (string) $alerta->estado,
+                'operadora' => (string) $alerta->cbcAlerta_operadora,
+                'mme' => isset($alerta->mme) ? (string) $alerta->mme : '',
+                'amf' => isset($alerta->tecnologia->amf) ? (string) $alerta->tecnologia->amf : null,
+            ];
+        }
+    }
 
-//         return $alerta;
-//     }
+    return null;
+}
 
 
 
