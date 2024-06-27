@@ -3,6 +3,7 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
+var_dump($_POST);
 
 if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";
@@ -40,23 +41,24 @@ class cbcRelatorio
 
         try {
             $sqlCommand->Execute();
-            echo json_encode(['success' => true]);
+            return ['success' => true];
         } catch (Exception $e) {
-            echo json_encode(['success' => false, 'message' => 'Erro ao executar consulta: ' . $e->getMessage()]);
-            exit();
+            return ['success' => false, 'message' => 'Erro ao executar consulta: ' . $e->getMessage()];
         }
     }
 }
 
 // Obtener datos del cuerpo de la solicitud POST
 $data = json_decode(file_get_contents('php://input'), true);
-var_dump($data);
 
 // Verificar si se recibieron datos válidos
 if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
     echo json_encode(['success' => false, 'message' => 'Erro ao decodificar dados JSON: ' . json_last_error_msg()]);
     exit;
 }
+
+// Crear una instancia de la clase cbcRelatorio
+$cbcRelatorio = new cbcRelatorio();
 
 // Obtener el ID desde los datos enviados por cbcEditForm.php
 $id = isset($data['id']) ? $data['id'] : null;
@@ -67,13 +69,11 @@ if ($id === null) {
     exit;
 }
 
-// Crear una instancia de la clase cbcRelatorio
-$cbcRelatorio = new cbcRelatorio();
-
 // Procesar cada conjunto de datos recibidos
+$results = [];
 foreach ($data as $item) {
     // Extraer valores de cada ítem y llamar al método para guardar en la base de datos
-    $cbcRelatorio->guardarCbcRelatorio(
+    $result = $cbcRelatorio->guardarCbcRelatorio(
         $id,
         $item['estado'],
         $item['operadora'],
@@ -83,4 +83,8 @@ foreach ($data as $item) {
         $item['teste'],
         $item['roteamento']
     );
+
+    $results[] = $result;
 }
+
+echo json_encode(['success' => true, 'results' => $results]);
