@@ -143,10 +143,13 @@ function getAlertaById($id_xml)
 
 
             // Converte FormData em um objeto para que possa ser convertido em JSON
-            const formObject = {};
-            formData.forEach((value, key) => {
-                formObject[key] = value;
-            });
+            const formObject = {
+                formData.forEach((value, key) => {
+                    formObject[key] = value;
+                });
+            };
+            console.log();
+
 
 
             // Enviando dados conection.php usando fetch
