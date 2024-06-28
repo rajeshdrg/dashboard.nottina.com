@@ -114,17 +114,14 @@ function getAlertaById($id_xml)
 
             //Coletar dados do formulário
             const formData = new FormData(form);
+            console.log(formData);
 
             // Converte FormData em um objeto para que possa ser convertido em JSON
-            const formObject = {
-                ...Object.fromEntries(formData)
+            // const formObject = {};
+            // formData.forEach((value, key) => {
+            //     formObject[key] = value;
+            // });
 
-            };
-            console.log(formObject);
-            formData.forEach((value, key) => {
-                formObject[key] = value;
-            });
-            console.log("Datos a enviar:", formObject); //Depuração: verifique os dados antes de enviar
 
             // Enviando dados conection.php usando fetch
             try {
@@ -134,7 +131,7 @@ function getAlertaById($id_xml)
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(formObject) // Aqui garantimos que ele seja enviado como um array
+                    body: JSON.stringify(Object.fromEntries(formData)) // Aqui garantimos que ele seja enviado como um array
 
                 });
 
