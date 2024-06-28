@@ -80,10 +80,12 @@ function getAlertaById($id_xml)
         <input type="text" id="operadora" name="operadora" value="<?php echo htmlspecialchars($operadora); ?>"
             readonly><br><br>
 
-        <label for="mme">MME:</label>
-        <input type="text" id="mme" name="mme" value="<?php echo htmlspecialchars($mme); ?>" readonly><br><br>
+        <?php if (!empty($mme)): ?>
 
-        <?php if (!empty($amf)): ?>
+            <label for="mme">MME:</label>
+            <input type="text" id="mme" name="mme" value="<?php echo htmlspecialchars($mme); ?>" readonly><br><br>
+        <?php elseif (!empty($amf)): ?>
+
             <label for="amf">AMF:</label>
             <input type="text" id="amf" name="amf" value="<?php echo htmlspecialchars($amf); ?>" readonly><br><br>
         <?php endif; ?>
@@ -106,6 +108,7 @@ function getAlertaById($id_xml)
         <button type="submit">Enviar</button>
         <button type="button" id="cancelButton">Cancelar</button>
     </form>
+
     <script>
         let form = document.getElementById("cbcForm");
 
