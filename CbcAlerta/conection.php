@@ -39,7 +39,6 @@ class cbcRelatorio
             $teste,
             $roteamento
         );
-
         try {
             $sqlCommand->Execute();
             return ['success' => true];
@@ -73,6 +72,10 @@ if ($id === null) {
 $status = isset($data['status']) ? $data['status'] : null;
 $test = isset($data['test']) ? $data['test'] : null;
 $roteamento = isset($data['roteamento']) ? $data['roteamento'] : null;
+$operadora = isset($data['operadora']) ? $data['operadora'] : null;
+$estado = isset($data['estado']) ? $data['estado'] : null;
+$mme = isset($data['mme']) ? $data['mme'] : null;
+$amf = isset($data['amf']) ? $data['amf'] : null;
 
 // Verificar se todos os campos necessários foram fornecidos
 if ($status === null || $test === null || $roteamento === null) {
@@ -80,17 +83,16 @@ if ($status === null || $test === null || $roteamento === null) {
 }
 
 
-
 // Extraer valores de cada ítem y llamar al método para guardar en la base de datos
 $result = $cbcRelatorio->guardarCbcRelatorio(
-    $data['id'],
-    $data['estado'],
-    $data['operadora'],
-    $data['mme'],
-    $data['amf'],
-    $data['status'],
-    $data['teste'],
-    $data['roteamento']
+    $id,
+    $estado,
+    $operadora,
+    $mme,
+    $amf,
+    $status,
+    $test,
+    $roteamento
 );
 
 
