@@ -6,7 +6,7 @@ $id_xml = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
 
 
 if ($id_xml === null) {
-    var_dump($id_xml);
+
     exit("ID da alerta não fornecido ou inválido.");
 }
 
@@ -116,7 +116,11 @@ function getAlertaById($id_xml)
             const formData = new FormData(form);
 
             // Converte FormData em um objeto para que possa ser convertido em JSON
-            const formObject = {};
+            const formObject = {
+                ...Object.fromEntries(formData)
+
+            };
+            console.log(formObject);
             formData.forEach((value, key) => {
                 formObject[key] = value;
             });
