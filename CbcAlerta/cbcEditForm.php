@@ -5,25 +5,51 @@ $id_xml = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
 
 
 
+// Verificar se foi fornecido um ID
 if ($id_xml === null) {
-
-    exit("ID da alerta não fornecido ou inválido.");
+    exit("ID da alerta não fornecido.");
 }
 
-// Obtener datos de la alerta para edición usando el ID
+// Recuperar dados da alerta para edição usando o ID
 $alerta = getAlertaById($id_xml);
 
-
+// Certificar-se de que os dados da alerta foram encontrados
 if ($alerta === null) {
     exit("Alerta não encontrada.");
 }
 
-// Atribuir los datos de la alerta a las variables
-$estado = htmlspecialchars($alerta['estado']);
-$operadora = htmlspecialchars($alerta['operadora']);
-$mme = isset($alerta['mme']) ? htmlspecialchars($alerta['mme']) : '';
-$amf = isset($alerta['amf']) ? htmlspecialchars($alerta['amf']) : '';
+// Atribuir os dados da alerta às variáveis
+$estado = $alerta['estado'];
+$operadora = $alerta['operadora'];
+$mme = isset($alerta['mme']) ? $alerta['mme'] : '';
+$amf = isset($alerta['amf']) ? $alerta['amf'] : null;
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Processar os dados enviados pelo formulário
+    $id_xml = $_POST['id'];
+    $estado = $_POST['estado'];
+    $operadora = $_POST['operadora'];
+    $mme = $_POST['mme'];
+    $amf = isset($_POST['amf']) ? $_POST['amf'] : null;
+    $status = $_POST['status'];
+    $teste = $_POST['test'];
+    $roteamento = $_POST['roteamento'];
+
+    // Preparar os dados para enviar a connection.php
+    $data = [
+        'id' => $id_xml,
+        'estado' => $estado,
+        'operadora' => $operadora,
+        'mme' => $mme,
+        'amf' => $amf,
+        'status' => $status,
+        'teste' => $teste,
+        'roteamento' => $roteamento
+    ];
+
+    // Enviar dados para connection.php usando JSON
+    $jsonData = json_encode($data);
+}
 function getAlertaById($id_xml)
 {
     // Cargar el archivo XML de manera segura
