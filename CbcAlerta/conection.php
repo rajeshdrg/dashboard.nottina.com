@@ -4,6 +4,11 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 
+// Verificar se a requisição é POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    exit("Método de requisição inválido.");
+}
+
 if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";
 
@@ -49,6 +54,8 @@ class cbcRelatorio
 
 // Obtener datos del cuerpo de la solicitud POST
 $data = json_decode(file_get_contents('php://input'), true);
+var_dump($data);
+exit();
 
 
 // Verificar si se recibieron datos válidos
@@ -60,15 +67,22 @@ if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
 // Crear una instancia de la clase cbcRelatorio
 $cbcRelatorio = new cbcRelatorio();
 
-// Obtener el ID desde los datos enviados por cbcEditForm.php
-$id = isset($data[0]['id']) ? $data[0]['id'] : null;
 
-// Verificar si se recibió un ID válido
+// Verificar se o ID foi fornecido
+$id = isset($data['id']) ? $data['id'] : null;
 if ($id === null) {
-    echo json_encode(['success' => false, 'message' => 'ID da alerta não fornecido.']);
-    exit;
+    exit(json_encode(['success' => false, 'message' => 'ID da alerta não fornecido.']));
 }
 
+// Processar os dados recebidos
+$status = isset($data['status']) ? $data['status'] : null;
+$test = isset($data['test']) ? $data['test'] : null;
+$roteamento = isset($data['roteamento']) ? $data['roteamento'] : null;
+
+// Verificar se todos os campos necessários foram fornecidos
+if ($status === null || $test === null || $roteamento === null) {
+    exit(json_encode(['success' => false, 'message' => 'Dados incompletos fornecidos.']));
+}
 // Procesar cada conjunto de datos recibidos
 $results = [];
 foreach ($data as $item) {
