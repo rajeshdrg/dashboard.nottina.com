@@ -27,7 +27,7 @@ class cbcRelatorio
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
 
-        $sqlCommand->sql = "INSERT INTO cbc_relatorio (id_xml, estado, operadora, mme, amf, status, teste, roteamento)
+        $sqlCommand->query = "INSERT INTO cbc_relatorio (id_xml, estado, operadora, mme, amf, status, teste, roteamento)
                             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
         $sqlCommand->params = array(
             $id_xml,
