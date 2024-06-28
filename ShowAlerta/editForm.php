@@ -24,9 +24,7 @@
                 echo $_SESSION['cod_usuario'];
                 ?>">
 
-                <input type="hidden" id="cod_alerta" name="cod_alerta"
-                    value="<?php var_dump($_GET);
-                    echo $_GET['cod_alerta']; ?>">
+                <input type="hidden" id="cod_alerta" name="cod_alerta" value="<?php echo $_GET['cod_alerta']; ?>">
                 <div class="input-block">
                     <label for="analista">Analista:</label>
                     <input type="text" id="analista" name="analista" readonly>
