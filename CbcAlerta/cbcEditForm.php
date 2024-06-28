@@ -145,6 +145,7 @@ function getAlertaById($id_xml)
                 }
 
                 const data = await response.json();
+                console.log(data);
 
                 if (data.success) {
                     await Swal.fire({
@@ -156,7 +157,7 @@ function getAlertaById($id_xml)
                 } else {
                     await Swal.fire({
                         icon: 'error',
-                        title: 'Erro ao enviar dados',
+                        title: 'Error ao enviar dados',
                         text: data.message,
                     });
                 }
