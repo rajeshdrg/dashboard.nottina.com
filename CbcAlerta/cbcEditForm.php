@@ -26,34 +26,42 @@ $amf = isset($alerta['amf']) ? $alerta['amf'] : null;
 
 function getAlertaById($id_xml)
 {
-    // Cargar el archivo XML de manera segura
+    // Cargar el archivo XML
     $file = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml";
-    if (!file_exists($file)) {
-        return null;
-    }
-
-    // Intentar cargar el XML
     $xml = simplexml_load_file($file);
-    if ($xml === false) {
-        return null;
-    }
 
-    // Buscar la alerta con el ID correspondiente
-    foreach ($xml->cbcAlerta as $alerta) {
-        if ((string) $alerta['id'] === $id_xml) {
-            return [
-                'estado' => (string) $alerta->estado,
-                'operadora' => (string) $alerta->cbcAlerta_operadora,
-                'mme' => isset($alerta->mme) ? (string) $alerta->mme : null,
-                'amf' => isset($alerta->tecnologia->amf) ? (string) $alerta->tecnologia->amf : null
-            ];
+    // Buscar la alerta con el ID correspondiente en todas las tecnologias
+    foreach ($xml->tecnologias->tecnologia as $tecnologia) {
+        foreach ($tecnologia->vpns->vpn as $vpn) {
+            foreach ($vpn->operadoras->operadora as $operadora) {
+                foreach ($operadora->alertas->cbcAlerta as $alerta) {
+                    if ((string) $alerta['id'] === $id_xml) {
+                        $estado = (string) $vpn->nome;
+                        $operadora_nome = (string) $operadora->nome;
+                        $mme = isset($alerta->mme_amf) ? (string) $alerta->mme_amf : null;
+                        $tecnologia = isset($alerta->$tecnologia) ? (string) $alerta->$tecnologia : null; // Tecnologia
+                        $status = isset($alerta->status) ? (string) $alerta->status : null;
+                        $test = isset($alerta->test_done) ? (string) $alerta->test_done : null;
+                        $routing = isset($alerta->routing) ? (string) $alerta->routing : null;
+
+                        return [
+                            'estado' => $estado,
+                            'operadora' => $operadora_nome,
+                            'mme' => $mme,
+                            'tecnologia' => $tecnologia,
+                            'status' => $status,
+                            'test' => $test,
+                            'routing' => $routing
+                        ];
+                    }
+                }
+            }
         }
     }
 
     return null;
 }
 ?>
-
 
 
 
@@ -71,8 +79,7 @@ function getAlertaById($id_xml)
 <body>
     <h1>Editar Relatório CBC</h1>
     <form id="cbcForm" method="post" action="conection.php">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id']); ?>">
-
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id_xml); ?>">
         <label for="estado">Estado/Região:</label>
         <input type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($estado); ?>" readonly><br><br>
 
@@ -80,29 +87,26 @@ function getAlertaById($id_xml)
         <input type="text" id="operadora" name="operadora" value="<?php echo htmlspecialchars($operadora); ?>"
             readonly><br><br>
 
-        <?php if (!empty($mme)): ?>
+        <label for="mme">MME:</label>
+        <input type="text" id="mme" name="mme" value="<?php echo htmlspecialchars($mme); ?>" readonly><br><br>
 
-            <label for="mme">MME:</label>
-            <input type="text" id="mme" name="mme" value="<?php echo htmlspecialchars($mme); ?>" readonly><br><br>
-        <?php elseif (!empty($amf)): ?>
-
-            <label for="amf">AMF:</label>
-            <input type="text" id="amf" name="amf" value="<?php echo htmlspecialchars($amf); ?>" readonly><br><br>
-        <?php endif; ?>
+        <label for="tecnologia">Serviço</label>
+        <input type="text" id="tecnologia" name="tecnologia" value="<?php echo htmlspecialchars($tecnologia); ?>"
+            readonly><br><br>
 
         <label for="status">Status:</label>
         <select id="status" name="status">
-            <option value="OK">OK</option>
-            <option value="Fora">Fora</option>
+            <option value="ok" <?php echo $status === 'OK' ? 'selected' : ''; ?>>OK</option>
+            <option value="fora" <?php echo $status === 'Fora' ? 'selected' : ''; ?>>Fora</option>
         </select><br><br>
 
         <label for="test">Teste:</label>
-        <input type="text" id="test" name="test" required><br><br>
+        <input type="text" id="test" name="test" value="<?php echo htmlspecialchars($test); ?>" required><br><br>
 
         <label for="roteamento">Roteamento:</label>
         <select id="roteamento" name="roteamento">
-            <option value="Sim">Sim</option>
-            <option value="Não">Não</option>
+            <option value="Sim" <?php echo $routing === 'sim' ? 'selected' : ''; ?>>Sim</option>
+            <option value="Não" <?php echo $routing === 'nao' ? 'selected' : ''; ?>>Não</option>
         </select><br><br>
 
         <button type="submit">Enviar</button>

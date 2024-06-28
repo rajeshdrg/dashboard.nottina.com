@@ -61,10 +61,31 @@ class Cbc
         echo "</div>";
     }
 
+
+    /*
+        $4g = null
+        foreach ($tecnologias as $tecnologia) {
+            if ($tecnologia->nome == "4G") {
+              $4g = $tecnologia
+            }
+        }
+
+        foreach ($vpns as $vpn) {
+            check if $vpn->operadoras is set
+            $operadoras = $vpn->operadoras
+            foreach ($operadoras as $operadora) {
+                $alertas = $operadora->alertas
+                foreach ($alertas as $alerta) {
+                    print alerta
+                }
+            }
+        }
+    */
+
     private function showMMETable()
     {
         echo "<table class='table table-striped' style='margin-bottom: 20px;'>";
-        echo "<caption>MME</caption>";
+        echo "<caption>Tecnoligia 4G</caption>";
         echo "<thead>";
         echo "<tr>";
         echo "<th>Estado/Região</th>";
@@ -73,7 +94,7 @@ class Cbc
         echo "<th>Status</th>";
         echo "<th>Teste</th>";
         echo "<th>Roteamento</th>";
-        echo "<th>Ação</th>"; // Columna para el ícono de edición
+        echo "<th>Ação</th>";
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
@@ -85,8 +106,9 @@ class Cbc
             $status = (string) $alerta->status;
             $test_done = (string) $alerta->test_done;
             $routing = (string) $alerta->routing;
+            $tecnologia = (string) $alerta->tecnologia;
 
-            if (empty($mme) && empty($status) && empty($test_done) && empty($routing)) {
+            if (empty($mme) && empty($status) && empty($test_done) && empty($routing) && $tecnologia != '4g') {
                 continue;
             }
 
@@ -121,12 +143,12 @@ class Cbc
         echo "<thead>";
         echo "<tr>";
         echo "<th>Estado/Região</th>";
-        echo "<th>Operadora (5G)</th>";
+        echo "<th>Operadora</th>";
         echo "<th>AMF</th>";
         echo "<th>Status</th>";
         echo "<th>Teste</th>";
         echo "<th>Roteamento</th>";
-        echo "<th>Ação</th>"; // Columna para el ícono de edición
+        echo "<th>Ação</th>";
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
@@ -140,6 +162,7 @@ class Cbc
                 $status_tecnologia = (string) $alerta->tecnologia->status;
                 $test_done_tecnologia = (string) $alerta->tecnologia->test_done;
                 $routing_tecnologia = (string) $alerta->tecnologia->routing;
+
 
                 if (empty($status_tecnologia) && empty($test_done_tecnologia) && empty($routing_tecnologia)) {
                     continue;

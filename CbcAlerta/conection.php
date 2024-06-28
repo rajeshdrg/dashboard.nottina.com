@@ -22,19 +22,19 @@ class cbcRelatorio
         $this->conexao = $conexao;
     }
 
-    public function guardarCbcRelatorio($id_xml, $estado, $operadora, $mme, $amf, $status, $teste, $roteamento)
+    public function guardarCbcRelatorio($id_xml, $estado, $operadora, $mme_amf, $tecnolgia, $status, $teste, $roteamento)
     {
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
 
-        $sqlCommand->query = "INSERT INTO cbc_relatorio (id_xml, estado, operadora, mme, amf, status, teste, roteamento)
+        $sqlCommand->query = "INSERT INTO cbc_relatorio (id_xml, estado, operadora, mme_amf, tecnologia, status, teste, roteamento)
                             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
         $sqlCommand->params = array(
             $id_xml,
             $estado,
             $operadora,
-            $mme,
-            $amf,
+            $mme_amf,
+            $tecnolgia,
             $status,
             $teste,
             $roteamento
@@ -69,16 +69,16 @@ if ($id === null) {
 }
 
 // Processar os dados recebidos
-$status = isset($data['status']) ? $data['status'] : null;
-$test = isset($data['test']) ? $data['test'] : null;
-$roteamento = isset($data['roteamento']) ? $data['roteamento'] : null;
-$operadora = isset($data['operadora']) ? $data['operadora'] : null;
 $estado = isset($data['estado']) ? $data['estado'] : null;
-$mme = isset($data['mme']) ? $data['mme'] : null;
-$amf = isset($data['amf']) ? $data['amf'] : null;
+$operadora = isset($data['operadora']) ? $data['operadora'] : null;
+$mme_amf = isset($data['mme_amf']) ? $data['mme_amf'] : null;
+$tecnologia = isset($data['tecnologia']) ? $data['tecnologia'] : null;
+$status = isset($data['status']) ? $data['status'] : null;
+$teste = isset($data['teste']) ? $data['teste'] : null;
+$roteamento = isset($data['roteamento']) ? $data['roteamento'] : null;
 
 // Verificar se todos os campos necessários foram fornecidos
-if ($status === null || $test === null || $roteamento === null) {
+if ($estado === null || $operadora === null || $mme_amf === null || $tecnologia === null || $status === null || $teste === null || $roteamento === null) {
     exit(json_encode(['success' => false, 'message' => 'Dados incompletos fornecidos.']));
 }
 
@@ -88,8 +88,8 @@ $result = $cbcRelatorio->guardarCbcRelatorio(
     $id,
     $estado,
     $operadora,
-    $mme,
-    $amf,
+    $mme_amf,
+    $tecnologia,
     $status,
     $test,
     $roteamento

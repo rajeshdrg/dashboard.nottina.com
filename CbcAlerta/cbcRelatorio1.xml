@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CbcAlertas>
+    <tecnologias>
+        <tecnologia>
+            <nome>4g</nome>
+            <vpns>
+                <vpn>
+                    <nome>SP</nome>
+                    <operadoras>
+                        <operadora>
+                            <nome>VIVO</nome>
+                            <alertas>
+                                <cbcAlerta id="1">
+                                    <mme_amf>mmec38mmegi8501mnc02mcc724.3gppnetwork.org</mme_amf>
+                                    <status>fora</status>
+                                    <test_done>ping/telnet</test_done>
+                                    <routing>nao</routing>
+                                </cbcAlerta>
+                                <cbcAlerta id="2">
+                                    <mme_amf>mmec38mmegi8501mnc02mcc724.3gppnetwork.org</mme_amf>
+                                    <status>fora</status>
+                                    <test_done>ping/telnet</test_done>
+                                    <routing>nao</routing>
+                                </cbcAlerta>
+                            </alertas>
+                        </operadora>
+                        <operadora>
+                            <nome>CLARO</nome>
+                            <alertas>
+                                <cbcAlerta id="1">
+                                    <mme_amf>mmec38mmegi8501mnc02mcc724.3gppnetwork.org</mme_amf>
+                                    <status>fora</status>
+                                    <test_done>ping/telnet</test_done>
+                                    <routing>nao</routing>
+                                </cbcAlerta>
+                                <cbcAlerta id="2">
+                                    <mme_amf>mmec38mmegi8501mnc02mcc724.3gppnetwork.org</mme_amf>
+                                    <status>fora</status>
+                                    <test_done>ping/telnet</test_done>
+                                    <routing>nao</routing>
+                                </cbcAlerta>
+                            </alertas>
+                        </operadora>
+                    </operadoras>
+                </vpn>
+                <vpn>
+                    <nome>RJ</nome>
+                    <operadoras>
+                        <operadora>
+                            <nome>VIVO</nome>
+                            <alertas>
+                                <cbcAlerta id="1">
+                                    <mme_amf>mmec38mmegi8501mnc02mcc724.3gppnetwork.org</mme_amf>
+                                    <status>fora</status>
+                                    <test_done>ping/telnet</test_done>
+                                    <routing>nao</routing>
+                                </cbcAlerta>
+                            </alertas>
+                        </operadora>
+                    </operadoras>
+                </vpn>
+            </vpns>
+        </tecnologia>
+        <tecnologia>
+            <nome>5g</nome>
+            <vpns>
+                <vpn>
+                    <nome>SP</nome>
+                    <operadoras>
+                        <operadora>
+                            <nome>VIVO</nome>
+                            <alertas>
+                                <cbcAlerta id="1">
+                                    <mme_amf>10.96.235.72</mme_amf>
+                                    <status>fora</status>
+                                    <test_done>ping/telnet</test_done>
+                                    <routing>nao</routing>
+                                </cbcAlerta>
+                                <cbcAlerta id="2">
+                                    <mme_amf>10.96.235.72</mme_amf>
+                                    <status>fora</status>
+                                    <test_done>ping/telnet</test_done>
+                                    <routing>nao</routing>
+                                </cbcAlerta>
+                            </alertas>
+                        </operadora>
+                        <operadora>
+                            <nome>CLARO</nome>
+                            <alertas>
+                                <cbcAlerta id="1">
+                                    <mme_amf>10.96.235.72</mme_amf>
+                                    <status>fora</status>
+                                    <test_done>ping/telnet</test_done>
+                                    <routing>nao</routing>
+                                </cbcAlerta>
+                                <cbcAlerta id="2">
+                                    <mme_amf>10.96.235.72</mme_amf>
+                                    <status>fora</status>
+                                    <test_done>ping/telnet</test_done>
+                                    <routing>nao</routing>
+                                </cbcAlerta>
+                            </alertas>
+                        </operadora>
+                    </operadoras>
+                </vpn>
+                <vpn>
+                    <nome>RJ</nome>
+                    <operadoras>
+                        <operadora>
+                            <nome>VIVO</nome>
+                            <alertas>
+                                <cbcAlerta id="1">
+                                    <mme_amf>10.96.235.72</mme_amf>
+                                    <status>fora</status>
+                                    <test_done>ping/telnet</test_done>
+                                    <routing>nao</routing>
+                                </cbcAlerta>
+                            </alertas>
+                        </operadora>
+                    </operadoras>
+                </vpn>
+            </vpns>
+        </tecnologia>
+    </tecnologias>
+</CbcAlertas>
