@@ -54,8 +54,6 @@ class cbcRelatorio
 
 // Obtener datos del cuerpo de la solicitud POST
 $data = json_decode(file_get_contents('php://input'), true);
-var_dump($data);
-exit();
 
 
 // Verificar si se recibieron datos válidos
