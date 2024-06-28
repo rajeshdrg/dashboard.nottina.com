@@ -24,32 +24,6 @@ $operadora = $alerta['operadora'];
 $mme = isset($alerta['mme']) ? $alerta['mme'] : '';
 $amf = isset($alerta['amf']) ? $alerta['amf'] : null;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Processar os dados enviados pelo formulário
-    $id_xml = $_POST['id'];
-    $estado = $_POST['estado'];
-    $operadora = $_POST['operadora'];
-    $mme = $_POST['mme'];
-    $amf = isset($_POST['amf']) ? $_POST['amf'] : null;
-    $status = $_POST['status'];
-    $teste = $_POST['test'];
-    $roteamento = $_POST['roteamento'];
-
-    // Preparar os dados para enviar a connection.php
-    $data = [
-        'id' => $id_xml,
-        'estado' => $estado,
-        'operadora' => $operadora,
-        'mme' => $mme,
-        'amf' => $amf,
-        'status' => $status,
-        'teste' => $teste,
-        'roteamento' => $roteamento
-    ];
-
-    // Enviar dados para connection.php usando JSON
-    $jsonData = json_encode($data);
-}
 function getAlertaById($id_xml)
 {
     // Cargar el archivo XML de manera segura
@@ -143,14 +117,12 @@ function getAlertaById($id_xml)
 
 
             // Converte FormData em um objeto para que possa ser convertido em JSON
-            const formObject = {
-                formData.forEach((value, key) => {
-                    formObject[key] = value;
-                });
-            };
-            console.log(formObject);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
 
-
+            console.log(formData);
 
             // Enviando dados conection.php usando fetch
             try {
