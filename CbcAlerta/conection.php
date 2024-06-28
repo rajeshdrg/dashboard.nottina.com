@@ -4,10 +4,7 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 
-// Verificar se a requisição é POST
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo "Método de requisição inválido.";
-}
+
 
 if ($_SERVER['DOCUMENT_ROOT'] == null)
     $_SERVER['DOCUMENT_ROOT'] = "..";

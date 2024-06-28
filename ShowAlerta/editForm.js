@@ -83,6 +83,7 @@ form.addEventListener("submit", async (event) => {
             }
 
             const data = await response.json();
+            console.log(data);
             if (data.success) {
                 const result2 = await Swal.fire({
                     icon: 'success',
