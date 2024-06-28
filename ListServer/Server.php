@@ -79,7 +79,7 @@ class Server
 
             $this->disks[$indice]->SetInodes($item->percentual);
 
-            if ($item->percentual >= 86) {
+            if ($item->percentual >= 80) {
                 $this->status = "NOK";
                 $al->registra("servidor", $this->hostname, $item->percentual, "Esgotando inodes", 1, 1);
 
@@ -134,7 +134,7 @@ class Server
                 print "<td><font color=red>NOK</font></td>";
             }
             print "<td><b>" . $di->inodes . "</b></td>";
-            if (intval($di->inodes) < 86) {
+            if (intval($di->inodes) < 80) {
                 print "<td><font color=green>OK</font></td>";
             } else {
                 print "<td><font color=red>NOK</font></td>";
