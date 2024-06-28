@@ -51,7 +51,7 @@ class Cbc
         echo "</header>";
         echo "<div class='card-content'>";
 
-        // Mostrar dados de MME
+        // Mostrar dados do MME
         $this->showMMETable();
 
         // Mostrar dados de tecnologia 5G
