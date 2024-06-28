@@ -158,9 +158,10 @@ function getAlertaById($id_xml)
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(formObject) // Aqui garantimos que ele seja enviado como um array
-                    console.log(response);
+
 
                 });
+                console.log(response);
 
                 const contentType = response.headers.get('content-type');
 
