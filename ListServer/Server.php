@@ -128,7 +128,7 @@ class Server
             print "<tr>";
             print "<td><b>" . $di->name . "</b></td>";
             print "<td><b>" . $di->percentual . "</b></td>";
-            if (intval($di->percentual) < 86) {
+            if (intval($di->percentual) < 80) {
                 print "<td><font color=green>OK</font></td>";
             } else {
                 print "<td><font color=red>NOK</font></td>";
