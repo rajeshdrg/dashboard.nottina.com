@@ -6,7 +6,7 @@ header('Access-Control-Allow-Methods: POST');
 
 // Verificar se a requisição é POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    exit("Método de requisição inválido.");
+    echo "Método de requisição inválido.";
 }
 
 if ($_SERVER['DOCUMENT_ROOT'] == null)
