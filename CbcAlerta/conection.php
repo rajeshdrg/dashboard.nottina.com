@@ -89,7 +89,7 @@ foreach ($data as $item) {
 
     // Extraer valores de cada ítem y llamar al método para guardar en la base de datos
     $result = $cbcRelatorio->guardarCbcRelatorio(
-        $id,
+        $id_xml['id'],
         $item['estado'],
         $item['operadora'],
         $item['mme'],
