@@ -2,9 +2,14 @@
 
 // Recuperar el ID de la URL de manera segura
 $id_xml = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
+$id_xml = (int) $id_xml;
+if ($id_xml <= 0) {
+    header('Location: index.php');
+    exit;
+}
 
 if ($id_xml === null) {
-    var_dump($id_xml);
+
     exit("ID da alerta não fornecido ou inválido.");
 }
 
