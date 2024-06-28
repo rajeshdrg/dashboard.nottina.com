@@ -5,10 +5,10 @@ $id_xml = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
 
 
 
-// if ($id_xml === null) {
+if ($id_xml === null) {
 
-//     exit("ID da alerta não fornecido ou inválido.");
-// }
+    exit("ID da alerta não fornecido ou inválido.");
+}
 
 // Obtener datos de la alerta para edición usando el ID
 $alerta = getAlertaById($id_xml);
