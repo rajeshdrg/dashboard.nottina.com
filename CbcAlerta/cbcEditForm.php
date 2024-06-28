@@ -148,7 +148,7 @@ function getAlertaById($id_xml)
                     formObject[key] = value;
                 });
             };
-            console.log();
+            console.log(formObject);
 
 
 
