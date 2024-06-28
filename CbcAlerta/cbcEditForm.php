@@ -90,8 +90,8 @@ function getAlertaById($id_xml)
 
         <label for="status">Status:</label>
         <select id="status" name="status">
-            <option value="ok">OK</option>
-            <option value="fora">Fora</option>
+            <option value="OK">OK</option>
+            <option value="Fora">Fora</option>
         </select><br><br>
 
         <label for="test">Teste:</label>
@@ -99,8 +99,8 @@ function getAlertaById($id_xml)
 
         <label for="roteamento">Roteamento:</label>
         <select id="roteamento" name="roteamento">
-            <option value="sim">Sim</option>
-            <option value="nao">Não</option>
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
         </select><br><br>
 
         <button type="submit">Enviar</button>
