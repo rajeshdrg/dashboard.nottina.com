@@ -5,10 +5,10 @@ $id_xml = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
 
 
 
-if ($id_xml === null) {
+// if ($id_xml === null) {
 
-    exit("ID da alerta não fornecido ou inválido.");
-}
+//     exit("ID da alerta não fornecido ou inválido.");
+// }
 
 // Obtener datos de la alerta para edición usando el ID
 $alerta = getAlertaById($id_xml);
@@ -114,13 +114,13 @@ function getAlertaById($id_xml)
 
             //Coletar dados do formulário
             const formData = new FormData(form);
-            console.log(formData);
+
 
             // Converte FormData em um objeto para que possa ser convertido em JSON
-            // const formObject = {};
-            // formData.forEach((value, key) => {
-            //     formObject[key] = value;
-            // });
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
 
 
             // Enviando dados conection.php usando fetch
@@ -131,7 +131,7 @@ function getAlertaById($id_xml)
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(Object.fromEntries(formData)) // Aqui garantimos que ele seja enviado como um array
+                    body: JSON.stringify(formObject) // Aqui garantimos que ele seja enviado como um array
 
                 });
 
