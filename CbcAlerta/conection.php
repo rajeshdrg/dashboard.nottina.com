@@ -78,24 +78,23 @@ $roteamento = isset($data['roteamento']) ? $data['roteamento'] : null;
 if ($status === null || $test === null || $roteamento === null) {
     exit(json_encode(['success' => false, 'message' => 'Dados incompletos fornecidos.']));
 }
-// Procesar cada conjunto de datos recibidos
-$results = [];
-foreach ($data as $item) {
 
-    // Extraer valores de cada ítem y llamar al método para guardar en la base de datos
-    $result = $cbcRelatorio->guardarCbcRelatorio(
-        $id_xml['id'],
-        $item['estado'],
-        $item['operadora'],
-        $item['mme'],
-        $item['amf'],
-        $item['status'],
-        $item['teste'],
-        $item['roteamento']
-    );
 
-    $results[] = $result;
-}
 
-echo json_encode(['success' => true, 'results' => $results]);
+// Extraer valores de cada ítem y llamar al método para guardar en la base de datos
+$result = $cbcRelatorio->guardarCbcRelatorio(
+    $data['id'],
+    $data['estado'],
+    $data['operadora'],
+    $data['mme'],
+    $data['amf'],
+    $data['status'],
+    $data['teste'],
+    $data['roteamento']
+);
+
+
+
+
+echo json_encode(['success' => true, 'results' => $result]);
 
