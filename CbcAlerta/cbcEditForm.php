@@ -158,9 +158,7 @@ function getAlertaById($id_xml)
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(formObject) // Aqui garantimos que ele seja enviado como um array
-                    const formJson = JSON.stringify(formObject);
-                    console.log("mostrar dados: "formJson);
-
+                    console.log(response);
 
                 });
 
