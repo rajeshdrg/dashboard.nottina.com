@@ -67,8 +67,8 @@ class Server
 
             $this->disks[$indice] = new Disk($item->pasta, $item->percentual);
 
-            if ($item->percentual >= 86) {
-                $this->status = "OK";
+            if ($item->percentual >= 80) {
+                $this->status = "NOK";
                 $al->registra("ListServer", $this->hostname, $item->percentual, "Espaço em disco", 1, 1);
             }
 
