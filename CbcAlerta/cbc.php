@@ -339,6 +339,24 @@ class Cbc
             libxml_clear_errors();
             throw new Exception("Erro: conteúdo XML inválido. Detalhes: " . implode(", ", $errors));
         }
+
+        // Adicionar IDs únicos a cada alerta
+        $this->add_ids_to_alertas();
+    }
+
+    private function add_ids_to_alertas()
+    {
+        $id_counter = 1;
+
+        foreach ($this->xml->tecnologias->tecnologia as $tecnologia) {
+            foreach ($tecnologia->vpns->vpn as $vpn) {
+                foreach ($vpn->operadoras->operadora as $operadora) {
+                    foreach ($operadora->alertas->cbcAlerta as $alerta) {
+                        $alerta->addAttribute('id', $id_counter++);
+                    }
+                }
+            }
+        }
     }
 
     public function ShowMe()
@@ -456,6 +474,7 @@ try {
 } catch (Exception $e) {
     echo "Erro: " . $e->getMessage();
 }
+
 
 
 
