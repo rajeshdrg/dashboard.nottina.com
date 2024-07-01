@@ -457,24 +457,6 @@ class Cbc
     }
 }
 
-// Ejemplo de uso:
-try {
-    $cbc = new Cbc($_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio1.xml");
-    $cbc->ShowMe();
-
-    // Buscar una alerta por ID
-    $id = 2; // Ejemplo de ID
-    $alerta = $cbc->findAlertaById($id);
-    if ($alerta !== null) {
-        echo "Alerta encontrada: ";
-        print_r($alerta);
-    } else {
-        echo "Alerta não encontrada.";
-    }
-} catch (Exception $e) {
-    echo "Erro: " . $e->getMessage();
-}
-
 
 
 
