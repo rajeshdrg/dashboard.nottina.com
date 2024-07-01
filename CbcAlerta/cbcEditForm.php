@@ -64,6 +64,7 @@ function getAlertaById($id_xml)
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
