@@ -26,11 +26,11 @@ $amf = isset($alerta['amf']) ? $alerta['amf'] : null;
 
 function getAlertaById($id_xml)
 {
-    // Cargar el archivo XML
+    // Carregar arquivo XML
     $file = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml";
     $xml = simplexml_load_file($file);
 
-    // Buscar la alerta con el ID correspondiente en todas las tecnologias
+    // Pesquise o alerta com o ID correspondente em todas as tecnologias
     foreach ($xml->tecnologias->tecnologia as $tecnologia) {
         foreach ($tecnologia->vpns->vpn as $vpn) {
             foreach ($vpn->operadoras->operadora as $operadora) {
