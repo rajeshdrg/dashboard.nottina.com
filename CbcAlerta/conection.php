@@ -67,10 +67,10 @@ if ($id === null) {
 
 $estado = isset($data['estado']) ? $data['estado'] : null;
 $operadora = isset($data['operadora']) ? $data['operadora'] : null;
-$mme_amf = isset($data['mme_amf']) ? $data['mme_amf'] : null;
+$mme_amf = isset($data['mme']) ? $data['mme'] : null;
 $tecnologia = isset($data['tecnologia']) ? $data['tecnologia'] : null;
 $status = isset($data['status']) ? $data['status'] : null;
-$teste = isset($data['teste']) ? $data['teste'] : null;
+$teste = isset($data['test']) ? $data['test'] : null;
 $roteamento = isset($data['roteamento']) ? $data['roteamento'] : null;
 
 
