@@ -1,5 +1,5 @@
 <?php
-var_dump($_POST);
+
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
