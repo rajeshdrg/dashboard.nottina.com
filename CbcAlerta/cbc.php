@@ -301,6 +301,7 @@
 //===========================================================copia 2=======================================================
 
 
+
 class Cbc
 {
     private $file;
@@ -440,7 +441,7 @@ class Cbc
 
 // Ejemplo de uso:
 try {
-    $cbc = new Cbc($_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml");
+    $cbc = new Cbc('ruta/a/tu/archivo.xml');
     $cbc->ShowMe();
 
     // Buscar una alerta por ID
@@ -455,4 +456,6 @@ try {
 } catch (Exception $e) {
     echo "Erro: " . $e->getMessage();
 }
+
+
 
