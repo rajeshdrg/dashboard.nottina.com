@@ -1,9 +1,6 @@
 <?php
-
 // Recuperar el ID de la URL de manera segura
 $id_xml = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
-
-
 
 // Verificar se foi fornecido um ID
 if ($id_xml === null) {
@@ -22,8 +19,10 @@ if ($alerta === null) {
 $estado = $alerta['estado'];
 $operadora = $alerta['operadora'];
 $mme = isset($alerta['mme']) ? $alerta['mme'] : '';
-$amf = isset($alerta['amf']) ? $alerta['amf'] : null;
 $tecnologia = $alerta['tecnologia'];
+$status = isset($alerta['status']) ? $alerta['status'] : '';
+$test = isset($alerta['test']) ? $alerta['test'] : '';
+$routing = isset($alerta['routing']) ? $alerta['routing'] : '';
 
 function getAlertaById($id_xml)
 {
@@ -31,7 +30,7 @@ function getAlertaById($id_xml)
     $file = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio1.xml";
     $xml = simplexml_load_file($file);
 
-    // Pesquise o alerta com o ID correspondente em todas as tecnologias
+    // Pesquisar o alerta com o ID correspondente em todas as tecnologias
     foreach ($xml->tecnologias->tecnologia as $tecnologia) {
         foreach ($tecnologia->vpns->vpn as $vpn) {
             foreach ($vpn->operadoras->operadora as $operadora) {
@@ -40,7 +39,7 @@ function getAlertaById($id_xml)
                         $estado = (string) $vpn->nome;
                         $operadora_nome = (string) $operadora->nome;
                         $mme = isset($alerta->mme_amf) ? (string) $alerta->mme_amf : null;
-                        $tecnologia = isset($alerta->$tecnologia) ? (string) $alerta->$tecnologia : null; // Tecnologia
+                        $tecnologia_nome = (string) $tecnologia->nome; // Corrigido para pegar o nome da tecnologia
                         $status = isset($alerta->status) ? (string) $alerta->status : null;
                         $test = isset($alerta->test_done) ? (string) $alerta->test_done : null;
                         $routing = isset($alerta->routing) ? (string) $alerta->routing : null;
@@ -49,7 +48,7 @@ function getAlertaById($id_xml)
                             'estado' => $estado,
                             'operadora' => $operadora_nome,
                             'mme' => $mme,
-                            'tecnologia' => $tecnologia,
+                            'tecnologia' => $tecnologia_nome,
                             'status' => $status,
                             'test' => $test,
                             'routing' => $routing
@@ -63,8 +62,6 @@ function getAlertaById($id_xml)
     return null;
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -88,10 +85,10 @@ function getAlertaById($id_xml)
         <input type="text" id="operadora" name="operadora" value="<?php echo htmlspecialchars($operadora); ?>"
             readonly><br><br>
 
-        <label for="mme">MME:</label>
+        <label for="mme">MME/AMF:</label>
         <input type="text" id="mme" name="mme" value="<?php echo htmlspecialchars($mme); ?>" readonly><br><br>
 
-        <label for="tecnologia">Serviço</label>
+        <label for="tecnologia">Tecnologia:</label>
         <input type="text" id="tecnologia" name="tecnologia" value="<?php echo htmlspecialchars($tecnologia); ?>"
             readonly><br><br>
 
