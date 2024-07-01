@@ -27,13 +27,13 @@
                         <operadora>
                             <nome>CLARO</nome>
                             <alertas>
-                                <cbcAlerta id="1">
+                                <cbcAlerta id="3">
                                     <mme_amf>mmec38mmegi8501mnc02mcc724.3gppnetwork.org</mme_amf>
                                     <status>fora</status>
                                     <test_done>ping/telnet</test_done>
                                     <routing>nao</routing>
                                 </cbcAlerta>
-                                <cbcAlerta id="2">
+                                <cbcAlerta id="4">
                                     <mme_amf>mmec38mmegi8501mnc02mcc724.3gppnetwork.org</mme_amf>
                                     <status>fora</status>
                                     <test_done>ping/telnet</test_done>
@@ -49,7 +49,7 @@
                         <operadora>
                             <nome>VIVO</nome>
                             <alertas>
-                                <cbcAlerta id="1">
+                                <cbcAlerta id="5">
                                     <mme_amf>mmec38mmegi8501mnc02mcc724.3gppnetwork.org</mme_amf>
                                     <status>fora</status>
                                     <test_done>ping/telnet</test_done>
@@ -70,13 +70,13 @@
                         <operadora>
                             <nome>VIVO</nome>
                             <alertas>
-                                <cbcAlerta id="1">
+                                <cbcAlerta id="6">
                                     <mme_amf>10.96.235.72</mme_amf>
                                     <status>fora</status>
                                     <test_done>ping/telnet</test_done>
                                     <routing>nao</routing>
                                 </cbcAlerta>
-                                <cbcAlerta id="2">
+                                <cbcAlerta id="7">
                                     <mme_amf>10.96.235.72</mme_amf>
                                     <status>fora</status>
                                     <test_done>ping/telnet</test_done>
@@ -87,13 +87,13 @@
                         <operadora>
                             <nome>CLARO</nome>
                             <alertas>
-                                <cbcAlerta id="1">
+                                <cbcAlerta id="8">
                                     <mme_amf>10.96.235.72</mme_amf>
                                     <status>fora</status>
                                     <test_done>ping/telnet</test_done>
                                     <routing>nao</routing>
                                 </cbcAlerta>
-                                <cbcAlerta id="2">
+                                <cbcAlerta id="9">
                                     <mme_amf>10.96.235.72</mme_amf>
                                     <status>fora</status>
                                     <test_done>ping/telnet</test_done>
@@ -109,7 +109,7 @@
                         <operadora>
                             <nome>VIVO</nome>
                             <alertas>
-                                <cbcAlerta id="1">
+                                <cbcAlerta id="10">
                                     <mme_amf>10.96.235.72</mme_amf>
                                     <status>fora</status>
                                     <test_done>ping/telnet</test_done>
