@@ -62,25 +62,7 @@ class Cbc
     }
 
 
-    /*
-        $4g = null
-        foreach ($tecnologias as $tecnologia) {
-            if ($tecnologia->nome == "4G") {
-              $4g = $tecnologia
-            }
-        }
 
-        foreach ($vpns as $vpn) {
-            check if $vpn->operadoras is set
-            $operadoras = $vpn->operadoras
-            foreach ($operadoras as $operadora) {
-                $alertas = $operadora->alertas
-                foreach ($alertas as $alerta) {
-                    print alerta
-                }
-            }
-        }
-    */
 
     private function showMMETable()
     {
