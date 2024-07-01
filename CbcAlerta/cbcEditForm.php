@@ -1,5 +1,5 @@
 <?php
-
+var_dump($_GET);
 // Recuperar el ID de la URL de manera segura
 $id_xml = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
 
@@ -79,7 +79,7 @@ function getAlertaById($id_xml)
 <body>
     <h1>Editar Relatório CBC</h1>
     <form id="cbcForm" method="post" action="conection.php">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id_xml); ?>">
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id']); ?>"> <!-- ID do alerta -->
         <label for="estado">Estado/Região:</label>
         <input type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($estado); ?>" readonly><br><br>
 
