@@ -50,7 +50,7 @@ class cbcRelatorio
 
 // Obtener datos del cuerpo de la solicitud POST
 $data = json_decode(file_get_contents('php://input'), true);
-
+echo "<script>console.log($data);</script>";
 
 // Verificar si se recibieron datos válidos
 if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
