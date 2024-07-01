@@ -92,7 +92,7 @@ $result = $cbcRelatorio->guardarCbcRelatorio(
     $mme_amf,
     $tecnologia,
     $status,
-    $test,
+    $teste,
     $roteamento
 );
 
