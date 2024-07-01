@@ -34,7 +34,7 @@ class cbcRelatorio
             $mme_amf,
             $tecnologia,
             $status,
-            $teste, // Corregido el nombre de variable a $teste
+            $teste,
             $roteamento
         );
         try {
@@ -46,25 +46,25 @@ class cbcRelatorio
     }
 }
 
-// Obtener datos del cuerpo de la solicitud POST
+
 $data = json_decode(file_get_contents('php://input'), true);
 
-// Verificar si se recibieron datos válidos
+
 if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
     echo json_encode(['success' => false, 'message' => 'Erro ao decodificar dados JSON: ' . json_last_error_msg()]);
     exit;
 }
 
-// Crear una instancia de la clase cbcRelatorio
+
 $cbcRelatorio = new cbcRelatorio();
 
-// Verificar si el ID fue proporcionado
+
 $id = isset($data['id']) ? $data['id'] : null;
 if ($id === null) {
     exit(json_encode(['success' => false, 'message' => 'ID da alerta não fornecido.']));
 }
 
-// Procesar los datos recibidos
+
 $estado = isset($data['estado']) ? $data['estado'] : null;
 $operadora = isset($data['operadora']) ? $data['operadora'] : null;
 $mme_amf = isset($data['mme_amf']) ? $data['mme_amf'] : null;
@@ -73,12 +73,12 @@ $status = isset($data['status']) ? $data['status'] : null;
 $teste = isset($data['teste']) ? $data['teste'] : null;
 $roteamento = isset($data['roteamento']) ? $data['roteamento'] : null;
 
-// Verificar si se proporcionaron todos los campos necesarios
+
 if ($estado == null || $operadora == null || $mme_amf == null || $tecnologia == null || $status == null || $teste == null || $roteamento == null) {
     exit(json_encode(['success' => false, 'message' => 'Dados incompletos fornecidos.']));
 }
 
-// Llamar al método para guardar en la base de datos y obtener el resultado
+
 $result = $cbcRelatorio->guardarCbcRelatorio(
     $id,
     $estado,
@@ -90,5 +90,5 @@ $result = $cbcRelatorio->guardarCbcRelatorio(
     $roteamento
 );
 
-// Devolver respuesta JSON con el resultado
+
 echo json_encode(['success' => true, 'results' => $result]);
