@@ -459,7 +459,7 @@ class Cbc
 
 // Ejemplo de uso:
 try {
-    $cbc = new Cbc('ruta/a/tu/archivo.xml');
+    $cbc = new Cbc($_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml");
     $cbc->ShowMe();
 
     // Buscar una alerta por ID
