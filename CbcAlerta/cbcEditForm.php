@@ -27,7 +27,7 @@ $amf = isset($alerta['amf']) ? $alerta['amf'] : null;
 function getAlertaById($id_xml)
 {
     // Carregar arquivo XML
-    $file = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio.xml";
+    $file = $_SERVER['DOCUMENT_ROOT'] . "/CbcAlerta/cbcRelatorio1.xml";
     $xml = simplexml_load_file($file);
 
     // Pesquise o alerta com o ID correspondente em todas as tecnologias
