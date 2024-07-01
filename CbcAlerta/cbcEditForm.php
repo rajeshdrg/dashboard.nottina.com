@@ -23,7 +23,7 @@ $estado = $alerta['estado'];
 $operadora = $alerta['operadora'];
 $mme = isset($alerta['mme']) ? $alerta['mme'] : '';
 $amf = isset($alerta['amf']) ? $alerta['amf'] : null;
-$nome = $alerta['nome'];
+$tecnologia = $alerta['tecnologia'];
 
 function getAlertaById($id_xml)
 {
