@@ -70,8 +70,8 @@ $operadora = isset($data['operadora']) ? $data['operadora'] : null;
 $mme_amf = isset($data['mme_amf']) ? $data['mme_amf'] : null;
 $tecnologia = isset($data['tecnologia']) ? $data['tecnologia'] : null;
 $status = isset($data['status']) ? $data['status'] : null;
-$teste = isset($data['teste']) ? $data['teste'] :
-    $roteamento = isset($data['roteamento']) ? $data['roteamento'] : null;
+$teste = isset($data['teste']) ? $data['teste'] : null;
+$roteamento = isset($data['roteamento']) ? $data['roteamento'] : null;
 
 // Verificar si se proporcionaron todos los campos necesarios
 if ($estado == null || $operadora == null || $mme_amf == null || $tecnologia == null || $status == null || $teste == null || $roteamento == null) {
