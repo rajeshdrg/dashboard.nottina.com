@@ -74,7 +74,7 @@ $teste = isset($data['teste']) ? $data['teste'] : null; // Variable corregida a 
 $roteamento = isset($data['roteamento']) ? $data['roteamento'] : null;
 
 // Verificar si se proporcionaron todos los campos necesarios
-if ($estado == null || $operadora == null || $mme_amf == null || $tecnologia == null || $status == null || $teste == null || $roteamento == null) {
+if ($tecnologia == null || $status == null || $teste == null || $roteamento == null) {
     exit(json_encode(['success' => false, 'message' => 'Dados incompletos fornecidos.']));
 }
 
