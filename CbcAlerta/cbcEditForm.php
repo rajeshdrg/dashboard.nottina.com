@@ -96,8 +96,8 @@ function getAlertaById($id_xml)
 
         <label for="status">Status:</label>
         <select id="status" name="status">
-            <option value="ok" <?php echo $status === 'OK' ? 'selected' : ''; ?>>OK</option>
-            <option value="fora" <?php echo $status === 'Fora' ? 'selected' : ''; ?>>Fora</option>
+            <option value="OK" <?php echo $status === 'OK' ? 'selected' : ''; ?>>OK</option>
+            <option value="Fora" <?php echo $status === 'Fora' ? 'selected' : ''; ?>>Fora</option>
         </select><br><br>
 
         <label for="test">Teste:</label>
@@ -105,8 +105,8 @@ function getAlertaById($id_xml)
 
         <label for="roteamento">Roteamento:</label>
         <select id="roteamento" name="roteamento">
-            <option value="Sim" <?php echo $routing === 'sim' ? 'selected' : ''; ?>>Sim</option>
-            <option value="Não" <?php echo $routing === 'nao' ? 'selected' : ''; ?>>Não</option>
+            <option value="Sim" <?php echo $routing === 'Sim' ? 'selected' : ''; ?>>Sim</option>
+            <option value="Não" <?php echo $routing === 'Não' ? 'selected' : ''; ?>>Não</option>
         </select><br><br>
 
         <button type="submit">Enviar</button>
