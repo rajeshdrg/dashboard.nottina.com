@@ -67,7 +67,7 @@
             </tr>
         </thead>
         <tbody id="results">
-            <!-- Los resultados se insertarán aquí -->
+
         </tbody>
     </table>
 
@@ -77,7 +77,7 @@
             const operadora = document.getElementById('operadora').value;
             const tecnologia = document.getElementById('tecnologia').value;
 
-            const url = new URL('/path/to/search.php', window.location.origin); // Ajusta la ruta según sea necesario
+            const url = new URL('/CbcAlerta/searchCbc.php', window.location.origin);
             const params = { estado, operadora, tecnologia };
 
             Object.keys(params).forEach(key => {
