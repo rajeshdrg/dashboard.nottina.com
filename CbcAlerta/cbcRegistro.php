@@ -50,6 +50,12 @@
         <label for="tecnologia">Tecnologia:</label>
         <input type="text" id="tecnologia" name="tecnologia">
 
+        <label for="data_inicio">Data Início:</label>
+        <input type="date" id="data_inicio" name="data_inicio">
+
+        <label for="data_fim">Data Fim:</label>
+        <input type="date" id="data_fim" name="data_fim">
+
         <button type="button" onclick="fetchData()">Buscar</button>
     </form>
 
@@ -64,10 +70,11 @@
                 <th>Status</th>
                 <th>Teste</th>
                 <th>Roteamento</th>
+                <th>Data</th>
             </tr>
         </thead>
         <tbody id="results">
-
+            <!-- Los resultados se insertarán aquí -->
         </tbody>
     </table>
 
@@ -76,9 +83,11 @@
             const estado = document.getElementById('estado').value;
             const operadora = document.getElementById('operadora').value;
             const tecnologia = document.getElementById('tecnologia').value;
+            const data_inicio = document.getElementById('data_inicio').value;
+            const data_fim = document.getElementById('data_fim').value;
 
-            const url = new URL('/CbcAlerta/searchCbc.php', window.location.origin);
-            const params = { estado, operadora, tecnologia };
+            const url = new URL('/path/to/search.php', window.location.origin); // Ajusta la ruta según sea necesario
+            const params = { estado, operadora, tecnologia, data_inicio, data_fim };
 
             Object.keys(params).forEach(key => {
                 if (params[key]) {
@@ -106,6 +115,7 @@
                                 <td>${result.status}</td>
                                 <td>${result.teste}</td>
                                 <td>${result.roteamento}</td>
+                                <td>${result.data}</td>
                             `;
 
                             tableBody.appendChild(row);

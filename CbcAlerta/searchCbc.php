@@ -20,25 +20,32 @@ class Search
         $this->conexao = $conexao;
     }
 
-    public function search($estado, $operadora, $tecnologia)
+    public function search($estado, $operadora, $tecnologia, $data_inicio, $data_fim)
     {
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
 
         // Construir la consulta SQL dinámicamente según los parámetros proporcionados
         $sql = "SELECT * FROM cbc_relatorio WHERE 1=1";
+        $params = [];
+        $paramIndex = 1;
 
         if ($estado) {
-            $sql .= " AND estado = $1";
+            $sql .= " AND estado = $" . $paramIndex++;
             $params[] = $estado;
         }
         if ($operadora) {
-            $sql .= " AND operadora = $2";
+            $sql .= " AND operadora = $" . $paramIndex++;
             $params[] = $operadora;
         }
         if ($tecnologia) {
-            $sql .= " AND tecnologia = $3";
+            $sql .= " AND tecnologia = $" . $paramIndex++;
             $params[] = $tecnologia;
+        }
+        if ($data_inicio && $data_fim) {
+            $sql .= " AND data BETWEEN $" . $paramIndex++ . " AND $" . $paramIndex++;
+            $params[] = $data_inicio;
+            $params[] = $data_fim;
         }
 
         $sqlCommand->query = $sql;
@@ -63,9 +70,11 @@ class Search
 $estado = isset($_GET['estado']) ? $_GET['estado'] : null;
 $operadora = isset($_GET['operadora']) ? $_GET['operadora'] : null;
 $tecnologia = isset($_GET['tecnologia']) ? $_GET['tecnologia'] : null;
+$data_inicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : null;
+$data_fim = isset($_GET['data_fim']) ? $_GET['data_fim'] : null;
 
 // Crear una instancia de la clase Search y ejecutar la consulta
 $search = new Search();
-$search->search($estado, $operadora, $tecnologia);
+$search->search($estado, $operadora, $tecnologia, $data_inicio, $data_fim);
 
 ?>
