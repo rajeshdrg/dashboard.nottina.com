@@ -57,7 +57,7 @@
             border-radius: 4px;
             cursor: pointer;
             transition: opacity 0.3s ease;
-            width: 100%;
+            width: 50%;
             /* Ajuste para igualar el tamaño */
             max-width: 200px;
             /* Ancho máximo para mantener legibilidad */
