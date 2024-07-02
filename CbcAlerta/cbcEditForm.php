@@ -183,7 +183,7 @@ function getAlertaById($id_xml)
 
         let cancelButton = document.getElementById("cancelButton");
         cancelButton.addEventListener("click", () => {
-            window.location.href = '../index.php';
+            window.location.href = '/CbcAlerta/CbcAlerta.php';
         });
 
 
