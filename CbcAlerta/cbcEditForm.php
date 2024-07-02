@@ -72,6 +72,7 @@ function getAlertaById($id_xml)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Alerta</title>
+    <link rel="stylesheet" href="/CbcAlerta/cbcEditForm.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/sweetalert2.all.js"></script>
 </head>
@@ -183,7 +184,7 @@ function getAlertaById($id_xml)
 
         let cancelButton = document.getElementById("cancelButton");
         cancelButton.addEventListener("click", () => {
-            window.location.href = '/CbcAlerta/CbcAlerta.php';
+            window.location.href = '../index.php';
         });
 
 

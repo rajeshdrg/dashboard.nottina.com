@@ -59,8 +59,7 @@
         <button type="button" onclick="fetchData()">Buscar</button>
     </form>
 
-    <button type="button" onclick="window.location.href='/CbcAlerta/CbcAlerta.php'">Voltar</button>
-
+    <button type="button" onclick="window.location.href='../index.php'">Voltar</button>
 
 
     <table>
