@@ -78,7 +78,7 @@
         <input type="date" id="data_fim" name="data_fim">
 
         <button type="button" onclick="fetchData()">Buscar</button>
-        <button type="button" onclick="resetSearch()">Reset</button>
+        <button type="button" onclick="resetSearch()">Limpar</button>
         <button type="button" onclick="window.location.href='/CbcAlerta/index.php'">Voltar</button>
     </form>
 
