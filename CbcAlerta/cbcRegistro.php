@@ -43,6 +43,10 @@
             box-sizing: border-box;
         }
 
+        h1 {
+            text-align: center;
+        }
+
         /* Media query para ajustar el contenedor */
         @media (max-width: 768px) {
             .container {
@@ -53,7 +57,7 @@
 </head>
 
 <body>
-    <h1>Consulta CBC Relatório</h1>
+    <h1>Historico</h1>
 
     <form id="filterForm">
         <label for="estado">Estado:</label>
