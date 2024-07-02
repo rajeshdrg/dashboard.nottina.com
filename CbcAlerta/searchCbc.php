@@ -25,22 +25,22 @@ class Search
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
 
-
-        $sql = "SELECT * FROM cbc_relatorio WHERE 1=1";
+        // Construir la consulta SQL dinámicamente según los parámetros proporcionados
+        $sql = "SELECT id_xml, estado, operadora, mme_amf, tecnologia, status, teste, roteamento, to_char(created_at, 'YYYY-MM-DD') AS created_at FROM cbc_relatorio WHERE 1=1";
         $params = [];
         $paramIndex = 1;
 
         if (!empty($estado)) {
-            $sql .= " AND estado = $" . $paramIndex++;
-            $params[] = $estado;
+            $sql .= " AND UPPER(estado) = $" . $paramIndex++;
+            $params[] = strtoupper($estado);
         }
         if (!empty($operadora)) {
-            $sql .= " AND operadora = $" . $paramIndex++;
-            $params[] = $operadora;
+            $sql .= " AND  = $" . $paramIndex++;
+            $params[] = strtoupper($operadora);
         }
         if (!empty($tecnologia)) {
             $sql .= " AND tecnologia = $" . $paramIndex++;
-            $params[] = $tecnologia;
+            $params[] = strtoupper($tecnologia);
         }
         if (!empty($data_inicio) && !empty($data_fim)) {
             $sql .= " AND created_at BETWEEN $" . $paramIndex++ . " AND $" . $paramIndex++;
@@ -72,9 +72,10 @@ class Search
     }
 }
 
-$estado = isset($_GET['estado']) ? $_GET['estado'] : null;
-$operadora = isset($_GET['operadora']) ? $_GET['operadora'] : null;
-$tecnologia = isset($_GET['tecnologia']) ? $_GET['tecnologia'] : null;
+
+$estado = isset($_GET['estado']) ? strtoupper($_GET['estado']) : null;
+$operadora = isset($_GET['operadora']) ? strtoupper($_GET['operadora']) : null;
+$tecnologia = isset($_GET['tecnologia']) ? strtoupper($_GET['tecnologia']) : null;
 $data_inicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : null;
 $data_fim = isset($_GET['data_fim']) ? $_GET['data_fim'] : null;
 
