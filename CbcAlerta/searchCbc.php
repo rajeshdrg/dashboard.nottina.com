@@ -43,7 +43,7 @@ class Search
             $params[] = strtoupper($operadora);
         }
         if (!empty($tecnologia)) {
-            $sql .= " AND UPPER(tecnologia) = $" . $paramIndex++;
+            $sql .= " AND tecnologia = $" . $paramIndex++;
             $params[] = $tecnologia;
         }
         if (!empty($data_inicio) && !empty($data_fim)) {
