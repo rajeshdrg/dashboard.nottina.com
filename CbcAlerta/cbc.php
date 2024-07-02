@@ -64,7 +64,7 @@ class Cbc
 
         echo "<div class='$dark' style='width:80%; margin: 20px auto;'>";
         // Nueva línea para el enlace de registro
-        echo "<button onclick=\"window.location.href='/CbcAlerta/SearchCbc.php'\" style='float: right; margin-right: 10px; padding: 8px 16px; background-color: #007bff; color: #fff; border: none; cursor: pointer;'>Registro</button>";
+        echo "<button onclick=\"window.location.href='/CbcAlerta/cbcRegistro.php'\" style='float: right; margin-right: 10px; padding: 8px 16px; background-color: #007bff; color: #fff; border: none; cursor: pointer;'>Registro</button>";
         echo "<header class='card-header'>";
         echo "<b>CBC</b><br>";
         echo "<span>Última atualização: " . htmlspecialchars($this->file_date) . "</span>";
