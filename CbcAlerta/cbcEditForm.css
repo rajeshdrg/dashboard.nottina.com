@@ -35,7 +35,7 @@ form {
 }
 
 label {
-    margin: 10px 0 5px;
+    margin: 8px 0;
     text-align: left;
     width: 100%;
     max-width: 400px;
@@ -43,10 +43,10 @@ label {
 
 input[type="text"],
 select {
-    width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    margin-bottom: 10px;
+    width: calc(100% - 24px);
+    /* Ajuste para bordes */
+    padding: 8px;
+    margin-bottom: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -101,7 +101,7 @@ th {
     }
 
     label {
-        margin: 5px 0 2px;
+        margin: 5px 0;
     }
 
     input[type="text"],
@@ -110,6 +110,6 @@ th {
     }
 
     button {
-        padding: 5px 10px;
+        padding: 8px 16px;
     }
 }
