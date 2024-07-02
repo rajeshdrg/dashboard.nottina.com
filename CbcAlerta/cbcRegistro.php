@@ -7,6 +7,7 @@
     <title>Consulta CBC Relatório</title>
     <style>
         table {
+            background-color: #E7E9EA;
             width: 100%;
             border-collapse: collapse;
             table-layout: auto;
@@ -23,7 +24,7 @@
         }
 
         th {
-            background-color: #f4f4f4;
+            background-color: #DFDFE3;
         }
 
         form {
@@ -85,7 +86,7 @@
 
         <button type="button" onclick="fetchData()">Buscar</button>
         <button type="button" onclick="resetSearch()">Limpar</button>
-        <button type="button" onclick="window.location.href='/CbcAlerta/index.php'">Voltar</button>
+        <button type="button" onclick="window.location.href = '../index.php'">Voltar</button>
     </form>
 
 

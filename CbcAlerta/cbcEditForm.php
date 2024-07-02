@@ -78,130 +78,134 @@ function getAlertaById($id_xml)
 </head>
 
 <body>
-    <h1>Editar Relatório CBC</h1>
-    <form id="cbcForm" method="post" action="conection.php">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id']); ?>"> <!-- ID do alerta -->
-        <label for="estado">Estado/Região:</label>
-        <input type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($estado); ?>" readonly><br><br>
+    <div class="container">
+        <h1>Editar Relatório CBC</h1>
+        <form id="cbcForm" method="post" action="conection.php">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id']); ?>"> <!-- ID do alerta -->
+            <label for="estado">Estado/Região:</label>
+            <input type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($estado); ?>"
+                readonly><br><br>
 
-        <label for="operadora">Operadora:</label>
-        <input type="text" id="operadora" name="operadora" value="<?php echo htmlspecialchars($operadora); ?>"
-            readonly><br><br>
+            <label for="operadora">Operadora:</label>
+            <input type="text" id="operadora" name="operadora" value="<?php echo htmlspecialchars($operadora); ?>"
+                readonly><br><br>
 
-        <label for="mme">MME/AMF:</label>
-        <input type="text" id="mme" name="mme" value="<?php echo htmlspecialchars($mme); ?>" readonly><br><br>
+            <label for="mme">MME/AMF:</label>
+            <input type="text" id="mme" name="mme" value="<?php echo htmlspecialchars($mme); ?>" readonly><br><br>
 
-        <label for="tecnologia">Tecnologia:</label>
-        <input type="text" id="tecnologia" name="tecnologia" value="<?php echo htmlspecialchars($tecnologia); ?>"
-            readonly><br><br>
+            <label for="tecnologia">Tecnologia:</label>
+            <input type="text" id="tecnologia" name="tecnologia" value="<?php echo htmlspecialchars($tecnologia); ?>"
+                readonly><br><br>
 
-        <label for="status">Status:</label>
-        <select id="status" name="status">
-            <option value="OK" <?php echo $status === 'OK' ? 'selected' : ''; ?>>OK</option>
-            <option value="Fora" <?php echo $status === 'Fora' ? 'selected' : ''; ?>>Fora</option>
-        </select><br><br>
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="OK" <?php echo $status === 'OK' ? 'selected' : ''; ?>>OK</option>
+                <option value="Fora" <?php echo $status === 'Fora' ? 'selected' : ''; ?>>Fora</option>
+            </select><br><br>
 
-        <label for="test">Teste:</label>
-        <input type="text" id="test" name="test" value="<?php echo htmlspecialchars($test); ?>" required><br><br>
+            <label for="test">Teste:</label>
+            <input type="text" id="test" name="test" value="<?php echo htmlspecialchars($test); ?>" required><br><br>
 
-        <label for="roteamento">Roteamento:</label>
-        <select id="roteamento" name="roteamento">
-            <option value="Sim" <?php echo $routing === 'Sim' ? 'selected' : ''; ?>>Sim</option>
-            <option value="Não" <?php echo $routing === 'Não' ? 'selected' : ''; ?>>Não</option>
-        </select><br><br>
+            <label for="roteamento">Roteamento:</label>
+            <select id="roteamento" name="roteamento">
+                <option value="Sim" <?php echo $routing === 'Sim' ? 'selected' : ''; ?>>Sim</option>
+                <option value="Não" <?php echo $routing === 'Não' ? 'selected' : ''; ?>>Não</option>
+            </select><br><br>
 
-        <button type="submit">Enviar</button>
-        <button type="button" id="cancelButton">Cancelar</button>
-    </form>
+            <button type="submit">Enviar</button>
+            <button type="button" id="cancelButton">Cancelar</button>
+        </form>
+    </div>
+</body>
 
-    <script>
-        let form = document.getElementById("cbcForm");
+<script>
+    let form = document.getElementById("cbcForm");
 
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
 
-            //Coletar dados do formulário
-            const formData = new FormData(form);
+        //Coletar dados do formulário
+        const formData = new FormData(form);
 
 
-            // Converte FormData em um objeto para que possa ser convertido em JSON
-            const formObject = {};
-            formData.forEach((value, key) => {
-                formObject[key] = value;
+        // Converte FormData em um objeto para que possa ser convertido em JSON
+        const formObject = {};
+        formData.forEach((value, key) => {
+            formObject[key] = value;
+        });
+
+        // console.log(formObject);
+
+        // Enviando dados conection.php usando fetch
+        try {
+            const response = await fetch('/CbcAlerta/conection.php', {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formObject) // Aqui garantimos que ele seja enviado como um array
+
+
             });
+            console.log(response);
 
-            // console.log(formObject);
+            const contentType = response.headers.get('content-type');
 
-            // Enviando dados conection.php usando fetch
-            try {
-                const response = await fetch('/CbcAlerta/conection.php', {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formObject) // Aqui garantimos que ele seja enviado como um array
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new Error('Esperava uma resposta JSON, mas recebeu outra coisa.');
+            }
 
+            const data = await response.json();
+            console.log(data);
 
+            if (data.success) {
+                await Swal.fire({
+                    icon: 'success',
+                    title: 'Dados enviados corretamente',
+                    showConfirmButton: true,
+                    confirmButtonText: 'Fechar'
                 });
-                console.log(response);
-
-                const contentType = response.headers.get('content-type');
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                if (!contentType || !contentType.includes('application/json')) {
-                    throw new Error('Esperava uma resposta JSON, mas recebeu outra coisa.');
-                }
-
-                const data = await response.json();
-                console.log(data);
-
-                if (data.success) {
-                    await Swal.fire({
-                        icon: 'success',
-                        title: 'Dados enviados corretamente',
-                        showConfirmButton: true,
-                        confirmButtonText: 'Fechar'
-                    });
-                } else {
-                    await Swal.fire({
-                        icon: 'error',
-                        title: 'Error ao enviar dados',
-                        text: data.message,
-                    });
-                }
-            } catch (error) {
-                console.error('Erro ao enviar dados:', error);
+            } else {
                 await Swal.fire({
                     icon: 'error',
-                    title: 'Erro ao enviar dados',
-                    text: error.message,
+                    title: 'Error ao enviar dados',
+                    text: data.message,
                 });
             }
-        });
+        } catch (error) {
+            console.error('Erro ao enviar dados:', error);
+            await Swal.fire({
+                icon: 'error',
+                title: 'Erro ao enviar dados',
+                text: error.message,
+            });
+        }
+    });
 
-        let cancelButton = document.getElementById("cancelButton");
-        cancelButton.addEventListener("click", () => {
-            window.location.href = '../index.php';
-        });
+    let cancelButton = document.getElementById("cancelButton");
+    cancelButton.addEventListener("click", () => {
+        window.location.href = '../index.php';
+    });
 
 
-        // Função para desativar botões de navegação
-        // function disableNavigationButtons() {
-        //     history.pushState(null, null, location.href);
-        //     window.addEventListener('popstate', function () {
-        //         history.pushState(null, null, location.href);
-        //     });
+    // Função para desativar botões de navegação
+    // function disableNavigationButtons() {
+    //     history.pushState(null, null, location.href);
+    //     window.addEventListener('popstate', function () {
+    //         history.pushState(null, null, location.href);
+    //     });
 
-        //     window.addEventListener("beforeunload", function (event) {
-        //         event.preventDefault();
-        //     });
-        // }
+    //     window.addEventListener("beforeunload", function (event) {
+    //         event.preventDefault();
+    //     });
+    // }
 
-        // disableNavigationButtons();
-    </script>
+    // disableNavigationButtons();
+</script>
 </body>
 
 </html>
