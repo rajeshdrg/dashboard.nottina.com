@@ -27,8 +27,8 @@ class Search
 
 
         // Converter datas para o formato apropriado para o banco de dados (yy/mm/dd)
-        $data_inicio_db = date_format(date_create_from_format('m/d/y', $data_inicio), 'Y-m-d');
-        $data_fim_db = date_format(date_create_from_format('m/d/y', $data_fim), 'Y-m-d');
+        // $data_inicio_db = date_format(date_create_from_format('m/d/y', $data_inicio), 'Y-m-d');
+        // $data_fim_db = date_format(date_create_from_format('m/d/y', $data_fim), 'Y-m-d');
 
         // Crie a consulta SQL dinamicamente com base nos parâmetros fornecidos
         $sql = "SELECT id_xml, estado, operadora, mme_amf, tecnologia, status, teste, roteamento, to_char(created_at, 'YYYY-MM-DD') AS created_at FROM cbc_relatorio WHERE 1=1";
