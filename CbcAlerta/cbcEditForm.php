@@ -130,7 +130,7 @@ function getAlertaById($id_xml)
                 formObject[key] = value;
             });
 
-            console.log(formObject);
+            // console.log(formObject);
 
             // Enviando dados conection.php usando fetch
             try {

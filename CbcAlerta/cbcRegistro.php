@@ -78,9 +78,11 @@
         <input type="date" id="data_fim" name="data_fim">
 
         <button type="button" onclick="fetchData()">Buscar</button>
+        <button type="button" onclick="resetSearch()">Reset</button>
+        <button type="button" onclick="window.location.href='/CbcAlerta/index.php'">Voltar</button>
     </form>
 
-    <button type="button" onclick="window.location.href='/CbcAlerta/index.php'">Voltar</button>
+
 
     <table>
         <thead>
@@ -188,6 +190,10 @@
                     }
                 })
                 .catch(error => console.error('Error:', error));
+        }
+        function resetSearch() {
+            document.getElementById('filterForm').reset();
+            fetchData();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
