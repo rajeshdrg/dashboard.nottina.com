@@ -98,7 +98,7 @@
 
     <script>
         function fetchOptions() {
-            fetch('/CbcAlerta/cbbGetOptions.php')
+            fetch('/CbcAlerta/cbcGetOptions.php')
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
