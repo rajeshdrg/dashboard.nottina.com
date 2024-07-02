@@ -21,11 +21,38 @@
         th {
             background-color: #f4f4f4;
         }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        form label {
+            margin-right: 10px;
+        }
+
+        form input,
+        form select {
+            margin-right: 10px;
+        }
     </style>
 </head>
 
 <body>
     <h1>Consulta CBC Relatório</h1>
+
+    <form id="filterForm">
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" name="estado">
+
+        <label for="operadora">Operadora:</label>
+        <input type="text" id="operadora" name="operadora">
+
+        <label for="tecnologia">Tecnologia:</label>
+        <input type="text" id="tecnologia" name="tecnologia">
+
+        <button type="button" onclick="fetchData()">Buscar</button>
+    </form>
+
     <table>
         <thead>
             <tr>
@@ -45,35 +72,53 @@
     </table>
 
     <script>
-        // Hacer una solicitud GET al archivo PHP para obtener los datos
-        fetch('/CbcAlerta/searchCbc.php')  // Ajusta la ruta según sea necesario
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const results = data.results;
-                    const tableBody = document.getElementById('results');
+        function fetchData() {
+            const estado = document.getElementById('estado').value;
+            const operadora = document.getElementById('operadora').value;
+            const tecnologia = document.getElementById('tecnologia').value;
 
-                    results.forEach(result => {
-                        const row = document.createElement('tr');
+            const url = new URL('/path/to/search.php', window.location.origin); // Ajusta la ruta según sea necesario
+            const params = { estado, operadora, tecnologia };
 
-                        row.innerHTML = `
-                            <td>${result.id_xml}</td>
-                            <td>${result.estado}</td>
-                            <td>${result.operadora}</td>
-                            <td>${result.mme_amf}</td>
-                            <td>${result.tecnologia}</td>
-                            <td>${result.status}</td>
-                            <td>${result.teste}</td>
-                            <td>${result.roteamento}</td>
-                        `;
-
-                        tableBody.appendChild(row);
-                    });
-                } else {
-                    console.error(data.message);
+            Object.keys(params).forEach(key => {
+                if (params[key]) {
+                    url.searchParams.append(key, params[key]);
                 }
-            })
-            .catch(error => console.error('Error:', error));
+            });
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const results = data.results;
+                        const tableBody = document.getElementById('results');
+                        tableBody.innerHTML = '';
+
+                        results.forEach(result => {
+                            const row = document.createElement('tr');
+
+                            row.innerHTML = `
+                                <td>${result.id_xml}</td>
+                                <td>${result.estado}</td>
+                                <td>${result.operadora}</td>
+                                <td>${result.mme_amf}</td>
+                                <td>${result.tecnologia}</td>
+                                <td>${result.status}</td>
+                                <td>${result.teste}</td>
+                                <td>${result.roteamento}</td>
+                            `;
+
+                            tableBody.appendChild(row);
+                        });
+                    } else {
+                        console.error(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Fetch initial data on page load
+        fetchData();
     </script>
 </body>
 
