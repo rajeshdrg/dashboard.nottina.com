@@ -6,60 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta CBC Relatório</title>
     <style>
-        /* Global Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        table {
+            background-color: #E7E9EA;
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto;
+
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+            min-width: 50px;
+
         }
 
-        /* Container Styles */
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 600px;
-            text-align: center;
-            margin: 20px auto;
+        th {
+            background-color: #DFDFE3;
         }
 
-        /* Form Styles */
         form {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
             margin-bottom: 20px;
         }
 
-        label {
-            text-align: left;
-            width: 100%;
-            max-width: 200px;
+        form label {
+            margin-right: 10px;
         }
 
-        select,
-        input[type="date"] {
-            width: 100%;
+        form input,
+        form select {
+            margin-right: 10px;
             padding: 8px 12px;
             border-radius: 4px;
             border: 1px solid #ccc;
             box-sizing: border-box;
         }
 
+        h1 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* Estilos para los botones */
         button {
             padding: 10px 20px;
             margin: 10px 5px;
@@ -67,15 +57,30 @@
             border-radius: 4px;
             cursor: pointer;
             transition: opacity 0.3s ease;
+            width: 100%;
+            /* Ajuste para igualar el tamaño */
+            max-width: 200px;
+            /* Ancho máximo para mantener legibilidad */
+            display: inline-block;
+            /* Asegurar que se ajuste al contenido */
+            font-size: 14px;
+            /* Tamaño de fuente */
         }
 
-        button:nth-child(2) {
-            background-color: #6c757d;
-            /* Gris oscuro */
+        /* Color de los botones */
+        button:nth-of-type(1) {
+            background-color: #28a745;
+            /* Verde */
             color: #fff;
         }
 
-        button:nth-child(3) {
+        button:nth-of-type(2) {
+            background-color: #ccc;
+            /* Gris */
+            color: #333;
+        }
+
+        button:nth-of-type(3) {
             background-color: #dc3545;
             /* Rojo */
             color: #fff;
@@ -85,50 +90,13 @@
             opacity: 0.8;
         }
 
-        /* Table Styles */
-        table {
-            background-color: #e7e9ea;
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: auto;
-            margin-bottom: 20px;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-            min-width: 50px;
-        }
-
-        th {
-            background-color: #dfdfe3;
-        }
-
-        /* Media Queries */
+        /* Media query para ajustar el contenedor */
         @media (max-width: 768px) {
             .container {
                 width: 90%;
             }
         }
-
-        @media (max-width: 480px) {
-            .container {
-                width: 95%;
-            }
-
-            label {
-                width: 100%;
-                max-width: 100%;
-                text-align: left;
-                margin-bottom: 5px;
-            }
-
-            button {
-                width: 100%;
-            }
-        }
+    </style>
     </style>
 </head>
 

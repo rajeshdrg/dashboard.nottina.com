@@ -24,7 +24,6 @@ body {
     width: 90%;
     max-width: 600px;
     text-align: center;
-    /* Alineación centrada del contenido */
     margin: 20px auto;
 }
 
@@ -33,17 +32,13 @@ form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* Alinear elementos a la izquierda */
     max-width: 400px;
-    /* Ancho máximo para mantener la legibilidad */
     margin: 0 auto;
-    /* Centrar el formulario dentro del contenedor */
 }
 
 label {
     margin: 8px 0;
     text-align: left;
-    /* Alinear texto del label a la izquierda */
     width: 100%;
     max-width: 400px;
 }
@@ -66,6 +61,12 @@ select {
     color: #fff;
     cursor: pointer;
     transition: opacity 0.3s ease;
+    width: 100%;
+    /* Ajuste para igualar el tamaño */
+    max-width: 200px;
+    /* Ancho máximo para mantener legibilidad */
+    display: inline-block;
+    /* Asegurar que se ajuste al contenido */
 }
 
 .buttonG {
