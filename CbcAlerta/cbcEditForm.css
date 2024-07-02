@@ -34,7 +34,7 @@ form label {
 form input,
 form select {
     margin-right: 10px;
-    padding: 8px;
+    padding: 8px 12px;
     border-radius: 4px;
     border: 1px solid #ccc;
     box-sizing: border-box;

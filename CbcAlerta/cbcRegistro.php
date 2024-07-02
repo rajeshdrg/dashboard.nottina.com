@@ -42,13 +42,22 @@
 
     <form id="filterForm">
         <label for="estado">Estado:</label>
-        <input type="text" id="estado" name="estado">
+        <select name="estado" id="estado">
+            <option value="">Selecione um Estaddo</option>
+        </select>
+
 
         <label for="operadora">Operadora:</label>
-        <input type="text" id="operadora" name="operadora">
+        <select name="operadora" id="operadora">
+            <option value="">Selecione uma Operadora</option>
+        </select>
+
 
         <label for="tecnologia">Tecnologia:</label>
-        <input type="text" id="tecnologia" name="tecnologia">
+        <select name="tecnologia" id="tecnologia">
+            <option value="">Selecione uma Tecnologia</option>
+        </select>
+
 
         <label for="data_inicio">Data Início:</label>
         <input type="date" id="data_inicio" name="data_inicio">
