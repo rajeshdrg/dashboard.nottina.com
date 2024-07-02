@@ -25,26 +25,32 @@ class Search
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
 
-        // Construir la consulta SQL dinámicamente según los parámetros proporcionados
+
         $sql = "SELECT * FROM cbc_relatorio WHERE 1=1";
         $params = [];
         $paramIndex = 1;
 
-        if ($estado) {
+        if (!empty($estado)) {
             $sql .= " AND estado = $" . $paramIndex++;
             $params[] = $estado;
         }
-        if ($operadora) {
+        if (!empty($operadora)) {
             $sql .= " AND operadora = $" . $paramIndex++;
             $params[] = $operadora;
         }
-        if ($tecnologia) {
+        if (!empty($tecnologia)) {
             $sql .= " AND tecnologia = $" . $paramIndex++;
             $params[] = $tecnologia;
         }
-        if ($data_inicio && $data_fim) {
-            $sql .= " AND data BETWEEN $" . $paramIndex++ . " AND $" . $paramIndex++;
+        if (!empty($data_inicio) && !empty($data_fim)) {
+            $sql .= " AND created_at BETWEEN $" . $paramIndex++ . " AND $" . $paramIndex++;
             $params[] = $data_inicio;
+            $params[] = $data_fim;
+        } elseif (!empty($data_inicio)) {
+            $sql .= " AND created_at >= $" . $paramIndex++;
+            $params[] = $data_inicio;
+        } elseif (!empty($data_fim)) {
+            $sql .= " AND created_at <= $" . $paramIndex++;
             $params[] = $data_fim;
         }
 
@@ -52,7 +58,7 @@ class Search
         $sqlCommand->params = $params;
 
         try {
-            $result = $sqlCommand->Execute(); // Ejecutar la consulta SQL
+            $result = $sqlCommand->Execute();
             $data = [];
 
             while ($row = pg_fetch_assoc($result)) {
@@ -66,14 +72,13 @@ class Search
     }
 }
 
-// Obtener parámetros de la URL
 $estado = isset($_GET['estado']) ? $_GET['estado'] : null;
 $operadora = isset($_GET['operadora']) ? $_GET['operadora'] : null;
 $tecnologia = isset($_GET['tecnologia']) ? $_GET['tecnologia'] : null;
 $data_inicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : null;
 $data_fim = isset($_GET['data_fim']) ? $_GET['data_fim'] : null;
 
-// Crear una instancia de la clase Search y ejecutar la consulta
+
 $search = new Search();
 $search->search($estado, $operadora, $tecnologia, $data_inicio, $data_fim);
 
