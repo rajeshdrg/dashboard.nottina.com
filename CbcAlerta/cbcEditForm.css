@@ -1,5 +1,4 @@
 /* Global Styles */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -13,10 +12,10 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 
 /* Container Styles */
-
 .container {
     background-color: #fff;
     padding: 20px;
@@ -29,7 +28,6 @@ body {
 }
 
 /* Form Styles */
-
 form {
     display: flex;
     flex-direction: column;
@@ -61,6 +59,7 @@ button {
     background-color: #28a745;
     color: #fff;
     cursor: pointer;
+    transition: opacity 0.3s ease;
 }
 
 button.cancel-button {
@@ -72,10 +71,9 @@ button:hover {
 }
 
 /* Table Styles */
-
 table {
     width: 100%;
-    border-spacing: 0;
+    border-collapse: collapse;
     margin-bottom: 20px;
 }
 
@@ -91,7 +89,6 @@ th {
 }
 
 /* Media Queries */
-
 @media (max-width: 768px) {
     .container {
         width: 90%;
