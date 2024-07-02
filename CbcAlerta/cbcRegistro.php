@@ -98,7 +98,7 @@
 
     <script>
         function fetchOptions() {
-            fetch('/CbcAlerta/cbcGetOptions.php')
+            fetch('/CbcAlerta/getOptions.php')
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -135,15 +135,8 @@
                 .catch(error => console.error('Error:', error));
         }
 
-        function fetchData() {
-            const estado = document.getElementById('estado').value;
-            const operadora = document.getElementById('operadora').value;
-            const tecnologia = document.getElementById('tecnologia').value;
-            const data_inicio = document.getElementById('data_inicio').value;
-            const data_fim = document.getElementById('data_fim').value;
-
+        function fetchData(params) {
             const url = new URL('/CbcAlerta/searchCbc.php', window.location.origin);
-            const params = { estado, operadora, tecnologia, data_inicio, data_fim };
 
             Object.keys(params).forEach(key => {
                 if (params[key]) {
@@ -171,7 +164,7 @@
                                 <td>${result.status}</td>
                                 <td>${result.teste}</td>
                                 <td>${result.roteamento}</td>
-                                <td>${result.created_at}</td>
+                                <td>${result.created_at.split(' ')[0]}</td>
                             `;
 
                             tableBody.appendChild(row);
@@ -183,9 +176,34 @@
                 .catch(error => console.error('Error:', error));
         }
 
+        function formatDates(event) {
+            event.preventDefault();
+
+            const data_inicio = document.getElementById('data_inicio').value;
+            const data_fim = document.getElementById('data_fim').value;
+
+            let params = {
+                estado: document.getElementById('estado').value.toUpperCase(),
+                operadora: document.getElementById('operadora').value.toUpperCase(),
+                tecnologia: document.getElementById('tecnologia').value.toUpperCase(),
+                data_inicio: data_inicio ? formatToYYMMDD(data_inicio) : '',
+                data_fim: data_fim ? formatToYYMMDD(data_fim) : ''
+            };
+
+            fetchData(params);
+        }
+
+        function formatToYYMMDD(date) {
+            const dateObj = new Date(date);
+            const year = String(dateObj.getFullYear()).slice(-2);
+            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const day = String(dateObj.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             fetchOptions();
-            fetchData();
+            fetchData({});
         });
     </script>
 </body>
