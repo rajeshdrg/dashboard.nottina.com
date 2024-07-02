@@ -35,12 +35,12 @@ class Search
             $params[] = strtoupper($estado);
         }
         if (!empty($operadora)) {
-            $sql .= " AND  = $" . $paramIndex++;
+            $sql .= " AND UPPER(operadora) = $" . $paramIndex++;
             $params[] = strtoupper($operadora);
         }
         if (!empty($tecnologia)) {
             $sql .= " AND tecnologia = $" . $paramIndex++;
-            $params[] = strtoupper($tecnologia);
+            $params[] = $tecnologia;
         }
         if (!empty($data_inicio) && !empty($data_fim)) {
             $sql .= " AND created_at BETWEEN $" . $paramIndex++ . " AND $" . $paramIndex++;
@@ -58,7 +58,7 @@ class Search
         $sqlCommand->params = $params;
 
         try {
-            $result = $sqlCommand->Execute();
+            $result = $sqlCommand->Execute(); // Ejecutar la consulta SQL
             $data = [];
 
             while ($row = pg_fetch_assoc($result)) {
@@ -72,14 +72,14 @@ class Search
     }
 }
 
-
+// Obtener parámetros de la URL y convertir a mayúsculas
 $estado = isset($_GET['estado']) ? strtoupper($_GET['estado']) : null;
 $operadora = isset($_GET['operadora']) ? strtoupper($_GET['operadora']) : null;
 $tecnologia = isset($_GET['tecnologia']) ? $_GET['tecnologia'] : null;
 $data_inicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : null;
 $data_fim = isset($_GET['data_fim']) ? $_GET['data_fim'] : null;
 
-
+// Crear una instancia de la clase Search y ejecutar la consulta
 $search = new Search();
 $search->search($estado, $operadora, $tecnologia, $data_inicio, $data_fim);
 

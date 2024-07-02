@@ -59,7 +59,8 @@
         <button type="button" onclick="fetchData()">Buscar</button>
     </form>
 
-    <button type="button" onclick="window.location.href='CbcAlerta.php'">Voltar</button>
+    <button type="button" onclick="window.location.href='../index.php'">Voltar</button>
+
 
     <table>
         <thead>
@@ -82,9 +83,9 @@
 
     <script>
         function fetchData() {
-            const estado = document.getElementById('estado').value;
-            const operadora = document.getElementById('operadora').value;
-            const tecnologia = document.getElementById('tecnologia').value;
+            const estado = document.getElementById('estado').value.toUpperCase();
+            const operadora = document.getElementById('operadora').value.toUpperCase();
+            const tecnologia = document.getElementById('tecnologia').value.toUpperCase();
             const data_inicio = document.getElementById('data_inicio').value;
             const data_fim = document.getElementById('data_fim').value;
 
