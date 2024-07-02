@@ -23,7 +23,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 600px;
-    text-align: justify;
+    text-align: center;
+    /* Alineación centrada del contenido */
     margin: 20px auto;
 }
 
@@ -31,48 +32,85 @@ body {
 form {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: flex-start;
+    /* Alinear elementos a la izquierda */
+    max-width: 400px;
+    /* Ancho máximo para mantener la legibilidad */
+    margin: 0 auto;
+    /* Centrar el formulario dentro del contenedor */
 }
 
 label {
     margin: 8px 0;
     text-align: left;
+    /* Alinear texto del label a la izquierda */
     width: 100%;
     max-width: 400px;
 }
 
 input[type="text"],
 select {
-    width: calc(100% - 24px);
-    /* Ajuste para bordes */
-    padding: 8px;
-    margin-bottom: 8px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-.buttonG {
-    padding: 10px 20px;
-    margin: 10px 5px;
-    border: none;
-    border-radius: 4px;
-    background-color: #28a745;
-    color: #fff;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-}
-
+.buttonG,
 .buttonR {
     padding: 10px 20px;
     margin: 10px 5px;
     border: none;
     border-radius: 4px;
-    background-color: #dc3545;
     color: #fff;
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
 
+.buttonG {
+    background-color: #28a745;
+}
+
+.buttonR {
+    background-color: #dc3545;
+}
+
 button:hover {
     opacity: 0.8;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+
+    label {
+        margin: 5px 0;
+    }
 }

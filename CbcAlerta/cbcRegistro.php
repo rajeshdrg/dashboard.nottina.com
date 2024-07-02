@@ -6,12 +6,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta CBC Relatório</title>
     <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Container Styles */
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            text-align: left;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        select,
+        input[type="date"] {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        button:nth-child(2) {
+            background-color: #6c757d;
+            /* Gris oscuro */
+            color: #fff;
+        }
+
+        button:nth-child(3) {
+            background-color: #dc3545;
+            /* Rojo */
+            color: #fff;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Table Styles */
         table {
-            background-color: #E7E9EA;
+            background-color: #e7e9ea;
             width: 100%;
             border-collapse: collapse;
             table-layout: auto;
-
+            margin-bottom: 20px;
         }
 
         th,
@@ -20,40 +100,33 @@
             border: 1px solid #ddd;
             text-align: left;
             min-width: 50px;
-
         }
 
         th {
-            background-color: #DFDFE3;
+            background-color: #dfdfe3;
         }
 
-        form {
-            margin-bottom: 20px;
-        }
-
-        form label {
-            margin-right: 10px;
-        }
-
-        form input,
-        form select {
-            margin-right: 10px;
-            padding: 8px 12px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        h1 {
-            text-align: center;
-
-            margin-bottom: 50px;
-        }
-
-        /* Media query para ajustar el contenedor */
+        /* Media Queries */
         @media (max-width: 768px) {
             .container {
                 width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+            }
+
+            label {
+                width: 100%;
+                max-width: 100%;
+                text-align: left;
+                margin-bottom: 5px;
+            }
+
+            button {
+                width: 100%;
             }
         }
     </style>
