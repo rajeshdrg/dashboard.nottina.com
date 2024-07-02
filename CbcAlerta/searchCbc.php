@@ -25,7 +25,11 @@ class Search
         $sqlCommand = new SqlCommand("Sql");
         $sqlCommand->connection = $this->conexao;
 
-        // Construir la consulta SQL dinámicamente según los parámetros proporcionados
+        // Converter datas para o formato apropriado para o banco de dados (yy/mm/dd)
+        $data_inicio_db = date_format(date_create_from_format('m/d/y', $data_inicio), 'Y-m-d');
+        $data_fim_db = date_format(date_create_from_format('m/d/y', $data_fim), 'Y-m-d');
+
+        // Crie a consulta SQL dinamicamente com base nos parâmetros fornecidos
         $sql = "SELECT id_xml, estado, operadora, mme_amf, tecnologia, status, teste, roteamento, to_char(created_at, 'YYYY-MM-DD') AS created_at FROM cbc_relatorio WHERE 1=1";
         $params = [];
         $paramIndex = 1;
@@ -39,26 +43,26 @@ class Search
             $params[] = strtoupper($operadora);
         }
         if (!empty($tecnologia)) {
-            $sql .= " AND tecnologia = $" . $paramIndex++;
+            $sql .= " AND UPPER(tecnologia) = $" . $paramIndex++;
             $params[] = $tecnologia;
         }
         if (!empty($data_inicio) && !empty($data_fim)) {
             $sql .= " AND created_at BETWEEN $" . $paramIndex++ . " AND $" . $paramIndex++;
-            $params[] = $data_inicio;
-            $params[] = $data_fim;
+            $params[] = $data_inicio_db;
+            $params[] = $data_fim_db;
         } elseif (!empty($data_inicio)) {
             $sql .= " AND created_at >= $" . $paramIndex++;
-            $params[] = $data_inicio;
+            $params[] = $data_inicio_db;
         } elseif (!empty($data_fim)) {
             $sql .= " AND created_at <= $" . $paramIndex++;
-            $params[] = $data_fim;
+            $params[] = $data_fim_db;
         }
 
         $sqlCommand->query = $sql;
         $sqlCommand->params = $params;
 
         try {
-            $result = $sqlCommand->Execute(); // Ejecutar la consulta SQL
+            $result = $sqlCommand->Execute();
             $data = [];
 
             while ($row = pg_fetch_assoc($result)) {
@@ -72,14 +76,14 @@ class Search
     }
 }
 
-// Obtener parámetros de la URL y convertir a mayúsculas
+
 $estado = isset($_GET['estado']) ? strtoupper($_GET['estado']) : null;
 $operadora = isset($_GET['operadora']) ? strtoupper($_GET['operadora']) : null;
 $tecnologia = isset($_GET['tecnologia']) ? $_GET['tecnologia'] : null;
 $data_inicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : null;
 $data_fim = isset($_GET['data_fim']) ? $_GET['data_fim'] : null;
 
-// Crear una instancia de la clase Search y ejecutar la consulta
+
 $search = new Search();
 $search->search($estado, $operadora, $tecnologia, $data_inicio, $data_fim);
 
