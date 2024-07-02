@@ -45,6 +45,8 @@
 
         h1 {
             text-align: center;
+
+            margin-bottom: 50px;
         }
 
         /* Media query para ajustar el contenedor */
