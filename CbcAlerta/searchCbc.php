@@ -75,7 +75,7 @@ class Search
 
 $estado = isset($_GET['estado']) ? strtoupper($_GET['estado']) : null;
 $operadora = isset($_GET['operadora']) ? strtoupper($_GET['operadora']) : null;
-$tecnologia = isset($_GET['tecnologia']) ? strtoupper($_GET['tecnologia']) : null;
+$tecnologia = isset($_GET['tecnologia']) ? $_GET['tecnologia'] : null;
 $data_inicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : null;
 $data_fim = isset($_GET['data_fim']) ? $_GET['data_fim'] : null;
 
