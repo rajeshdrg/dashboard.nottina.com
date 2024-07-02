@@ -59,7 +59,7 @@
         <button type="button" onclick="fetchData()">Buscar</button>
     </form>
 
-    <button type="button" onclick="window.location.href='cbc.php'">Voltar</button>
+    <button type="button" onclick="window.location.href='CbcAlerta.php'">Voltar</button>
 
     <table>
         <thead>
@@ -88,7 +88,7 @@
             const data_inicio = document.getElementById('data_inicio').value;
             const data_fim = document.getElementById('data_fim').value;
 
-            const url = new URL('/CbcAlerta/searchCbc.php', window.location.origin); // Ajusta la ruta según sea necesario
+            const url = new URL('/CbcAlerta/searchCbc.php', window.location.origin);
             const params = { estado, operadora, tecnologia, data_inicio, data_fim };
 
             Object.keys(params).forEach(key => {
@@ -117,7 +117,7 @@
                                 <td>${result.status}</td>
                                 <td>${result.teste}</td>
                                 <td>${result.roteamento}</td>
-                                <td>${result.data}</td>
+                                <td>${result.created_at}</td>
                             `;
 
                             tableBody.appendChild(row);
