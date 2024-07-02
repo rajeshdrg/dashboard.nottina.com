@@ -10,7 +10,7 @@
             width: 100%;
             border-collapse: collapse;
             table-layout: auto;
-            /* Ajusta el tamaño de las columnas al contenido */
+
         }
 
         th,
@@ -19,7 +19,7 @@
             border: 1px solid #ddd;
             text-align: left;
             min-width: 50px;
-            /* Ancho mínimo para las celdas */
+
         }
 
         th {
@@ -142,7 +142,7 @@
         function fetchData() {
             const estado = document.getElementById('estado').value.toUpperCase();
             const operadora = document.getElementById('operadora').value.toUpperCase();
-            const tecnologia = document.getElementById('tecnologia').value.toUpperCase();
+            const tecnologia = document.getElementById('tecnologia').value;
             const data_inicio = document.getElementById('data_inicio').value;
             const data_fim = document.getElementById('data_fim').value;
 
