@@ -127,7 +127,7 @@
 
         <button type="button" onclick="fetchData()">Buscar</button>
         <button type="button" onclick="resetSearch()">Limpar</button>
-        <button type="button" onclick="window.location.href = '../index.php'">Voltar</button>
+        <a href="/index.php">Voltar</button>
     </form>
 
 
