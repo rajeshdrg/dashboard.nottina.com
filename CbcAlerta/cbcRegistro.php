@@ -171,7 +171,7 @@
                                 <td>${result.status}</td>
                                 <td>${result.teste}</td>
                                 <td>${result.roteamento}</td>
-                                <td>${result.created_at.split(' ')[0]}</td>
+                                <td>${result.created_at}</td>
                             `;
 
                             tableBody.appendChild(row);
