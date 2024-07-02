@@ -9,6 +9,8 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            table-layout: auto;
+            /* Ajusta el tamaño de las columnas al contenido */
         }
 
         th,
@@ -16,6 +18,8 @@
             padding: 10px;
             border: 1px solid #ddd;
             text-align: left;
+            min-width: 50px;
+            /* Ancho mínimo para las celdas */
         }
 
         th {
@@ -76,7 +80,7 @@
         <button type="button" onclick="fetchData()">Buscar</button>
     </form>
 
-    <button type="button" onclick="window.location.href = '../index.php'">Voltar</button>
+    <button type="button" onclick="window.location.href='/CbcAlerta/index.php'">Voltar</button>
 
     <table>
         <thead>
