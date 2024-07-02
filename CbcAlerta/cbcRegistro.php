@@ -184,9 +184,9 @@
             const data_fim = document.getElementById('data_fim').value;
 
             let params = {
-                estado: document.getElementById('estado').value.toUpperCase(),
-                operadora: document.getElementById('operadora').value.toUpperCase(),
-                tecnologia: document.getElementById('tecnologia').value.toUpperCase(),
+                estado: document.getElementById('estado').value,
+                operadora: document.getElementById('operadora').value,
+                tecnologia: document.getElementById('tecnologia').value,
                 data_inicio: data_inicio ? formatToYYMMDD(data_inicio) : '',
                 data_fim: data_fim ? formatToYYMMDD(data_fim) : ''
             };
