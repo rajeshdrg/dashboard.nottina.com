@@ -143,7 +143,7 @@
                     url.searchParams.append(key, params[key]);
                 }
             });
-            console.log(Object);
+
 
             fetch(url)
                 .then(response => response.json())
