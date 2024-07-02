@@ -112,7 +112,7 @@ function getAlertaById($id_xml)
                 <option value="Não" <?php echo $routing === 'Não' ? 'selected' : ''; ?>>Não</option>
             </select><br><br>
 
-            <button type="submit">Enviar</button>
+            <button type="submit" id="submit">Enviar</button>
             <button type="button" id="cancelButton">Cancelar</button>
         </form>
     </div>
