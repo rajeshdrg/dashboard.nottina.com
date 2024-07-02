@@ -62,7 +62,7 @@ button {
     transition: opacity 0.3s ease;
 }
 
-button.cancel-button {
+button.cancelButton {
     background-color: #dc3545;
 }
 
