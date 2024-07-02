@@ -135,15 +135,24 @@
                 .catch(error => console.error('Error:', error));
         }
 
-        function fetchData(params) {
+        function fetchData() {
+            const estado = document.getElementById('estado').value.toUpperCase();
+            const operadora = document.getElementById('operadora').value.toUpperCase();
+            const tecnologia = document.getElementById('tecnologia').value.toUpperCase();
+            const data_inicio = document.getElementById('data_inicio').value;
+            const data_fim = document.getElementById('data_fim').value;
+
+            const params = {};
+            if (estado) params.estado = estado;
+            if (operadora) params.operadora = operadora;
+            if (tecnologia) params.tecnologia = tecnologia;
+            if (data_inicio) params.data_inicio = data_inicio;
+            if (data_fim) params.data_fim = data_fim;
+
             const url = new URL('/CbcAlerta/searchCbc.php', window.location.origin);
-
             Object.keys(params).forEach(key => {
-                if (params[key]) {
-                    url.searchParams.append(key, params[key]);
-                }
+                url.searchParams.append(key, params[key]);
             });
-
 
             fetch(url)
                 .then(response => response.json())
@@ -157,16 +166,16 @@
                             const row = document.createElement('tr');
 
                             row.innerHTML = `
-                                <td>${result.id_xml}</td>
-                                <td>${result.estado}</td>
-                                <td>${result.operadora}</td>
-                                <td>${result.mme_amf}</td>
-                                <td>${result.tecnologia}</td>
-                                <td>${result.status}</td>
-                                <td>${result.teste}</td>
-                                <td>${result.roteamento}</td>
-                                <td>${result.created_at.split(' ')[0]}</td>
-                            `;
+                            <td>${result.id_xml}</td>
+                            <td>${result.estado}</td>
+                            <td>${result.operadora}</td>
+                            <td>${result.mme_amf}</td>
+                            <td>${result.tecnologia}</td>
+                            <td>${result.status}</td>
+                            <td>${result.teste}</td>
+                            <td>${result.roteamento}</td>
+                            <td>${result.created_at.split(' ')[0]}</td>
+                        `;
 
                             tableBody.appendChild(row);
                         });
@@ -177,34 +186,9 @@
                 .catch(error => console.error('Error:', error));
         }
 
-        function formatDates(event) {
-            event.preventDefault();
-
-            const data_inicio = document.getElementById('data_inicio').value;
-            const data_fim = document.getElementById('data_fim').value;
-
-            let params = {
-                estado: document.getElementById('estado').value,
-                operadora: document.getElementById('operadora').value,
-                tecnologia: document.getElementById('tecnologia').value,
-                data_inicio: data_inicio ? formatToYYMMDD(data_inicio) : '',
-                data_fim: data_fim ? formatToYYMMDD(data_fim) : ''
-            };
-
-            fetchData(params);
-        }
-
-        function formatToYYMMDD(date) {
-            const dateObj = new Date(date);
-            const year = String(dateObj.getFullYear()).slice(-2);
-            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-            const day = String(dateObj.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             fetchOptions();
-            fetchData({});
+            fetchData();
         });
     </script>
 </body>
