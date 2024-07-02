@@ -54,21 +54,18 @@
     <form id="filterForm">
         <label for="estado">Estado:</label>
         <select name="estado" id="estado">
-            <option value="">Selecione um Estaddo</option>
+            <option value="">Selecione um Estado</option>
         </select>
-
 
         <label for="operadora">Operadora:</label>
         <select name="operadora" id="operadora">
             <option value="">Selecione uma Operadora</option>
         </select>
 
-
         <label for="tecnologia">Tecnologia:</label>
         <select name="tecnologia" id="tecnologia">
             <option value="">Selecione uma Tecnologia</option>
         </select>
-
 
         <label for="data_inicio">Data Início:</label>
         <input type="date" id="data_inicio" name="data_inicio">
@@ -79,8 +76,7 @@
         <button type="button" onclick="fetchData()">Buscar</button>
     </form>
 
-    <button type="button" onclick="window.location.href='../index.php'">Voltar</button>
-
+    <button type="button" onclick="window.location.href='/CbcAlerta/index.php'">Voltar</button>
 
     <table>
         <thead>
@@ -97,11 +93,48 @@
             </tr>
         </thead>
         <tbody id="results">
-
         </tbody>
     </table>
 
     <script>
+        function fetchOptions() {
+            fetch('/CbcAlerta/cbbGetOptions.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const { estados, operadoras, tecnologias } = data.options;
+
+                        const estadoSelect = document.getElementById('estado');
+                        const operadoraSelect = document.getElementById('operadora');
+                        const tecnologiaSelect = document.getElementById('tecnologia');
+
+                        estados.forEach(estado => {
+                            const option = document.createElement('option');
+                            option.value = estado;
+                            option.text = estado;
+                            estadoSelect.appendChild(option);
+                        });
+
+                        operadoras.forEach(operadora => {
+                            const option = document.createElement('option');
+                            option.value = operadora;
+                            option.text = operadora;
+                            operadoraSelect.appendChild(option);
+                        });
+
+                        tecnologias.forEach(tecnologia => {
+                            const option = document.createElement('option');
+                            option.value = tecnologia;
+                            option.text = tecnologia;
+                            tecnologiaSelect.appendChild(option);
+                        });
+                    } else {
+                        console.error(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
         function fetchData() {
             const estado = document.getElementById('estado').value;
             const operadora = document.getElementById('operadora').value;
@@ -138,7 +171,7 @@
                                 <td>${result.status}</td>
                                 <td>${result.teste}</td>
                                 <td>${result.roteamento}</td>
-                                <td>${result.created_at}</td>
+                                <td>${result.created_at.split(' ')[0]}</td>
                             `;
 
                             tableBody.appendChild(row);
@@ -150,8 +183,10 @@
                 .catch(error => console.error('Error:', error));
         }
 
-        // Fetch initial data on page load
-        fetchData();
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchOptions();
+            fetchData();
+        });
     </script>
 </body>
 
