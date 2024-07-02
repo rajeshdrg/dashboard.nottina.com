@@ -85,7 +85,7 @@
         function fetchData() {
             const estado = document.getElementById('estado').value.toUpperCase();
             const operadora = document.getElementById('operadora').value.toUpperCase();
-            const tecnologia = document.getElementById('tecnologia').value.toUpperCase();
+            const tecnologia = document.getElementById('tecnologia').value;
             const data_inicio = document.getElementById('data_inicio').value;
             const data_fim = document.getElementById('data_fim').value;
 
