@@ -90,13 +90,21 @@
         </tbody>
     </table>
 
+
     <script>
+        const tableBody = document.getElementById('cbc-results');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const errorElement = document.getElementById('error-message');
+
         function fetchData() {
             const estado = document.getElementById('estado').value;
             const operadora = document.getElementById('operadora').value;
             const tecnologia = document.getElementById('tecnologia').value;
             const data_inicio = document.getElementById('data_inicio').value;
             const data_fim = document.getElementById('data_fim').value;
+
+            // Show loading indicator
+            loadingIndicator.style.display = 'block';
 
             const url = new URL('/CbcAlerta/searchCbc.php', window.location.origin);
             const params = { estado, operadora, tecnologia, data_inicio, data_fim };
@@ -110,15 +118,21 @@
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
+                    // Hide loading indicator
+                    loadingIndicator.style.display = 'none';
+
                     if (data.success) {
                         const results = data.results;
-                        const tableBody = document.getElementById('results');
                         tableBody.innerHTML = '';
 
-                        results.forEach(result => {
-                            const row = document.createElement('tr');
+                        if (results.length === 0) {
+                            // Display no results message
+                            tableBody.innerHTML = '<tr><td colspan="9">No results found.</td></tr>';
+                        } else {
+                            results.forEach(result => {
+                                const row = document.createElement('tr');
 
-                            row.innerHTML = `
+                                row.innerHTML = `
                                 <td>${result.id_xml}</td>
                                 <td>${result.estado}</td>
                                 <td>${result.operadora}</td>
@@ -130,18 +144,29 @@
                                 <td>${result.created_at}</td>
                             `;
 
-                            tableBody.appendChild(row);
-                        });
+                                tableBody.appendChild(row);
+                            });
+                        }
                     } else {
-                        console.error(data.message);
+                        // Display error message
+                        errorElement.textContent = data.message;
+                        errorElement.style.display = 'block';
                     }
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => {
+                    // Display error message
+                    errorElement.textContent = 'Error: ' + error.message;
+                    errorElement.style.display = 'block';
+                });
         }
 
         // Fetch initial data on page load
         fetchData();
     </script>
+
+    <!-- Add loading indicator and error message elements -->
+    <div id="loading-indicator" style="display: none;">Loading...</div>
+    <div id="error-message" style="display: none; color: red;"></div>
 </body>
 
 </html>
