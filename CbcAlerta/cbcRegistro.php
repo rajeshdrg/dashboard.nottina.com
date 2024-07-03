@@ -101,7 +101,7 @@
 </head>
 
 <body>
-    <h1>Historico</h1>
+    <h1>Histórico</h1>
 
     <form id="filterForm">
         <label for="estado">Estado:</label>
