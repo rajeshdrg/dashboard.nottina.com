@@ -17,7 +17,7 @@
         th,
         td {
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 2px solid #ddd;
             text-align: left;
             min-width: 50px;
 
@@ -40,7 +40,7 @@
             margin-right: 10px;
             padding: 8px 12px;
             border-radius: 4px;
-            border: 1px solid #ccc;
+            border: 2px solid #ccc;
             box-sizing: border-box;
         }
 
@@ -49,7 +49,7 @@
             margin-bottom: 50px;
         }
 
-        /* Estilos para los botones */
+
         button {
             padding: 10px 20px;
             margin: 10px 5px;
@@ -58,31 +58,31 @@
             cursor: pointer;
             transition: opacity 0.3s ease;
             width: 50%;
-            /* Ajuste para igualar el tamaño */
-            max-width: 200px;
-            /* Ancho máximo para mantener legibilidad */
+
+            max-width: 100px;
+
             display: inline-block;
-            /* Asegurar que se ajuste al contenido */
+
             font-size: 14px;
-            /* Tamaño de fuente */
+
         }
 
-        /* Color de los botones */
+
         button:nth-of-type(1) {
             background-color: #28a745;
-            /* Verde */
+
             color: #fff;
         }
 
         button:nth-of-type(2) {
             background-color: #ccc;
-            /* Gris */
+
             color: #333;
         }
 
         button:nth-of-type(3) {
             background-color: #dc3545;
-            /* Rojo */
+
             color: #fff;
         }
 
