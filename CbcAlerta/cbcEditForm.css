@@ -10,16 +10,15 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 600px;
-
     margin: 20px auto;
 }
 
 h1 {
-    text-align: center
+    text-align: center;
 }
 
 form {
-    width: 480px;
+    width: 490px;
     padding: 16px;
     border-radius: 10px;
     margin: auto;
@@ -42,35 +41,32 @@ form input[type="text"] {
     display: inline-block;
 }
 
-form input[type="submit"] {
-    width: 50%;
-    padding: 8px 16px;
+.button-container {
+    display: flex;
+    justify-content: space-around;
     margin-top: 32px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    display: block;
-    color: #fff;
-    background-color: #28a745;
-
-
 }
 
-form input[type="cancelar"] {
-    width: 50%;
+.button-container button {
+    width: 45%;
     padding: 8px 16px;
-    margin-top: 32px;
     border: 1px solid #000;
     border-radius: 5px;
-    display: block;
     color: #fff;
-    background-color: #dc3545;
-    text-align: center;
-}
-
-form input[type="submit"],
-form input[type="cancelar"]:hover {
-    opacity: 0.8;
     cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.button-container .buttonG {
+    background-color: #28a745;
+}
+
+.button-container .buttonR {
+    background-color: #dc3545;
+}
+
+.button-container button:hover {
+    opacity: 0.8;
 }
 
 textarea {
@@ -80,7 +76,6 @@ textarea {
     border-radius: 3px;
     background-color: #f6f6f6;
     margin: 8px 0;
-    /*resize: vertical | horizontal | none | both*/
     resize: none;
     display: block;
 }
