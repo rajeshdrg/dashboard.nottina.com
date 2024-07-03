@@ -64,7 +64,7 @@ class Cbc
 
         echo "<div class='$dark' style='width:80%; margin: 20px auto;'>";
 
-        echo "<a href='/CbcAlerta/cbcRegistro.php'>Histórico</a>";
+        echo "<a href='/CbcAlerta/cbcRegistro.php' style='float: right; margin-right: 10px; padding: 8px 16px; background-color: #AB6C96; color: #fff; border-radius: 3px; cursor: pointer;'>Histórico</a>";
         echo "<header class='card-header'>";
         echo "<b>CBC</b><br>";
         echo "<span>Última atualização: " . htmlspecialchars($this->file_date) . "</span>";
