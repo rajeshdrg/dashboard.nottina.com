@@ -7,7 +7,7 @@
     <title>Consulta CBC Relatório</title>
     <style>
         table {
-            background-color: #E7E9EA;
+            background-color: #F2F4F4;
             width: 100%;
             border-collapse: collapse;
             table-layout: auto;
