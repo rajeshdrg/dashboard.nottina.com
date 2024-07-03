@@ -112,100 +112,99 @@ function getAlertaById($id_xml)
                 <option value="Não" <?php echo $routing === 'Não' ? 'selected' : ''; ?>>Não</option>
             </select><br><br>
 
-            <button class="buttonG" type="submit" id="submit">Enviar</button>
-            <button class="buttonR" type="button" id="cancelButton">Cancelar</button>
+            <input type="submit" name="enviar" value="Enviar" />
+            <input type="cancelar" name="enviar" value="Cancelar" />
         </form>
     </div>
-</body>
 
-<script>
-    let form = document.getElementById("cbcForm");
+    <script>
+        let form = document.getElementById("cbcForm");
 
-    form.addEventListener("submit", async (event) => {
-        event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault(); // Impedir que a página seja recarregada ao enviar o formulário
 
-        //Coletar dados do formulário
-        const formData = new FormData(form);
-
-
-        // Converte FormData em um objeto para que possa ser convertido em JSON
-        const formObject = {};
-        formData.forEach((value, key) => {
-            formObject[key] = value;
-        });
-
-        // console.log(formObject);
-
-        // Enviando dados conection.php usando fetch
-        try {
-            const response = await fetch('/CbcAlerta/conection.php', {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formObject) // Aqui garantimos que ele seja enviado como um array
+            //Coletar dados do formulário
+            const formData = new FormData(form);
 
 
+            // Converte FormData em um objeto para que possa ser convertido em JSON
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
             });
-            console.log(response);
 
-            const contentType = response.headers.get('content-type');
+            // console.log(formObject);
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            if (!contentType || !contentType.includes('application/json')) {
-                throw new Error('Esperava uma resposta JSON, mas recebeu outra coisa.');
-            }
+            // Enviando dados conection.php usando fetch
+            try {
+                const response = await fetch('/CbcAlerta/conection.php', {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formObject) // Aqui garantimos que ele seja enviado como um array
 
-            const data = await response.json();
-            console.log(data);
 
-            if (data.success) {
-                await Swal.fire({
-                    icon: 'success',
-                    title: 'Dados enviados corretamente',
-                    showConfirmButton: true,
-                    confirmButtonText: 'Fechar'
                 });
-            } else {
+                console.log(response);
+
+                const contentType = response.headers.get('content-type');
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                if (!contentType || !contentType.includes('application/json')) {
+                    throw new Error('Esperava uma resposta JSON, mas recebeu outra coisa.');
+                }
+
+                const data = await response.json();
+                console.log(data);
+
+                if (data.success) {
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Dados enviados corretamente',
+                        showConfirmButton: true,
+                        confirmButtonText: 'Fechar'
+                    });
+                } else {
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Error ao enviar dados',
+                        text: data.message,
+                    });
+                }
+            } catch (error) {
+                console.error('Erro ao enviar dados:', error);
                 await Swal.fire({
                     icon: 'error',
-                    title: 'Error ao enviar dados',
-                    text: data.message,
+                    title: 'Erro ao enviar dados',
+                    text: error.message,
                 });
             }
-        } catch (error) {
-            console.error('Erro ao enviar dados:', error);
-            await Swal.fire({
-                icon: 'error',
-                title: 'Erro ao enviar dados',
-                text: error.message,
-            });
-        }
-    });
+        });
 
-    let cancelButton = document.getElementById("cancelButton");
-    cancelButton.addEventListener("click", () => {
-        window.location.href = '../index.php';
-    });
+        let cancelButton = document.getElementById("cancelButton");
+        cancelButton.addEventListener("click", () => {
+            window.location.href = '../index.php';
+        });
 
 
-    // Função para desativar botões de navegação
-    // function disableNavigationButtons() {
-    //     history.pushState(null, null, location.href);
-    //     window.addEventListener('popstate', function () {
-    //         history.pushState(null, null, location.href);
-    //     });
+        // Função para desativar botões de navegação
+        // function disableNavigationButtons() {
+        //     history.pushState(null, null, location.href);
+        //     window.addEventListener('popstate', function () {
+        //         history.pushState(null, null, location.href);
+        //     });
 
-    //     window.addEventListener("beforeunload", function (event) {
-    //         event.preventDefault();
-    //     });
-    // }
+        //     window.addEventListener("beforeunload", function (event) {
+        //         event.preventDefault();
+        //     });
+        // }
 
-    // disableNavigationButtons();
-</script>
+        // disableNavigationButtons();
+    </script>
 </body>
 
 </html>
