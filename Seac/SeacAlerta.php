@@ -80,10 +80,10 @@ class SeacAlerta
             else
                 print "<font color=green>Oi</font> ";
 
-            if ($al->sky == 0)
-                print "<font color=red>Sky</font> ";
-            else
-                print "<font color=green>Sky</font> ";
+            // if ($al->sky == 0)
+            //     print "<font color=red>Sky</font> ";
+            // else
+            //     print "<font color=green>Sky</font> ";
 
             if ($al->nossa == 0)
                 print "<font color=red>Nossa</font> ";
